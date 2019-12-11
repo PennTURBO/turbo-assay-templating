@@ -1,0 +1,58 @@
+
+<http://purl.bioontology.org/ontology/LNC/2345-7> a <http://www.w3.org/2002/07/owl#Class>;
+  <http://bioportal.bioontology.org/ontologies/umls/cui> "C0484731";
+  <http://bioportal.bioontology.org/ontologies/umls/hasSTY> <http://purl.bioontology.org/ontology/STY/T201>;
+  <http://bioportal.bioontology.org/ontologies/umls/tui> "T201";
+  <http://purl.bioontology.org/ontology/LNC/COMMON_ORDER_RANK> "120";
+  <http://purl.bioontology.org/ontology/LNC/COMMON_SI_TEST_RANK> "0";
+  <http://purl.bioontology.org/ontology/LNC/COMMON_TEST_RANK> "4";
+  <http://purl.bioontology.org/ontology/LNC/CONSUMER_NAME> "Glucose lab";
+  <http://purl.bioontology.org/ontology/LNC/EXAMPLE_UCUM_UNITS> "mg/dL";
+  <http://purl.bioontology.org/ontology/LNC/EXAMPLE_UNITS> "mg/dL";
+  <http://purl.bioontology.org/ontology/LNC/IEEE_CF_CODE10> "160197", "160369";
+  <http://purl.bioontology.org/ontology/LNC/IEEE_DESCRIPTION> "Plasma glucose concentration taken from undetermined sample source",
+    "Plasma glucose concentration taken from venous";
+  <http://purl.bioontology.org/ontology/LNC/IEEE_DIM> "ML-3";
+  <http://purl.bioontology.org/ontology/LNC/IEEE_REFID> "MDC_CONC_GLU_UNDETERMINED_PLASMA",
+    "MDC_CONC_GLU_VENOUS_PLASMA";
+  <http://purl.bioontology.org/ontology/LNC/IEEE_UOM_UCUM> "mg/dL g/L";
+  <http://purl.bioontology.org/ontology/LNC/LCD> "Y";
+  <http://purl.bioontology.org/ontology/LNC/LCL> "CHEM";
+  <http://purl.bioontology.org/ontology/LNC/LCN> "1";
+  <http://purl.bioontology.org/ontology/LNC/LCS> "ACTIVE";
+  <http://purl.bioontology.org/ontology/LNC/LCT> "MIN";
+  <http://purl.bioontology.org/ontology/LNC/LOINC_COMPONENT> "Glucose";
+  <http://purl.bioontology.org/ontology/LNC/LOINC_PROPERTY> "MCnc";
+  <http://purl.bioontology.org/ontology/LNC/LOINC_SCALE_TYP> "Qn";
+  <http://purl.bioontology.org/ontology/LNC/LOINC_SYSTEM> "Ser/Plas";
+  <http://purl.bioontology.org/ontology/LNC/LOINC_TIME_ASPECT> "Pt";
+  <http://purl.bioontology.org/ontology/LNC/LOR> "Both";
+  <http://purl.bioontology.org/ontology/LNC/LRN2> "Chemistry; Glu; Gluc; Glucoseur; Level; Mass concentration; Pl; Plasma; Plsm; Point in time; QNT; Quan; Quant; Quantitative; Random; SerP; SerPl; SerPlas; Serum; Serum or plasma; SR";
+  <http://purl.bioontology.org/ontology/LNC/LUR> "Y";
+  <http://purl.bioontology.org/ontology/LNC/TOP_2000_LAB_RESULTS_US> "4";
+  <http://purl.bioontology.org/ontology/LNC/UNITS_AND_RANGE> "mg/dL:[74,106];";
+  <http://purl.bioontology.org/ontology/LNC/UNIVERSAL_LAB_ORDERS_VALUE_SET> "TRUE";
+  <http://purl.bioontology.org/ontology/LNC/VERSION_FIRST_RELEASED> "1.0";
+  <http://purl.bioontology.org/ontology/LNC/VERSION_LAST_CHANGED> "2.34";
+  <http://purl.bioontology.org/ontology/LNC/analyzes> <http://purl.bioontology.org/ontology/LNC/MTHU001012>;
+  <http://purl.bioontology.org/ontology/LNC/has_class> <http://purl.bioontology.org/ontology/LNC/LP7786-9>;
+  <http://purl.bioontology.org/ontology/LNC/has_component> <http://purl.bioontology.org/ontology/LNC/LP14635-4>;
+  <http://purl.bioontology.org/ontology/LNC/has_property> <http://purl.bioontology.org/ontology/LNC/LP6827-2>;
+  <http://purl.bioontology.org/ontology/LNC/has_scale> <http://purl.bioontology.org/ontology/LNC/LP7753-9>;
+  <http://purl.bioontology.org/ontology/LNC/has_system> <http://purl.bioontology.org/ontology/LNC/LP7479-1>,
+    <http://purl.bioontology.org/ontology/LNC/LP7567-3>, <http://purl.bioontology.org/ontology/LNC/LP7576-4>;
+  <http://purl.bioontology.org/ontology/LNC/has_time_aspect> <http://purl.bioontology.org/ontology/LNC/LP6960-1>;
+  <http://purl.bioontology.org/ontology/LNC/measures> <http://purl.bioontology.org/ontology/LNC/MTHU001675>;
+  <http://purl.bioontology.org/ontology/LNC/member_of> <http://purl.bioontology.org/ontology/LNC/24320-4>,
+    <http://purl.bioontology.org/ontology/LNC/24321-2>, <http://purl.bioontology.org/ontology/LNC/24322-0>,
+    <http://purl.bioontology.org/ontology/LNC/24323-8>, <http://purl.bioontology.org/ontology/LNC/24353-5>,
+    <http://purl.bioontology.org/ontology/LNC/24362-6>, <http://purl.bioontology.org/ontology/LNC/54232-4>,
+    <http://purl.bioontology.org/ontology/LNC/54233-2>, <http://purl.bioontology.org/ontology/LNC/55399-0>,
+    <http://purl.bioontology.org/ontology/LNC/70219-1>, <http://purl.bioontology.org/ontology/LNC/88843-8>,
+    <http://purl.bioontology.org/ontology/LNC/89044-2>;
+  <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://purl.bioontology.org/ontology/LNC/LP42107-0>,
+    <http://purl.bioontology.org/ontology/LNC/MTHU000049>;
+  <http://www.w3.org/2004/02/skos/core#altLabel> "Glucose SerPl-mCnc"@en, "Glucose [Mass/volume] in Serum or Plasma"@en,
+    "Glucose:Mass Concentration:Point in time:Serum/Plasma:Quantitative"@en;
+  <http://www.w3.org/2004/02/skos/core#notation> "2345-7";
+  <http://www.w3.org/2004/02/skos/core#prefLabel> "Glucose:MCnc:Pt:Ser/Plas:Qn"@en .
