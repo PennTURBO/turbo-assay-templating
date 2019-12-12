@@ -16,7 +16,7 @@ http://purl.bioontology.org/ontology/LNC/LP6773-8|ACnc|Arbitrary conc|24598
 http://purl.bioontology.org/ontology/LNC/LP6860-3|SCnc|Substance conc (molarity)|16014
 http://purl.bioontology.org/ontology/LNC/LP6836-3|NCnc|Number concentration|3563
 http://purl.bioontology.org/ontology/LNC/LP6789-4|CCnc|Catalytic concentration|1531
-http://purl.bioontology.org/ontology/LNC/LP35077-4|RelACnc|Relataive absolute conc|579
+http://purl.bioontology.org/ontology/LNC/LP35077-4|RelACnc|Relataive arbitrary conc|579
 http://purl.bioontology.org/ontology/LNC/LP33032-1|MSCnc|Mass or substance conc|331
 http://purl.bioontology.org/ontology/LNC/LP33110-5|LnCnc|Log number conc|325
 http://purl.bioontology.org/ontology/LNC/LP65028-0|SCncDiff| |158
