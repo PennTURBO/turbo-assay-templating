@@ -9,7 +9,7 @@
 - Component 
 - Optional method
 
-**LoincProperty**|**propertylab**|**Top 1% labels**|**count**
+**LoincProperty**|**propertylab**|**notes**|**count**
 :-----|:-----|:-----|-----:
 http://purl.bioontology.org/ontology/LNC/LP6827-2|MCnc|Mass conc|34172
 http://purl.bioontology.org/ontology/LNC/LP6773-8|ACnc|Arbitrary conc|24598
