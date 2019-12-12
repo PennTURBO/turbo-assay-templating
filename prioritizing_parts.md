@@ -1,8 +1,8 @@
 ## common _properties_
 
 ### When
-Time = Pt
-Scale = Qn
+- Time = Pt
+- Scale = Qn
 
 ### Remaining parts:
 - System 
