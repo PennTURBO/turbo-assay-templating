@@ -41,7 +41,7 @@ As above, plus top 5 properties
 - Optional method
 
 **LoincSystem**|**systemlab**|**count**
-:-----:|:-----:|:-----:
+:-----|:-----|-----:
 http://purl.bioontology.org/ontology/LNC/LP7567-3|Ser|29628
 http://purl.bioontology.org/ontology/LNC/LP7479-1|Plas|11707
 http://purl.bioontology.org/ontology/LNC/LP7576-4|Ser/Plas|10922
