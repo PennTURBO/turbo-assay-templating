@@ -1,4 +1,4 @@
-## commom _properties_
+## common _properties_
 
 ### When
 Time = Pt
