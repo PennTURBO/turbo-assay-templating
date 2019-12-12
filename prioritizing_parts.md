@@ -10,7 +10,7 @@ Scale = Qn
 - Optional method
 
 **LoincProperty**|**propertylab**|**Top 1% labels**|**count**
-:-----:|:-----:|:-----:|:-----:
+:-----|:-----|:-----|-----:
 http://purl.bioontology.org/ontology/LNC/LP6827-2|MCnc|Mass conc|34172
 http://purl.bioontology.org/ontology/LNC/LP6773-8|ACnc|Arbitrary conc|24598
 http://purl.bioontology.org/ontology/LNC/LP6860-3|SCnc|Substance conc (molarity)|16014
@@ -41,7 +41,7 @@ As above, plus top 5 properties
 - Optional method
 
 **LoincSystem**|**systemlab**|**count**
-:-----:|:-----:|:-----:
+:-----|:-----|-----:
 http://purl.bioontology.org/ontology/LNC/LP7479-1|Plas|8244
 http://purl.bioontology.org/ontology/LNC/LP7567-3|Ser|11694
 http://purl.bioontology.org/ontology/LNC/LP7576-4|Ser/Plas|7592
