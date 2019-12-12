@@ -31,7 +31,7 @@ http://purl.bioontology.org/ontology/LNC/LP203668-1|SCncSq| |9
 http://purl.bioontology.org/ontology/LNC/LP6874-4|ThrACnc| |3
 http://purl.bioontology.org/ontology/LNC/LP343621-1|TmMCnc| |1
 
-## Top 10 out of 68 _systems_
+## Top 10 out of 135 _systems_
 
 ### When
 As above, plus top 5 properties
@@ -41,17 +41,16 @@ As above, plus top 5 properties
 - Optional method
 
 **LoincSystem**|**systemlab**|**count**
-:-----|:-----|-----:
-http://purl.bioontology.org/ontology/LNC/LP7479-1|Plas|8244
-http://purl.bioontology.org/ontology/LNC/LP7567-3|Ser|11694
-http://purl.bioontology.org/ontology/LNC/LP7576-4|Ser/Plas|7592
-http://purl.bioontology.org/ontology/LNC/LP7057-5|Bld|1008
-http://purl.bioontology.org/ontology/LNC/LP7681-2|Urine|2402
-http://purl.bioontology.org/ontology/LNC/LP34750-7|Air|211
-http://purl.bioontology.org/ontology/LNC/LP7536-8|RBC|73
-http://purl.bioontology.org/ontology/LNC/LP7719-0|Water|103
-http://purl.bioontology.org/ontology/LNC/LP7238-1|Body fld|364
-http://purl.bioontology.org/ontology/LNC/LP7156-5|CSF|299
-http://purl.bioontology.org/ontology/LNC/LP7169-8|Dial fld|176
+:-----:|:-----:|:-----:
+http://purl.bioontology.org/ontology/LNC/LP7567-3|Ser|29628
+http://purl.bioontology.org/ontology/LNC/LP7479-1|Plas|11707
+http://purl.bioontology.org/ontology/LNC/LP7576-4|Ser/Plas|10922
+http://purl.bioontology.org/ontology/LNC/LP7057-5|Bld|3078
+http://purl.bioontology.org/ontology/LNC/LP7681-2|Urine|2867
+http://purl.bioontology.org/ontology/LNC/LP7156-5|CSF|2102
+http://purl.bioontology.org/ontology/LNC/LP7735-6|XXX|1044
+http://purl.bioontology.org/ontology/LNC/LP7238-1|Body fld|1036
+http://purl.bioontology.org/ontology/LNC/LP7494-0|PPP|486
+http://purl.bioontology.org/ontology/LNC/LP7720-8|WBC|362
 
 Use top 5
