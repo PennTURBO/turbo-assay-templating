@@ -5,9 +5,9 @@ Time = Pt
 Scale = Qn
 
 ### Remaining parts:
-System 
-Component 
-Optional method
+- System 
+- Component 
+- Optional method
 
 **LoincProperty**|**propertylab**|**Top 1% labels**|**count**
 :-----:|:-----:|:-----:|:-----:
@@ -35,6 +35,10 @@ http://purl.bioontology.org/ontology/LNC/LP343621-1|TmMCnc| |1
 
 ### When
 As above, plus top 5 properties
+
+### Remaining parts:
+- Component 
+- Optional method
 
 **LoincSystem**|**systemlab**|**count**
 :-----:|:-----:|:-----:
