@@ -1,3 +1,5 @@
+These counts reflect the frequency with which a part appears in a LOINC lab term, not how frequently they appear in any given EHR. That can be added soon.
+
 ## common _properties_
 
 ### When
