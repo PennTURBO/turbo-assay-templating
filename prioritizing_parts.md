@@ -1,6 +1,6 @@
 These counts reflect the frequency with which a part appears in a LOINC lab term, not how frequently they appear in any given EHR. That can be added soon.
 
-### Give these starting constraints:
+### Given these starting constraints:
 - Time = Pt
 - Scale = Qn
 
