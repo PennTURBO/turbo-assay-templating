@@ -1,15 +1,10 @@
 These counts reflect the frequency with which a part appears in a LOINC lab term, not how frequently they appear in any given EHR. That can be added soon.
 
-## common _properties_
-
-### When
+### Give these starting constraints:
 - Time = Pt
 - Scale = Qn
 
-### Remaining parts:
-- System 
-- Component 
-- Optional method
+## These are common concentration _properties_
 
 **LoincProperty**|**propertylab**|**notes**|**count**
 :-----|:-----|:-----|-----:
@@ -36,11 +31,8 @@ http://purl.bioontology.org/ontology/LNC/LP343621-1|TmMCnc| |1
 ## Top 10 out of 135 _systems_
 
 ### When
-As above, plus top 5 properties (mass, arbitrary, "substance", "number" and "catalytic" concentrations)
 
-### Remaining parts:
-- Component 
-- Optional method
+As above, plus top 5(?) properties (mass, arbitrary, "substance", "number" and "catalytic" concentrations)
 
 **LoincSystem**|**systemlab**|**count**
 :-----|:-----|-----:
@@ -56,3 +48,8 @@ http://purl.bioontology.org/ontology/LNC/LP7494-0|PPP|486
 http://purl.bioontology.org/ontology/LNC/LP7720-8|WBC|362
 
 Use top 6 (through CSF?)
+
+### Remaining parts:
+- Component 
+- Optional method
+
