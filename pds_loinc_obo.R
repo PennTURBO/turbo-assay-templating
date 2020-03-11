@@ -2,7 +2,7 @@
 
 # eliminate/postpone loinc challenge parts? look for "^".
 
-# is gloeruklar filteration rate still in there?
+# is glomerular filtration rate still in there?
 
 library(config)
 library(RJDBC)
@@ -12,7 +12,7 @@ library(reshape2)
 library(dplyr)
 
 # find driver from config file
-config <- config::get(file = "loinc_in_obo.yaml.template")
+config <- config::get(file = "loinc_in_obo.yaml")
 
 LoincPartLink <-
   read_csv(config$LoincPartLink.file)
@@ -204,3 +204,26 @@ pds.prominent.loinc.parts <-
 # #
 # # $Property
 # # [1] 13
+
+needs.component.mappings <- unique(pds.with.loinc.parts$COMPONENT)
+loinc.provided.component.mappings <-
+  PartRelatedCodeMapping[PartRelatedCodeMapping$PartNumber %in% needs.component.mappings ,]
+
+table(
+  loinc.provided.component.mappings$ExtCodeSystem,
+  loinc.provided.component.mappings$Equivalence
+)
+
+loinc.provided.component.mappings <-
+  loinc.provided.component.mappings[loinc.provided.component.mappings$ExtCodeSystem %in%
+                                      c("https://www.ebi.ac.uk/chebi",
+                                        "http://www.nlm.nih.gov/research/umls/rxnorm") &
+                                      loinc.provided.component.mappings$Equivalence == "equivalent" ,]
+
+loinc.provided.soemthing <-
+  unique(loinc.provided.component.mappings$PartNumber)
+loinc.unmapped.components <-
+  setdiff(needs.component.mappings, loinc.provided.soemthing)
+loinc.unmapped.components <-
+  pds.prominent.loinc.parts[pds.prominent.loinc.parts$PartTypeVal %in% loinc.unmapped.components ,]
+
