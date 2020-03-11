@@ -10,6 +10,7 @@ library(readr)
 library(reshape2)
 # see also https://jangorecki.gitlab.io/data.cube/library/data.table/html/dcast.data.table.html
 library(dplyr)
+library(httr)
 
 # find driver from config file
 config <- config::get(file = "loinc_in_obo.yaml")
@@ -70,14 +71,12 @@ print(timed.system)
 # Close connection
 dbDisconnect(pdsConnection)
 
-# pds.loinc.frequency.resuts <- pds.loinq.frequency.resuts
-
 common.loincs <-
   pds.loinc.frequency.resuts$LOINC[pds.loinc.frequency.resuts$LOINC_COUNT >= 2]
 
 relevant.primary.part.cast <-
   LoincPartLink[LoincPartLink$LoincNumber %in% common.loincs &
-                  LoincPartLink$LinkTypeName == "Primary",]
+                  LoincPartLink$LinkTypeName == "Primary", ]
 
 relevant.primary.part.cast <-
   relevant.primary.part.cast[, c("LoincNumber", "PartNumber", "PartTypeName")]
@@ -127,7 +126,7 @@ pds.with.loinc.parts <-
                          (pds.with.loinc.parts$TIME == "LP6960-1" |
                             pds.with.loinc.parts$TIME == "LP6924-7") &
                          pds.with.loinc.parts$PROPERTY %in% pds_loinc_properties_reviewed &
-                         pds.with.loinc.parts$SYSTEM %in% pds_loinc_systems_reviewed , ]
+                         pds.with.loinc.parts$SYSTEM %in% pds_loinc_systems_reviewed ,]
 
 pds.with.loinc.parts.melt <-
   melt(
@@ -181,33 +180,9 @@ pds.prominent.loinc.parts <-
 
 # write.csv(pds.prominent.loinc.parts[pds.priminent.loinc.parts$PartTypeName == "PROPERTY",], "pds_loinc_properties.csv")
 
-# # $LoincNumber
-# # [1] 1
-# #
-# # $LongCommonName
-# # [1] 1
-# #
-# # $PartNumber
-# # [1] 9
-# #
-# # $PartName
-# # [1] 10
-# #
-# # $PartCodeSystem
-# # [1] 1
-# #
-# # $PartTypeName
-# # [1] 7
-# #
-# # $LinkTypeName
-# # [1] 5
-# #
-# # $Property
-# # [1] 13
-
 needs.component.mappings <- unique(pds.with.loinc.parts$COMPONENT)
 loinc.provided.component.mappings <-
-  PartRelatedCodeMapping[PartRelatedCodeMapping$PartNumber %in% needs.component.mappings ,]
+  PartRelatedCodeMapping[PartRelatedCodeMapping$PartNumber %in% needs.component.mappings , ]
 
 table(
   loinc.provided.component.mappings$ExtCodeSystem,
@@ -218,12 +193,121 @@ loinc.provided.component.mappings <-
   loinc.provided.component.mappings[loinc.provided.component.mappings$ExtCodeSystem %in%
                                       c("https://www.ebi.ac.uk/chebi",
                                         "http://www.nlm.nih.gov/research/umls/rxnorm") &
-                                      loinc.provided.component.mappings$Equivalence == "equivalent" ,]
+                                      loinc.provided.component.mappings$Equivalence == "equivalent" , ]
 
 loinc.provided.soemthing <-
   unique(loinc.provided.component.mappings$PartNumber)
 loinc.unmapped.components <-
   setdiff(needs.component.mappings, loinc.provided.soemthing)
 loinc.unmapped.components <-
-  pds.prominent.loinc.parts[pds.prominent.loinc.parts$PartTypeVal %in% loinc.unmapped.components ,]
+  pds.prominent.loinc.parts[pds.prominent.loinc.parts$PartTypeVal %in% loinc.unmapped.components , ]
 
+### get mappings or search with bioportal
+# start with public endpoint but eventually switch to appliance
+
+api.base.uri <- "http://data.bioontology.org/ontologies"
+api.ontology.name <- "LOINC"
+term.ontology.name <- "LNC"
+term.base.uri <-
+  paste0("http://purl.bioontology.org/ontology",
+         "/",
+         term.ontology.name)
+api.family <- "classes"
+# source.term <- "http://purl.bioontology.org/ontology/LNC/LP17698-9"
+api.method <- "mappings"
+
+# what are the chances that a mapping query will return 0 ammpings, or that it will return multiple pages?
+
+
+retreive.and.parse <- function(term.list) {
+  outer <- lapply(term.list, function(current.term) {
+    # current.term <- "LP102314-4"
+    print(current.term)
+    current.uri <- paste0(term.base.uri, "/", current.term)
+    encoded.term <- URLencode(current.uri, reserved = TRUE)
+    prepared.get <-
+      paste(api.base.uri,
+            api.ontology.name,
+            api.family,
+            encoded.term,
+            api.method,
+            sep = "/")
+    mapping.res.list <-
+      httr::GET(url = prepared.get,
+                add_headers(
+                  Authorization = paste0("apikey token=", config$bioportal.api.key)
+                ))
+    
+    mapping.res.list <- rawToChar(mapping.res.list$content)
+    
+    mapping.res.list <- jsonlite::fromJSON(mapping.res.list)
+    if (length(mapping.res.list) > 0) {
+      # CUI, LOOM, "same URI", etc. Porbably only LOOM will be useful
+      mapping.methods <- mapping.res.list$source
+      
+      source.target.details <-
+        lapply(mapping.res.list$classes, function(current.mapping) {
+          source.target.terms <- current.mapping$`@id`
+          source.target.ontologies <- current.mapping$links$ontology
+          return(c(
+            rbind(source.target.terms, source.target.ontologies)
+          ))
+        })
+      
+      source.target.details <-
+        do.call(rbind.data.frame, source.target.details)
+      colnames(source.target.details) <-
+        c("source.term",
+          "source.ontology",
+          "target.term",
+          "target.ontology")
+      
+      source.target.details <-
+        cbind.data.frame(source.target.details, mapping.methods)
+      return(source.target.details)
+    }
+    
+  })
+}
+
+retreived.and.parsed <-
+  retreive.and.parse(sort(unique(loinc.unmapped.components$PartTypeVal)))
+
+retreived.and.parsed <-
+  do.call(rbind.data.frame, retreived.and.parsed)
+
+rap.tab <- table(retreived.and.parsed$target.ontology)
+rap.tab <- cbind.data.frame(names(rap.tab), as.numeric(rap.tab))
+names(rap.tab) <- c("target.ontology", "map.count")
+
+acceptable.ontologies <-
+  c(
+    'http://data.bioontology.org/ontologies/CHEBI',
+    'http://data.bioontology.org/ontologies/CL',
+    'http://data.bioontology.org/ontologies/CLO',
+    'http://data.bioontology.org/ontologies/DRON',
+    'http://data.bioontology.org/ontologies/FMA',
+    'http://data.bioontology.org/ontologies/GO-PLUS',
+    'http://data.bioontology.org/ontologies/PR',
+    'http://data.bioontology.org/ontologies/UBERON',
+    'http://data.bioontology.org/ontologies/UPHENO',
+    'http://data.bioontology.org/ontologies/VO'
+  )
+
+acceptable.retreived.and.parsed <-
+  unique(retreived.and.parsed[retreived.and.parsed$target.ontology %in% acceptable.ontologies , c("source.term", "target.term")])
+acceptable.retreived.and.parsed$target.term <-
+  as.character(acceptable.retreived.and.parsed$target.term)
+acceptable.retreived.and.parsed$source.id <-
+  gsub(pattern = "http://purl.bioontology.org/ontology/LNC/",
+       replacement = "",
+       x = acceptable.retreived.and.parsed$source.term)
+
+
+loinc.still.unmapped.components <-
+  setdiff(
+    loinc.unmapped.components$PartTypeVal,
+    acceptable.retreived.and.parsed$source.id
+  )
+loinc.still.unmapped.components <-
+  pds.prominent.loinc.parts[pds.prominent.loinc.parts$PartTypeVal %in% loinc.still.unmapped.components , ]
