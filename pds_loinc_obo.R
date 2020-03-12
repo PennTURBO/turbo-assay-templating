@@ -11,6 +11,8 @@ library(reshape2)
 # see also https://jangorecki.gitlab.io/data.cube/library/data.table/html/dcast.data.table.html
 library(dplyr)
 library(httr)
+# different install method!
+# library(rols)
 
 # find driver from config file
 config <- config::get(file = "loinc_in_obo.yaml")
@@ -311,3 +313,99 @@ loinc.still.unmapped.components <-
   )
 loinc.still.unmapped.components <-
   pds.prominent.loinc.parts[pds.prominent.loinc.parts$PartTypeVal %in% loinc.still.unmapped.components , ]
+
+loinc.still.unmapped.components$s.end <-
+  grepl(pattern = "s$",
+        x = loinc.still.unmapped.components$PartName,
+        ignore.case = TRUE)
+
+
+loinc.still.unmapped.components$has.non.alpha <-
+  grepl(pattern = "[^a-zA-Z ]",
+        x = loinc.still.unmapped.components$PartName,
+        ignore.case = TRUE)
+
+potential.cells <-
+  loinc.still.unmapped.components[loinc.still.unmapped.components$s.end &
+                                    !(loinc.still.unmapped.components$has.non.alpha),
+                                  c("PartTypeVal", "PartDisplayName")]
+potential.cells <-
+  potential.cells[order(potential.cells$PartDisplayName), ]
+
+# modify the input so that it's easoer to merge abck in with LOINC codes
+
+ols.attempts <-
+  apply(
+    X = potential.cells,
+    MARGIN = 1,
+    FUN = function(current.row) {
+      #ols.attempts <- lapply(sort(potential.cells), function(current.potential) {
+      current.potential <- tolower(current.row[["PartDisplayName"]])
+      current.potential <-
+        sub(pattern = "s$",
+            replacement = "",
+            x = current.potential)
+      singular.lc <- current.potential
+      current.potential <-
+        gsub(pattern = " ",
+             replacement = ",",
+             x = current.potential)
+      print(current.potential)
+      
+      ols.attempt <-
+        httr::GET(
+          paste0(
+            "https://www.ebi.ac.uk/ols/api/search?q={",
+            current.potential,
+            "}&type=class&local=true&ontology=uberon,cl,pr&rows=9"
+          )
+        )
+      ols.attempt <- ols.attempt$content
+      ols.attempt <- rawToChar(ols.attempt)
+      ols.attempt <- jsonlite::fromJSON(ols.attempt)
+      ols.attempt <- ols.attempt$response$docs
+      if (is.data.frame(ols.attempt)) {
+        ols.attempt$query <- singular.lc
+        ols.attempt$loinc.part <- current.row[["PartTypeVal"]]
+        return(ols.attempt)
+      }
+    }
+  )
+
+ols.attempts <- do.call(rbind.data.frame, ols.attempts)
+ols.successes <-
+  ols.attempts[ols.attempts$label == ols.attempts$query ,]
+
+# how to pick which hits are acceptable?
+# lowercased query with trialing s removed should be an exact match for lowercased label?
+# &queryFields={label,synonym}
+# &ontology=
+
+loinc.still.unmapped.components <-
+  loinc.still.unmapped.components[(!(
+    loinc.still.unmapped.components$PartTypeVal %in% ols.successes$loinc.part
+  )), ]
+
+# PR considers LP15333-5 "Alanine aminotransferase" underspecified... 
+# should contain a species and numerical subtype like "human Alanine aminotransferase 1"
+# try to find other LOINC protein components
+# subclassof "Enzymes" http://purl.bioontology.org/ontology/LNC/LP31392-1 <- CHAL 
+#  <- Chamistry and Chemistry challenge <- Lab <- LOINCPARTS
+
+# LP6118-6 Albumin sco Protein http://purl.bioontology.org/ontology/LNC/LP15838-3
+#  <- UA <- Lab ...
+
+# LP17698-9 Erythrocyte distribution width
+#   variability of etrythorcyte sizes... a quality of the distribution/population
+
+# LP30809-5 Anion gap... difference between concentration of common cations and common anions
+
+# LP14492-0 Urea nitrogen: overspecified as far as chebi is concerned
+# LP15441-6 bicarbonate: underspecified/synonymy (hydrogencarbonate anion ChEBI 17544) 
+
+# LP286653-3 Neutrophils/100 leukocytes
+
+write.csv(loinc.still.unmapped.components, "loinc_components_obo-unmappable_by_loinc_bioportal_ols.csv")
+
+
+
