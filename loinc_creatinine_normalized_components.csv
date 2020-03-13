@@ -1,0 +1,101 @@
+"","PartTypeName.x","PartTypeVal","pds.count","PartTypeName.y","PartName","PartDisplayName","Status","s.end","has.non.alpha"
+"767","COMPONENT","LP284677-4",9,"COMPONENT","17-Hydroxycorticosteroids/Creatinine","17-Hydroxycorticosteroids/Creatinine","ACTIVE",FALSE,TRUE
+"768","COMPONENT","LP284718-6",161,"COMPONENT","2-Oxo,3-Methylvalerate/Creatinine","2-Oxo,3-Methylvalerate/Creatinine","ACTIVE",FALSE,TRUE
+"769","COMPONENT","LP284720-2",166,"COMPONENT","2-Oxoisocaproate/Creatinine","2-Oxoisocaproate/Creatinine","ACTIVE",FALSE,TRUE
+"770","COMPONENT","LP284721-0",166,"COMPONENT","2-Oxoisovalerate/Creatinine","2-Oxoisovalerate/Creatinine","ACTIVE",FALSE,TRUE
+"771","COMPONENT","LP284802-8",166,"COMPONENT","4-Hydroxyphenylacetate/Creatinine","4-Hydroxyphenylacetate/Creatinine","ACTIVE",FALSE,TRUE
+"772","COMPONENT","LP284803-6",166,"COMPONENT","4-Hydroxyphenyllactate/Creatinine","4-Hydroxyphenyllactate/Creatinine","ACTIVE",FALSE,TRUE
+"773","COMPONENT","LP284804-4",166,"COMPONENT","4-Hydroxyphenylpyruvate/Creatinine","4-Hydroxyphenylpyruvate/Creatinine","ACTIVE",FALSE,TRUE
+"774","COMPONENT","LP284814-3",1358,"COMPONENT","5-Hydroxyindoleacetate/Creatinine","5-Hydroxyindoleacetate/Creatinine","ACTIVE",FALSE,TRUE
+"775","COMPONENT","LP284849-9",166,"COMPONENT","Acetoacetate/Creatinine","Acetoacetate/Creatinine","ACTIVE",FALSE,TRUE
+"777","COMPONENT","LP284887-9",166,"COMPONENT","Adipate/Creatinine","Adipate/Creatinine","ACTIVE",FALSE,TRUE
+"778","COMPONENT","LP284895-2",32,"COMPONENT","Alanine/Creatinine","Alanine/Creatinine","ACTIVE",FALSE,TRUE
+"779","COMPONENT","LP284902-6",88069,"COMPONENT","Albumin/Creatinine","Albumin/Creatinine","ACTIVE",FALSE,TRUE
+"786","COMPONENT","LP284940-6",25,"COMPONENT","Alpha aminoadipate/Creatinine","Alpha aminoadipate/Creatinine","ACTIVE",FALSE,TRUE
+"787","COMPONENT","LP284942-2",30,"COMPONENT","Alpha aminobutyrate/Creatinine","Alpha aminobutyrate/Creatinine","ACTIVE",FALSE,TRUE
+"788","COMPONENT","LP284950-5",161,"COMPONENT","Alpha ketoglutarate/Creatinine","Alpha ketoglutarate/Creatinine","ACTIVE",FALSE,TRUE
+"789","COMPONENT","LP284997-6",26,"COMPONENT","Anserine/Creatinine","Anserine/Creatinine","ACTIVE",FALSE,TRUE
+"790","COMPONENT","LP285022-2",32,"COMPONENT","Arginine/Creatinine","Arginine/Creatinine","ACTIVE",FALSE,TRUE
+"791","COMPONENT","LP285026-3",25,"COMPONENT","Argininosuccinate/Creatinine","Argininosuccinate/Creatinine","ACTIVE",FALSE,TRUE
+"792","COMPONENT","LP285029-7",182,"COMPONENT","Arsenic/Creatinine","Arsenic/Creatinine","ACTIVE",FALSE,TRUE
+"793","COMPONENT","LP285035-4",32,"COMPONENT","Asparagine/Creatinine","Asparagine/Creatinine","ACTIVE",FALSE,TRUE
+"794","COMPONENT","LP285040-4",31,"COMPONENT","Aspartate/Creatinine","Aspartate/Creatinine","ACTIVE",FALSE,TRUE
+"796","COMPONENT","LP285078-4",27,"COMPONENT","Beta alanine/Creatinine","Beta alanine/Creatinine","ACTIVE",FALSE,TRUE
+"797","COMPONENT","LP285080-0",28,"COMPONENT","Beta aminoisobutyrate/Creatinine","Beta aminoisobutyrate/Creatinine","ACTIVE",FALSE,TRUE
+"798","COMPONENT","LP285087-5",165,"COMPONENT","Beta hydroxybutyrate/Creatinine","Beta hydroxybutyrate/Creatinine","ACTIVE",FALSE,TRUE
+"799","COMPONENT","LP285091-7",89,"COMPONENT","Beta-2-Microglobulin/Creatinine","Beta-2-Microglobulin/Creatinine","ACTIVE",FALSE,TRUE
+"802","COMPONENT","LP285187-3",114,"COMPONENT","C peptide/Creatinine","C peptide/Creatinine","ACTIVE",FALSE,TRUE
+"803","COMPONENT","LP285198-0",616.5,"COMPONENT","Calcium/Creatinine","Calcium/Creatinine","ACTIVE",FALSE,TRUE
+"828","COMPONENT","LP285734-2",10.5,"COMPONENT","Chloride/Creatinine","Chloride/Creatinine","ACTIVE",FALSE,TRUE
+"830","COMPONENT","LP285757-3",12,"COMPONENT","Chromium/Creatinine","Chromium/Creatinine","ACTIVE",FALSE,TRUE
+"831","COMPONENT","LP285767-2",133,"COMPONENT","Citrate/Creatinine","Citrate/Creatinine","ACTIVE",FALSE,TRUE
+"832","COMPONENT","LP285770-6",30,"COMPONENT","Citrulline/Creatinine","Citrulline/Creatinine","ACTIVE",FALSE,TRUE
+"833","COMPONENT","LP285794-6",181,"COMPONENT","Collagen crosslinked N-telopeptide/Creatinine","Collagen crosslinked N-telopeptide/Creatinine","ACTIVE",FALSE,TRUE
+"834","COMPONENT","LP285799-5",306,"COMPONENT","Copper/Creatinine","Copper/Creatinine","ACTIVE",FALSE,TRUE
+"835","COMPONENT","LP285800-1",307,"COMPONENT","Coproporphyrin 1/Creatinine","Coproporphyrin 1/Creatinine","ACTIVE",FALSE,TRUE
+"836","COMPONENT","LP285804-3",307,"COMPONENT","Coproporphyrin 3/Creatinine","Coproporphyrin 3/Creatinine","ACTIVE",FALSE,TRUE
+"838","COMPONENT","LP285811-8",1835,"COMPONENT","Cortisol.free/Creatinine","Cortisol.free/Creatinine","ACTIVE",FALSE,TRUE
+"839","COMPONENT","LP285814-2",38,"COMPONENT","Cortisone/Creatinine","Cortisone/Creatinine","ACTIVE",FALSE,TRUE
+"844","COMPONENT","LP285827-4",637,"COMPONENT","Creatine/Creatinine","Creatine/Creatinine","ACTIVE",FALSE,TRUE
+"845","COMPONENT","LP285848-0",28,"COMPONENT","Cystathionine/Creatinine","Cystathionine/Creatinine","ACTIVE",FALSE,TRUE
+"846","COMPONENT","LP285852-2",50,"COMPONENT","Cystine/Creatinine","Cystine/Creatinine","ACTIVE",FALSE,TRUE
+"847","COMPONENT","LP285929-8",934,"COMPONENT","DOPamine/Creatinine","DOPamine/Creatinine","ACTIVE",FALSE,TRUE
+"849","COMPONENT","LP285966-0",934,"COMPONENT","EPINEPHrine/Creatinine","EPINEPHrine/Creatinine","ACTIVE",FALSE,TRUE
+"851","COMPONENT","LP286009-8",30,"COMPONENT","Ethanolamine/Creatinine","Ethanolamine/Creatinine","ACTIVE",FALSE,TRUE
+"852","COMPONENT","LP286012-2",161,"COMPONENT","Ethylmalonate/Creatinine","Ethylmalonate/Creatinine","ACTIVE",FALSE,TRUE
+"853","COMPONENT","LP286053-6",167,"COMPONENT","Fumarate/Creatinine","Fumarate/Creatinine","ACTIVE",FALSE,TRUE
+"854","COMPONENT","LP286067-6",27,"COMPONENT","Gamma aminobutyrate/Creatinine","Gamma aminobutyrate/Creatinine","ACTIVE",FALSE,TRUE
+"856","COMPONENT","LP286090-8",32,"COMPONENT","Glutamate/Creatinine","Glutamate/Creatinine","ACTIVE",FALSE,TRUE
+"857","COMPONENT","LP286092-4",32,"COMPONENT","Glutamine/Creatinine","Glutamine/Creatinine","ACTIVE",FALSE,TRUE
+"858","COMPONENT","LP286115-3",32,"COMPONENT","Glycine/Creatinine","Glycine/Creatinine","ACTIVE",FALSE,TRUE
+"869","COMPONENT","LP286188-0",322,"COMPONENT","Heptacarboxylate/Creatinine","Heptacarboxylate/Creatinine","ACTIVE",FALSE,TRUE
+"870","COMPONENT","LP286190-6",2,"COMPONENT","Heptacarboxylporphyrin/Creatinine","Heptacarboxylporphyrin/Creatinine","ACTIVE",FALSE,TRUE
+"871","COMPONENT","LP286198-9",2,"COMPONENT","Hexacarboxylporphyrin/Creatinine","Hexacarboxylporphyrin/Creatinine","ACTIVE",FALSE,TRUE
+"872","COMPONENT","LP286211-0",1306,"COMPONENT","Histamine/Creatinine","Histamine/Creatinine","ACTIVE",FALSE,TRUE
+"873","COMPONENT","LP286213-6",32,"COMPONENT","Histidine/Creatinine","Histidine/Creatinine","ACTIVE",FALSE,TRUE
+"874","COMPONENT","LP286223-5",25,"COMPONENT","Homocitrulline/Creatinine","Homocitrulline/Creatinine","ACTIVE",FALSE,TRUE
+"875","COMPONENT","LP286227-6",5,"COMPONENT","Homocystine/Creatinine","Homocystine/Creatinine","ACTIVE",FALSE,TRUE
+"876","COMPONENT","LP286229-2",26,"COMPONENT","Homovanillate/Creatinine","Homovanillate/Creatinine","ACTIVE",FALSE,TRUE
+"877","COMPONENT","LP286246-6",25,"COMPONENT","Hydroxylysine/Creatinine","Hydroxylysine/Creatinine","ACTIVE",FALSE,TRUE
+"878","COMPONENT","LP286249-0",38,"COMPONENT","Hydroxyproline/Creatinine","Hydroxyproline/Creatinine","ACTIVE",FALSE,TRUE
+"879","COMPONENT","LP286284-7",130,"COMPONENT","Iodine/Creatinine","Iodine/Creatinine","ACTIVE",FALSE,TRUE
+"880","COMPONENT","LP286291-2",31,"COMPONENT","Isoleucine/Creatinine","Isoleucine/Creatinine","ACTIVE",FALSE,TRUE
+"886","COMPONENT","LP286339-9",172,"COMPONENT","Lactate/Creatinine","Lactate/Creatinine","ACTIVE",FALSE,TRUE
+"887","COMPONENT","LP286353-0",206,"COMPONENT","Lead/Creatinine","Lead/Creatinine","ACTIVE",FALSE,TRUE
+"888","COMPONENT","LP286359-7",32,"COMPONENT","Leucine/Creatinine","Leucine/Creatinine","ACTIVE",FALSE,TRUE
+"894","COMPONENT","LP286453-8",32,"COMPONENT","Lysine/Creatinine","Lysine/Creatinine","ACTIVE",FALSE,TRUE
+"896","COMPONENT","LP286492-6",337,"COMPONENT","Mercury/Creatinine","Mercury/Creatinine","ACTIVE",FALSE,TRUE
+"899","COMPONENT","LP286506-3",1724,"COMPONENT","Metanephrine/Creatinine","Metanephrine/Creatinine","ACTIVE",FALSE,TRUE
+"901","COMPONENT","LP286517-0",32,"COMPONENT","Methionine/Creatinine","Methionine/Creatinine","ACTIVE",FALSE,TRUE
+"902","COMPONENT","LP286527-9",170,"COMPONENT","Methylmalonate/Creatinine","Methylmalonate/Creatinine","ACTIVE",FALSE,TRUE
+"912","COMPONENT","LP286666-5",136,"COMPONENT","N-methylhistamine/Creatinine","N-methylhistamine/Creatinine","ACTIVE",FALSE,TRUE
+"913","COMPONENT","LP286678-0",934,"COMPONENT","Norepinephrine/Creatinine","Norepinephrine/Creatinine","ACTIVE",FALSE,TRUE
+"914","COMPONENT","LP286684-8",1724,"COMPONENT","Normetanephrine/Creatinine","Normetanephrine/Creatinine","ACTIVE",FALSE,TRUE
+"915","COMPONENT","LP286735-8",32,"COMPONENT","Ornithine/Creatinine","Ornithine/Creatinine","ACTIVE",FALSE,TRUE
+"916","COMPONENT","LP286736-6",2,"COMPONENT","Orotate/Creatinine","Orotate/Creatinine","ACTIVE",FALSE,TRUE
+"918","COMPONENT","LP286784-6",2,"COMPONENT","Pentacarboxylporphyrins/Creatinine","Pentacarboxylporphyrins/Creatinine","ACTIVE",FALSE,TRUE
+"919","COMPONENT","LP286799-4",32,"COMPONENT","Phenylalanine/Creatinine","Phenylalanine/Creatinine","ACTIVE",FALSE,TRUE
+"921","COMPONENT","LP286807-5",436,"COMPONENT","Phosphate/Creatinine","Phosphate/Creatinine","ACTIVE",FALSE,TRUE
+"923","COMPONENT","LP286875-2",21,"COMPONENT","Porphyrins/Creatinine","Porphyrins/Creatinine","ACTIVE",FALSE,TRUE
+"924","COMPONENT","LP286877-8",40,"COMPONENT","Potassium/Creatinine","Potassium/Creatinine","ACTIVE",FALSE,TRUE
+"925","COMPONENT","LP286905-7",32,"COMPONENT","Proline/Creatinine","Proline/Creatinine","ACTIVE",FALSE,TRUE
+"928","COMPONENT","LP286943-8",76886.5,"COMPONENT","Protein/Creatinine","Protein/Creatinine","ACTIVE",FALSE,TRUE
+"929","COMPONENT","LP286957-8",4,"COMPONENT","Pyridinoline/Creatinine","Pyridinoline/Creatinine","ACTIVE",FALSE,TRUE
+"930","COMPONENT","LP286961-0",166,"COMPONENT","Pyruvate/Creatinine","Pyruvate/Creatinine","ACTIVE",FALSE,TRUE
+"932","COMPONENT","LP287007-1",26,"COMPONENT","Sarcosine/Creatinine","Sarcosine/Creatinine","ACTIVE",FALSE,TRUE
+"933","COMPONENT","LP287012-1",156,"COMPONENT","Sebacate/Creatinine","Sebacate/Creatinine","ACTIVE",FALSE,TRUE
+"934","COMPONENT","LP287025-3",32,"COMPONENT","Serine/Creatinine","Serine/Creatinine","ACTIVE",FALSE,TRUE
+"935","COMPONENT","LP287043-6",106.5,"COMPONENT","Sodium/Creatinine","Sodium/Creatinine","ACTIVE",FALSE,TRUE
+"938","COMPONENT","LP287150-9",176,"COMPONENT","Suberate/Creatinine","Suberate/Creatinine","ACTIVE",FALSE,TRUE
+"939","COMPONENT","LP287155-8",166,"COMPONENT","Succinate/Creatinine","Succinate/Creatinine","ACTIVE",FALSE,TRUE
+"940","COMPONENT","LP287156-6",166,"COMPONENT","Succinylacetone/Creatinine","Succinylacetone/Creatinine","ACTIVE",FALSE,TRUE
+"943","COMPONENT","LP287191-3",32,"COMPONENT","Taurine/Creatinine","Taurine/Creatinine","ACTIVE",FALSE,TRUE
+"945","COMPONENT","LP287221-8",70,"COMPONENT","Thallium/Creatinine","Thallium/Creatinine","ACTIVE",FALSE,TRUE
+"946","COMPONENT","LP287235-8",32,"COMPONENT","Threonine/Creatinine","Threonine/Creatinine","ACTIVE",FALSE,TRUE
+"949","COMPONENT","LP287314-1",28,"COMPONENT","Tryptophan/Creatinine","Tryptophan/Creatinine","ACTIVE",FALSE,TRUE
+"950","COMPONENT","LP287319-0",32,"COMPONENT","Tyrosine/Creatinine","Tyrosine/Creatinine","ACTIVE",FALSE,TRUE
+"951","COMPONENT","LP287334-9",14,"COMPONENT","Urate/Creatinine","Urate/Creatinine","ACTIVE",FALSE,TRUE
+"952","COMPONENT","LP287338-0",394507,"COMPONENT","Urea nitrogen/Creatinine","Urea nitrogen/Creatinine","ACTIVE",FALSE,TRUE
+"953","COMPONENT","LP287345-5",318,"COMPONENT","Uroporphyrin/Creatinine","Uroporphyrin/Creatinine","ACTIVE",FALSE,TRUE
+"954","COMPONENT","LP287353-9",32,"COMPONENT","Valine/Creatinine","Valine/Creatinine","ACTIVE",FALSE,TRUE
+"956","COMPONENT","LP287362-0",211,"COMPONENT","Vanillylmandelate/Creatinine","Vanillylmandelate/Creatinine","ACTIVE",FALSE,TRUE
