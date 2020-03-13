@@ -11,8 +11,10 @@ library(reshape2)
 # see also https://jangorecki.gitlab.io/data.cube/library/data.table/html/dcast.data.table.html
 library(dplyr)
 library(httr)
-# different install method!
+# different (bioconductor) install method!
+# probably won't se anyway
 # library(rols)
+library(tm)
 
 # find driver from config file
 config <- config::get(file = "loinc_in_obo.yaml")
@@ -78,7 +80,7 @@ common.loincs <-
 
 relevant.primary.part.cast <-
   LoincPartLink[LoincPartLink$LoincNumber %in% common.loincs &
-                  LoincPartLink$LinkTypeName == "Primary", ]
+                  LoincPartLink$LinkTypeName == "Primary",]
 
 relevant.primary.part.cast <-
   relevant.primary.part.cast[, c("LoincNumber", "PartNumber", "PartTypeName")]
@@ -128,7 +130,7 @@ pds.with.loinc.parts <-
                          (pds.with.loinc.parts$TIME == "LP6960-1" |
                             pds.with.loinc.parts$TIME == "LP6924-7") &
                          pds.with.loinc.parts$PROPERTY %in% pds_loinc_properties_reviewed &
-                         pds.with.loinc.parts$SYSTEM %in% pds_loinc_systems_reviewed ,]
+                         pds.with.loinc.parts$SYSTEM %in% pds_loinc_systems_reviewed , ]
 
 pds.with.loinc.parts.melt <-
   melt(
@@ -184,7 +186,7 @@ pds.prominent.loinc.parts <-
 
 needs.component.mappings <- unique(pds.with.loinc.parts$COMPONENT)
 loinc.provided.component.mappings <-
-  PartRelatedCodeMapping[PartRelatedCodeMapping$PartNumber %in% needs.component.mappings , ]
+  PartRelatedCodeMapping[PartRelatedCodeMapping$PartNumber %in% needs.component.mappings ,]
 
 table(
   loinc.provided.component.mappings$ExtCodeSystem,
@@ -195,14 +197,14 @@ loinc.provided.component.mappings <-
   loinc.provided.component.mappings[loinc.provided.component.mappings$ExtCodeSystem %in%
                                       c("https://www.ebi.ac.uk/chebi",
                                         "http://www.nlm.nih.gov/research/umls/rxnorm") &
-                                      loinc.provided.component.mappings$Equivalence == "equivalent" , ]
+                                      loinc.provided.component.mappings$Equivalence == "equivalent" ,]
 
 loinc.provided.soemthing <-
   unique(loinc.provided.component.mappings$PartNumber)
 loinc.unmapped.components <-
   setdiff(needs.component.mappings, loinc.provided.soemthing)
 loinc.unmapped.components <-
-  pds.prominent.loinc.parts[pds.prominent.loinc.parts$PartTypeVal %in% loinc.unmapped.components , ]
+  pds.prominent.loinc.parts[pds.prominent.loinc.parts$PartTypeVal %in% loinc.unmapped.components ,]
 
 ### get mappings or search with bioportal
 # start with public endpoint but eventually switch to appliance
@@ -312,7 +314,7 @@ loinc.still.unmapped.components <-
     acceptable.retreived.and.parsed$source.id
   )
 loinc.still.unmapped.components <-
-  pds.prominent.loinc.parts[pds.prominent.loinc.parts$PartTypeVal %in% loinc.still.unmapped.components , ]
+  pds.prominent.loinc.parts[pds.prominent.loinc.parts$PartTypeVal %in% loinc.still.unmapped.components ,]
 
 loinc.still.unmapped.components$s.end <-
   grepl(pattern = "s$",
@@ -330,7 +332,7 @@ potential.cells <-
                                     !(loinc.still.unmapped.components$has.non.alpha),
                                   c("PartTypeVal", "PartDisplayName")]
 potential.cells <-
-  potential.cells[order(potential.cells$PartDisplayName), ]
+  potential.cells[order(potential.cells$PartDisplayName),]
 
 # modify the input so that it's easoer to merge abck in with LOINC codes
 
@@ -357,7 +359,7 @@ ols.attempts <-
           paste0(
             "https://www.ebi.ac.uk/ols/api/search?q={",
             current.potential,
-            "}&type=class&local=true&ontology=uberon,cl,pr&rows=9"
+            "}&type=class&local=true&ontology=uberon,cl,pr,chebi&rows=9"
           )
         )
       ols.attempt <- ols.attempt$content
@@ -374,7 +376,7 @@ ols.attempts <-
 
 ols.attempts <- do.call(rbind.data.frame, ols.attempts)
 ols.successes <-
-  ols.attempts[ols.attempts$label == ols.attempts$query ,]
+  ols.attempts[ols.attempts$label == ols.attempts$query , ]
 
 # how to pick which hits are acceptable?
 # lowercased query with trialing s removed should be an exact match for lowercased label?
@@ -384,12 +386,12 @@ ols.successes <-
 loinc.still.unmapped.components <-
   loinc.still.unmapped.components[(!(
     loinc.still.unmapped.components$PartTypeVal %in% ols.successes$loinc.part
-  )), ]
+  )),]
 
-# PR considers LP15333-5 "Alanine aminotransferase" underspecified... 
+# PR considers LP15333-5 "Alanine aminotransferase" underspecified...
 # should contain a species and numerical subtype like "human Alanine aminotransferase 1"
 # try to find other LOINC protein components
-# subclassof "Enzymes" http://purl.bioontology.org/ontology/LNC/LP31392-1 <- CHAL 
+# subclassof "Enzymes" http://purl.bioontology.org/ontology/LNC/LP31392-1 <- CHAL
 #  <- Chamistry and Chemistry challenge <- Lab <- LOINCPARTS
 
 # LP6118-6 Albumin sco Protein http://purl.bioontology.org/ontology/LNC/LP15838-3
@@ -401,11 +403,170 @@ loinc.still.unmapped.components <-
 # LP30809-5 Anion gap... difference between concentration of common cations and common anions
 
 # LP14492-0 Urea nitrogen: overspecified as far as chebi is concerned
-# LP15441-6 bicarbonate: underspecified/synonymy (hydrogencarbonate anion ChEBI 17544) 
+# LP15441-6 bicarbonate: underspecified/synonymy (hydrogencarbonate anion ChEBI 17544)
 
 # LP286653-3 Neutrophils/100 leukocytes
 
-write.csv(loinc.still.unmapped.components, "loinc_components_obo-unmappable_by_loinc_bioportal_ols.csv")
+# write.csv(loinc.still.unmapped.components, "loinc_components_obo-unmappable_by_loinc_bioportal_ols.csv")
 
 
+# find common ancestors of unmapped LOINC components
+# rdflib, rrdf, (sparql... against what endpoint), igraph (from loinc tabular files)
 
+library(readr)
+MultiAxialHierarchy <-
+  read_csv("~/Loinc_2.67/AccessoryFiles/MultiAxialHierarchy/MultiAxialHierarchy.csv")
+
+MultiAxialHierarchy.unmapped <-
+  MultiAxialHierarchy[MultiAxialHierarchy$CODE %in% loinc.still.unmapped.components$PartTypeVal ,]
+
+split.paths <-
+  strsplit(MultiAxialHierarchy.unmapped$PATH_TO_ROOT,
+           split = ".",
+           fixed = TRUE)
+
+unlisted.paths <- unlist(split.paths)
+
+node.appearances <- table(unlisted.paths)
+
+node.appearances <-
+  cbind.data.frame(names(node.appearances), as.numeric(node.appearances))
+
+colnames(node.appearances) <- c("part", "appearances")
+
+node.appearances$part <- as.character(node.appearances$part)
+
+common.nodes <-
+  node.appearances[node.appearances$appearances >= 5 ,]
+
+common.nodes <-
+  left_join(common.nodes, Part, by = c("part" = "PartNumber"))
+
+common.nodes <- common.nodes[complete.cases(common.nodes), ]
+
+####
+
+# lots of creatinine normalized chemicals, aas
+
+####
+
+# refactor
+
+# chem.unmapped <-
+#   grepl(pattern = "LP7786-9", x = MultiAxialHierarchy.unmapped$PATH_TO_ROOT)
+# chem.unmapped <- MultiAxialHierarchy.unmapped[chem.unmapped,]
+# chem.unmapped$non.parent <- "LP7786-9"
+#
+# aa.unmapped <-
+#   grepl(pattern = "LP18033-8", x = MultiAxialHierarchy.unmapped$PATH_TO_ROOT)
+# aa.unmapped <- MultiAxialHierarchy.unmapped[aa.unmapped,]
+# aa.unmapped$non.parent <- "LP18033-8"
+#
+# drug.tox.unmapped <-
+#   grepl(pattern = "LP7790-1", x = MultiAxialHierarchy.unmapped$PATH_TO_ROOT)
+# drug.tox.unmapped <-
+#   MultiAxialHierarchy.unmapped[drug.tox.unmapped,]
+# drug.tox.unmapped$non.parent <- "LP18033-8"
+#
+# drug.unmapped <-
+#   grepl(pattern = "LP18046-0", x = MultiAxialHierarchy.unmapped$PATH_TO_ROOT)
+# drug.unmapped <- MultiAxialHierarchy.unmapped[drug.unmapped,]
+# drug.unmapped$non.parent <- "LP18046-0"
+#
+# fa.unmapped <-
+#   grepl(pattern = "LP14488-8", x = MultiAxialHierarchy.unmapped$PATH_TO_ROOT)
+# fa.unmapped <- MultiAxialHierarchy.unmapped[fa.unmapped,]
+# fa.unmapped$non.parent <- "LP14488-8"
+#
+# electro.sing.val.unmapped <-
+#   grepl(pattern = "LP19403-2", x = MultiAxialHierarchy.unmapped$PATH_TO_ROOT)
+# electro.sing.val.unmapped <-
+#   MultiAxialHierarchy.unmapped[electro.sing.val.unmapped,]
+# electro.sing.val.unmapped$non.parent <- "LP19403-2"
+#
+# creatinine.opportunities <-
+#   rbind.data.frame(
+#     electro.sing.val.unmapped,
+#     fa.unmapped,
+#     drug.unmapped,
+#     drug.tox.unmapped,
+#     aa.unmapped,
+#     chem.unmapped
+#   )
+
+creatinine.opportunities <-
+  loinc.still.unmapped.components[grepl(pattern = "/Creatinine$", loinc.still.unmapped.components$PartName), ]
+
+print(length(unique(creatinine.opportunities$PartTypeVal)))
+
+write.csv(creatinine.opportunities,
+          "loinc_creatinine_normalized_components.csv")
+
+creatinine.opportunities$analyte <-
+  sub(pattern = "/Creatinine$",
+      replacement = "",
+      x = creatinine.opportunities$PartName)
+
+# refactor, see almost identical code above for cell types
+ols.attempts <-
+  apply(
+    X = creatinine.opportunities,
+    MARGIN = 1,
+    FUN = function(current.row) {
+      #ols.attempts <- lapply(sort(potential.cells), function(current.potential) {
+      current.potential <- tolower(current.row[["analyte"]])
+      current.potential <-
+        sub(pattern = "s$",
+            replacement = "",
+            x = current.potential)
+      singular.lc <- current.potential
+      current.potential <-
+        gsub(pattern = " ",
+             replacement = ",",
+             x = current.potential)
+      print(current.potential)
+      
+      ols.attempt <-
+        httr::GET(
+          paste0(
+            "https://www.ebi.ac.uk/ols/api/search?q={",
+            current.potential,
+            "}&type=class&local=true&ontology=uberon,cl,pr,chebi&rows=9"
+          )
+        )
+      ols.attempt <- ols.attempt$content
+      ols.attempt <- rawToChar(ols.attempt)
+      ols.attempt <- jsonlite::fromJSON(ols.attempt)
+      ols.attempt <- ols.attempt$response$docs
+      if (is.data.frame(ols.attempt)) {
+        if (ncol(ols.attempt) == 10) {
+          ols.attempt$query <- singular.lc
+          ols.attempt$loinc.part <- current.row[["PartTypeVal"]]
+          return(ols.attempt)
+        }
+        
+      }
+    }
+  )
+
+ols.no.creatinine <- do.call(rbind.data.frame, ols.attempts)
+no.creatinine.successes <-
+  ols.no.creatinine[ols.no.creatinine$label == ols.no.creatinine$query , ]
+
+
+###
+
+tokens.from.unmapped <-
+  gsub("[[:punct:]]",
+       " ",
+       tolower(loinc.still.unmapped.components$PartName))
+
+tokens.from.unmapped <-
+  termFreq(tokens.from.unmapped)
+
+tokens.from.unmapped <-
+  cbind.data.frame(names(tokens.from.unmapped),
+                   as.numeric(tokens.from.unmapped))
+
+names(tokens.from.unmapped) <- c("token", "count")
+tokens.from.unmapped <- tokens.from.unmapped[tokens.from.unmapped$count >= 5 , ]
