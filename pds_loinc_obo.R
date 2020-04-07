@@ -1,19 +1,71 @@
+# currently hard-coded expectation of querying PDS for common LOINC code usage
 # will probably require an existing VPN and tunnel
 
-# eliminate/postpone loinc challenge parts? look for "^".
+# idea:  eliminate/postpone loinc challenge parts? look for "^".
 
-# is glomerular filtration rate still in there?
+# check: is glomerular filtration rate still in there?
 
 source('pds_loinc_obo_setup.R')
 
+#### CSV reads
+### some from LOINC, some manually curated
+
+# long-formatted realtions between LOINC assay/order/result numbers and parts 
+#   "PartNumber"     "PartName" "PartTypeName"
+# with parts mentioned multiple times with different contexts 
+#   "LinkTypeName"   "Property" 
 LoincPartLink <-
   read_csv(config$LoincPartLink.file)
 
+# additional part details
 Part <-
   read_csv(config$Part.file)
 
+# get loinc provided component mappings
+PartRelatedCodeMapping <-
+  read_csv(config$PartRelatedCodeMapping.file)
+
+MultiAxialHierarchy <-
+  read_csv("~/Loinc_2.67/AccessoryFiles/MultiAxialHierarchy/MultiAxialHierarchy.csv")
+
+
+###
+# add TURBO datum terms to reviewed spreadsheet
+pds_loinc_properties_reviewed <-
+  read_csv(config$reviewed.properties.file)
+pds_loinc_properties_reviewed$use[is.na(pds_loinc_properties_reviewed$use)] <-
+  'n'
+
+pds_loinc_properties_reviewed <-
+  pds_loinc_properties_reviewed$PartTypeVal[pds_loinc_properties_reviewed$use == 'y']
+
+##
+
+# manually curate LOINC system-OBO term mappings
+# other options: bioportal mappings or term lookups,
+# OLS,
+# local Solr
+# ontobee API?
+# loinc provided ChEBI mappings
+
+
+# all single UBERON terms except
+# LP7576-4 Ser/Plas http://purl.obolibrary.org/obo/UBERON_0001977|http://purl.obolibrary.org/obo/UBERON_0001969
+# LP7579-8 Ser/Plas/Bld http://purl.obolibrary.org/obo/UBERON_0001977|http://purl.obolibrary.org/obo/UBERON_0001969|http://purl.obolibrary.org/obo/UBERON_0000178
+# LP7536-8 RBC http://purl.obolibrary.org/obo/CL_0000232
+# LP7720-8 WBC http://purl.obolibrary.org/obo/CL_0000738
+
+
+pds_loinc_systems_reviewed <- read_csv(config$reviewed.systems.file)
+pds_loinc_systems_reviewed$use[is.na(pds_loinc_systems_reviewed$use)] <-
+  'n'
+pds_loinc_systems_reviewed <-
+  pds_loinc_systems_reviewed$PartTypeVal[pds_loinc_systems_reviewed$use == 'y']
+
+####
+
 # this is for finding common lab results,
-# which have already been annotated with a  LOINC code in PDS
+# which have already been annotated with aLOINC code in PDS
 
 # lexically decomposing and mapping unannotated PDS lab results is a separate task
 
@@ -37,7 +89,6 @@ pdsConnection <-
             config$pds.pw)
 
 # ~ 300 seconds for ~ 3800 rows, with as few as one unique EMPI
-
 print(Sys.time())
 timed.system <- system.time(
   pds.loinc.frequency.resuts <-
@@ -49,10 +100,13 @@ print(timed.system)
 # Close connection
 dbDisconnect(pdsConnection)
 
+####
+
 # ~ 3450 r_lab_orders ordered for >= (2) unique EMPIs
 common.loincs <-
   pds.loinc.frequency.resuts$LOINC[pds.loinc.frequency.resuts$LOINC_COUNT >= config$common.threshold]
 
+# get part values for the "common", LOINC-annotated PDS lab results
 relevant.primary.part.cast <-
   LoincPartLink[LoincPartLink$LoincNumber %in% common.loincs &
                   LoincPartLink$LinkTypeName == "Primary", ]
@@ -87,42 +141,39 @@ pds.with.loinc.parts <-
 
 ###
 
-pds_loinc_properties_reviewed <-
-  read_csv(config$reviewed.properties.file)
-pds_loinc_properties_reviewed$use[is.na(pds_loinc_properties_reviewed$use)] <-
-  'n'
+# make some manual decisions
 
-# add TURBO datum terms to reviewed spreadsheet
+# PT or 24H time
 
-pds_loinc_properties_reviewed <-
-  pds_loinc_properties_reviewed$PartTypeVal[pds_loinc_properties_reviewed$use == 'y']
+# scale choice:
+#   use Qn SCALE only (5x more entires than next most commons, Nom and Ord)
 
-# manually curate LOINC system-OBO term mappings
-# other options: bioportal mappings or term lookups,
-# OLS,
-# local Solr
-# ontobee API?
-# loinc provided ChEBI mappings
+# LP7753-9
+# SCALE
+# Qn
+# Quantitative
 
-pds_loinc_systems_reviewed <- read_csv(config$reviewed.systems.file)
-pds_loinc_systems_reviewed$use[is.na(pds_loinc_systems_reviewed$use)] <-
-  'n'
+# time choce:
+#   Pt TIME MUCH more common than next time (24H). XXX and * more common then 24H.
 
-# all single UBERON terms except
-# LP7576-4 Ser/Plas http://purl.obolibrary.org/obo/UBERON_0001977|http://purl.obolibrary.org/obo/UBERON_0001969
-# LP7579-8 Ser/Plas/Bld http://purl.obolibrary.org/obo/UBERON_0001977|http://purl.obolibrary.org/obo/UBERON_0001969|http://purl.obolibrary.org/obo/UBERON_0000178
-# LP7536-8 RBC http://purl.obolibrary.org/obo/CL_0000232
-# LP7720-8 WBC http://purl.obolibrary.org/obo/CL_0000738
+# LP6960-1
+# TIME
+# Pt
+# Point in time (spot)
+#
+# LP6924-7
+# TIME
+# 24H
+# 24 hours
 
-pds_loinc_systems_reviewed <-
-  pds_loinc_systems_reviewed$PartTypeVal[pds_loinc_systems_reviewed$use == 'y']
+# ignore METHOD for now
 
-
-PartRelatedCodeMapping <-
-  read_csv(config$PartRelatedCodeMapping.file)
+####
 
 
-# see scale and time filtering decisions below
+# start merging in saved time, system, scale and property choices
+# see csv reads above
+
 pds.with.loinc.parts <-
   pds.with.loinc.parts[pds.with.loinc.parts$PROPERTY %in% pds_loinc_properties_reviewed &
                          pds.with.loinc.parts$SCALE == "LP7753-9" &
@@ -140,6 +191,7 @@ pds.with.loinc.parts.melt <-
     id.vars = c("LOINC", "LOINC_COUNT")
   )
 
+# why does mean get some fractional results... must be some rows that are duplicated
 pds.prominent.loinc.parts <-
   aggregate(
     pds.with.loinc.parts.melt$LOINC_COUNT,
@@ -147,7 +199,7 @@ pds.prominent.loinc.parts <-
       pds.with.loinc.parts.melt$variable,
       pds.with.loinc.parts.melt$value
     ),
-    FUN = mean,
+    FUN = sum,
     na.rm = TRUE
   )
 
@@ -159,36 +211,33 @@ pds.prominent.loinc.parts <-
             y = Part,
             by = c("PartTypeVal" = "PartNumber"))
 
-# temp <- pds.with.loinc.parts
+####
+# recap: we have made decisive choices about
+#   ignoring method for now
+#   28 handpicked concenrtation/count etc. properites, which will have to be mapped to TURBO or OBO terms (possibly new)
+#   quantitiave scale (OBO/TURBO term  ?)
+#   20 handpicked bodily fluid systems... shouldn't be too hard to map to Uberon or Cell Ontology (BioPortal?)
+#   PT or 24H time  (OBO/TURBO directive terms =  ?)
 
-# use Qn SCALE only (5x more entires than next most commons, Nom and Ord)
-# Pt TIME MUCH more common than next time (24H). XXX and * more common then 24H.
-# ignore METHOD for now
+#### components, esp mapping
 
-# LP7753-9
-# SCALE
-# Qn
-# Quantitative
-#
-# LP6960-1
-# TIME
-# Pt
-# Point in time (spot)
-#
-# LP6924-7
-# TIME
-# 24H
-# 24 hours
-
-# component
-
+# ps how did I make those pds_loinc_*_reviewed files above?
 # write.csv(pds.prominent.loinc.parts[pds.priminent.loinc.parts$PartTypeName == "PROPERTY",], "pds_loinc_properties.csv")
 
-# ~ 1350
-needs.component.mappings <- unique(pds.with.loinc.parts$COMPONENT)
+# keep new successful mappings and current failures seperate
+# TO-DO: use consistent names
 
+original.needs.component.mapping <- unique(pds.with.loinc.parts$COMPONENT)
+current.needs.component.mapping <- original.needs.component.mapping
+original.component.mapping.complete <- c()
+current.component.mapping.complete <- original.component.mapping.complete
+
+# current.needs.component.mapping <- unique(pds.with.loinc.parts$COMPONENT)
+# ~ 1350
+
+####
 loinc.provided.component.mappings <-
-  PartRelatedCodeMapping[PartRelatedCodeMapping$PartNumber %in% needs.component.mappings , ]
+  PartRelatedCodeMapping[PartRelatedCodeMapping$PartNumber %in% current.needs.component.mapping , ]
 
 table(
   loinc.provided.component.mappings$ExtCodeSystem,
@@ -219,74 +268,51 @@ loinc.provided.rxnorm.only <-
 # adalimumab (HUMIRA) http://purl.obolibrary.org/obo/DRON_00018971
 # opiates [confirmed not present verbatim in dron or chebi]
 
-
 # SO JUST USE THESE
 loinc.provided.component.mappings <-
   loinc.provided.component.mappings[loinc.provided.component.mappings$ExtCodeSystem  == "https://www.ebi.ac.uk/chebi" &
                                       loinc.provided.component.mappings$Equivalence == "equivalent" , ]
 
+current.component.mapping.complete <- union(current.component.mapping.complete, loinc.provided.component.mappings$PartNumber)
+current.needs.component.mapping <- setdiff(current.needs.component.mapping, loinc.provided.component.mappings$PartNumber)
 
-####
-# recap: we have made decisive choices about
-#   ignoring method for now
-#   28 handpicked concenrtation/count etc. properites, which will have to be mapped to TURBO or OBO terms (possibly new)
-#   quantitiave scale (OBO/TURBO term  ?)
-#   20 handpicked bodily fluid systems... shouldn't be too hard to map to Uberon or Cell Ontology (BioPortal?)
-#   PT or 24H time  (OBO/TURBO directive terms =  ?)
 
-# Still need to map components
-# keep new successful mappings and current failures seperate
+# loinc.provided.soemthing <-
+#   unique(loinc.provided.component.mappings$PartNumber)
+# 
+# # this should get smaller over the course of executing this script
+# loinc.unmapped.components <-
+#   setdiff(needs.component.mappings, loinc.provided.soemthing)
 
-loinc.provided.soemthing <-
-  unique(loinc.provided.component.mappings$PartNumber)
-
-# this should get smaller over the course of executing this script
 loinc.unmapped.components <-
-  setdiff(needs.component.mappings, loinc.provided.soemthing)
-loinc.unmapped.components <-
-  pds.prominent.loinc.parts[pds.prominent.loinc.parts$PartTypeVal %in% loinc.unmapped.components , ]
+  pds.prominent.loinc.parts[pds.prominent.loinc.parts$PartTypeVal %in% current.needs.component.mapping , ]
 
-### get mappings or search with bioportal
-# start with public endpoint but eventually switch to appliance
-
-api.base.uri <- "http://data.bioontology.org/ontologies"
-api.ontology.name <- "LOINC"
-term.ontology.name <- "LNC"
-term.base.uri <-
-  paste0("http://purl.bioontology.org/ontology",
-         "/",
-         term.ontology.name)
-api.family <- "classes"
-# source.term <- "http://purl.bioontology.org/ontology/LNC/LP17698-9"
-api.method <- "mappings"
-
-# what are the chances that a mapping query will return 0 ammpings, or that it will return multiple pages?
-
+# ~ 10 minutes?
 retreived.and.parsed <-
   retreive.and.parse(sort(unique(loinc.unmapped.components$PartTypeVal)))
 
 retreived.and.parsed <-
   do.call(rbind.data.frame, retreived.and.parsed)
 
+# who did me get mapped to?
 rap.tab <- table(retreived.and.parsed$target.ontology)
 rap.tab <- cbind.data.frame(names(rap.tab), as.numeric(rap.tab))
 names(rap.tab) <- c("target.ontology", "map.count")
 
-acceptable.ontologies <-
-  c(
-    'http://data.bioontology.org/ontologies/CHEBI',
-    'http://data.bioontology.org/ontologies/CL',
-    'http://data.bioontology.org/ontologies/CLO',
-    'http://data.bioontology.org/ontologies/DRON',
-    'http://data.bioontology.org/ontologies/FMA',
-    'http://data.bioontology.org/ontologies/GO-PLUS',
-    'http://data.bioontology.org/ontologies/PR',
-    "http://data.bioontology.org/ontologies/RXNORM",
-    'http://data.bioontology.org/ontologies/UBERON',
-    'http://data.bioontology.org/ontologies/UPHENO',
-    'http://data.bioontology.org/ontologies/VO'
-  )
-
+# acceptable.ontologies <-
+#   c(
+#     'http://data.bioontology.org/ontologies/CHEBI',
+#     'http://data.bioontology.org/ontologies/CL',
+#     'http://data.bioontology.org/ontologies/CLO',
+#     'http://data.bioontology.org/ontologies/DRON',
+#     'http://data.bioontology.org/ontologies/FMA',
+#     'http://data.bioontology.org/ontologies/GO-PLUS',
+#     'http://data.bioontology.org/ontologies/PR',
+#     "http://data.bioontology.org/ontologies/RXNORM",
+#     'http://data.bioontology.org/ontologies/UBERON',
+#     'http://data.bioontology.org/ontologies/UPHENO',
+#     'http://data.bioontology.org/ontologies/VO'
+#   )
 
 acceptable.ontologies <-
   c(
@@ -413,9 +439,6 @@ loinc.still.unmapped.components <-
 
 # find common ancestors of unmapped LOINC components
 # rdflib, rrdf, (sparql... against what endpoint), igraph (from loinc tabular files)
-
-MultiAxialHierarchy <-
-  read_csv("~/Loinc_2.67/AccessoryFiles/MultiAxialHierarchy/MultiAxialHierarchy.csv")
 
 MultiAxialHierarchy.unmapped <-
   MultiAxialHierarchy[MultiAxialHierarchy$CODE %in% loinc.still.unmapped.components$PartTypeVal , ]
