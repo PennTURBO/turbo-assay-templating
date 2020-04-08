@@ -12,8 +12,11 @@ library(tm)
 
 config <- config::get(file = "loinc_in_obo.yaml")
 
-### get mappings or search with bioportal
+### get mappings with BioPortal
+# or string-search somewhere?
 # start with public endpoint but eventually switch to appliance
+
+#### these are functioning like globals so they don't have to be passes to the function
 api.base.uri <- "http://data.bioontology.org/ontologies"
 api.ontology.name <- "LOINC"
 term.ontology.name <- "LNC"
@@ -24,7 +27,7 @@ term.base.uri <-
 api.family <- "classes"
 # source.term <- "http://purl.bioontology.org/ontology/LNC/LP17698-9"
 api.method <- "mappings"
-# what are the chances that a mapping query will return 0 ammpings, or that it will return multiple pages?
+# what are the chances that a mapping query will return 0 mappings, or that it will return multiple pages?
 
 retreive.and.parse <- function(term.list) {
   outer <- lapply(term.list, function(current.term) {
@@ -49,7 +52,7 @@ retreive.and.parse <- function(term.list) {
     
     mapping.res.list <- jsonlite::fromJSON(mapping.res.list)
     if (length(mapping.res.list) > 0) {
-      # CUI, LOOM, "same URI", etc. Porbably only LOOM will be useful
+      # CUI, LOOM, "same URI", etc. Probably only LOOM will be useful
       mapping.methods <- mapping.res.list$source
       
       source.target.details <-
@@ -76,3 +79,139 @@ retreive.and.parse <- function(term.list) {
     
   })
 }
+
+#  http://data.bioontology.org/documentation#nav_search
+#  http://data.bioontology.org/search?q=melanoma
+
+# 9cf735c3-a44a-404f-8b2f-c49d48b2b8b2
+
+# An API Key is required to access any API call. It can be provided in three ways:
+#
+#   Using the apikey query string parameter
+# Providing an Authorization header: Authorization: apikey token=your_apikey (replace `your_apikey` with your actual key)
+
+# Parameters
+
+# ontologies={ontology_id1,ontology_id2,ontology_id3}
+
+# require_exact_match={true|false} // default = false
+# suggest={true|false} // default = false. Will perform a search specifically geared towards type-ahead suggestions.
+# also_search_views={true|false} // Include ontology views in the search. default = false
+# require_definitions={true|false} // default = false
+# also_search_properties={true|false} // default = false
+# also_search_obsolete={true|false} // default = false (exclude obsolete terms)
+# cui={C0018787,C0225807,C0018787} // Allows restricting query by CUIs. default = null (no restriction)
+# semantic_types={T023,T185,T061} // Allows restricting query by Semantic Types (TUI). default = null (no restriction)
+# include={prefLabel, synonym, definition, notation, cui, semanticType} // default = (see Common Parameters section)
+# page={integer representing the page number} // default = 1
+# pagesize={integer representing the size of the returned page} // default = 50
+
+bioportal.string.search <- function(current.string) {
+  # current.string <- 'asthma'
+  print(current.string)
+  prepared.get <-
+    paste0(
+      'http://data.bioontology.org/search?q=',
+      current.string  ,
+      '&include=prefLabel,synonym',
+      '&pagesize=999'
+    )
+  prepared.get <- URLencode(prepared.get, reserved = FALSE)
+  search.res.list <-
+    httr::GET(url = prepared.get,
+              add_headers(Authorization = paste0(
+                "apikey token=", config$bioportal.api.key
+              )))
+  
+  search.res.list <- rawToChar(search.res.list$content)
+  search.res.list <- jsonlite::fromJSON(search.res.list)
+  search.res.list <- search.res.list$collection
+  
+  # print(search.res.list$links$ontology)
+  
+  if (is.data.frame(search.res.list)) {
+    if (nrow(search.res.list) > 0) {
+      ontology <- search.res.list$links$ontology
+      #  , 'ontologyType'
+      search.res.list <- search.res.list[, c('prefLabel', '@id')]
+      colnames(search.res.list) <- c('prefLabel', 'iri')
+      search.res.list <-
+        cbind.data.frame(search.res.list, 'ontology' = ontology)
+      search.res.list$rank <- 1:nrow(search.res.list)
+      return(search.res.list)
+    }
+  }
+}
+
+temp <- bioportal.string.search(current.string = 'asthma')
+temp <- bioportal.string.search(current.string = 'leukocyte')
+temp <- bioportal.string.search(current.string = 'leukocytes')
+
+# > str(potential.cells)
+# 'data.frame':	22 obs. of  2 variables:
+#   $ PartTypeVal    : chr  "LP15429-1" "LP14328-6" "LP15100-8" "LP14539-8" ...
+# $ PartDisplayName: chr  "Base excess" "Basophils" "Blasts" "Eosinophils" ...
+
+# pendulum swings completely the other way here
+# everything is an arguemt now
+
+# ontology.filter = &ontology=uberon,cl,pr,chebi
+# kept.row.count= 9
+#  ir rank important?
+
+# do singlular and plurals together in the same funtion?
+# are alternative labels getting searched? yes, but ranked lower
+#   acetaminophen paracetamol
+
+# see https://www.ebi.ac.uk/ols/docs/api
+ols.serch.term.labels.universal <-
+  function(current.row,
+           current.string,
+           current.id,
+           strip.final.s = FALSE,
+           ontology.filter,
+           kept.row.count = 9) {
+    if (strip.final.s) {
+      current.string <-
+        sub(pattern = "s$",
+            replacement = "",
+            x = current.string)
+    }
+    
+    singular.lc <- current.string
+    
+    current.string <-
+      gsub(pattern = " ",
+           replacement = ",",
+           x = current.string)
+    
+    print(current.string)
+    
+    ols.attempt <-
+      httr::GET(
+        paste0(
+          "https://www.ebi.ac.uk/ols/api/search?q={",
+          current.string,
+          "}&type=class&local=true",
+          ontology.filter ,
+          "&rows=",
+          kept.row.count
+        )
+      )
+    ols.attempt <- ols.attempt$content
+    ols.attempt <- rawToChar(ols.attempt)
+    ols.attempt <- jsonlite::fromJSON(ols.attempt)
+    ols.attempt <- ols.attempt$response$docs
+    if (is.data.frame(ols.attempt)) {
+      if (nrow(ols.attempt) > 0) {
+        ols.attempt$query <- singular.lc
+        ols.attempt$loinc.part <- current.id
+        
+        ols.attempt$rank <- 1:nrow(ols.attempt)
+        ols.attempt$label <- tolower(ols.attempt$label)
+        ols.attempt$query <- tolower(ols.attempt$query)
+        
+        return(ols.attempt)
+      }
+    }
+  }
