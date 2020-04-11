@@ -143,9 +143,9 @@ bioportal.string.search <- function(current.string) {
   }
 }
 
-temp <- bioportal.string.search(current.string = 'asthma')
-temp <- bioportal.string.search(current.string = 'leukocyte')
-temp <- bioportal.string.search(current.string = 'leukocytes')
+# temp <- bioportal.string.search(current.string = 'asthma')
+# temp <- bioportal.string.search(current.string = 'leukocyte')
+# temp <- bioportal.string.search(current.string = 'leukocytes')
 
 # > str(potential.cells)
 # 'data.frame':	22 obs. of  2 variables:
@@ -180,24 +180,46 @@ ols.serch.term.labels.universal <-
     
     singular.lc <- current.string
     
+    print(singular.lc)
+    
+    # or just try url encoding?
+    
     current.string <-
-      gsub(pattern = " ",
-           replacement = ",",
+      gsub(pattern = "[[:punct:]]",
+           replacement = " ",
            x = current.string)
     
-    print(current.string)
+    current.string <-
+      gsub(pattern = "^ +",
+           replacement = "",
+           x = current.string)
+    
+    current.string <-
+      gsub(pattern = " +$",
+           replacement = "",
+           x = current.string)
+    
+    current.string <-
+      gsub(pattern = " +",
+           replacement = "+",
+           x = current.string)
+    
+    # print(current.string)
+    
+    prepared.query <- paste0(
+      "https://www.ebi.ac.uk/ols/api/search?q={",
+      current.string,
+      "}&type=class&local=true",
+      ontology.filter ,
+      "&rows=",
+      kept.row.count
+    )
+    
+    # print(prepared.query)
     
     ols.attempt <-
-      httr::GET(
-        paste0(
-          "https://www.ebi.ac.uk/ols/api/search?q={",
-          current.string,
-          "}&type=class&local=true",
-          ontology.filter ,
-          "&rows=",
-          kept.row.count
-        )
-      )
+      httr::GET(prepared.query)
+    
     ols.attempt <- ols.attempt$content
     ols.attempt <- rawToChar(ols.attempt)
     ols.attempt <- jsonlite::fromJSON(ols.attempt)
@@ -215,3 +237,49 @@ ols.serch.term.labels.universal <-
       }
     }
   }
+
+update.accounting <- function(recent.successes,
+                              source.id,
+                              target.term,
+                              authority) {
+  print("before update")
+  print(length(current.component.mapping.complete))
+  print(length(current.needs.component.mapping))
+  print(nrow(current.component.mapping.frame))
+  
+  print("update row count")
+  print(nrow(recent.successes))
+  
+  temp <- unlist(recent.successes[, source.id])
+  source.term <-
+    paste0("http://purl.bioontology.org/ontology/LNC/", temp)
+  
+  authority <- rep(x = authority , nrow(recent.successes))
+  
+  current.component.mapping.complete <<-
+    union(current.component.mapping.complete, temp)
+  current.needs.component.mapping <<-
+    setdiff(current.needs.component.mapping, temp)
+  
+  temp <-
+    cbind(temp,
+          source.term,
+          recent.successes[, target.term],
+          authority)
+  
+  colnames(temp) <-
+    c('source.id', 'source.term', 'target.term', 'authority')
+  
+  current.component.mapping.frame <<-
+    rbind(current.component.mapping.frame, temp)
+  
+  print("after update")
+  print(length(current.component.mapping.complete))
+  print(length(current.needs.component.mapping))
+  print(nrow(current.component.mapping.frame))
+  
+  print(sort(table(
+    current.component.mapping.frame$authority
+  )))
+  
+}
