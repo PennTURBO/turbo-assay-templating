@@ -81,7 +81,7 @@ common.loincs <-
 # get part values for the "common", LOINC-annotated PDS lab results
 relevant.primary.part.cast <-
   LoincPartLink[LoincPartLink$LoincNumber %in% common.loincs &
-                  LoincPartLink$LinkTypeName == "Primary",]
+                  LoincPartLink$LinkTypeName == "Primary", ]
 
 relevant.primary.part.cast <-
   relevant.primary.part.cast[, c("LoincNumber", "PartNumber", "PartTypeName")]
@@ -151,7 +151,7 @@ pds.with.loinc.parts <-
                          pds.with.loinc.parts$SCALE == "LP7753-9" &
                          pds.with.loinc.parts$SYSTEM %in% pds_loinc_systems_reviewed &
                          (pds.with.loinc.parts$TIME == "LP6960-1" |
-                            pds.with.loinc.parts$TIME == "LP6924-7") , ]
+                            pds.with.loinc.parts$TIME == "LP6924-7") ,]
 
 # ~ 1800
 
@@ -197,6 +197,76 @@ pds.prominent.loinc.parts <-
 #   20 handpicked bodily fluid systems... shouldn't be too hard to map to Uberon or Cell Ontology (BioPortal?)
 #   PT or 24H time  (OBO/TURBO directive terms =  ?)
 
+# ehr_loinc_counts: LOINC assay codes with counts of mentions in EHR
+
+# LoincPartLink: details about each part. possibly many rows per LOINC assay/part combination
+# head(LoincPartLink)
+# LoincNumber LongCommonName              PartNumber PartName                 PartCodeSystem   PartTypeName LinkTypeName Property
+# <chr>       <chr>                       <chr>      <chr>                    <chr>            <chr>        <chr>        <chr>
+#   1 10000-8     R wave duration in lead AVR LP31088-5  R wave duration.lead AVR http://loinc.org COMPONENT    Primary      http://loinc.org/property/COMPONENT
+# 2 10000-8     R wave duration in lead AVR LP6879-3   Time                     http://loinc.org PROPERTY     Primary      http://loinc.org/property/PROPERTY
+# 3 10000-8     R wave duration in lead AVR LP6960-1   Pt                       http://loinc.org TIME         Primary      http://loinc.org/property/TIME_ASPCT
+# 4 10000-8     R wave duration in lead AVR LP7289-4   Heart                    http://loinc.org SYSTEM       Primary      http://loinc.org/property/SYSTEM
+# 5 10000-8     R wave duration in lead AVR LP7753-9   Qn                       http://loinc.org SCALE        Primary      http://loinc.org/property/SCALE_TYP
+# 6 10000-8     R wave duration in lead AVR LP6244-0   EKG                      http://loinc.org METHOD       Primary      http://loinc.org/property/METHOD_TYP
+
+# head(MultiAxialHierarchy)
+# PATH_TO_ROOT                                      SEQUENCE IMMEDIATE_PARENT CODE       CODE_TEXT
+# <chr>                                                <dbl> <chr>            <chr>      <chr>
+# 1 NA                                                       1 NA               LP29693-6  Laboratory
+# 2 LP29693-6                                                1 LP29693-6        LP343406-7 Microbiology and Antimicrobial susceptibility
+# 3 LP29693-6.LP343406-7                                     1 LP343406-7       LP7819-8   Microbiology
+# 4 LP29693-6.LP343406-7.LP7819-8                            1 LP7819-8         LP14559-6  Microorganism
+# 5 LP29693-6.LP343406-7.LP7819-8.LP14559-6                  1 LP14559-6        LP98185-9  Bacteria
+# 6 LP29693-6.LP343406-7.LP7819-8.LP14559-6.LP98185-9        1 LP98185-9        LP14082-9  Bacteria
+
+# > head(Part)
+# PartNumber PartTypeName PartName                     PartDisplayName              Status
+# <chr>      <chr>        <chr>                        <chr>                        <chr>
+#   1 LP101394-7 ADJUSTMENT   adjusted for maternal weight adjusted for maternal weight ACTIVE
+# 2 LP101907-6 ADJUSTMENT   corrected for age            corrected for age            ACTIVE
+# 3 LP115711-6 ADJUSTMENT   corrected for background     corrected for background     ACTIVE
+# 4 LP147359-6 ADJUSTMENT   adjusted for body weight     adjusted for body weight     ACTIVE
+# 5 LP173482-3 ADJUSTMENT   1st specimen                 1st specimen                 DEPRECATED
+# 6 LP173483-1 ADJUSTMENT   post cyanocobalamin          post cyanocobalamin          ACTIVE
+
+# PartRelatedCodeMapping
+# external code mappings like ChEBI, RxNorm, taxonomy
+# largely from SNOMED: systems, method, property, adjustment, time, scale
+# genes (Entrez), multiple radlex fields, challenge (SNOMED or RxNorm)
+
+# these are the counts for all of LOINC, not the assays mentioned within any EHR/CDW like PDS
+# sort(table(PartRelatedCodeMapping$ExtCodeSystem[PartRelatedCodeMapping$PartTypeName == 'COMPONENT']))
+#
+# https://www.ncbi.nlm.nih.gov/clinvar             http://pubchem.ncbi.nlm.nih.gov           https://www.ncbi.nlm.nih.gov/gene
+# 85                                         345                                         391
+# https://www.ncbi.nlm.nih.gov/taxonomy http://www.nlm.nih.gov/research/umls/rxnorm                 https://www.ebi.ac.uk/chebi
+# 831                                         970                                        2298
+# http://snomed.info/sct
+# 6027
+
+# THIS is a tabulation of parts within the current EHR/CDW
+# all part types are included
+# > head(pds.prominent.loinc.parts)
+# PartTypeName PartTypeVal pds.count                           PartName                            PartDisplayName Status
+# 1    COMPONENT  LP100041-5      2344                         Lacosamide                                 Lacosamide ACTIVE
+# 2    COMPONENT  LP100616-4         3                 1-Hydroxymidazolam                         1-Hydroxymidazolam ACTIVE
+# 3    COMPONENT  LP102314-4       459                  PM-SCL-100 Ab.IgG                             PM-SCL-100 IgG ACTIVE
+# 4       METHOD  LP102323-5    138620                                BCG Bromocresol green (BCG) dye binding method ACTIVE
+# 5    COMPONENT  LP102618-8       415       Aquaporin 4 water channel Ab               Aquaporin 4 water channel Ab ACTIVE
+# 6       METHOD  LP105134-3       114 Creatinine-based formula (CKD-EPI)         Creatinine-based formula (CKD-EPI) ACTIVE
+
+# pds.with.loinc.parts: one row per assay/result type
+# columns for the assay/result LOINC code and each LOINC parts code
+# head(pds.with.loinc.parts)
+# LOINC LOINC_COUNT COMPONENT   METHOD PROPERTY    SCALE   SYSTEM     TIME
+# 2  6768-6     6615139 LP15346-7     <NA> LP6789-4 LP7753-9 LP7576-4 LP6960-1
+# 4 10834-0      375012 LP14885-5 LP6165-7 LP6827-2 LP7753-9 LP7567-3 LP6960-1
+# 5  2345-7    11723946 LP14635-4     <NA> LP6827-2 LP7753-9 LP7576-4 LP6960-1
+# 6  3948-7       10807 LP14729-5     <NA> LP6827-2 LP7753-9 LP7576-4 LP6960-1
+# 7  5693-7         764 LP14349-2     <NA> LP6827-2 LP7753-9 LP7576-4 LP6960-1
+# 9 20661-5         295 LP15946-4     <NA> LP6860-3 LP7753-9 LP7576-4 LP6960-1
+
 #### components, esp. mapping
 
 # PS how did I make those pds_loinc_*_reviewed files above?
@@ -206,10 +276,9 @@ pds.prominent.loinc.parts <-
 # TO-DO: use consistent names
 
 # ~ 1350
+
 original.needs.component.mapping <-
   unique(pds.with.loinc.parts$COMPONENT)
-# # moot
-# original.component.mapping.complete <- c()
 
 current.needs.component.mapping <- original.needs.component.mapping
 current.component.mapping.complete <- c()
@@ -255,48 +324,28 @@ print(loinc.provided.rxnorm.only)
 # adalimumab (HUMIRA) http://purl.obolibrary.org/obo/DRON_00018971
 # opiates [confirmed not present verbatim in DrOn or ChEBI]
 
-# SO JUST USE THESE
+# SO JUST USE ChEBI
 loinc.provided.component.mappings <-
   loinc.provided.component.mappings[loinc.provided.component.mappings$ExtCodeSystem  == "https://www.ebi.ac.uk/chebi" &
                                       loinc.provided.component.mappings$Equivalence == "equivalent" ,]
 
-# accounting
-current.component.mapping.complete <-
-  union(
-    current.component.mapping.complete,
-    loinc.provided.component.mappings$PartNumber
-  )
-current.needs.component.mapping <-
-  setdiff(current.needs.component.mapping,
-          loinc.provided.component.mappings$PartNumber)
-
-dput(colnames(loinc.provided.component.mappings))
-# c("PartNumber", "PartName", "PartTypeName", "ExtCodeId", "ExtCodeDisplayName",
-#   "ExtCodeSystem", "Equivalence", "ContentOrigin", "ExtCodeSystemVersion",
-#   "ExtCodeSystemCopyrightNotice")
-
-source.id <- loinc.provided.component.mappings$PartNumber
-source.term <-
-  paste0("http://purl.bioontology.org/ontology/LNC/", source.id)
+loinc.provided.component.mappings$ext.iri <-
+  loinc.provided.component.mappings$ExtCodeId
 # assume we're just using ChEBI for now
-target.term <- loinc.provided.component.mappings$ExtCodeId
-target.term <-
+loinc.provided.component.mappings$ext.iri <-
   sub(pattern = '^CHEBI:',
       replacement = 'http://purl.obolibrary.org/obo/CHEBI_',
-      x = target.term)
-authority <- 'LOINC provided ChEBI mappings'
+      x = loinc.provided.component.mappings$ext.iri)
 
-temp <-
-  cbind(source.id, source.term, target.term, authority)
-
-current.component.mapping.frame <-
-  rbind(current.component.mapping.frame, temp)
+update.accounting(
+  loinc.provided.component.mappings,
+  "PartNumber",
+  "ext.iri",
+  "LOINC provided ChEBI mappings"
+)
 
 #### begin BioPortal mappings retrieval
 # ~ 5 minutes vs remote BioPortal
-
-# loinc.unmapped.components <-
-#   pds.prominent.loinc.parts[pds.prominent.loinc.parts$PartTypeVal %in% current.needs.component.mapping , ]
 
 # is retreive.and.parse making more assumptions about globals than I realized/remembered?
 retreived.and.parsed <-
@@ -322,68 +371,319 @@ acceptable.retreived.and.parsed$source.id <-
        x = acceptable.retreived.and.parsed$source.term)
 acceptable.retreived.and.parsed$source.term <-
   as.character(acceptable.retreived.and.parsed$source.term)
-acceptable.retreived.and.parsed$authority <- 'BioPortal mappings'
+
 acceptable.retreived.and.parsed <-
-  acceptable.retreived.and.parsed[, c("source.id", "source.term", "target.term", "authority")]
+  acceptable.retreived.and.parsed[, c("source.id", "source.term", "target.term")]
 
-current.component.mapping.complete <-
-  union(current.component.mapping.complete,
-        acceptable.retreived.and.parsed$source.id)
-current.needs.component.mapping <-
-  setdiff(current.needs.component.mapping,
-          acceptable.retreived.and.parsed$source.id)
-
-# SAF FALSE NOT HELPING... swtiched to matrix
-current.component.mapping.frame <-
-  rbind(current.component.mapping.frame ,
-        as.matrix(acceptable.retreived.and.parsed))
+update.accounting(
+  acceptable.retreived.and.parsed,
+  "source.id",
+  "target.term",
+  "BioPortal IRI mappings"
+)
 
 
 ####
 
-# look for cell type mappings that BioPortal misses due to pluralization mismatches
+# starting string searches now
+# use core analytes and searchable components (separately)
+# with and without trailing s
+# strip match labels of 'atom$'
+# or do cosine similarity
+# ols?
+# BioPortal?
+
+# ~ 300 rows in loinc.still.unmapped.components matching 'Ab.Ig'
+# ~ 50 "Ab$" antibodies
+# ~ 20 'Ag'
+# ~ 20 "/100 leukocytes"
+# ~ 30 "Cells."
+# "^^" adjustment
+
+# see also IgX, Ag
+
+# # ~ 100 '/Creatinine' see above
+# # ~ 10 "+" cases using drug or chemical names, not cell types
+# # "^" could indicate a challenge, but see also 4x "^peak" and 4x "^trough"
+# # use ChEBI mappings except for... ?
+
+# V frame of "CORE" unmapped component terms
+# this should be added to the components that don't have CORE analytes
+# and should be considered in the context of DIVISOR terms
+temp <-
+  pds.prominent.loinc.parts[pds.prominent.loinc.parts$PartTypeVal %in% current.needs.component.mapping ,]
+temp <- sort(unique(temp$PartTypeVal))
+temp <- LoincPartLink[LoincPartLink$PartNumber %in% temp , ]
+temp <-
+  temp[temp$Property == 'http://loinc.org/property/analyte-core' , ]
+
+names.and.numbers <- unique(temp[, c("PartNumber", "PartName")])
+
+common.core.analyte.numbers <- table(temp$PartNumber)
+common.core.analyte.numbers <-
+  cbind.data.frame(names(common.core.analyte.numbers),
+                   as.numeric(common.core.analyte.numbers))
+colnames(common.core.analyte.numbers) <- c('PartNumber', 'count')
+common.core.analyte.numbers$PartNumber <-
+  as.character(common.core.analyte.numbers$PartNumber)
+
+names.and.numbers <-
+  base::merge(names.and.numbers, common.core.analyte.numbers)
+
+# sums of free/bound forms, prodrug and metabolite, etc.
+#   Cells.markers
+# what were my "plus sign remerges" below for?
+# "+" 30/170 core PDS core analytes
+
+names.and.numbers$plus <-
+  grepl(pattern = '+',
+        x = names.and.numbers$PartName,
+        fixed = TRUE)
+
+
+# challenges
+# pharmacokinetics (peak, trough) are considered challenges!
+# NONE for these core analytes
+# see also ^^
+names.and.numbers$caret <-
+  grepl(pattern = '^',
+        x = names.and.numbers$PartName,
+        fixed = TRUE)
+
+# "." 17/170 core PDS core analytes
+#   Anatomical/tissue location
+#   Form/carrier/state
+#   Cells.markers
+names.and.numbers$period <-
+  grepl(pattern = '.',
+        x = names.and.numbers$PartName,
+        fixed = TRUE)
+
+# / very rare in core analytes.... that's the whole point
+# but look for it in the "general" component terms
+# Creatinine
+# 100 leukocytes
+# Hemoglobin.total
+# 100 cells
+# A few more
+names.and.numbers$ratio <-
+  grepl(pattern = '/',
+        x = names.and.numbers$PartName,
+        fixed = TRUE)
+
+# "cells" 21/170 PDS core analytes
+# Mostly Cells.markers
+names.and.numbers$cells <-
+  grepl(pattern = 'cell',
+        x = names.and.numbers$PartName,
+        ignore.case = TRUE)
+
+# s$ + " ": almost all cells
+# remember, CL does not use a final 's'
+# along similar lines, ChEBI INCLUDES a final 'atom' for calcium, sodium, etc.
+names.and.numbers$ends.s <-
+  grepl(pattern = 's$',
+        x = names.and.numbers$PartName,
+        ignore.case = TRUE)
+
+# ? mostly plus or period HERE
+names.and.numbers$non.alpha <-
+  grepl(pattern = '[^a-zA-Z ]',
+        x = names.and.numbers$PartName)
+
+names.and.numbers$whitespace <-
+  grepl(pattern = ' ',
+        x = names.and.numbers$PartName)
+
+#### don't start searching without including
+# system names and display names
+# non-core names and display names
+# divisor names
+
+common.divisors <-
+  LoincPartLink[LoincPartLink$LoincNumber %in% pds.with.loinc.parts$LOINC &
+                  LoincPartLink$Property == 'http://loinc.org/property/analyte-divisor' , ]
+
+cd.names.numbers <-
+  unique(common.divisors[, c("PartNumber", "PartName")])
+
+common.divisors <-
+  table(common.divisors$PartNumber)
+
+common.divisors <-
+  cbind.data.frame(names(common.divisors), as.numeric(common.divisors))
+
+colnames(common.divisors) <- c('PartNumber', 'count')
+
+common.divisors <- base::merge(cd.names.numbers, common.divisors)
+
+# why bother
+# common.divisors <- common.divisors[common.divisors$count > 2 , ]
+
+####
+
+# also loook for searchable components
+
+# # COMPONENT
+# # Search
+# # http://loinc.org/property/search
+
+####
+
+# some more perspective/prioritization regarding
+# what kind of patterns to look for
+
+# why not start with all component parts or even all part terms
+# as opposed to "salvage mode" below
+
+# MultiAxialHierarchy.unmapped <-
+#   MultiAxialHierarchy[MultiAxialHierarchy$CODE %in% current.needs.component.mapping , ]
+
+# MultiAxialHierarchy.unmapped <-
+#   MultiAxialHierarchy[MultiAxialHierarchy$CODE %in% original.needs.component.mapping , ]
+
+MultiAxialHierarchy.relevant <-
+  MultiAxialHierarchy[MultiAxialHierarchy$CODE %in% pds.prominent.loinc.parts$PartTypeVal ,]
+
+split.paths <-
+  strsplit(MultiAxialHierarchy.relevant$PATH_TO_ROOT,
+           split = ".",
+           fixed = TRUE)
+
+unlisted.paths <- unlist(split.paths)
+
+node.appearances <- table(unlisted.paths)
+
+node.appearances <-
+  cbind.data.frame(names(node.appearances), as.numeric(node.appearances))
+
+colnames(node.appearances) <- c("part", "appearances")
+
+node.appearances$part <- as.character(node.appearances$part)
+
+# add to config file
+common.nodes <-
+  node.appearances[node.appearances$appearances >= 2 ,]
+
+common.nodes <-
+  left_join(common.nodes, Part, by = c("part" = "PartNumber"))
+
+common.nodes <- common.nodes[complete.cases(common.nodes), ]
+
+####
+
+# previously looked at common super classes
+# now look at common tokens
 
 # temp <-
-#   setdiff(
-#     loinc.unmapped.components$PartTypeVal,
-#     acceptable.retreived.and.parsed$source.id
-#   )
+#   pds.prominent.loinc.parts[pds.prominent.loinc.parts$PartTypeVal %in% current.needs.component.mapping ,]
 
-temp <-
-  pds.prominent.loinc.parts[pds.prominent.loinc.parts$PartTypeVal %in% current.needs.component.mapping , ]
+# # no repeats
+# temp <- table(pds.prominent.loinc.parts$PartName)
+# temp <- cbind.data.frame(names(temp), as.numeric(temp))
 
-temp$s.end <-
-  grepl(pattern = "s$",
-        x = temp$PartName,
-        ignore.case = TRUE)
+# tabulated.tokens <-
+#   gsub("[[:punct:]]",
+#        " ",
+#        tolower(temp$PartName))
+
+tabulated.tokens <-
+  gsub("[[:punct:]]",
+       " ",
+       tolower(pds.prominent.loinc.parts$PartName))
+
+tabulated.tokens <-
+  termFreq(tabulated.tokens)
+
+tabulated.tokens <-
+  cbind.data.frame(names(tabulated.tokens),
+                   as.numeric(tabulated.tokens))
+
+names(tabulated.tokens) <- c("token", "count")
+
+# add to config
+tabulated.tokens <-
+  tabulated.tokens[tabulated.tokens$count > 3 ,]
 
 
-temp$has.non.alpha <-
-  grepl(pattern = "[^a-zA-Z ]",
-        x = temp$PartName,
-        ignore.case = TRUE)
+####
 
-potential.cells <-
-  temp[temp$s.end &
-         !(temp$has.non.alpha),
-       c("PartTypeVal", "PartDisplayName")]
-potential.cells <-
-  potential.cells[order(potential.cells$PartDisplayName), ]
+all.part.types.in.source <- pds.with.loinc.parts$LOINC
+all.part.types.in.source <-
+  unique(LoincPartLink$PartNumber[LoincPartLink$LoincNumber %in% all.part.types.in.source])
+all.part.types.in.source <-
+  Part$PartTypeName[Part$PartNumber %in% all.part.types.in.source]
 
-# modify the input so that it's easier to merge back in with LOINC codes
+# # not necessary in our current task
+# all.part.types.in.source <- all.part.types.in.source[!grepl(pattern = '^Rad\\.', x = all.part.types.in.source)]
+# all.part.types.in.source <- all.part.types.in.source[!grepl(pattern = '^Document\\.', x = all.part.types.in.source)]
+
+all.part.types.in.source <- table(all.part.types.in.source)
+all.part.types.in.source <-
+  cbind.data.frame(names(all.part.types.in.source),
+                   as.numeric(all.part.types.in.source))
+names(all.part.types.in.source) <- c('part.type', 'source.count')
+
+# look for low0hanging fruit patterns
+followup <-
+  LoincPartLink[LoincPartLink$LoincNumber %in% pds.with.loinc.parts$LOINC ,]
+
+# # "LoincNumber", "LongCommonName",
+# desperate <- unique(followup[, c(
+#   "PartNumber",
+#   "PartName",
+#   "PartCodeSystem",
+#   "PartTypeName",
+#   "LinkTypeName",
+#   "Property"
+# )])
+
+text.search.input <- unique(followup[, c("PartNumber",
+                                         "PartName")])
+
+colnames(text.search.input) <- c('PartNumber', 'original.name')
+
+get.display.name <-
+  Part[Part$PartNumber %in% text.search.input$PartNumber, c('PartNumber', 'PartDisplayName')]
+
+colnames(get.display.name) <- c('PartNumber', 'original.name')
+
+text.search.input <-
+  unique(rbind.data.frame(text.search.input, get.display.name))
+
+text.search.input$singularized <- sub(pattern = 's$',
+                                      replacement = '',
+                                      x = text.search.input$original.name)
+
+original <- text.search.input[, c('PartNumber', 'original.name')]
+singularized <- text.search.input[, c('PartNumber', 'singularized')]
+colnames(singularized) <- colnames(original)
+text.search.input <-
+  unique(rbind.data.frame(original, singularized))
+colnames(text.search.input) <- c('PartNumber', 'any.name')
+print(nrow(text.search.input))
+
+indices <- sort(unique(text.search.input$any.name))
+print(length(indices))
+
+# not enough of a difference to get fancy
+
+text.search.input <-
+  text.search.input[order(text.search.input$any.name),]
 
 ols.attempts <-
   apply(
-    X = potential.cells,
+    X = text.search.input[1:99, ],
     MARGIN = 1,
     FUN = function(current.row) {
       temp <-
         ols.serch.term.labels.universal(
-          current.string = current.row[['PartDisplayName']],
-          current.id = current.row[['PartTypeVal']],
-          strip.final.s = TRUE,
-          ontology.filter = "&ontology=cl",
-          kept.row.count = 9
+          current.string = current.row[['any.name']],
+          current.id = current.row[['PartNumber']],
+          strip.final.s = FALSE,
+          # ontology.filter = "&ontology=cl",
+          ontology.filter = "",
+          kept.row.count = 5
         )
       # print(is.data.frame(temp))
       # print(nrow(temp))
@@ -399,12 +699,15 @@ ols.attempts <-
 ols.attempts <- do.call(rbind.data.frame, ols.attempts)
 
 # how to pick which hits are acceptable?
-# lowercased query with trialing s removed should be an exact match for lowercased label?
+# lowercased query with trialing s removed should be an exact match for lowercased label? (In cell ontology CL)
+# or try both ways
+# or check cosine similarity
+# see also trailing 'atom' in ChEBI
 # &queryFields={label,synonym}
 # &ontology=
 
 ols.successes <-
-  ols.attempts[ols.attempts$label == ols.attempts$query , ]
+  ols.attempts[ols.attempts$label == ols.attempts$query ,]
 
 ols.successes <-
   ols.successes[, setdiff(colnames(ols.successes), "description")]
@@ -432,7 +735,7 @@ current.needs.component.mapping <-
 
 # keep track of mapping sources
 print(sort(table(current.component.mapping.frame[, 'authority'])))
-# look for double-ammped LOINC parts
+# look for double-mapped LOINC parts
 print(sort(table(current.component.mapping.frame[, 'source.id'])))
 
 #### 2020 04 08 11 15
@@ -440,451 +743,65 @@ print(sort(table(current.component.mapping.frame[, 'source.id'])))
 # PR considers LP15333-5 "Alanine aminotransferase" underspecified...
 # should contain a species and numerical subtype like "human Alanine aminotransferase 1"
 # try to find other LOINC protein components
-# subclassof "Enzymes" http://purl.bioontology.org/ontology/LNC/LP31392-1 <- CHAL
-#  <- Chamistry and Chemistry challenge <- Lab <- LOINCPARTS
+# subclass of "Enzymes" http://purl.bioontology.org/ontology/LNC/LP31392-1 <- CHAL
+#  <- Chemistry and Chemistry challenge <- Lab <- LOINCPARTS
 
-# LP6118-6 Albumin sco Protein http://purl.bioontology.org/ontology/LNC/LP15838-3
+# LP6118-6 Albumin subclass of Protein http://purl.bioontology.org/ontology/LNC/LP15838-3
 #  <- UA <- Lab ...
 
 # LP17698-9 Erythrocyte distribution width
-#   variability of etrythorcyte sizes... a quality of the distribution/population
+#   variability of erythrocyte sizes... a quality of the distribution/population
 
 # LP30809-5 Anion gap... difference between concentration of common cations and common anions
 
-# LP14492-0 Urea nitrogen: overspecified as far as chebi is concerned
+# LP14492-0 Urea nitrogen: over specified as far as ChEBI is concerned
 # LP15441-6 bicarbonate: underspecified/synonymy (hydrogencarbonate anion ChEBI 17544)
 
 # LP286653-3 Neutrophils/100 leukocytes
 
 # find common ancestors of unmapped LOINC components
-# rdflib, rrdf, (sparql... against what endpoint), igraph (from loinc tabular files)
-
-MultiAxialHierarchy.unmapped <-
-  MultiAxialHierarchy[MultiAxialHierarchy$CODE %in% current.needs.component.mapping ,]
-
-split.paths <-
-  strsplit(MultiAxialHierarchy.unmapped$PATH_TO_ROOT,
-           split = ".",
-           fixed = TRUE)
-
-unlisted.paths <- unlist(split.paths)
-
-node.appearances <- table(unlisted.paths)
-
-node.appearances <-
-  cbind.data.frame(names(node.appearances), as.numeric(node.appearances))
-
-colnames(node.appearances) <- c("part", "appearances")
-
-node.appearances$part <- as.character(node.appearances$part)
-
-# add to config file
-common.nodes <-
-  node.appearances[node.appearances$appearances >= 5 ,]
-
-common.nodes <-
-  left_join(common.nodes, Part, by = c("part" = "PartNumber"))
-
-common.nodes <- common.nodes[complete.cases(common.nodes), ]
+# rdflib, rrdf, (SPARQL... against what endpoint), igraph (from LOINC tabular files)
 
 ####
 
-# use common class nodes above to extract unmapped terms and look for patterns by eye
-# => lots of creatinine normalized chemicals, amino acids, etc.
 
-####
-
-# # exploratory. refactor if needed to run again.
-#
-# chem.unmapped <-
-#   grepl(pattern = "LP7786-9", x = MultiAxialHierarchy.unmapped$PATH_TO_ROOT)
-# chem.unmapped <- MultiAxialHierarchy.unmapped[chem.unmapped,]
-# chem.unmapped$non.parent <- "LP7786-9"
-#
-# aa.unmapped <-
-#   grepl(pattern = "LP18033-8", x = MultiAxialHierarchy.unmapped$PATH_TO_ROOT)
-# aa.unmapped <- MultiAxialHierarchy.unmapped[aa.unmapped,]
-# aa.unmapped$non.parent <- "LP18033-8"
-#
-# drug.tox.unmapped <-
-#   grepl(pattern = "LP7790-1", x = MultiAxialHierarchy.unmapped$PATH_TO_ROOT)
-# drug.tox.unmapped <-
-#   MultiAxialHierarchy.unmapped[drug.tox.unmapped,]
-# drug.tox.unmapped$non.parent <- "LP18033-8"
-#
-# drug.unmapped <-
-#   grepl(pattern = "LP18046-0", x = MultiAxialHierarchy.unmapped$PATH_TO_ROOT)
-# drug.unmapped <- MultiAxialHierarchy.unmapped[drug.unmapped,]
-# drug.unmapped$non.parent <- "LP18046-0"
-#
-# fa.unmapped <-
-#   grepl(pattern = "LP14488-8", x = MultiAxialHierarchy.unmapped$PATH_TO_ROOT)
-# fa.unmapped <- MultiAxialHierarchy.unmapped[fa.unmapped,]
-# fa.unmapped$non.parent <- "LP14488-8"
-#
-# electro.sing.val.unmapped <-
-#   grepl(pattern = "LP19403-2", x = MultiAxialHierarchy.unmapped$PATH_TO_ROOT)
-# electro.sing.val.unmapped <-
-#   MultiAxialHierarchy.unmapped[electro.sing.val.unmapped,]
-# electro.sing.val.unmapped$non.parent <- "LP19403-2"
-#
-# creatinine.opportunities <-
-#   rbind.data.frame(
-#     electro.sing.val.unmapped,
-#     fa.unmapped,
-#     drug.unmapped,
-#     drug.tox.unmapped,
-#     aa.unmapped,
-#     chem.unmapped
-#   )
-
-
-creatinine.opportunities <-
-  pds.prominent.loinc.parts[pds.prominent.loinc.parts$PartTypeVal %in% current.needs.component.mapping , ]
-
-creatinine.opportunities <-
-  creatinine.opportunities[grepl(pattern = '/Creatinine$', x = creatinine.opportunities$PartName) , ]
-
-print(length(unique(creatinine.opportunities$PartTypeVal)))
-
-# write.csv(creatinine.opportunities,
-#           "loinc_creatinine_normalized_components.csv")
-
-creatinine.opportunities$analyte <-
-  sub(pattern = "/Creatinine$",
-      replacement = "",
-      x = creatinine.opportunities$PartName)
-
-ols.attempts <-
-  apply(
-    X = creatinine.opportunities,
-    MARGIN = 1,
-    FUN = function(current.row) {
-      temp <-
-        ols.serch.term.labels.universal(
-          current.string = current.row[['analyte']],
-          current.id = current.row[['PartTypeVal']],
-          strip.final.s = TRUE,
-          ontology.filter = "&ontology=chebi",
-          kept.row.count = 9
-        )
-      # print(is.data.frame(temp))
-      # print(nrow(temp))
-      if (is.data.frame(temp)) {
-        if (nrow(temp) > 0) {
-          temp <- temp[, setdiff(colnames(temp), "description")]
-          return(temp)
-        }
-      }
-    }
-  )
-
-# should probably state which columns are expected
-#   and or do a column-mismatch toleratng bind
-# temp <- sapply(ols.attempts, dim)
-# temp <- sapply(ols.attempts, is.null)
-
-ols.attempts <- do.call(rbind.data.frame, ols.attempts)
-
-ols.attempts$atom.ok <-
-  sub(pattern = ' atom$',
-      replacement = '',
-      x = ols.attempts$label)
-
-no.creatinine.successes <-
-  ols.attempts[ols.attempts$atom.ok == ols.attempts$query , ]
-
-# c("source.id", "source.term", "target.term", "authority")
-source.id <- no.creatinine.successes$loinc.part
-source.term <-
-  paste0("http://purl.bioontology.org/ontology/LNC/", source.id)
-# assume we're just using ChEBI for now
-target.term <- no.creatinine.successes$iri
-authority <- 'OLS creatinine normalized chemicals'
-
-temp <-
-  cbind(source.id, source.term, target.term, authority)
-
-current.component.mapping.frame <-
-  rbind(current.component.mapping.frame, temp)
-
-current.component.mapping.complete <-
-  union(current.component.mapping.complete,
-        no.creatinine.successes$loinc.part)
-current.needs.component.mapping <-
-  setdiff(current.needs.component.mapping,
-          no.creatinine.successes$loinc.part)
-
-# keep track of mapping sources
-print(sort(table(current.component.mapping.frame[, 'authority'])))
-# look for double-ammped LOINC parts
-print(sort(table(current.component.mapping.frame[, 'source.id'])))
-
-# diagnostics
-temp <-
-  creatinine.opportunities[!(creatinine.opportunities$PartTypeVal %in% no.creatinine.successes$loinc.part) ,]
-
-###
-
-# previously lookoed at common superclasses
-# now look at common tokens
-
-temp <-
-  pds.prominent.loinc.parts[pds.prominent.loinc.parts$PartTypeVal %in% current.needs.component.mapping , ]
-
-tokens.from.unmapped <-
-  gsub("[[:punct:]]",
-       " ",
-       tolower(temp$PartName))
-
-tokens.from.unmapped <-
-  termFreq(tokens.from.unmapped)
-
-tokens.from.unmapped <-
-  cbind.data.frame(names(tokens.from.unmapped),
-                   as.numeric(tokens.from.unmapped))
-
-names(tokens.from.unmapped) <- c("token", "count")
-tokens.from.unmapped <-
-  tokens.from.unmapped[tokens.from.unmapped$count >= 5 , ]
-
-# ~ 300 rows in loinc.still.unmapped.components matching 'Ab.Ig'
-# ~ 50 "Ab$"
-# ~ 20 'Ag'
-# ~ 20 "/100 leukocytes"
-# ~ 30 "Cells."
-# "^^" adjustment
-
-# look all of these patterns up in LoincPartLink for the different semantic contexts (LinkPartName text and "Property" URI)
-# 100 leukocytes
-# http://loinc.org
-# DIVISOR
-# SyntaxEnhancement
-# http://loinc.org/property/analyte-divisor
-
-
-
-# > dput(colnames(LoincPartLink))
-# c("LoincNumber", "LongCommonName", "PartNumber", "PartName",
-#   "PartCodeSystem", "PartTypeName", "LinkTypeName", "Property")
-# 10327-5	Eosinophils/100 leukocytes in Sputum by Manual count	LP14539-8	Eosinophils	http://loinc.org	COMPONENT	SyntaxEnhancement	http://loinc.org/property/analyte-core
-# 10327-5	Eosinophils/100 leukocytes in Sputum by Manual count	LP31960-5	100 leukocytes	http://loinc.org	DIVISOR	SyntaxEnhancement	http://loinc.org/property/analyte-divisor
-
-relevant.links <-
-  LoincPartLink[LoincPartLink$LoincNumber %in% pds.with.loinc.parts$LOINC ,]
-common.divisors <-
-  table(relevant.links$PartName[relevant.links$Property == 'http://loinc.org/property/analyte-divisor'])
-common.divisors <-
-  cbind.data.frame(names(common.divisors), as.numeric(common.divisors))
-colnames(common.divisors) <- c('PartName', 'count')
-common.divisors <- common.divisors[common.divisors$count > 2 ,]
-
-common.core.analyte.names <-
-  table(relevant.links$PartName[relevant.links$Property == 'http://loinc.org/property/analyte-core'])
-common.core.analyte.names <-
-  cbind.data.frame(names(common.core.analyte.names),
-                   as.numeric(common.core.analyte.names))
-colnames(common.core.analyte.names) <- c('PartName', 'count')
-# common.core.analyte.names <- common.core.analyte.names[common.core.analyte.names$count > 2 , ]
-# START by serching these
-# searchable components below, too?
-# bioportal, ols, or ... ?
-
-
-# these should have already been looked up via bioportal (right?)
-common.core.analyte.codes <-
-  table(relevant.links$PartNumber[relevant.links$Property == 'http://loinc.org/property/analyte-core'])
-common.core.analyte.codes <-
-  cbind.data.frame(names(common.core.analyte.codes),
-                   as.numeric(common.core.analyte.codes))
-colnames(common.core.analyte.codes) <- c('PartName', 'count')
-# common.core.analyte.codes <- common.core.analyte.codes[common.core.analyte.codes$count > 2 , ]
-
-# Creatinine can also be a divisor... what does that leave?
-
-# ~ 100 '/Creatinine' see above
-# ~ 10 "+" cases using drug or chemical names, not cell types
-# "^" could indicate a challenge, but see also 4x "^peak" and 4x "^trough"
-# use chebi mappings except for... ?
-
-
-####
-
-temp <-
-  pds.prominent.loinc.parts[pds.prominent.loinc.parts$PartTypeVal %in% current.needs.component.mapping , ]
-
-uses.plus.sign <-
-  temp[grepl(pattern = "\\+", x = temp$PartName) &
-         (!(grepl(
-           pattern = "Cells", x = temp$PartName
-         ))), ]
-
-
-## see also
-
-one.word.searchable.components <-
-  LoincPartLink[LoincPartLink$LoincNumber %in% pds.with.loinc.parts$LOINC &
-                  LoincPartLink$Property == 'http://loinc.org/property/search' &
-                  LoincPartLink$LinkTypeName == 'Search' &
-                  LoincPartLink$PartTypeName == 'COMPONENT'  ,]
-one.word.searchable.components$nospaces <-
-  gsub(pattern =  ' +',
-       replacement = '',
-       x = one.word.searchable.components$PartName)
-one.word.searchable.components$spacediff <-
-  nchar(one.word.searchable.components$PartName) - nchar(one.word.searchable.components$nospaces)
-one.word.searchable.components <-
-  one.word.searchable.components[one.word.searchable.components$spacediff == 0 , ]
-one.word.searchable.components <-
-  table(one.word.searchable.components$LoincNumber)
-one.word.searchable.components <-
-  cbind.data.frame(
-    names(one.word.searchable.components),
-    as.numeric(one.word.searchable.components)
-  )
-colnames(one.word.searchable.components) <-
-  c('LOINC.term', 'component.count')
-hist(one.word.searchable.components$component.count)
-
-#### 2020 04 08 5 27
-
-# plus.but.not.cells
-
-# COMPONENT
-# Search
-# http://loinc.org/property/search
-
-uses.plus.sign$left <-
-  tolower(sub(pattern = "\\+.*$", "", uses.plus.sign$PartName))
-uses.plus.sign$right <-
-  tolower(sub(pattern = "^.*\\+", "", uses.plus.sign$PartName))
-
-uses.plus.sign.queries <-
-  unique(sort(c(
-    uses.plus.sign$left, uses.plus.sign$right
-  )))
-
-# refactor, see almost identical code above for cell types
-ols.attempts <-
-  lapply(uses.plus.sign.queries, function(current.row) {
-    #ols.attempts <- lapply(sort(potential.cells), function(current.potential) {
-    current.potential <- current.row
-    current.potential <-
-      gsub(pattern = " ",
-           replacement = ",",
-           x = current.potential)
-    print(current.potential)
-    
-    ols.attempt <-
-      httr::GET(
-        paste0(
-          "https://www.ebi.ac.uk/ols/api/search?q={",
-          current.potential,
-          "}&type=class&local=true&rows=9&ontology=chebi,dron,rxnorm&rows=9"
-        )
-      )
-    ols.attempt <- ols.attempt$content
-    ols.attempt <- rawToChar(ols.attempt)
-    ols.attempt <- jsonlite::fromJSON(ols.attempt)
-    ols.attempt <- ols.attempt$response$docs
-    if (is.data.frame(ols.attempt)) {
-      if (ncol(ols.attempt) == 10) {
-        ols.attempt$query <- current.row
-        # ols.attempt$loinc.part <- current.row[["PartTypeVal"]]
-        return(ols.attempt)
-      }
-      
-    }
-  })
-
-ols.uses.plus <- do.call(rbind.data.frame, ols.attempts)
-ols.uses.plus$label <- tolower(ols.uses.plus$label)
-ols.uses.plus$query <- tolower(ols.uses.plus$query)
-uses.plus.successes <-
-  ols.uses.plus[ols.uses.plus$label == ols.uses.plus$query , ]
-
-uses.plus.sign$left <- tolower(uses.plus.sign$left)
-uses.plus.sign$right <- tolower(uses.plus.sign$right)
-
-uses.plus.sign.remerge <-
-  left_join(
-    uses.plus.sign,
-    uses.plus.successes,
-    by = c("left" = "label"),
-    suffix = c("", ".left")
-  )
-uses.plus.sign.remerge <-
-  uses.plus.sign.remerge[, setdiff(colnames(uses.plus.sign.remerge), "description")]
-
-uses.plus.sign.remerge <-
-  left_join(
-    uses.plus.sign.remerge,
-    uses.plus.successes,
-    by = c("right" = "label"),
-    suffix = c("", ".right")
-  )
-
-uses.plus.sign.remerge <-
-  uses.plus.sign.remerge[, setdiff(colnames(uses.plus.sign.remerge), "description")]
-
-uses.plus.sign.remerge <-
-  uses.plus.sign.remerge[complete.cases(uses.plus.sign.remerge),]
-
-setdiff(
-  uses.plus.successes$label,
-  union(uses.plus.sign.remerge$left, uses.plus.sign.remerge$right)
-)
-
-
-# vitamin d2
-# chebi
-# CHEBI
-# class
-# TRUE
-# A vitamin D supplement and has been isolated from alfalfa.
-# calciferol
-#
-# isovaleryl-l-carnitine
-# chebi
-# CHEBI
-# class
-# TRUE
-# An O-isovalerylcarnitine that is the 3-methylbutanoyl (isovaleryl) derivative of L-carnitine.
-# isovalerylcarnitine
-#
-# desmethyldoxepin
-# chebi
-# CHEBI
-# class
-# TRUE
-# A dibenzooxepine resulting from the demethylation of the antidepressant doxepin. It is the active metabolite of doxepin.
-# nordoxepin
-#
-# 2-methylbutyrylcarnitine
-# chebi
-# CHEBI
-# class
-# TRUE
-# A C5-acylcarnitine having 2-methylbutyryl as the acyl substituent.
-# methylbutyrylcarnitine (c5)
-#
-# --- doesn't look promsing below ---
-#
-# norclomipramine
-#
-# methsuximide
-# normethsuximide
-
-# USE THESE
-# as long as left and right match
-
-write.csv(uses.plus.sign, "loinc_plus_sign_components.csv")
-
-###   ###   ###
-
-# ^ pk components
-
-###   ###   ###
-
-any.antibody <-
-  loinc.still.unmapped.components[grepl(pattern = "Ab$", x = loinc.still.unmapped.components$PartName), ]
+# log of terms split of of X+Y
+
+# # vitamin d2
+# # ChEBI
+# # CHEBI
+# # class
+# # TRUE
+# # A vitamin D supplement and has been isolated from alfalfa.
+# # calciferol
+# #
+# # isovaleryl-l-carnitine
+# # ChEBI
+# # CHEBI
+# # class
+# # TRUE
+# # An O-isovalerylcarnitine that is the 3-methylbutanoyl (isovaleryl) derivative of L-carnitine.
+# # isovalerylcarnitine
+# #
+# # desmethyldoxepin
+# # ChEBI
+# # CHEBI
+# # class
+# # TRUE
+# # A dibenzooxepine resulting from the demethylation of the antidepressant doxepin. It is the active metabolite of doxepin.
+# # nordoxepin
+# #
+# # 2-methylbutyrylcarnitine
+# # ChEBI
+# # CHEBI
+# # class
+# # TRUE
+# # A C5-acylcarnitine having 2-methylbutyryl as the acyl substituent.
+# # methylbutyrylcarnitine (c5)
+# #
+# # --- doesn't look promising below ---
+# #
+# # norclomipramine
+# #
+# # methsuximide
+# # normethsuximide
