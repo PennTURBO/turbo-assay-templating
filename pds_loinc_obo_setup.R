@@ -185,24 +185,30 @@ ols.serch.term.labels.universal <-
     # or just try url encoding?
     
     current.string <-
-      gsub(pattern = "[[:punct:]]",
-           replacement = " ",
+      gsub(pattern = "[[:punct:] ]",
+           replacement = ",",
            x = current.string)
     
-    current.string <-
-      gsub(pattern = "^ +",
-           replacement = "",
-           x = current.string)
+    # current.string <-
+    #   gsub(pattern = "[[:punct:]]",
+    #        replacement = " ",
+    #        x = current.string)
     
-    current.string <-
-      gsub(pattern = " +$",
-           replacement = "",
-           x = current.string)
-    
-    current.string <-
-      gsub(pattern = " +",
-           replacement = "+",
-           x = current.string)
+    #
+    # current.string <-
+    #   gsub(pattern = "^ +",
+    #        replacement = "",
+    #        x = current.string)
+    #
+    # current.string <-
+    #   gsub(pattern = " +$",
+    #        replacement = "",
+    #        x = current.string)
+    #
+    # current.string <-
+    #   gsub(pattern = " +",
+    #        replacement = "+",
+    #        x = current.string)
     
     # print(current.string)
     
@@ -212,8 +218,19 @@ ols.serch.term.labels.universal <-
       "}&type=class&local=true",
       ontology.filter ,
       "&rows=",
-      kept.row.count
+      kept.row.count,
+      "&",
+      'fieldList=iri,label,synonym,short_form,obo_id,ontology_name,ontology_prefix',
+      "&",
+      'queryFields=label,synonym'
     )
+    
+    
+    # fieldList
+    # Specifcy the fields to return, the defaults are {iri,label,short_form,obo_id,ontology_name,ontology_prefix,description,type}
+    #
+    # queryFields
+    # Specifcy the fields to query, the defaults are {label, synonym, description, short_form, obo_id, annotations, logical_description, iri}
     
     # print(prepared.query)
     
