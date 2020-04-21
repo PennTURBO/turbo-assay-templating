@@ -1364,25 +1364,14 @@ pds.with.loinc.parts$final.comp <- pds.with.loinc.parts$target.term
 pds.with.loinc.parts$final.comp[is.na(pds.with.loinc.parts$final.comp)] <-
   pds.with.loinc.parts$iri.from.search[is.na(pds.with.loinc.parts$final.comp)]
 
+####
+
 ready.for.robot <-
   pds.with.loinc.parts[!is.na(pds.with.loinc.parts$final.comp), ]
 
 # excluded because NO automatically-accepted mapping for component
 drawing.board <-
   pds.with.loinc.parts[is.na(pds.with.loinc.parts$final.comp), ]
-
-# NAs!
-ready.for.robot <- ready.for.robot[, c(
-  'LOINC',
-  "PartName.challenge",
-  "PartName.divisor",
-  "PartName.suffix",
-  "PartName.method",
-  "system.iri",
-  "time.iri",
-  "final.comp"
-)]
-
 
 robot.row.count <- nrow(ready.for.robot)
 all.blanks <- rep(x = '', robot.row.count)
@@ -1421,13 +1410,13 @@ logical.note <- all.blanks
 #	clinical assay from TURBO. analyte could be inferred. annotate this with ...
 #   see recent notes from CJS.
 #   Also quantitative by default and PT by default
-parent.class <- rep(x = 'obo:OBI_0000070', robot.row.count)
+parent.class <- rep(x = "'clinical assay'", robot.row.count)
 
 # 24 collection axiom as above if neccessary (LP6924-7 TURBO_0010724)
 # switch and create 24 specimen collection objective specification
 material.processing.technique <- all.blanks
 material.processing.technique[!is.na(ready.for.robot$time.iri) & ready.for.robot$time.iri == 'obo:TURBO_0010724'] <-
-  "'specimen collection process' and ( achieves_planned_objective some 'objective specification' )"
+  "'specimen collection process' and ( achieves_planned_objective some '24 hour sample collection objective' )"
 
 # skip for now. would be based on method
 detection.technique <- all.blanks
@@ -1452,8 +1441,11 @@ target.entity <- all.blanks
 # will probably be using this soon
 objective <- all.blanks
 
-# put oboInOwl:hasDbXref here?
 associated.axioms <- all.blanks
+associated.axioms[!is.na(ready.for.robot$PartName.divisor) &
+                    ready.for.robot$PartName.divisor == 'Creatinine'] <- "'has part' some 'division by creatinine concentration normalization'"
+associated.axioms[!is.na(ready.for.robot$PartName.divisor) &
+                    ready.for.robot$PartName.divisor == '100 leukocytes'] <-  "'has part' some 'division by 100 leukocytes normalization'"
 
 # or LOINC  https://loinc.org/2339-0/ style ?
 database.cross.reference.IRI <-
@@ -1491,8 +1483,15 @@ ready.for.robot <- cbind.data.frame(
   database.cross.reference.IRI
 )
 
-write.csv(ready.for.robot, file = 'lobo_template.csv', row.names = FALSE)
+write.table(ready.for.robot, file = 'lobo_template_headerless.csv', row.names = FALSE, col.names = FALSE, sep = ',')
 
+write.table(
+  lobo_template_headers_only,
+  file = 'lobo_template_headers_only.csv',
+  row.names = FALSE,
+  col.names = FALSE,
+  sep = ','
+)
 
 ###   ###   ###
 
@@ -1527,11 +1526,6 @@ bulk.systems <-
 # LP15441-6 bicarbonate: underspecified/synonymy (hydrogencarbonate anion ChEBI 17544)
 
 # LP286653-3 Neutrophils/100 leukocytes
-
-# find common ancestors of unmapped LOINC components
-# rdflib, rrdf, (SPARQL... against what endpoint), igraph (from LOINC tabular files)
-
-###   ###   ###
 
 ## some X+Y terms
 # vitamin d2
@@ -1575,7 +1569,6 @@ bulk.systems <-
 
 ###   ###   ###
 
-# Make sure template starts with both headers
-# There's still RxNorm terms in there
+# Make sure template starts with both headers... see XXX shell script
 #
 # robot template --prefix "lobo: http://example.com/lobo/" -t lobo_template.csv
