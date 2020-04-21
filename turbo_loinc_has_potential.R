@@ -54,6 +54,9 @@ pds.prominent.loinc.parts <-
 
 ###   ###   ###
 
+# find common ancestors of unmapped LOINC components
+# rdflib, rrdf, (SPARQL... against what endpoint), igraph (from LOINC tabular files)
+
 # some more perspective/prioritization regarding
 # what kind of patterns to look for
 
