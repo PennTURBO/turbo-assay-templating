@@ -4,7 +4,6 @@ CL,cells,2
 CHEBI,chemicals/drugs,3
 MONDO,pheonotypes,4
 PR,proteins/genes,5
-CMO,clinical,6
 FOODON,food,7
 NCBITAXON,organisms,8
 VO,vaccines,9
