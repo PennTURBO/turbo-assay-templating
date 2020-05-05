@@ -2,7 +2,7 @@ rhs,domain,priority
 UBERON,anatomy,1
 CL,cells,2
 CHEBI,chemicals/drugs,3
-MONDO,pheonotypes,4
+DOID,pheonotypes,4
 PR,proteins/genes,5
 FOODON,food,7
 NCBITAXON,organisms,8
@@ -10,12 +10,11 @@ VO,vaccines,9
 FMA,anatomy,10
 CLO,cells,11
 DRON,chemicals/drugs,12
-DOID,pheonotypes,13
+MONDO,pheonotypes,13
 OGG,proteins/genes,14
 MA,anatomy,15
 GO,go,16
 XCO,clinical,17
-FBBI,clinical,18
 OHPI,organisms,19
 HP,pheonotypes,20
 SO,proteins/genes,21
@@ -24,4 +23,3 @@ MP,pheonotypes,23
 OBA,pheonotypes,24
 GO-PLUS,go,25
 GO-EXT,go,26
-IDOMAL,,27
