@@ -330,7 +330,7 @@ split.details <- function(PartTypeNameVal, acceptable.details) {
     setdiff(has.details, acceptable.details.codes)
   
   ehr.with.loinc.parts <-
-    ehr.with.loinc.parts[!ehr.with.loinc.parts$LOINC %in% unacceptable.details ,]
+    ehr.with.loinc.parts[!ehr.with.loinc.parts$LOINC %in% unacceptable.details , ]
   
   print(nrow(ehr.with.loinc.parts))
   
@@ -347,7 +347,7 @@ split.details <- function(PartTypeNameVal, acceptable.details) {
           formula = LoincNumber ~ PartName,
           value.var = 'placeholder')
   detail.cast$detail.count <-
-    rowSums(detail.cast[, -1], na.rm = TRUE)
+    rowSums(detail.cast[,-1], na.rm = TRUE)
   
   # always.keep <- c('LoincNumber', 'detail.count')
   
@@ -363,6 +363,11 @@ split.details <- function(PartTypeNameVal, acceptable.details) {
   
 }
 
+selected.columns <- divisors
+part.name <- 'COMPONENT'
+
+
+
 tl.augmenter <- function(selected.columns, part.name) {
   details.frame <- ready.for.robot[, selected.columns]
   
@@ -374,7 +379,7 @@ tl.augmenter <- function(selected.columns, part.name) {
   details.melt <-
     melt(data = details.frame, id.vars = 'details.key')
   details.melt[] <- lapply(X = details.melt[], FUN = as.character)
-  details.melt <- details.melt[complete.cases(details.melt),]
+  details.melt <- details.melt[complete.cases(details.melt), ]
   table(details.melt$variable)
   
   details.melt <-
@@ -385,5 +390,7 @@ tl.augmenter <- function(selected.columns, part.name) {
       by.y = 'details.key',
       all.x = TRUE
     )
+  details.melt <- details.melt[order(details.melt$LOINC),]
+  # return(details.melt[, c('LOINC', 'variable')])
   return(details.melt$variable)
 }
