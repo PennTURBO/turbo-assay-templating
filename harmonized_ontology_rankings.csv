@@ -4,8 +4,8 @@ CL,cells,2
 CHEBI,chemicals/drugs,3
 DOID,pheonotypes,4
 PR,proteins/genes,5
-FOODON,food,7
-NCBITAXON,organisms,8
+NCBITAXON,organisms,7
+FOODON,food,8
 VO,vaccines,9
 FMA,anatomy,10
 CLO,cells,11
