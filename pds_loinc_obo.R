@@ -1,9 +1,26 @@
 source('turbo_loinc_obo_setup.R')
 
-### not using component display names any more, just core analyte?
-### add systmes including display names (blood) back in
+true.challenges <- c('Glucose')
+pk.in.challenge.slot <- c('peak', 'trough')
+divisors <- c('100 leukocytes', 'Creatinine')
+serology.suffixes <- c("Ab",
+                       "Ab.IgA",
+                       "Ab.IgE",
+                       "Ab.IgG",
+                       "Ab.IgM")
+loinc.methods <-
+  c(
+    # 'Automated',
+    'Calculated',
+    # 'Manual',
+    'Electrophoresis',
+    'Automated count',
+    'Confirm',
+    'Manual count',
+    'IA'
+  )
 
-#### PUT FILENAME IN CONFIG
+#### PUT FILENAMES/PATHS IN CONFIG
 harmonized_ontology_rankings <-
   read.csv("~/loinc_in_obo/harmonized_ontology_rankings.csv",
            stringsAsFactors = FALSE)
@@ -26,8 +43,9 @@ Part <-
 PartRelatedCodeMapping <-
   read_csv(config$PartRelatedCodeMapping.file)
 
-MultiAxialHierarchy <-
-  read_csv(config$MultiAxialHierarchy.file)
+# THIS IS HANDY FOR DIGNOSISNG/PRIORITIZING PATTERNS FOR MANUAL CURATION
+# MultiAxialHierarchy <-
+#   read_csv(config$MultiAxialHierarchy.file)
 
 ###   ###   ###
 
@@ -80,13 +98,18 @@ turbo_loinc_systems_reviewed <-
 
 ###   ###   ###
 
+# this isn’t all LOINC codes used in the EHR, is it???
+# it does go down to counts of 1!
+# how was it generated?
 print(nrow(ehr_loinc_counts))
+
 common.loincs <-
   ehr_loinc_counts$LOINC[ehr_loinc_counts$LOINC_COUNT >= config$common.threshold]
-# ~ 3450 r_lab_orders ordered for >= (2) unique EMPIs
+
+# ~ 3440 r_lab_orders ordered for >= (2) unique EMPIs
 print(length(common.loincs))
 
-# get part values for the "common", LOINC-annotated PDS lab results
+# get part values for the "common", LOINC-annotated ehr lab results
 relevant.primary.part.cast <-
   LoincPartLink[LoincPartLink$LoincNumber %in% common.loincs &
                   LoincPartLink$LinkTypeName == "Primary", ]
@@ -99,28 +122,55 @@ relevant.primary.part.cast <-
         formula = LoincNumber ~ PartTypeName,
         value.var = "PartNumber")
 
-# down to ~ 3400
+#  ~ 3415 LOINC terms that overlap with the "common" terms present in the EHR
 print(nrow(relevant.primary.part.cast))
 
-# bad or old LOINCs in PDS?
+# ~ 25 bad or old LOINCs in PDS?
+
 # setdiff(common.loincs, relevant.primary.part.cast$LoincNumber)
+# temp <-
+#   ehr_loinc_counts[ehr_loinc_counts$LOINC %in% setdiff(common.loincs, relevant.primary.part.cast$LoincNumber),]
+# R_LAB_RESULT_ITEM <-
+#   read.csv("~/loinc_in_obo/R_LAB_RESULT_ITEM_202005050841.csv",
+#            stringsAsFactors = FALSE)
+# temp <- base::merge(x = temp, y = R_LAB_RESULT_ITEM)
+# write.csv(temp, file =  "bad_pds_loinc_code_usage.csv")
+
 # [1] "11575-5"  "41613"    "5876-7"   "103331-7" "5778-7"   "280602-2" "74217-8"  "39478-6"  "SOLOINC"  "18185-8"  "34695-0"
 # [12] "6690-3"   "786-5"    "777-4"    "X29142-7" "UPE18"    "3148-9"   "4544-4"   "789-9"    "0051531"  "788-1"    "787-3"
 # [23] "2890-3"   "L4985"    "718-8"    "785-7"    "L4613"
 
 ###   ###   ###
 
-pds.with.loinc.parts <-
+# first EHR relevance/LOINC content merge!
+
+
+ehr.with.loinc.parts <-
   left_join(x = ehr_loinc_counts,
             y = relevant.primary.part.cast,
             by = c("LOINC" = "LoincNumber"))
 
 # 3836
-print(nrow(pds.with.loinc.parts))
-#  OOPS went up ?
+print(nrow(ehr.with.loinc.parts))
+# #  OOPS went up ?
+##   actually got joined with all orders, even when only ordered for a single person
+# could re-filter
+
+
+# would we loose anything easy to implement?
+# actually, even relevant.primary.part.cast has been stripped of uncommon loinc codes at this point
+ehr.rare <-
+  ehr.with.loinc.parts[!(ehr.with.loinc.parts$LOINC %in% common.loincs) ,]
+ehr.with.loinc.parts <-
+  ehr.with.loinc.parts[ehr.with.loinc.parts$LOINC %in% common.loincs ,]
+# back TO 3440
+print(nrow(ehr.with.loinc.parts))
+
+
+####
 
 # loinc method can legitimately be NA, but if any other column is NA,
-# either the PDS count should be below the threshold
+# either the ehr count should be below the threshold
 # or the LOINC code should be in the bad/old list above
 
 ###   ###   ###
@@ -151,16 +201,23 @@ print(nrow(pds.with.loinc.parts))
 
 # start merging in reviewed time, system, scale and property choices
 # see csv reads at top of script
-# put these in config?
-pds.with.loinc.parts <-
-  pds.with.loinc.parts[pds.with.loinc.parts$PROPERTY %in% turbo_loinc_properties_reviewed$PartTypeVal &
-                         pds.with.loinc.parts$SCALE == "LP7753-9" &
-                         pds.with.loinc.parts$SYSTEM %in% turbo_loinc_systems_reviewed$PartTypeVal &
-                         (pds.with.loinc.parts$TIME == "LP6960-1" |
-                            pds.with.loinc.parts$TIME == "LP6924-7") ,]
+# put these ACCEPTED SCALE AND TIME values in config?
+# we will ahve to get to additional scales and times in teh future
+# may require new ontology terms or new mapping patterns
+
+lost.due.to.time.scale <- ehr.with.loinc.parts$LOINC
+ehr.with.loinc.parts <-
+  ehr.with.loinc.parts[ehr.with.loinc.parts$PROPERTY %in% turbo_loinc_properties_reviewed$PartTypeVal &
+                         ehr.with.loinc.parts$SCALE == "LP7753-9" &
+                         ehr.with.loinc.parts$SYSTEM %in% turbo_loinc_systems_reviewed$PartTypeVal &
+                         (ehr.with.loinc.parts$TIME == "LP6960-1" |
+                            ehr.with.loinc.parts$TIME == "LP6924-7") ,]
+
+lost.due.to.time.scale <-
+  setdiff(lost.due.to.time.scale, ehr.with.loinc.parts$LOINC)
 
 # ~ 1800
-print(nrow(pds.with.loinc.parts))
+print(nrow(ehr.with.loinc.parts))
 
 ###   ###   ###
 
@@ -171,266 +228,44 @@ has.adjustment <-
   LoincPartLink$LoincNumber[LoincPartLink$PartTypeName == 'ADJUSTMENT']
 
 # exclude assays with numerators or adjustments
-pds.with.loinc.parts <-
-  pds.with.loinc.parts[!pds.with.loinc.parts$LOINC %in% intersect(has.numerator, has.adjustment), ]
-print(nrow(pds.with.loinc.parts))
+ehr.with.loinc.parts <-
+  ehr.with.loinc.parts[!ehr.with.loinc.parts$LOINC %in% intersect(has.numerator, has.adjustment), ]
+print(nrow(ehr.with.loinc.parts))
 
-###   ###   ###
 
-has.challenge <-
-  LoincPartLink$LoincNumber[LoincPartLink$PartTypeName == 'CHALLENGE']
-
-has.challenge <-
-  intersect(has.challenge, pds.with.loinc.parts$LOINC)
-
-sort(table(LoincPartLink$PartName[LoincPartLink$LoincNumber %in% has.challenge &
-                                    LoincPartLink$PartTypeName == 'CHALLENGE']))
-# include peak and trough?
-acceptable.challenges <- c('peak', 'trough')
-acceptable.challenges <-
-  LoincPartLink$LoincNumber[LoincPartLink$PartTypeName == 'CHALLENGE' &
-                              LoincPartLink$PartName %in% acceptable.challenges]
-
-unacceptable.challenges <-
-  setdiff(has.challenge, acceptable.challenges)
-
-pds.with.loinc.parts <-
-  pds.with.loinc.parts[!pds.with.loinc.parts$LOINC %in% unacceptable.challenges , ]
-print(nrow(pds.with.loinc.parts))
-
-sort(table(LoincPartLink$PartName[LoincPartLink$LoincNumber %in% pds.with.loinc.parts$LOINC &
-                                    LoincPartLink$PartTypeName == 'CHALLENGE']))
-
-###   ###   ###
-
-# addressed some additional ways below
-# assays that have a divisior part
-has.divisor  <-
-  LoincPartLink$LoincNumber[LoincPartLink$PartTypeName == 'DIVISOR']
-
-# assays that have a divisior part are are metnioned in PDS
-has.divisor <- intersect(has.divisor, pds.with.loinc.parts$LOINC)
-
-# table of divisor parts mentioned by PDS
-sort(table(LoincPartLink$PartName[LoincPartLink$LoincNumber %in% has.divisor &
-                                    LoincPartLink$PartTypeName == 'DIVISOR']))
-
-acceptable.divisors <- c('100 leukocytes', 'Creatinine')
-
-# assays that mention an acceptable divisor
-acceptable.divisors <-
-  LoincPartLink$LoincNumber[LoincPartLink$PartTypeName == 'DIVISOR' &
-                              LoincPartLink$PartName %in% acceptable.divisors]
-
-print(table(LoincPartLink$PartName[LoincPartLink$PartTypeName == 'DIVISOR' &
-                                     LoincPartLink$LoincNumber %in% acceptable.divisors]))
-
-unacceptable.divisors <-
-  setdiff(has.divisor, acceptable.divisors)
-
-pds.with.loinc.parts <-
-  pds.with.loinc.parts[!pds.with.loinc.parts$LOINC %in% unacceptable.divisors ,]
-
-print(nrow(pds.with.loinc.parts))
-
-sort(table(LoincPartLink$PartName[LoincPartLink$LoincNumber %in% pds.with.loinc.parts$LOINC &
-                                    LoincPartLink$PartTypeName == 'DIVISOR']))
-
-###   ###   ###
-
-has.suffix  <-
-  LoincPartLink$LoincNumber[LoincPartLink$PartTypeName == 'SUFFIX']
-
-has.suffix <- intersect(has.suffix, pds.with.loinc.parts$LOINC)
-
-sort(table(LoincPartLink$PartName[LoincPartLink$LoincNumber %in% has.suffix &
-                                    LoincPartLink$PartTypeName == 'SUFFIX']))
-
-# include Ab.IgG and Ab.IgE?
-acceptable.suffix <- c('Ab.IgG', 'Ab.IgE')
-acceptable.suffix <-
-  LoincPartLink$LoincNumber[LoincPartLink$PartTypeName == 'SUFFIX' &
-                              LoincPartLink$PartName %in% acceptable.suffix]
-
-unacceptable.suffix <-
-  setdiff(has.suffix, acceptable.suffix)
-
-pds.with.loinc.parts <-
-  pds.with.loinc.parts[!pds.with.loinc.parts$LOINC %in% unacceptable.suffix ,]
-print(nrow(pds.with.loinc.parts))
-
-###   ###   ###
-
-has.method  <-
-  LoincPartLink$LoincNumber[LoincPartLink$PartTypeName == 'METHOD']
-
-has.method <- intersect(has.method, pds.with.loinc.parts$LOINC)
-
-sort(table(LoincPartLink$PartName[LoincPartLink$LoincNumber %in% has.method &
-                                    LoincPartLink$PartTypeName == 'METHOD']))
-
-# include  Automated, Calculated, Manual, Electrophoresis, Automated count, Confirm, Manual count, IA ?
-acceptable.method <-
-  c(
-    'Automated',
-    'Calculated',
-    'Manual',
-    'Electrophoresis',
-    'Automated count',
-    'Confirm',
-    'Manual count',
-    'IA'
-  )
-acceptable.method <-
-  LoincPartLink$LoincNumber[LoincPartLink$PartTypeName == 'METHOD' &
-                              LoincPartLink$PartName %in% acceptable.method]
-
-unacceptable.method <-
-  setdiff(has.method, acceptable.method)
-
-pds.with.loinc.parts <-
-  pds.with.loinc.parts[!pds.with.loinc.parts$LOINC %in% unacceptable.method ,]
-print(nrow(pds.with.loinc.parts))
-
-### check merge lossses below
-sort(table(LoincPartLink$PartName[LoincPartLink$LoincNumber %in% pds.with.loinc.parts$LOINC &
-                                    LoincPartLink$PartTypeName == 'METHOD']))
-
-# all methods still there
-
-###   ###   ###
-
-multi.details <- c()
-
-challenge.frame <-
-  unique(LoincPartLink[LoincPartLink$PartTypeName == 'CHALLENGE'  &
-                         LoincPartLink$LoincNumber %in%  pds.with.loinc.parts$LOINC , c('LoincNumber', "PartName")])
-term.table <- table(challenge.frame$LoincNumber)
-
-term.table <-
-  cbind.data.frame(names(term.table), as.numeric(term.table))
-names(term.table) <- c('LoincNumber', 'count')
-term.table$LoincNumber <- as.character(term.table$LoincNumber)
-multi.details <-
-  union(multi.details, term.table$LoincNumber[term.table$count > 1])
-
-###   ###   ###
-
-divisor.frame <-
-  unique(LoincPartLink[LoincPartLink$PartTypeName == 'DIVISOR'  &
-                         LoincPartLink$LoincNumber %in%  pds.with.loinc.parts$LOINC , c('LoincNumber', "PartName")])
-term.table <- table(divisor.frame$LoincNumber)
-
-term.table <-
-  cbind.data.frame(names(term.table), as.numeric(term.table))
-names(term.table) <- c('LoincNumber', 'count')
-term.table$LoincNumber <- as.character(term.table$LoincNumber)
-multi.details <-
-  union(multi.details, term.table$LoincNumber[term.table$count > 1])
-
-###   ###   ###
-
-suffix.frame <-
-  unique(LoincPartLink[LoincPartLink$PartTypeName == 'SUFFIX'  &
-                         LoincPartLink$LoincNumber %in%  pds.with.loinc.parts$LOINC , c('LoincNumber', "PartName")])
-term.table <- table(suffix.frame$LoincNumber)
-
-term.table <-
-  cbind.data.frame(names(term.table), as.numeric(term.table))
-names(term.table) <- c('LoincNumber', 'count')
-term.table$LoincNumber <- as.character(term.table$LoincNumber)
-multi.details <-
-  union(multi.details, term.table$LoincNumber[term.table$count > 1])
-
-###   ###   ###
-
-method.frame <-
-  unique(LoincPartLink[LoincPartLink$PartTypeName == 'METHOD'  &
-                         LoincPartLink$LoincNumber %in%  pds.with.loinc.parts$LOINC , c('LoincNumber', "PartName")])
-
-method.agg <-
-  aggregate(
-    method.frame$PartName,
-    by = list(method.frame$LoincNumber),
-    FUN = function(current.chunks) {
-      return(paste0(sort(unique(current.chunks)), collapse = "|"))
-    }
-  )
-names(method.agg) <- c('LoincNumber', 'agg')
-
-term.table <- table(method.frame$LoincNumber)
-
-term.table <-
-  cbind.data.frame(names(term.table), as.numeric(term.table))
-names(term.table) <- c('LoincNumber', 'count')
-term.table$LoincNumber <- as.character(term.table$LoincNumber)
-
-method.frame <- base::merge(x = method.agg, y = term.table)
-
-single.collapsed.methods <-
-  method.frame[method.frame$count == 1 |
-                 method.frame$agg %in% c('Automated|Automated count', 'Manual|Manual count') , ]
-
-ditchers <-
-  setdiff(method.frame$LoincNumber,
-          single.collapsed.methods$LoincNumber)
-
-multi.details <-
-  union(multi.details, ditchers)
-
-pds.with.loinc.parts <-
-  pds.with.loinc.parts[!pds.with.loinc.parts$LOINC %in% multi.details , ]
+challenge.split <-
+  split.details('CHALLENGE', c(true.challenges, pk.in.challenge.slot))
+divisor.split <-
+  split.details('DIVISOR', divisors)
+suffix.split <-
+  split.details('SUFFIX', serology.suffixes)
+method.split <- split.details(
+  'METHOD',
+  loinc.methods
+)
 
 ###   ###   ###
 
 # start merging for robot
 
-cumulative.merges <- pds.with.loinc.parts
+cumulative.merges <- ehr.with.loinc.parts
 
-cumulative.merges <-
-  base::merge(
-    x = cumulative.merges,
-    y = challenge.frame,
-    by.x = 'LOINC',
-    by.y = 'LoincNumber',
-    all.x = TRUE,
-    suffixes = c('.method', '.challenge')
-  )
+detail.structures <-
+  list(challenge.split, divisor.split, method.split, suffix.split)
 
-cumulative.merges <-
-  base::merge(
-    x = cumulative.merges,
-    y = divisor.frame,
-    by.x = 'LOINC',
-    by.y = 'LoincNumber',
-    all.x = TRUE,
-    suffixes = c('.challenge', '.divisor')
-  )
-
-cumulative.merges <-
-  base::merge(
-    x = cumulative.merges,
-    y = suffix.frame,
-    by.x = 'LOINC',
-    by.y = 'LoincNumber',
-    all.x = TRUE,
-    suffixes = c('.divisor', '.suffix')
-  )
-
-###   ###   ###
-
-sort(table(LoincPartLink$PartName[LoincPartLink$LoincNumber %in% cumulative.merges$LOINC &
-                                    LoincPartLink$PartTypeName == 'METHOD']))
-
-cumulative.merges <-
-  base::merge(
-    x = cumulative.merges,
-    y = single.collapsed.methods,
-    by.x = 'LOINC',
-    by.y = 'LoincNumber',
-    all.x = TRUE,
-    suffixes = c('', '.method')
-  )
+placeholder <-
+  lapply(detail.structures, function(current.structure) {
+    temp <- current.structure[[1]]
+    print(head(temp))
+    cumulative.merges <<-
+      base::merge(
+        x = cumulative.merges,
+        y = temp,
+        by.x = 'LOINC',
+        by.y = 'LoincNumber',
+        all.x = TRUE
+      )
+  })
 
 print(nrow(cumulative.merges))
 
@@ -442,8 +277,7 @@ any.dupes.Q$LOINC <- as.character(any.dupes.Q$LOINC)
 
 print(any.dupes.Q$LOINC[any.dupes.Q$count > 1])
 
-pds.with.loinc.parts <- cumulative.merges
-
+ehr.with.loinc.parts <- cumulative.merges
 
 ###   ###   ###
 
@@ -502,9 +336,9 @@ pds.with.loinc.parts <- cumulative.merges
 # http://snomed.info/sct
 # 6027
 
-# pds.with.loinc.parts: one row per assay/result type
+# ehr.with.loinc.parts: one row per assay/result type
 # columns for the assay/result LOINC code and each LOINC parts code
-# head(pds.with.loinc.parts)
+# head(ehr.with.loinc.parts)
 # LOINC LOINC_COUNT COMPONENT   METHOD PROPERTY    SCALE   SYSTEM     TIME
 # 2  6768-6     6615139 LP15346-7     <NA> LP6789-4 LP7753-9 LP7576-4 LP6960-1
 # 4 10834-0      375012 LP14885-5 LP6165-7 LP6827-2 LP7753-9 LP7567-3 LP6960-1
@@ -520,7 +354,7 @@ pds.with.loinc.parts <- cumulative.merges
 # ~ 1350
 
 original.needs.component.mapping <-
-  unique(pds.with.loinc.parts$COMPONENT)
+  unique(ehr.with.loinc.parts$COMPONENT)
 
 current.needs.component.mapping <- original.needs.component.mapping
 current.component.mapping.complete <- c()
@@ -533,7 +367,7 @@ colnames(current.component.mapping.frame) <-
 # LOINC asserts some mappings of their own
 
 loinc.provided.component.mappings <-
-  PartRelatedCodeMapping[PartRelatedCodeMapping$PartNumber %in% current.needs.component.mapping , ]
+  PartRelatedCodeMapping[PartRelatedCodeMapping$PartNumber %in% current.needs.component.mapping ,]
 
 table(
   loinc.provided.component.mappings$ExtCodeSystem,
@@ -544,22 +378,22 @@ loinc.provided.component.mappings <-
   loinc.provided.component.mappings[loinc.provided.component.mappings$ExtCodeSystem %in%
                                       c("https://www.ebi.ac.uk/chebi",
                                         "http://www.nlm.nih.gov/research/umls/rxnorm") &
-                                      loinc.provided.component.mappings$Equivalence == "equivalent" , ]
+                                      loinc.provided.component.mappings$Equivalence == "equivalent" ,]
 
 table(loinc.provided.component.mappings$ExtCodeSystem)
 
 loinc.provided.rxnorm <-
   loinc.provided.component.mappings[loinc.provided.component.mappings$ExtCodeSystem ==
-                                      "http://www.nlm.nih.gov/research/umls/rxnorm" , ]
+                                      "http://www.nlm.nih.gov/research/umls/rxnorm" ,]
 
 loinc.provided.chebi <-
-  loinc.provided.component.mappings[loinc.provided.component.mappings$ExtCodeSystem == "https://www.ebi.ac.uk/chebi" , ]
+  loinc.provided.component.mappings[loinc.provided.component.mappings$ExtCodeSystem == "https://www.ebi.ac.uk/chebi" ,]
 
 loinc.provided.rxnorm.only <-
   setdiff(loinc.provided.rxnorm$PartNumber,
           loinc.provided.chebi$PartNumber)
 loinc.provided.rxnorm.only <-
-  loinc.provided.component.mappings[loinc.provided.component.mappings$PartNumber %in% loinc.provided.rxnorm.only,]
+  loinc.provided.component.mappings[loinc.provided.component.mappings$PartNumber %in% loinc.provided.rxnorm.only, ]
 
 print(loinc.provided.rxnorm.only)
 
@@ -569,7 +403,7 @@ print(loinc.provided.rxnorm.only)
 # SO JUST USE ChEBI
 loinc.provided.component.mappings <-
   loinc.provided.component.mappings[loinc.provided.component.mappings$ExtCodeSystem  == "https://www.ebi.ac.uk/chebi" &
-                                      loinc.provided.component.mappings$Equivalence == "equivalent" , ]
+                                      loinc.provided.component.mappings$Equivalence == "equivalent" ,]
 
 loinc.provided.component.mappings$ext.iri <-
   loinc.provided.component.mappings$ExtCodeId
@@ -591,16 +425,16 @@ update.accounting(
 #### begin BioPortal mappings retrieval
 # ~ 5 minutes vs remote BioPortal
 
-retreived.and.parsed <-
+bp.retreived.and.parsed <-
   bp.map.retreive.and.parse(sort(unique(current.needs.component.mapping)))
 
-retreived.and.parsed <-
-  do.call(rbind.data.frame, retreived.and.parsed)
-retreived.and.parsed[] <-
-  lapply(retreived.and.parsed[], as.character)
+bp.retreived.and.parsed <-
+  do.call(rbind.data.frame, bp.retreived.and.parsed)
+bp.retreived.and.parsed[] <-
+  lapply(bp.retreived.and.parsed[], as.character)
 
 # who did we get mapped to?
-rap.tab <- table(retreived.and.parsed$target.ontology)
+rap.tab <- table(bp.retreived.and.parsed$target.ontology)
 rap.tab <- cbind.data.frame(names(rap.tab), as.numeric(rap.tab))
 names(rap.tab) <- c("target.ontology", "map.count")
 
@@ -610,42 +444,37 @@ harmonized_ontology_rankings$bp.onto.iri <-
   paste0('http://data.bioontology.org/ontologies/',
          harmonized_ontology_rankings$rhs)
 
-# acceptable.retreived.and.parsed <-
-#   unique(retreived.and.parsed[retreived.and.parsed$target.ontology %in%
-#                                 acceptable.ontologies , c("source.term", "target.term", "target.ontology")])
-
-
-acceptable.retreived.and.parsed <-
-  base::merge(x = retreived.and.parsed ,
+acceptable.bp.retreived.and.parsed <-
+  base::merge(x = bp.retreived.and.parsed ,
               y = harmonized_ontology_rankings ,
               by.x = 'target.ontology',
               by.y = 'bp.onto.iri')
 
-agg <-
+lowest.priority <-
   aggregate(
-    acceptable.retreived.and.parsed$priority,
-    by = list(acceptable.retreived.and.parsed$source.term),
+    acceptable.bp.retreived.and.parsed$priority,
+    by = list(acceptable.bp.retreived.and.parsed$source.term),
     FUN = min
   )
-colnames(agg) <- c('source.term', 'priority')
+colnames(lowest.priority) <- c('source.term', 'priority')
 
-acceptable.retreived.and.parsed <-
-  base::merge(x = acceptable.retreived.and.parsed , y = agg)
+acceptable.bp.retreived.and.parsed <-
+  base::merge(x = acceptable.bp.retreived.and.parsed , y = lowest.priority)
 
-acceptable.retreived.and.parsed <-
-  unique(acceptable.retreived.and.parsed[, c("source.term", "target.term")])
+acceptable.bp.retreived.and.parsed <-
+  unique(acceptable.bp.retreived.and.parsed[, c("source.term", "target.term")])
 
-acceptable.retreived.and.parsed$target.term <-
-  as.character(acceptable.retreived.and.parsed$target.term)
-acceptable.retreived.and.parsed$source.id <-
+acceptable.bp.retreived.and.parsed$target.term <-
+  as.character(acceptable.bp.retreived.and.parsed$target.term)
+acceptable.bp.retreived.and.parsed$source.id <-
   gsub(pattern = "http://purl.bioontology.org/ontology/LNC/",
        replacement = "",
-       x = acceptable.retreived.and.parsed$source.term)
-acceptable.retreived.and.parsed$source.term <-
-  as.character(acceptable.retreived.and.parsed$source.term)
+       x = acceptable.bp.retreived.and.parsed$source.term)
+acceptable.bp.retreived.and.parsed$source.term <-
+  as.character(acceptable.bp.retreived.and.parsed$source.term)
 
 update.accounting(
-  acceptable.retreived.and.parsed,
+  acceptable.bp.retreived.and.parsed,
   "source.id",
   "target.term",
   "BioPortal IRI mappings"
@@ -655,24 +484,27 @@ update.accounting(
 
 ptv.to.iri <-
   unique(turbo_loinc_systems_reviewed[, c('PartTypeVal', 'iri')])
+colnames(ptv.to.iri) <- c('PartTypeVal', 'system.iri')
 
-pds.with.loinc.parts <-
+ehr.with.loinc.parts <-
   base::merge(
-    x = pds.with.loinc.parts,
+    x = ehr.with.loinc.parts,
     y = ptv.to.iri,
     by.x  = "SYSTEM",
     by.y = "PartTypeVal",
     all.x  = TRUE
   )
 
-# > table(pds.with.loinc.parts$TIME)
+# > table(ehr.with.loinc.parts$TIME)
 #
 # LP6924-7 LP6960-1
 # 53     1392
 
-pds.with.loinc.parts$time.iri <- NA
-pds.with.loinc.parts$time.iri[pds.with.loinc.parts$TIME == 'LP6924-7'] <-
-  'obo:TURBO_0010724'
+#### 20200505 SKIP THIS? just the LOINC timing part number and work out with rules in ready for robot section?
+
+# ehr.with.loinc.parts$time.iri <- NA
+# ehr.with.loinc.parts$time.iri[ehr.with.loinc.parts$TIME == 'LP6924-7'] <-
+#   'obo:TURBO_0010724'
 
 ###   ###   ###
 
@@ -706,7 +538,7 @@ pds.with.loinc.parts$time.iri[pds.with.loinc.parts$TIME == 'LP6924-7'] <-
 
 current.needs.component.mapping.details <-
   LoincPartLink[LoincPartLink$PartTypeName == 'COMPONENT' &
-                  LoincPartLink$LoincNumber %in% pds.with.loinc.parts$LOINC ,]
+                  LoincPartLink$LoincNumber %in% ehr.with.loinc.parts$LOINC , ]
 
 # > table( current.needs.component.mapping.details$Property , current.needs.component.mapping.details$LinkTypeName)
 #
@@ -723,15 +555,19 @@ component.component.counts <-
     fun.aggregate = length,
     value.var = 'Property'
   )
+
 colnames(component.component.counts) <-
   sub(
     pattern = 'http://loinc.org/property/',
     replacement = '',
     x = colnames(component.component.counts)
   )
+
 LoincNumber <- component.component.counts$LoincNumber
+
 component.component.counts <-
   component.component.counts[, c("analyte", "analyte-core", "search")]
+
 colnames(component.component.counts) <-
   paste0(colnames(component.component.counts), ".counts")
 
@@ -746,14 +582,17 @@ component.component.vals <-
       return(temp)
     }
   )
+
 colnames(component.component.vals) <-
   sub(
     pattern = 'http://loinc.org/property/',
     replacement = '',
     x = colnames(component.component.vals)
   )
+
 component.component.vals <-
-  component.component.vals[, c("analyte", "analyte-core", "COMPONENT", "search"),]
+  component.component.vals[, c("analyte", "analyte-core", "COMPONENT", "search"), ]
+
 colnames(component.component.vals) <-
   paste0(colnames(component.component.vals), ".vals")
 
@@ -765,49 +604,22 @@ part.details <-
 colnames(part.details) <- make.names(colnames(part.details))
 
 part.details$analyte.vals[part.details$analyte.counts == 0] <- NA
+
 part.details$analyte.core.vals[part.details$analyte.core.counts == 0] <-
   NA
+
 part.details$search.vals[part.details$search.counts == 0] <-
   NA
 
 part.details <-
   part.details[, setdiff(colnames(part.details),
-                         c('analyte.counts', 'analyte.core.counts')), ]
+                         c('analyte.counts', 'analyte.core.counts')),]
 
 ###   ###   ###
 
-colnames(pds.with.loinc.parts) <-
-  c(
-    "SYSTEM",
-    "LOINC",
-    "LOINC_COUNT",
-    "COMPONENT",
-    "METHOD",
-    "PROPERTY",
-    "SCALE",
-    "TIME",
-    "PartName.challenge",
-    "PartName.divisor",
-    "PartName.suffix",
-    "PartName.method",
-    "method.count",
-    "system.iri",
-    "time.iri"
-  )
-
-colnames(part.details) <-
-  c(
-    "LoincNumber",
-    "search.counts",
-    "analyte.vals",
-    "analyte.core.vals",
-    "COMPONENT.vals",
-    "search.vals"
-  )
-
-pds.with.loinc.parts <-
+ehr.with.loinc.parts <-
   base::merge(
-    x = pds.with.loinc.parts ,
+    x = ehr.with.loinc.parts ,
     y = part.details,
     by.x = 'LOINC',
     by.y = 'LoincNumber',
@@ -815,7 +627,7 @@ pds.with.loinc.parts <-
   )
 
 current.component.mapping.frame <-
-  current.component.mapping.frame[complete.cases(current.component.mapping.frame), ]
+  current.component.mapping.frame[complete.cases(current.component.mapping.frame),]
 
 num.to.name <- unique(Part[, c('PartNumber', 'PartName')])
 
@@ -836,101 +648,23 @@ num.to.name$PartNumber <- as.character(num.to.name$PartNumber)
 
 singles <- num.to.name$PartNumber[num.to.name$map.count == 1]
 singles <-
-  current.component.mapping.frame[current.component.mapping.frame$source.id %in% singles , ]
+  current.component.mapping.frame[current.component.mapping.frame$source.id %in% singles ,]
 
-multi.mappers <- num.to.name$PartNumber[num.to.name$map.count > 1]
+# # could theoretically require followup, prioritizaston, etc.
+# multi.mappers <- num.to.name$PartNumber[num.to.name$map.count > 1]
+#
+#
+# current.component.mapping.frame <-
+#   rbind.data.frame(singles, multi.mappers)
 
-# multi.mappers <-
-#   current.component.mapping.frame[current.component.mapping.frame$source.id %in% multi.mappers ,]
-#
-# multi.mappers$ontology <- multi.mappers$target.term
-#
-# multi.mappers$ontology <-
-#   sub(pattern = '^http://purl.bioontology.org/ontology/',
-#       replacement = '',
-#       x = multi.mappers$ontology)
-#
-# multi.mappers$ontology <-
-#   sub(pattern = '^http://purl.obolibrary.org/obo/',
-#       replacement = '',
-#       x = multi.mappers$ontology)
-#
-# multi.mappers$ontology <-
-#   sub(pattern = '^http://purl.org/sig/ont/fma/fma',
-#       replacement = 'fma_',
-#       x = multi.mappers$ontology)
-#
-# multi.mappers$ontology <-
-#   sub(pattern = '/.*$',
-#       replacement = '',
-#       x = multi.mappers$ontology)
-#
-# multi.mappers$ontology <-
-#   sub(pattern = '_.*$',
-#       replacement = '',
-#       x = multi.mappers$ontology)
-#
-# # mm.onto.tab <- table(multi.mappers$ontology)
-# # mm.onto.tab <-
-# #   cbind.data.frame(names(mm.onto.tab), as.numeric(mm.onto.tab))
-# # names(mm.onto.tab) <- c('ontology', 'count')
-#
-# #### STOP
-#
-# # this has already been taken care of above
-# # if needed again, can use harmonized_ontology_rankings
-#
-# # ontology_rankings <- read_csv("ontology_rankings.csv")
-# # ontology_rankings <- ontology_rankings[, c('ontology', 'priority')]
-#
-# multi.mappers <-
-#   base::merge(
-#     x = multi.mappers,
-#     y = ontology_rankings,
-#     by.x = 'ontology',
-#     by.y = 'ontology' ,
-#     all.x = TRUE
-#   )
-#
-# mm.agg <-
-#   aggregate(multi.mappers$priority, by = list(multi.mappers$source.id), min)
-# colnames(mm.agg) <- c('source.id', 'priority')
-#
-# multi.mappers <-
-#   unique(base::merge(x = multi.mappers,
-#                      y = mm.agg))
-#
-#
-# mmsi.table <- table(multi.mappers$source.id)
-# mmsi.table <-
-#   cbind.data.frame(names(mmsi.table), as.numeric(mmsi.table))
-# names(mmsi.table) <- c('PartNumber', 'map.count')
-# mmsi.table$PartNumber <- as.character(mmsi.table$PartNumber)
-#
-#
-# # constrain here (or earlier on) to just human proteins?
-# lost.cause <- mmsi.table$PartNumber[mmsi.table$map.count > 1]
-# lost.cause <-
-#   multi.mappers[multi.mappers$source.id %in% lost.cause ,]
-#
-# multi.mappers <-
-#   multi.mappers[!(multi.mappers$source.id %in% lost.cause) , ]
-#
-# multi.mappers <-
-#   multi.mappers[, intersect(colnames(multi.mappers), colnames(singles))]
-
-# singles <-
-#   singles[, intersect(colnames(multi.mappers), colnames(singles))]
-
-current.component.mapping.frame <-
-  rbind.data.frame(singles, multi.mappers)
+current.component.mapping.frame <- singles
 
 ccmf.name.term <-
   unique(current.component.mapping.frame[, c("PartName", "target.term")])
 
-pds.with.loinc.parts <-
+ehr.with.loinc.parts <-
   base::merge(
-    x = pds.with.loinc.parts,
+    x = ehr.with.loinc.parts,
     y = ccmf.name.term,
     by.x = 'analyte.core.vals',
     by.y = 'PartName' ,
@@ -938,30 +672,23 @@ pds.with.loinc.parts <-
   )
 
 text.search.input <-
-  unique(pds.with.loinc.parts[is.na(pds.with.loinc.parts$target.term), c('COMPONENT', 'analyte.core.vals')])
+  unique(ehr.with.loinc.parts[is.na(ehr.with.loinc.parts$target.term), c('COMPONENT', 'analyte.core.vals')])
 
 colnames(text.search.input) <- c('PartNumber', 'original.name')
 
-###   ###   ###
+source.relevant.links <-
+  LoincPartLink[LoincPartLink$LoincNumber %in% ehr_loinc_counts$LOINC , ]
 
 source.relevant.links <-
-  LoincPartLink[LoincPartLink$LoincNumber %in% ehr_loinc_counts$LOINC ,]
-
-source.relevant.links <-
-  source.relevant.links[source.relevant.links$PartNumber %in% original.needs.component.mapping , ]
-
-###   ###   ###
+  source.relevant.links[source.relevant.links$PartNumber %in% original.needs.component.mapping ,]
 
 current.needs.component.mapping.details <-
-  source.relevant.links[source.relevant.links$Property == 'http://loinc.org/property/analyte-core' , ]
+  source.relevant.links[source.relevant.links$Property == 'http://loinc.org/property/analyte-core' ,]
 
 #### had been including these... might want to go back to that pattern
 # system names and display names
 # non-core names, display names, search terms
 # divisor names
-
-
-###   ###   ###
 
 # also loook for searchable components
 
@@ -971,7 +698,7 @@ current.needs.component.mapping.details <-
 
 ###   ###   ###
 
-all.part.types.in.source <- pds.with.loinc.parts$LOINC
+all.part.types.in.source <- ehr.with.loinc.parts$LOINC
 all.part.types.in.source <-
   unique(LoincPartLink$PartNumber[LoincPartLink$LoincNumber %in% all.part.types.in.source])
 all.part.types.in.source <-
@@ -988,7 +715,7 @@ all.part.types.in.source <-
 names(all.part.types.in.source) <- c('part.type', 'source.count')
 
 
-# below: not explicitly filtering out carent, plus, period etc
+# below: not explicitly filtering out caret, plus, period etc
 # not including searchable compoent tokens
 
 text.search.input$singularized <- sub(pattern = 's$',
@@ -1003,18 +730,14 @@ text.search.input <-
 colnames(text.search.input) <- c('PartNumber', 'any.name')
 
 text.search.input <-
-  text.search.input[order(text.search.input$any.name), ]
+  text.search.input[order(text.search.input$any.name),]
 
 ###  DRY
 table(text.search.input$PartNumber %in% current.component.mapping.complete)
 table(text.search.input$any.name %in% Part$PartName[Part$PartNumber %in% current.component.mapping.complete])
 
-# substitute '.' with ' '  for neutrophils.immature etc.
-# substitute 'spp' with ''  for genus-level NCBI taxon entities
-
-
-# search deeper than 99 (bicarbonate)
-# or finally, use ontology filter
+# substitute '.' with ' ' for neutrophils.immature etc.
+# substitute 'spp$' or 'sp$' with ''  for genus-level NCBI taxon entities
 
 onto.list.for.ols <-
   paste0(sort(tolower(harmonized_ontology_rankings$rhs)), collapse = ',')
@@ -1030,6 +753,8 @@ pre.ols.attempts <-
           current.id = current.row[['PartNumber']],
           strip.final.s = FALSE,
           ontology.filter = paste0("&ontology=", onto.list.for.ols),
+          # matching bicarbonate aginst ChEBI hydrogencarbonate has required going 500 to 550 deep
+          #   because it's "just" an annotations_trimmed
           kept.row.count = 600,
           req.exact = 'false'
         )
@@ -1047,22 +772,19 @@ pre.ols.attempts <-
 col.counts <- sapply(pre.ols.attempts, length)
 table(col.counts)
 
-niners <- pre.ols.attempts[col.counts == 9]
-niners <- do.call(rbind.data.frame, niners)
-niners$synonym <- ""
-
 tenners <- pre.ols.attempts[col.counts == 10]
 tenners <- do.call(rbind.data.frame, tenners)
+tenners$synonym <- ""
 
-ols.attempts <- rbind.data.frame(tenners, niners)
+elevens <- pre.ols.attempts[col.counts == 11]
+elevens <- do.call(rbind.data.frame, elevens)
+
+ols.attempts <- rbind.data.frame(elevens, tenners)
 
 # ols.attempts.saved <- ols.attempts
 
-# bicarb LP15441-6
-# I submitted some issues to the OLS github
-
-# do ontology filtering HERE?
-# don't bother calculating sting distnace is we're not going to use the term?
+# don't bother calculating string distnace
+#   if we're only going to use idnetical matches
 
 # search.res.dists <-
 #   apply(
@@ -1100,18 +822,20 @@ ols.attempts <- rbind.data.frame(tenners, niners)
 #   )
 
 # ols.attempts <- ols.attempts[ols.attempts$loinc.part == 'LP15441-6' , ]
-
 # ols.attempts <- ols.attempts.saved
 
-search.res.dists <-
+ols.deep.check <-
   apply(
     X = ols.attempts,
     MARGIN = 1,
     FUN = function(current.row) {
       print(current.row$query)
-      temp <- list(current.row$label, current.row$synonym)
+      temp <-
+        list(current.row$label,
+             current.row$synonym,
+             current.row$annotations_trimmed)
       # print(temp)
-      temp <- lapply(temp, tolower)
+      temp <- sort(unique(unlist(lapply(temp, tolower))))
       # print(temp)
       if (tolower(current.row$query) %in% temp) {
         return(current.row[c(
@@ -1129,17 +853,19 @@ search.res.dists <-
     }
   )
 
-col.counts <- sapply(search.res.dists, length)
+col.counts <- sapply(ols.deep.check, length)
 table(col.counts)
 
-niners <- search.res.dists[col.counts == 9]
+
+niners <- ols.deep.check[col.counts == 9]
 
 col.counts <- sapply(niners, length)
 table(col.counts)
 
-search.res.dists <- do.call(rbind.data.frame, niners)
-# search.res.dists <- data.table::rbindlist(niners)
-# search.res.dists[] <- do.call(as.character, search.res.dists[])
+ols.deep.check <- do.call(rbind.data.frame, niners)
+
+hist(ols.deep.check$rank, breaks = 99)
+# ols.deep.check <- data.table::rbindlist(niners)
 
 placeholder <- lapply(c(
   "iri",
@@ -1151,46 +877,59 @@ placeholder <- lapply(c(
   "query",
   "loinc.part"
 ), function(current.col) {
-  search.res.dists[, current.col] <<-
-    as.character(search.res.dists[, current.col])
+  ols.deep.check[, current.col] <<-
+    as.character(ols.deep.check[, current.col])
   return()
 })
 
-kept.best <- base::merge(x = search.res.dists,
+
+kept.best <- base::merge(x = ols.deep.check,
                          y = harmonized_ontology_rankings,
                          by.x = 'ontology_prefix',
                          by.y = 'rhs')
 
-# need to merge priorities in, not ranks
+# # excluded if no one definitive component mapping
+# # like lost causes
 
-agg <-
+lowest.priority <-
   aggregate(kept.best$priority,
             by = list(kept.best$loinc.part),
             FUN = min)
-names(agg) <- c('loinc.part', 'priority')
 
-#### STOP
+names(lowest.priority) <- c('loinc.part', 'priority')
 
 kept.best <- base::merge(
   x = kept.best,
-  y = agg,
+  y = lowest.priority,
   by.x = c('loinc.part', 'priority'),
   by.y = c('loinc.part', 'priority')
 )
 
+# oops, lost count and label match while tidying up
+# coudl just retain the lowest rank
 
-# # search.res.dists <- data.table::rbindlist(tenners)
+lowest.rank <-
+  aggregate(kept.best$rank,
+            by = list(kept.best$loinc.part),
+            FUN = min)
+
+names(lowest.rank) <- c('loinc.part', 'rank')
+
+kept.best <- base::merge(
+  x = kept.best,
+  y = lowest.rank,
+  by.x = c('loinc.part', 'rank'),
+  by.y = c('loinc.part', 'rank')
+)
+
+# kept.best <-
+#   kept.best[kept.best$count == 1 | kept.best$label.match , ]
+
+# # ols.deep.check <- data.table::rbindlist(elevens)
 #
-# # # super slow
-# # search.res.dists <- do.call(rbind.data.frame, search.res.dists)
-#
-# search.res.dists$candidated.id <-
-#   as.character(search.res.dists$candidated.id)
-# search.res.dists$candidate.str <-
-#   as.character(search.res.dists$candidate.str)
-#
-# ###   ###   ###
-#
+# # # previous super slow attempt
+# # ols.deep.check <- do.call(rbind.data.frame, ols.deep.check)
+
 # # check for acceptability (cosine and source ontology)
 #
 # # there's probably lots of good ones with slightly decreased consine distances,
@@ -1198,202 +937,183 @@ kept.best <- base::merge(
 #
 # # trailing 'atom' had been a problem in ChEBI
 # # not any more thanks to applying cosine distance to preffered labels and synonyms
-#
-# # broke away from using update mechanism?
-#
-# # also prioritize hits by ontology
-#
-# ###   ###   ###
-#
-# # put overall best AFTER ontology filtering
-# # prob not because we're only taking cosine == 0 anyway
-#
-# overall.best <-
-#   aggregate(search.res.dists$cosine,
-#             by = list(search.res.dists$part.number),
-#             min)
-#
-# colnames(overall.best) <- c('part.number', 'cosine')
-#
-# overall.best <- base::merge(search.res.dists, overall.best)
-#
-# overall.best <-
-#   overall.best[, c("part.number",
-#                    "query",
-#                    "cosine",
-#                    "candidate.str",
-#                    "candidated.id",
-#                    "ont.name")]
-#
+
 # hist(overall.best$cosine, breaks = 99)
-#
-# ob.on.tab <- sort(table(overall.best$ont.name))
-# ob.on.tab <-
-#   cbind.data.frame(names(ob.on.tab), as.numeric(ob.on.tab))
-# names(ob.on.tab) <- c('ontology', 'count')
-#
-# # > sort(table(overall.best$ont.name))
-# #
-# # aeo      agro      bspo      caro      cmpo    co_323    co_324    co_325    co_331    co_338    co_341    co_343    co_347    co_365     cteno
-# # 1         1         1         1         1         1         1         1         1         1         1         1         1         1         1
-# # ddanat       duo   ecocore       fao       ido       lbo       mco       mop       ogi      ogms       omp       opl      peco     planp      poro
-# # 1         1         1         1         1         1         1         1         1         1         1         1         1         1         1
-# # pride        pw       rex      symp      tads   taxrank        to    co_320    co_322    co_330    co_333    co_339    co_340    co_350    co_357
-# # 1         1         1         1         1         1         1         2         2         2         2         2         2         2         2
-# # co_360       fix     hpath     micro      ncro       oae     oarcs      obib      srao     stato        vt      zeco    co_337    co_356    co_358
-# # 2         2         2         2         2         2         2         2         2         2         2         2         3         3         3
-# # co_366       enm     flopo      miro       mmo       mod        po        zp    co_321    co_335        eo     mondo        ms    ehdaa2        mi
-# # 3         3         3         3         3         3         3         3         4         4         4         4         4         5         5
-# # pato       spd    unimod       hao     nomen      fobi       oba        rs      envo      fypo      sibo       clo       sio       tto      doid
-# # 5         5         5         6         6         7         7         7         8         8         9        10        10        10        11
-# # vto       aro    idomal        uo        ma       obi       xao       ero     plana      tgma      chmo        vo     emapa        mp       ogg
-# # 11        12        12        12        13        13        14        15        15        15        16        17        18        19        19
-# # edam        hp       afo        cl       cmo    co_334     nmrcv        so      scdo    uberon       bto       bao       zfa      ordo       gaz
-# # 22        22        26        27        28        29        29        29        36        37        44        52        52        59        60
-# # foodon       xco       efo        go       fma      dron        pr ncbitaxon     chebi      omit      ncit
-# # 62        70        71       106       115       180       202       422       546       680      1340
-#
-# ####    ####    ####    ####
-#
-# # get keepers from XXX
-#
-# keepers <- harmonized_ontology_rankings$rhs
-#
-# kept.best <-
-#   overall.best[tolower(overall.best$ont.name) %in% tolower(keepers) ,]
-#
-# # # create prioritized_ols_ontology_names.csv
-# # kb.tab <- sort(table(overall.best$ont.name))
-# # kb.tab <- cbind.data.frame(names(kb.tab), as.numeric(kb.tab))
-# # names(kb.tab) <- c('ontology', 'count')
-#
-# # prioritized_ols_ontology_names <-
-# #   read_csv("prioritized_ols_ontology_names.csv")
-# # prioritized_ols_ontology_names <-
-# #   prioritized_ols_ontology_names[, c('ontology', 'priority')]
-#
-# kept.best$ont.name <- tolower(kept.best$ont.name)
-#
-# harmonized_ontology_rankings$lc.rhs <-
-#   tolower(harmonized_ontology_rankings$rhs)
-#
-# # kept.best <-
-# #   base::merge(
-# #     x = kept.best,
-# #     y = prioritized_ols_ontology_names,
-# #     by.x = 'ont.name',
-# #     by.y = 'ontology' ,
-# #     all.x = TRUE
-# #   )
-#
-# kept.best <-
-#   base::merge(
-#     x = kept.best,
-#     y = harmonized_ontology_rankings,
-#     by.x = 'ont.name',
-#     by.y = 'lc.rhs' ,
-#     all.x = TRUE
-#   )
-#
-# kb.agg <-
-#   aggregate(kept.best$priority, by = list(kept.best$part.number), min)
-# colnames(kb.agg) <- c('part.number', 'priority')
-#
-# kept.best <-
-#   unique(base::merge(
-#     x = kept.best,
-#     y = kb.agg,
-#     by.x = c('part.number', 'priority'),
-#     by.y =  c('part.number', 'priority'),
-#     all.x = FALSE
-#   ))
-#
-# kept.best <- kept.best[kept.best$cosine == 0 , ]
-
-###   ###   ###
-
-# deal with these
-
-# excluded becasue no one definitive component mapping
-# like lost causes above?
-overmapped <- table(pds.with.loinc.parts$LOINC)
-overmapped <-
-  cbind.data.frame(names(overmapped), as.numeric(overmapped))
-colnames(overmapped) <- c('LOINC', 'count')
-overmapped <- overmapped$LOINC[overmapped$count > 1]
-overmapped <-
-  pds.with.loinc.parts[pds.with.loinc.parts$LOINC %in% overmapped, ]
-
-pds.with.loinc.parts <-
-  pds.with.loinc.parts[!pds.with.loinc.parts$LOINC %in% overmapped$LOINC, ]
-
-# backmerge <-
-#   unique(kept.best[, c('part.number', 'candidated.id'), ])
-# backmerge$iri.from.search <-
-#   paste0('obo:', backmerge$candidated.id)
-# backmerge <- backmerge[, c('part.number', 'iri.from.search')]
 
 backmerge <-
   unique(kept.best[, c('loinc.part', 'short_form'),])
+# assumes that the short forms ahve all been drawn from OBO ontologies
+# that's not necessarily the case woth OLS or BioPortal
+# but we have ensured that with our harmonized ontology rankings
 backmerge$iri.from.search <-
   paste0('obo:', backmerge$short_form)
 backmerge <- backmerge[, c('loinc.part', 'iri.from.search')]
 
-
-# pds.with.loinc.parts <-
-#   base::merge(
-#     x = pds.with.loinc.parts,
-#     y = backmerge,
-#     by.x = 'COMPONENT',
-#     by.y = 'part.number',
-#     all.x = TRUE
-#   )
-
-pds.with.loinc.parts <-
+ehr.with.loinc.parts <-
   base::merge(
-    x = pds.with.loinc.parts,
+    x = ehr.with.loinc.parts,
     y = backmerge,
     by.x = 'COMPONENT',
     by.y = 'loinc.part',
     all.x = TRUE
   )
 
-pds.with.loinc.parts$final.comp <- pds.with.loinc.parts$target.term
-pds.with.loinc.parts$final.comp[is.na(pds.with.loinc.parts$final.comp)] <-
-  pds.with.loinc.parts$iri.from.search[is.na(pds.with.loinc.parts$final.comp)]
+####
+
+ehr.with.loinc.parts$final.comp <- ehr.with.loinc.parts$target.term
+ehr.with.loinc.parts$final.comp[is.na(ehr.with.loinc.parts$final.comp)] <-
+  ehr.with.loinc.parts$iri.from.search[is.na(ehr.with.loinc.parts$final.comp)]
+
+ehr.with.loinc.parts$final.comp <-
+  sub(
+    pattern = "http://purl.obolibrary.org/obo/",
+    replacement = "obo:",
+    x = ehr.with.loinc.parts$final.comp,
+    fixed = TRUE
+  )
+
+ehr.with.loinc.parts$system.iri <-
+  gsub(
+    pattern = "http://purl.obolibrary.org/obo/",
+    replacement = "obo:",
+    x = ehr.with.loinc.parts$system.iri,
+    fixed = TRUE
+  )
+
+at.frame <-
+  unique(LoincPartLink[, c('LoincNumber', 'LongCommonName')])
+
+oboflag <-
+  grepl(pattern = "^obo:", x = ehr.with.loinc.parts$final.comp)
+
+# excluded because NO automatically-accepted mapping for component
+drawing.board <-
+  ehr.with.loinc.parts[is.na(ehr.with.loinc.parts$final.comp) |
+                         (!oboflag),]
 
 ####
 
 ready.for.robot <-
-  pds.with.loinc.parts[!is.na(pds.with.loinc.parts$final.comp),]
+  unique(ehr.with.loinc.parts[(!is.na(ehr.with.loinc.parts$final.comp)) &
+                                oboflag , c(
+                                  "LOINC",
+                                  "COMPONENT",
+                                  "analyte.core.vals",
+                                  "final.comp",
+                                  "COMPONENT.vals",
+                                  "analyte.vals",
+                                  "search.counts",
+                                  "search.vals",
+                                  true.challenges,
+                                  pk.in.challenge.slot,
+                                  divisors,
+                                  serology.suffixes,
+                                  "METHOD",
+                                  loinc.methods,
+                                  "PROPERTY",
+                                  "SCALE",
+                                  "SYSTEM",
+                                  "system.iri",
+                                  "TIME"
+                                )])
 
-# --prefix "lobo: http://example.com/lobo/"  \
-# --prefix "loinc: http://purl.bioontology.org/ontology/LNC/" \
-# --prefix "ghi: https://github.com/obi-ontology/obi/issues/" \
-
-# excluded because NO automatically-accepted mapping for component
-drawing.board <-
-  pds.with.loinc.parts[is.na(pds.with.loinc.parts$final.comp),]
 
 robot.row.count <- nrow(ready.for.robot)
 all.blanks <- rep(x = '', robot.row.count)
 
 term.id <- paste0('lobo:LOBO_', 1:robot.row.count)
-term.label <-
-  paste0(
-    'LOBO term ',
-    1:robot.row.count,
-    ': underspecified ',
-    ready.for.robot$analyte.core.vals,
-    ' assay'
-  )
+
 has.curation.status <- all.blanks
 
 # alternative term ... LOINC assay label
-at.frame <-
-  unique(LoincPartLink[, c('LoincNumber', 'LongCommonName')])
 at.index <- match(ready.for.robot$LOINC, at.frame$LoincNumber)
 alternative.term <- at.frame$LongCommonName[at.index]
+
+#### system display name
+sys.disp.name <- match(ready.for.robot$SYSTEM , Part$PartNumber)
+sys.disp.name <- Part$PartDisplayName[sys.disp.name]
+
+table(sys.disp.name)
+
+# PK 
+# ANY MODERNIZASTION REQUIRED FOR AXIOMS?
+
+pk.pastable <- tl.augmenter(pk.in.challenge.slot, 'COMPONENT')
+pk.pastable[is.na(pk.pastable)] <- ''
+pk.pastable[nchar(pk.pastable) > 0] <-
+  paste0(pk.pastable[nchar(pk.pastable) > 0], ' ')
+table(pk.pastable)
+
+# todo REAL CHALLENGES (labels and axioms)
+
+# todo (serology) SUFFIXES  (labels and axioms)
+
+#### TERM LABEL
+# TODO NEW METHODS FOR PK SPECIFICTY
+term.label <-
+  paste0(
+    'Quantitative assay for ',
+    pk.pastable,
+    ready.for.robot$analyte.core.vals,
+    ' in ',
+    sys.disp.name
+  )
+
+temp <- table(term.label)
+temp <- cbind.data.frame(names(temp), as.numeric(temp))
+colnames(temp) <- c("label", "count")
+table(temp$count)
+
+term.label[ready.for.robot$TIME == "LP6924-7"] <-
+  paste0(term.label[ready.for.robot$TIME == "LP6924-7"], " with 24-hour sample collection")
+
+#### DEAL.. swtich to tl.augmenter approach for labels
+
+# divisors
+pastable <- tl.augmenter(divisors, 'COMPONENT')
+pastable[is.na(pastable)] <- ''
+pastable[nchar(pastable) > 0] <-
+  paste0(", normalized by ", pastable[nchar(pastable) > 0], ' ')
+table(pastable)
+
+term.label <-
+  paste0(term.label, pastable)
+
+temp <- table(term.label)
+temp <- cbind.data.frame(names(temp), as.numeric(temp))
+colnames(temp) <- c("label", "count")
+table(temp$count)
+
+
+associated.axioms <- all.blanks
+associated.axioms[!is.na(ready.for.robot$PartName.divisor) &
+                    ready.for.robot$PartName.divisor == 'Creatinine'] <-
+  "'has part' some 'division by creatinine concentration normalization'"
+associated.axioms[!is.na(ready.for.robot$PartName.divisor) &
+                    ready.for.robot$PartName.divisor == '100 leukocytes'] <-
+  "'has part' some 'division by 100 leukocytes normalization'"
+
+#### DEAL with methods part of labels... then axiomatic approach
+
+# assume for now that only a single method is asserted for a given test
+# but start thinking about mutiple SPECIFIC method cases
+# can collapse less specific methods like glucose into 20 mg glucose
+# should this be folded into teh split function above?
+
+pastable <- tl.augmenter(loinc.methods, 'METHOD')
+pastable[is.na(pastable)] <- ''
+pastable[nchar(pastable) > 0] <-
+  paste0(' (',  pastable[nchar(pastable) > 0], ')')
+table(pastable)
+
+term.label <- paste0(term.label, pastable)
+
+temp <- table(term.label)
+temp <- cbind.data.frame(names(temp), as.numeric(temp))
+colnames(temp) <- c("label", "count")
+table(temp$count)
+
+####
 
 definition <- all.blanks
 
@@ -1405,7 +1125,8 @@ definition.source <- all.blanks
 
 example.of.usage <- all.blanks
 editor.note <- all.blanks
-term.editor <- rep(x = 'Mark Andrew Miller, ORCID:0000-0001-9076-6066|Chris Stoeckert', robot.row.count)
+term.editor <-
+  rep(x = 'Mark Andrew Miller, ORCID:0000-0001-9076-6066|Chris Stoeckert', robot.row.count)
 ontology.term.requester <- all.blanks
 term.tracker.item <-
   rep(x = 'ghi:1153', robot.row.count)
@@ -1424,8 +1145,8 @@ parent.class <- rep(x = "'clinical assay'", robot.row.count)
 # 24 collection axiom as above if neccessary (LP6924-7 TURBO_0010724)
 # switch and create 24 specimen collection objective specification
 material.processing.technique <- all.blanks
-material.processing.technique[!is.na(ready.for.robot$time.iri) &
-                                ready.for.robot$time.iri == 'obo:TURBO_0010724'] <-
+material.processing.technique[!is.na(ready.for.robot$TIME) &
+                                ready.for.robot$TIME == 'LP6924-7'] <-
   "'specimen collection process' and ( achieves_planned_objective some '24 hour sample collection objective' )"
 
 # skip for now. would be based on method
@@ -1433,24 +1154,9 @@ detection.technique <- all.blanks
 
 # specimens with | split. union or intersection? subclass or eq class?
 evaluant <- ready.for.robot$system.iri
-evaluant <-
-  gsub(
-    pattern = 'http://purl.obolibrary.org/obo/',
-    replacement = 'obo:',
-    x = evaluant,
-    fixed = TRUE
-  )
 
 # put all components in here and wait for errors from things that aren't molecular entities? V
 analyte <- ready.for.robot$final.comp
-analyte <-
-  gsub(
-    pattern = 'http://purl.obolibrary.org/obo/',
-    replacement = 'obo:',
-    x = analyte,
-    fixed = TRUE
-  )
-
 
 device <- all.blanks
 reagent <- all.blanks
@@ -1458,7 +1164,7 @@ molecular.label <- all.blanks
 # skip in favor of analyte/target entity for now	some specific kind of datum based on LOINC property.
 input <- all.blanks
 
-# datums may need to be created and defined in terms of potentiatlly new units.	 V
+# datums may need to be created and defined in terms of potentiatlly new units.	TODO
 output <- rep(x = 'obo:IAO_0000032', robot.row.count)
 
 # move non-molecular entity analytes into here V
@@ -1466,14 +1172,6 @@ target.entity <- all.blanks
 
 # will probably be using this soon
 objective <- all.blanks
-
-associated.axioms <- all.blanks
-associated.axioms[!is.na(ready.for.robot$PartName.divisor) &
-                    ready.for.robot$PartName.divisor == 'Creatinine'] <-
-  "'has part' some 'division by creatinine concentration normalization'"
-associated.axioms[!is.na(ready.for.robot$PartName.divisor) &
-                    ready.for.robot$PartName.divisor == '100 leukocytes'] <-
-  "'has part' some 'division by 100 leukocytes normalization'"
 
 # or LOINC  https://loinc.org/2339-0/ style ?
 database.cross.reference.IRI <-
@@ -1519,17 +1217,9 @@ write.table(
   sep = ','
 )
 
-write.table(
-  lobo_template_headers_only,
-  file = 'lobo_template_headers_only.csv',
-  row.names = FALSE,
-  col.names = FALSE,
-  sep = ','
-)
-
 ###   ###   ###
 
-# # reworked sting inputs... no longer contains anything but unmapped core analyte components
+# # reworked string inputs... no longer contains anything but unmapped core analyte components
 #
 # bulk.systems <-
 #   kept.best[kept.best$ont.name %in% c('cl', 'uberon') &
@@ -1601,8 +1291,4 @@ write.table(
 # methsuximide
 # normethsuximide
 
-###   ###   ###
-
-# Make sure template starts with both headers... see XXX shell script
-#
-# robot template --prefix "lobo: http://example.com/lobo/" -t lobo_template.csv
+# now run execute_template.sh

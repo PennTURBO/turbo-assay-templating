@@ -1,8 +1,7 @@
 cat lobo_template_headers_only.csv lobo_template_headerless.csv > lobo_template.csv
 
+# files only, no ontology URLs?
 # --input https://raw.githubusercontent.com/PennTURBO/Turbo-Ontology/master/ontologies/animals_robot_transition/turbo_remerged.ttl \
-# --input ~/Turbo-Ontology/ontologies/animals_robot_transition/turbo_remerged.ttl \
-# --output-iri 'https://raw.githubusercontent.com/PennTURBO/loinc_in_obo/master/lobo.ttl' \
 
 robot \
 template \

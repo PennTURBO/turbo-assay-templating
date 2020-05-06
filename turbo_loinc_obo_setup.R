@@ -178,16 +178,34 @@ ols.serch.term.labels.universal <-
             x = current.string)
     }
     
-    singular.lc <- current.string
-    
-    print(singular.lc)
+    # singular.lc <- current.string
     
     # or just try url encoding?
+    
+    # substitute 'spp$' or 'sp$' with ''  for genus-level NCBI taxon entities
+    # that porabialy isn't desirable in general
+    # and should be really clear to users fo thsi function
+    
+    current.string <-
+      gsub(pattern = " sp$",
+           replacement = "",
+           x = current.string)
+    
+    current.string <-
+      gsub(pattern = " spp$",
+           replacement = "",
+           x = current.string)
+    
+    singular.lc <- current.string
+    print(singular.lc)
     
     current.string <-
       gsub(pattern = "[[:punct:] ]",
            replacement = ",",
            x = current.string)
+    
+    # does that take care of ...
+    # substitute '.' with ' ' for neutrophils.immature etc.
     
     # current.string <-
     #   gsub(pattern = "[[:punct:]]",
@@ -210,7 +228,7 @@ ols.serch.term.labels.universal <-
     #        replacement = "+",
     #        x = current.string)
     
-    # print(current.string)
+    print(current.string)
     
     prepared.query <- paste0(
       "https://www.ebi.ac.uk/ols/api/search?q={",
@@ -221,19 +239,9 @@ ols.serch.term.labels.universal <-
       kept.row.count,
       '&exact=',
       req.exact,
-      "&fieldList=iri,label,synonym,short_form,obo_id,ontology_name,ontology_prefix"
-      # " & ",
-      # 'queryFields=label,synonym'
+      "&fieldList=iri,short_form,obo_id,ontology_name,ontology_prefix,label,synonym,annotations,annotations_trimmed",
+      "&query_fields=label,synonym,annotations,annotations_trimmed"
     )
-    
-    # print(prepared.query)
-    
-    
-    # fieldList
-    # Specifcy the fields to return, the defaults are {iri,label,short_form,obo_id,ontology_name,ontology_prefix,description,type}
-    #
-    # queryFields
-    # Specifcy the fields to query, the defaults are {label, synonym, description, short_form, obo_id, annotations, logical_description, iri}
     
     # print(prepared.query)
     
@@ -302,4 +310,80 @@ update.accounting <- function(recent.successes,
     current.component.mapping.frame$authority
   )))
   
+}
+
+split.details <- function(PartTypeNameVal, acceptable.details) {
+  has.details <-
+    LoincPartLink$LoincNumber[LoincPartLink$PartTypeName == PartTypeNameVal]
+  
+  has.details <-
+    intersect(has.details, ehr.with.loinc.parts$LOINC)
+  
+  print(sort(table(LoincPartLink$PartName[LoincPartLink$LoincNumber %in% has.details &
+                                            LoincPartLink$PartTypeName == PartTypeNameVal])))
+  
+  acceptable.details.codes <-
+    LoincPartLink$LoincNumber[LoincPartLink$PartTypeName == PartTypeNameVal &
+                                LoincPartLink$PartName %in% acceptable.details]
+  
+  unacceptable.details <-
+    setdiff(has.details, acceptable.details.codes)
+  
+  ehr.with.loinc.parts <-
+    ehr.with.loinc.parts[!ehr.with.loinc.parts$LOINC %in% unacceptable.details ,]
+  
+  print(nrow(ehr.with.loinc.parts))
+  
+  detail.frame <-
+    unique(LoincPartLink[LoincPartLink$PartTypeName == PartTypeNameVal  &
+                           LoincPartLink$LoincNumber %in%  ehr.with.loinc.parts$LOINC , c('LoincNumber', "PartName")])
+  
+  detail.prep <- detail.frame
+  
+  detail.prep$placeholder <- TRUE
+  
+  detail.cast <-
+    dcast(data = detail.prep,
+          formula = LoincNumber ~ PartName,
+          value.var = 'placeholder')
+  detail.cast$detail.count <-
+    rowSums(detail.cast[, -1], na.rm = TRUE)
+  
+  # always.keep <- c('LoincNumber', 'detail.count')
+  
+  detail.followup.cols <-
+    c(setdiff(colnames(detail.cast), acceptable.details))
+  
+  detail.followup <- detail.cast[, detail.followup.cols]
+  
+  detail.cast <-
+    detail.cast[, union('LoincNumber', acceptable.details)]
+  
+  return(list(detail.cast = detail.cast, detail.followup = detail.followup))
+  
+}
+
+tl.augmenter <- function(selected.columns, part.name) {
+  details.frame <- ready.for.robot[, selected.columns]
+  
+  details.key <- ready.for.robot$LOINC
+  details.tally <- rowSums(details.frame, na.rm = TRUE)
+  details.tally <- cbind.data.frame(details.key, details.tally)
+  details.frame <-
+    cbind.data.frame(details.key, details.frame)
+  details.melt <-
+    melt(data = details.frame, id.vars = 'details.key')
+  details.melt[] <- lapply(X = details.melt[], FUN = as.character)
+  details.melt <- details.melt[complete.cases(details.melt),]
+  table(details.melt$variable)
+  
+  details.melt <-
+    base::merge(
+      x = ready.for.robot[, c('LOINC', part.name)],
+      y = details.melt,
+      by.x = 'LOINC',
+      by.y = 'details.key',
+      all.x = TRUE
+    )
+  return(details.melt$variable)
 }
