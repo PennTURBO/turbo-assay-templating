@@ -1,6 +1,21 @@
 source('turbo_loinc_obo_setup.R')
 
-true.challenges <- c('Glucose')
+# true.challenges <- c('Glucose')
+
+true.challenges <- c(
+  '1H post 50 g glucose PO',
+  '1H post 50 g lactose PO',
+  '1H post dose corticotropin',
+  '2H post 50 g lactose PO' ,
+  '2H post 75 g glucose PO',
+  '30M post 50 g lactose PO',
+  '30M post dose corticotropin' ,
+  '3H post 100 g glucose PO',
+  '3H post 50 g lactose PO',
+  '8H post 1 mg dexamethasone PO overnight'
+)
+
+
 pk.in.challenge.slot <- c('peak', 'trough')
 divisors <- c('100 leukocytes', 'Creatinine')
 serology.suffixes <- c("Ab",
@@ -9,16 +24,14 @@ serology.suffixes <- c("Ab",
                        "Ab.IgG",
                        "Ab.IgM")
 loinc.methods <-
-  c(
-    # 'Automated',
+  c(# 'Automated',
     'Calculated',
     # 'Manual',
     'Electrophoresis',
     'Automated count',
     'Confirm',
     'Manual count',
-    'IA'
-  )
+    'IA')
 
 #### PUT FILENAMES/PATHS IN CONFIG
 harmonized_ontology_rankings <-
@@ -68,7 +81,7 @@ turbo_loinc_properties_reviewed$use[is.na(turbo_loinc_properties_reviewed$use)] 
   'n'
 
 turbo_loinc_properties_reviewed <-
-  turbo_loinc_properties_reviewed[turbo_loinc_properties_reviewed$use == 'y' ,]
+  turbo_loinc_properties_reviewed[turbo_loinc_properties_reviewed$use == 'y' , ]
 
 ###   ###   ###
 
@@ -94,7 +107,7 @@ turbo_loinc_systems_reviewed$use[is.na(turbo_loinc_systems_reviewed$use)] <-
   'n'
 
 turbo_loinc_systems_reviewed <-
-  turbo_loinc_systems_reviewed[turbo_loinc_systems_reviewed$use == 'y' , ]
+  turbo_loinc_systems_reviewed[turbo_loinc_systems_reviewed$use == 'y' ,]
 
 ###   ###   ###
 
@@ -112,7 +125,7 @@ print(length(common.loincs))
 # get part values for the "common", LOINC-annotated ehr lab results
 relevant.primary.part.cast <-
   LoincPartLink[LoincPartLink$LoincNumber %in% common.loincs &
-                  LoincPartLink$LinkTypeName == "Primary", ]
+                  LoincPartLink$LinkTypeName == "Primary",]
 
 relevant.primary.part.cast <-
   relevant.primary.part.cast[, c("LoincNumber", "PartNumber", "PartTypeName")]
@@ -160,9 +173,9 @@ print(nrow(ehr.with.loinc.parts))
 # would we loose anything easy to implement?
 # actually, even relevant.primary.part.cast has been stripped of uncommon loinc codes at this point
 ehr.rare <-
-  ehr.with.loinc.parts[!(ehr.with.loinc.parts$LOINC %in% common.loincs) ,]
+  ehr.with.loinc.parts[!(ehr.with.loinc.parts$LOINC %in% common.loincs) , ]
 ehr.with.loinc.parts <-
-  ehr.with.loinc.parts[ehr.with.loinc.parts$LOINC %in% common.loincs ,]
+  ehr.with.loinc.parts[ehr.with.loinc.parts$LOINC %in% common.loincs , ]
 # back TO 3440
 print(nrow(ehr.with.loinc.parts))
 
@@ -211,7 +224,7 @@ ehr.with.loinc.parts <-
                          ehr.with.loinc.parts$SCALE == "LP7753-9" &
                          ehr.with.loinc.parts$SYSTEM %in% turbo_loinc_systems_reviewed$PartTypeVal &
                          (ehr.with.loinc.parts$TIME == "LP6960-1" |
-                            ehr.with.loinc.parts$TIME == "LP6924-7") ,]
+                            ehr.with.loinc.parts$TIME == "LP6924-7") , ]
 
 lost.due.to.time.scale <-
   setdiff(lost.due.to.time.scale, ehr.with.loinc.parts$LOINC)
@@ -229,7 +242,7 @@ has.adjustment <-
 
 # exclude assays with numerators or adjustments
 ehr.with.loinc.parts <-
-  ehr.with.loinc.parts[!ehr.with.loinc.parts$LOINC %in% intersect(has.numerator, has.adjustment), ]
+  ehr.with.loinc.parts[!ehr.with.loinc.parts$LOINC %in% intersect(has.numerator, has.adjustment),]
 print(nrow(ehr.with.loinc.parts))
 
 
@@ -239,10 +252,8 @@ divisor.split <-
   split.details('DIVISOR', divisors)
 suffix.split <-
   split.details('SUFFIX', serology.suffixes)
-method.split <- split.details(
-  'METHOD',
-  loinc.methods
-)
+method.split <- split.details('METHOD',
+                              loinc.methods)
 
 ###   ###   ###
 
@@ -367,7 +378,7 @@ colnames(current.component.mapping.frame) <-
 # LOINC asserts some mappings of their own
 
 loinc.provided.component.mappings <-
-  PartRelatedCodeMapping[PartRelatedCodeMapping$PartNumber %in% current.needs.component.mapping ,]
+  PartRelatedCodeMapping[PartRelatedCodeMapping$PartNumber %in% current.needs.component.mapping , ]
 
 table(
   loinc.provided.component.mappings$ExtCodeSystem,
@@ -378,22 +389,22 @@ loinc.provided.component.mappings <-
   loinc.provided.component.mappings[loinc.provided.component.mappings$ExtCodeSystem %in%
                                       c("https://www.ebi.ac.uk/chebi",
                                         "http://www.nlm.nih.gov/research/umls/rxnorm") &
-                                      loinc.provided.component.mappings$Equivalence == "equivalent" ,]
+                                      loinc.provided.component.mappings$Equivalence == "equivalent" , ]
 
 table(loinc.provided.component.mappings$ExtCodeSystem)
 
 loinc.provided.rxnorm <-
   loinc.provided.component.mappings[loinc.provided.component.mappings$ExtCodeSystem ==
-                                      "http://www.nlm.nih.gov/research/umls/rxnorm" ,]
+                                      "http://www.nlm.nih.gov/research/umls/rxnorm" , ]
 
 loinc.provided.chebi <-
-  loinc.provided.component.mappings[loinc.provided.component.mappings$ExtCodeSystem == "https://www.ebi.ac.uk/chebi" ,]
+  loinc.provided.component.mappings[loinc.provided.component.mappings$ExtCodeSystem == "https://www.ebi.ac.uk/chebi" , ]
 
 loinc.provided.rxnorm.only <-
   setdiff(loinc.provided.rxnorm$PartNumber,
           loinc.provided.chebi$PartNumber)
 loinc.provided.rxnorm.only <-
-  loinc.provided.component.mappings[loinc.provided.component.mappings$PartNumber %in% loinc.provided.rxnorm.only, ]
+  loinc.provided.component.mappings[loinc.provided.component.mappings$PartNumber %in% loinc.provided.rxnorm.only,]
 
 print(loinc.provided.rxnorm.only)
 
@@ -403,7 +414,7 @@ print(loinc.provided.rxnorm.only)
 # SO JUST USE ChEBI
 loinc.provided.component.mappings <-
   loinc.provided.component.mappings[loinc.provided.component.mappings$ExtCodeSystem  == "https://www.ebi.ac.uk/chebi" &
-                                      loinc.provided.component.mappings$Equivalence == "equivalent" ,]
+                                      loinc.provided.component.mappings$Equivalence == "equivalent" , ]
 
 loinc.provided.component.mappings$ext.iri <-
   loinc.provided.component.mappings$ExtCodeId
@@ -538,7 +549,7 @@ ehr.with.loinc.parts <-
 
 current.needs.component.mapping.details <-
   LoincPartLink[LoincPartLink$PartTypeName == 'COMPONENT' &
-                  LoincPartLink$LoincNumber %in% ehr.with.loinc.parts$LOINC , ]
+                  LoincPartLink$LoincNumber %in% ehr.with.loinc.parts$LOINC ,]
 
 # > table( current.needs.component.mapping.details$Property , current.needs.component.mapping.details$LinkTypeName)
 #
@@ -591,7 +602,7 @@ colnames(component.component.vals) <-
   )
 
 component.component.vals <-
-  component.component.vals[, c("analyte", "analyte-core", "COMPONENT", "search"), ]
+  component.component.vals[, c("analyte", "analyte-core", "COMPONENT", "search"),]
 
 colnames(component.component.vals) <-
   paste0(colnames(component.component.vals), ".vals")
@@ -613,7 +624,7 @@ part.details$search.vals[part.details$search.counts == 0] <-
 
 part.details <-
   part.details[, setdiff(colnames(part.details),
-                         c('analyte.counts', 'analyte.core.counts')),]
+                         c('analyte.counts', 'analyte.core.counts')), ]
 
 ###   ###   ###
 
@@ -627,7 +638,7 @@ ehr.with.loinc.parts <-
   )
 
 current.component.mapping.frame <-
-  current.component.mapping.frame[complete.cases(current.component.mapping.frame),]
+  current.component.mapping.frame[complete.cases(current.component.mapping.frame), ]
 
 num.to.name <- unique(Part[, c('PartNumber', 'PartName')])
 
@@ -648,7 +659,7 @@ num.to.name$PartNumber <- as.character(num.to.name$PartNumber)
 
 singles <- num.to.name$PartNumber[num.to.name$map.count == 1]
 singles <-
-  current.component.mapping.frame[current.component.mapping.frame$source.id %in% singles ,]
+  current.component.mapping.frame[current.component.mapping.frame$source.id %in% singles , ]
 
 # # could theoretically require followup, prioritizaston, etc.
 # multi.mappers <- num.to.name$PartNumber[num.to.name$map.count > 1]
@@ -677,13 +688,13 @@ text.search.input <-
 colnames(text.search.input) <- c('PartNumber', 'original.name')
 
 source.relevant.links <-
-  LoincPartLink[LoincPartLink$LoincNumber %in% ehr_loinc_counts$LOINC , ]
+  LoincPartLink[LoincPartLink$LoincNumber %in% ehr_loinc_counts$LOINC ,]
 
 source.relevant.links <-
-  source.relevant.links[source.relevant.links$PartNumber %in% original.needs.component.mapping ,]
+  source.relevant.links[source.relevant.links$PartNumber %in% original.needs.component.mapping , ]
 
 current.needs.component.mapping.details <-
-  source.relevant.links[source.relevant.links$Property == 'http://loinc.org/property/analyte-core' ,]
+  source.relevant.links[source.relevant.links$Property == 'http://loinc.org/property/analyte-core' , ]
 
 #### had been including these... might want to go back to that pattern
 # system names and display names
@@ -730,7 +741,7 @@ text.search.input <-
 colnames(text.search.input) <- c('PartNumber', 'any.name')
 
 text.search.input <-
-  text.search.input[order(text.search.input$any.name),]
+  text.search.input[order(text.search.input$any.name), ]
 
 ###  DRY
 table(text.search.input$PartNumber %in% current.component.mapping.complete)
@@ -941,7 +952,7 @@ kept.best <- base::merge(
 # hist(overall.best$cosine, breaks = 99)
 
 backmerge <-
-  unique(kept.best[, c('loinc.part', 'short_form'),])
+  unique(kept.best[, c('loinc.part', 'short_form'), ])
 # assumes that the short forms ahve all been drawn from OBO ontologies
 # that's not necessarily the case woth OLS or BioPortal
 # but we have ensured that with our harmonized ontology rankings
@@ -989,9 +1000,24 @@ oboflag <-
 # excluded because NO automatically-accepted mapping for component
 drawing.board <-
   ehr.with.loinc.parts[is.na(ehr.with.loinc.parts$final.comp) |
-                         (!oboflag),]
+                         (!oboflag), ]
 
-####
+####    ####    ####    ####
+
+# get labels from ontology
+
+turbo.ontolgy.path <-
+  "/Users/markampa/Turbo-Ontology/ontologies/animals_robot_transition/turbo_merged.ttl"
+
+turbo.ontolgy.model <-
+  load.rdf(turbo.ontolgy.path, format = "TURTLE")
+
+turbo.labels <- sparql.rdf(
+  turbo.ontolgy.model,
+  "select * where { ?s <http://www.w3.org/2000/01/rdf-schema#label> ?o }"
+)
+
+####    ####    ####    ####
 
 ready.for.robot <-
   unique(ehr.with.loinc.parts[(!is.na(ehr.with.loinc.parts$final.comp)) &
@@ -1017,6 +1043,7 @@ ready.for.robot <-
                                   "TIME"
                                 )])
 
+ready.for.robot <- ready.for.robot[order(ready.for.robot$LOINC), ]
 
 robot.row.count <- nrow(ready.for.robot)
 all.blanks <- rep(x = '', robot.row.count)
@@ -1035,7 +1062,7 @@ sys.disp.name <- Part$PartDisplayName[sys.disp.name]
 
 table(sys.disp.name)
 
-# PK 
+# PK
 # ANY MODERNIZASTION REQUIRED FOR AXIOMS?
 
 pk.pastable <- tl.augmenter(pk.in.challenge.slot, 'COMPONENT')
@@ -1045,24 +1072,36 @@ pk.pastable[nchar(pk.pastable) > 0] <-
 table(pk.pastable)
 
 # todo REAL CHALLENGES (labels and axioms)
+abtype <- tl.augmenter(serology.suffixes, 'COMPONENT')
+abtype[is.na(abtype)] <- ''
+abtype[nchar(abtype) > 0] <-
+  paste0(abtype[nchar(abtype) > 0], ' against ')
+table(abtype)
 
 # todo (serology) SUFFIXES  (labels and axioms)
+challengetype <- tl.augmenter(true.challenges, 'COMPONENT')
+challengetype[is.na(challengetype)] <- ''
+challengetype[nchar(challengetype) > 0] <-
+  paste0(', ', challengetype[nchar(challengetype) > 0], ' challenge ')
+table(challengetype)
 
 #### TERM LABEL
 # TODO NEW METHODS FOR PK SPECIFICTY
 term.label <-
   paste0(
     'Quantitative assay for ',
+    abtype,
     pk.pastable,
     ready.for.robot$analyte.core.vals,
     ' in ',
-    sys.disp.name
+    sys.disp.name,
+    challengetype
   )
 
-temp <- table(term.label)
-temp <- cbind.data.frame(names(temp), as.numeric(temp))
-colnames(temp) <- c("label", "count")
-table(temp$count)
+label.table <- table(term.label)
+label.table <- cbind.data.frame(names(label.table), as.numeric(label.table))
+colnames(label.table) <- c("label", "count")
+table(label.table$count)
 
 term.label[ready.for.robot$TIME == "LP6924-7"] <-
   paste0(term.label[ready.for.robot$TIME == "LP6924-7"], " with 24-hour sample collection")
@@ -1079,10 +1118,10 @@ table(pastable)
 term.label <-
   paste0(term.label, pastable)
 
-temp <- table(term.label)
-temp <- cbind.data.frame(names(temp), as.numeric(temp))
-colnames(temp) <- c("label", "count")
-table(temp$count)
+label.table <- table(term.label)
+label.table <- cbind.data.frame(names(label.table), as.numeric(label.table))
+colnames(label.table) <- c("label", "count")
+table(label.table$count)
 
 
 associated.axioms <- all.blanks
@@ -1108,10 +1147,35 @@ table(pastable)
 
 term.label <- paste0(term.label, pastable)
 
-temp <- table(term.label)
-temp <- cbind.data.frame(names(temp), as.numeric(temp))
-colnames(temp) <- c("label", "count")
-table(temp$count)
+label.table <- table(term.label)
+label.table <- cbind.data.frame(names(label.table), as.numeric(label.table))
+colnames(label.table) <- c("label", "count")
+table(label.table$count)
+
+####
+
+# properties/units part of labels
+
+temp <-
+  match(ready.for.robot$PROPERTY,
+        turbo_loinc_properties_reviewed$PartTypeVal)
+temp <- turbo_loinc_properties_reviewed$obo.iri[temp]
+
+setdiff(temp, turbo.labels[, 1])
+
+temp <- match(temp, turbo.labels[,1])
+
+table(temp, useNA = 'always')
+
+temp <- turbo.labels[temp,2]
+
+term.label <- paste0(term.label, ' [', temp, ']')
+
+label.table <- table(term.label)
+label.table <- cbind.data.frame(names(label.table), as.numeric(label.table))
+colnames(label.table) <- c("label", "count")
+table(label.table$count)
+
 
 ####
 
@@ -1209,6 +1273,10 @@ ready.for.robot <- cbind.data.frame(
   database.cross.reference.IRI
 )
 
+temp <- make.table.frame(ready.for.robot$term.label)
+temp <- temp$value[temp$count > 1]
+ready.for.robot <- ready.for.robot[!ready.for.robot$term.label %in% temp,]
+
 write.table(
   ready.for.robot,
   file = 'lobo_template_headerless.csv',
@@ -1216,6 +1284,9 @@ write.table(
   col.names = FALSE,
   sep = ','
 )
+
+label.table[] <- lapply(label.table[], as.character)
+ready.for.robot <- base::merge(x = ready.for.robot, y = label.table, by.x = 'term.label', by.y = 'label')
 
 ###   ###   ###
 
@@ -1292,3 +1363,15 @@ write.table(
 # normethsuximide
 
 # now run execute_template.sh
+
+make.table.frame <- function(my.vector) {
+  temp <- table(my.vector)
+  temp <- cbind.data.frame(names(temp), as.numeric(temp))
+  colnames(temp) <- c('value', 'count')
+  temp$value <- as.character(temp$value)
+  return(temp)
+}
+# 
+# temp <- make.table.frame(ehr.with.loinc.parts$PROPERTY)
+# temp <- base::merge(x = temp, y = Part, by.x = 'value', by.y = 'PartNumber')
+# write.csv(temp, "ehr_loinc_properties.csv")
