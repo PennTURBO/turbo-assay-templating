@@ -11,7 +11,7 @@ template \
 --add-prefix "ghi: https://github.com/obi-ontology/obi/issues/" \
 --add-prefix "oboInOwl: http://www.geneontology.org/formats/oboInOwl#" \
 --ontology-iri "https://raw.githubusercontent.com/PennTURBO/loinc_in_obo/master/lobo.ttl" \
---input ~/Turbo-Ontology/ontologies/animals_robot_transition/turbo_merged.ttl \
+--input ~/Turbo-Ontology/ontologies/robot_implementation/turbo_merged.ttl \
 --ancestors \
 annotate \
 --remove-annotations \
