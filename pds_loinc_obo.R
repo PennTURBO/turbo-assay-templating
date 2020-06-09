@@ -1204,7 +1204,7 @@ logical.note <- all.blanks
 #	clinical assay from TURBO. analyte could be inferred. annotate this with ...
 #   see recent notes from CJS.
 #   Also quantitative by default and PT by default
-parent.class <- rep(x = "'clinical assay'", robot.row.count)
+parent.class <- rep(x = "'assay of specimen from organism'", robot.row.count)
 
 # 24 collection axiom as above if neccessary (LP6924-7 TURBO_0010724)
 # switch and create 24 specimen collection objective specification
