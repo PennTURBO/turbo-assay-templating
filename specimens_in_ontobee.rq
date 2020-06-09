@@ -1,0 +1,8 @@
+SELECT DISTINCT  (strafter(str(?g), "http://purl.obolibrary.org/obo/merged/") as ?ontology) ?s (lcase(str(?l)) AS ?label)
+WHERE
+  { GRAPH ?g
+      { ?s (<http://www.w3.org/2000/01/rdf-schema#subClassOf>)* <http://purl.obolibrary.org/obo/OBI_0001479> .
+        ?s  <http://www.w3.org/2000/01/rdf-schema#label>  ?l
+      }
+  }
+order by ?l, ?g
