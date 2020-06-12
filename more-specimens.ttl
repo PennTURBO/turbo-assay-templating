@@ -6,7 +6,13 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @base <https://raw.githubusercontent.com/PennTURBO/loinc_in_obo/master/more-specimens.ttl> .
 
-<https://raw.githubusercontent.com/PennTURBO/loinc_in_obo/master/more-specimens.ttl> rdf:type owl:Ontology .
+<https://raw.githubusercontent.com/PennTURBO/loinc_in_obo/master/more-specimens.ttl> rdf:type owl:Ontology ;
+                                                                                      <http://purl.org/dc/elements/1.1/creator> "Chris Stoeckert" ,
+                                                                                                                                "Mark Andrew Miller, ORCID:0000-0001-9076-6066" ;
+                                                                                      <http://purl.org/dc/terms/description> "More specimens for assays. To be added to TURBO." ;
+                                                                                      <http://purl.org/dc/terms/license> <http://creativecommons.org/licenses/by/4.0/> ;
+                                                                                      <http://purl.org/dc/terms/title> "More specimens for assays" ;
+                                                                                      rdfs:comment "todo: add xmlns namespace, xml:base, dc:contributor, dc:date, dc:format, dc:subject, owl:versionInfo, owl:versionIRI, protege:defaultLanguage, obo:IAO_0000589 (OBO foundry unique label)" .
 
 #################################################################
 #    Annotation properties
@@ -263,7 +269,10 @@ owl:topObjectProperty rdf:type owl:ObjectProperty .
                                                                                   ) ;
                                                                rdf:type owl:Class
                                                              ] ;
-                                             <http://purl.obolibrary.org/obo/IAO_0000119> "Mark A. Miller|ORCID:0000-0001-9076-6066|Christian Stoeckert|ORCID:0000-0002-5714-991X"^^xsd:string .
+                                             <http://purl.obolibrary.org/obo/IAO_0000119> "Christian Stoeckert"^^xsd:string ,
+                                                                                          "Mark A. Miller"^^xsd:string ,
+                                                                                          "ORCID:0000-0001-9076-6066"^^xsd:string ,
+                                                                                          "ORCID:0000-0002-5714-991X"^^xsd:string .
 
 
 ###  http://purl.obolibrary.org/obo/OBI_0100017
@@ -280,7 +289,10 @@ owl:topObjectProperty rdf:type owl:ObjectProperty .
                                                                                   ) ;
                                                                rdf:type owl:Class
                                                              ] ;
-                                             <http://purl.obolibrary.org/obo/IAO_0000119> "Mark A. Miller|ORCID:0000-0001-9076-6066|Christian Stoeckert|ORCID:0000-0002-5714-991X"^^xsd:string .
+                                             <http://purl.obolibrary.org/obo/IAO_0000119> "Christian Stoeckert"^^xsd:string ,
+                                                                                          "Mark A. Miller"^^xsd:string ,
+                                                                                          "ORCID:0000-0001-9076-6066"^^xsd:string ,
+                                                                                          "ORCID:0000-0002-5714-991X"^^xsd:string .
 
 
 ###  http://purl.obolibrary.org/obo/OBI_0100051
@@ -388,7 +400,10 @@ owl:topObjectProperty rdf:type owl:ObjectProperty .
                                                                            rdf:type owl:Class
                                                                          ] ;
                                                      <http://purl.obolibrary.org/obo/IAO_0000115> "A specimen that is derived from some arterial blood"^^xsd:string ;
-                                                     <http://purl.obolibrary.org/obo/IAO_0000119> "Mark A. Miller|ORCID:0000-0001-9076-6066|Christian Stoeckert|ORCID:0000-0002-5714-991X"^^xsd:string ;
+                                                     <http://purl.obolibrary.org/obo/IAO_0000119> "Christian Stoeckert"^^xsd:string ,
+                                                                                                  "Mark A. Miller"^^xsd:string ,
+                                                                                                  "ORCID:0000-0001-9076-6066"^^xsd:string ,
+                                                                                                  "ORCID:0000-0002-5714-991X"^^xsd:string ;
                                                      rdfs:label "arterial blood specimen"^^xsd:string .
 
 
@@ -410,7 +425,10 @@ owl:topObjectProperty rdf:type owl:ObjectProperty .
                                                                            rdf:type owl:Class
                                                                          ] ;
                                                      <http://purl.obolibrary.org/obo/IAO_0000115> "A specimen that is derived from some bodily fluid"^^xsd:string ;
-                                                     <http://purl.obolibrary.org/obo/IAO_0000119> "Mark A. Miller|ORCID:0000-0001-9076-6066|Christian Stoeckert|ORCID:0000-0002-5714-991X"^^xsd:string ;
+                                                     <http://purl.obolibrary.org/obo/IAO_0000119> "Christian Stoeckert"^^xsd:string ,
+                                                                                                  "Mark A. Miller"^^xsd:string ,
+                                                                                                  "ORCID:0000-0001-9076-6066"^^xsd:string ,
+                                                                                                  "ORCID:0000-0002-5714-991X"^^xsd:string ;
                                                      rdfs:label "bodily fluid specimen"^^xsd:string .
 
 
@@ -432,7 +450,10 @@ owl:topObjectProperty rdf:type owl:ObjectProperty .
                                                                            rdf:type owl:Class
                                                                          ] ;
                                                      <http://purl.obolibrary.org/obo/IAO_0000115> "A specimen that is derived from some capillary blood"^^xsd:string ;
-                                                     <http://purl.obolibrary.org/obo/IAO_0000119> "Mark A. Miller|ORCID:0000-0001-9076-6066|Christian Stoeckert|ORCID:0000-0002-5714-991X"^^xsd:string ;
+                                                     <http://purl.obolibrary.org/obo/IAO_0000119> "Christian Stoeckert"^^xsd:string ,
+                                                                                                  "Mark A. Miller"^^xsd:string ,
+                                                                                                  "ORCID:0000-0001-9076-6066"^^xsd:string ,
+                                                                                                  "ORCID:0000-0002-5714-991X"^^xsd:string ;
                                                      rdfs:label "capillary blood specimen"^^xsd:string .
 
 
@@ -454,7 +475,10 @@ owl:topObjectProperty rdf:type owl:ObjectProperty .
                                                                            rdf:type owl:Class
                                                                          ] ;
                                                      <http://purl.obolibrary.org/obo/IAO_0000115> "A specimen that is derived from some umbilical cord blood"^^xsd:string ;
-                                                     <http://purl.obolibrary.org/obo/IAO_0000119> "Mark A. Miller|ORCID:0000-0001-9076-6066|Christian Stoeckert|ORCID:0000-0002-5714-991X"^^xsd:string ;
+                                                     <http://purl.obolibrary.org/obo/IAO_0000119> "Christian Stoeckert"^^xsd:string ,
+                                                                                                  "Mark A. Miller"^^xsd:string ,
+                                                                                                  "ORCID:0000-0001-9076-6066"^^xsd:string ,
+                                                                                                  "ORCID:0000-0002-5714-991X"^^xsd:string ;
                                                      rdfs:label "umbilical cord blood specimen"^^xsd:string .
 
 
@@ -476,7 +500,10 @@ owl:topObjectProperty rdf:type owl:ObjectProperty .
                                                                            rdf:type owl:Class
                                                                          ] ;
                                                      <http://purl.obolibrary.org/obo/IAO_0000115> "A specimen that is derived from some venous blood"^^xsd:string ;
-                                                     <http://purl.obolibrary.org/obo/IAO_0000119> "Mark A. Miller|ORCID:0000-0001-9076-6066|Christian Stoeckert|ORCID:0000-0002-5714-991X"^^xsd:string ;
+                                                     <http://purl.obolibrary.org/obo/IAO_0000119> "Christian Stoeckert"^^xsd:string ,
+                                                                                                  "Mark A. Miller"^^xsd:string ,
+                                                                                                  "ORCID:0000-0001-9076-6066"^^xsd:string ,
+                                                                                                  "ORCID:0000-0002-5714-991X"^^xsd:string ;
                                                      rdfs:label "venous blood specimen"^^xsd:string .
 
 
@@ -495,7 +522,10 @@ owl:topObjectProperty rdf:type owl:ObjectProperty .
                                                                        rdf:type owl:Class
                                                                      ] ;
                                                      <http://purl.obolibrary.org/obo/IAO_0000115> "A specimen that is derived from some erythrocytes"^^xsd:string ;
-                                                     <http://purl.obolibrary.org/obo/IAO_0000119> "Mark A. Miller|ORCID:0000-0001-9076-6066|Christian Stoeckert|ORCID:0000-0002-5714-991X"^^xsd:string ;
+                                                     <http://purl.obolibrary.org/obo/IAO_0000119> "Christian Stoeckert"^^xsd:string ,
+                                                                                                  "Mark A. Miller"^^xsd:string ,
+                                                                                                  "ORCID:0000-0001-9076-6066"^^xsd:string ,
+                                                                                                  "ORCID:0000-0002-5714-991X"^^xsd:string ;
                                                      rdfs:label "erythrocyte specimen"^^xsd:string .
 
 
