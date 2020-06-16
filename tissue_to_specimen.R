@@ -97,7 +97,7 @@ system.time(tissue.specimen.result <-
 # 52.728   0.079  52.978
 
 evaluants.only <-
-  setdiff(evaluants.fq, tissue.specimen.result$tissue)
+  sort(setdiff(evaluants.fq, tissue.specimen.result$tissue))
 
 #### is this necessary?
 
