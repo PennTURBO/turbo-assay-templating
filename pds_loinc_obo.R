@@ -1,6 +1,23 @@
-source('turbo_loinc_obo_setup.R')
+library(devtools)
 
-# true.challenges <- c('Glucose')
+# this script queries a private database and may require a VPN, a ssh tunnel, or other similar measures
+
+# requires a properly formatted "turbo_R_setup.yaml" in the home directory of the user who started this script
+# see https://gist.github.com/turbomam/a3915d00ee55d07510493a9944f96696 for template
+devtools::source_gist(id = "https://gist.github.com/turbomam/f082295aafb95e71d109d15ca4535e46")
+
+## this means that it wasn't possible to connect to the "RxNav in a box" Container
+##   which is required by TURBO's medication mapping steps
+##   but not the assay modeling
+
+# Error in .jcall(drv@jdrv, "Ljava/sql/Connection;", "connect", as.character(url)[1],  :
+#                   com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+#
+#                 The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+
+## switch all RxNav setup and queries to the try/catch style used in the FL MDM ODS comparison
+
+# source('pds_loinc_obo_setup.R')
 
 true.challenges <- c(
   '1H post 50 g glucose PO',
@@ -35,8 +52,7 @@ loinc.methods <-
 
 #### PUT FILENAMES/PATHS IN CONFIG
 harmonized_ontology_rankings <-
-  read.csv("~/loinc_in_obo/harmonized_ontology_rankings.csv",
-           stringsAsFactors = FALSE)
+  read.csv(config$harmonized_ontology_rankings, stringsAsFactors = FALSE)
 
 ### CSV reads
 ### some from LOINC, some manually curated
@@ -46,19 +62,19 @@ harmonized_ontology_rankings <-
 # with parts mentioned multiple times with different contexts
 #   "LinkTypeName"   "Property"
 LoincPartLink <-
-  read_csv(config$LoincPartLink.file)
+  read_csv(paste0(config$loinc.root, config$LoincPartLink.file))
 
 # additional part details
 Part <-
-  read_csv(config$Part.file)
+  read_csv(paste0(config$loinc.root, config$Part.file))
 
 # get LOINC provided component mappings
 PartRelatedCodeMapping <-
-  read_csv(config$PartRelatedCodeMapping.file)
+  read_csv(paste0(config$loinc.root, config$PartRelatedCodeMapping.file))
 
-# THIS IS HANDY FOR DIGNOSISNG/PRIORITIZING PATTERNS FOR MANUAL CURATION
+# # THIS IS HANDY FOR DIGNOSISNG/PRIORITIZING PATTERNS FOR MANUAL CURATION
 # MultiAxialHierarchy <-
-#   read_csv(config$MultiAxialHierarchy.file)
+#   read_csv(paste0(config$loinc.root, config$MultiAxialHierarchy.file))
 
 ###   ###   ###
 
@@ -101,6 +117,11 @@ turbo_loinc_properties_reviewed <-
 # bootstrapped from bulk.systems below
 # but that's not working anymore
 # could easily be reactivated
+
+# system / evaluant / specimen
+# yeah, go back to searching for (mapping?) anatomical terms
+# then use sparql query to find corresponding specimen in TURBO ontology
+
 turbo_loinc_systems_reviewed <-
   read_csv(config$reviewed.systems.file)
 turbo_loinc_systems_reviewed$use[is.na(turbo_loinc_systems_reviewed$use)] <-
@@ -179,7 +200,6 @@ ehr.with.loinc.parts <-
 # back TO 3440
 print(nrow(ehr.with.loinc.parts))
 
-
 ####
 
 # loinc method can legitimately be NA, but if any other column is NA,
@@ -244,7 +264,6 @@ has.adjustment <-
 ehr.with.loinc.parts <-
   ehr.with.loinc.parts[!ehr.with.loinc.parts$LOINC %in% intersect(has.numerator, has.adjustment),]
 print(nrow(ehr.with.loinc.parts))
-
 
 challenge.split <-
   split.details('CHALLENGE', c(true.challenges, pk.in.challenge.slot))
@@ -448,8 +467,6 @@ bp.retreived.and.parsed[] <-
 rap.tab <- table(bp.retreived.and.parsed$target.ontology)
 rap.tab <- cbind.data.frame(names(rap.tab), as.numeric(rap.tab))
 names(rap.tab) <- c("target.ontology", "map.count")
-
-# acceptable.ontologies <- config$acceptable.map.onts.from.loinc
 
 harmonized_ontology_rankings$bp.onto.iri <-
   paste0('http://data.bioontology.org/ontologies/',
@@ -1006,16 +1023,31 @@ drawing.board <-
 
 # get labels from ontology
 
-turbo.ontolgy.path <-
-  "/Users/markampa/Turbo-Ontology/ontologies/animals_robot_transition/turbo_merged.ttl"
+# turbo.ontolgy.path <-
+#   "/Users/markampa/Turbo-Ontology/ontologies/animals_robot_transition/turbo_merged.ttl"
+
+turbo.ontolgy.url <-
+  "https://raw.githubusercontent.com/PennTURBO/Turbo-Ontology/master/ontologies/robot_implementation/turbo_merged.ttl"
 
 turbo.ontolgy.model <-
-  load.rdf(turbo.ontolgy.path, format = "TURTLE")
+  rdflib::rdf_parse(turbo.ontolgy.url)
 
-turbo.labels <- sparql.rdf(
-  turbo.ontolgy.model,
+# turbo.ontolgy.model <-
+#   load.rdf(turbo.ontolgy.path, format = "TURTLE")
+
+turbo.label.query <-
   "select * where { ?s <http://www.w3.org/2000/01/rdf-schema#label> ?o }"
-)
+
+# turbo.labels <- sparql.rdf(
+#   turbo.ontolgy.model,
+#   "select * where { ?s <http://www.w3.org/2000/01/rdf-schema#label> ?o }"
+# )
+
+turbo.labels <-
+  rdf_query(rdf = turbo.ontolgy.model, query = turbo.label.query)
+# 
+# rdflib::rdf_query(rdf = turbo.ontolgy.model, query = "select * where { ?s <http://www.w3.org/2000/01/rdf-schema#label> ?o } limit 3")
+# 
 
 ####    ####    ####    ####
 
