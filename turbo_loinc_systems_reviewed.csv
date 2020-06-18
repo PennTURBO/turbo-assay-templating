@@ -1,77 +1,77 @@
-PartTypeVal,PartTypeName,PartName,PartDisplayName,Status,use,termcount,iri
-LP7000-5,SYSTEM,Amnio fld,Amniotic fluid,ACTIVE,y,1,http://purl.obolibrary.org/obo/UBERON_0000173
-LP7057-5,SYSTEM,Bld,Blood,ACTIVE,y,1,http://purl.obolibrary.org/obo/UBERON_0000178
-LP7067-4,SYSTEM,BldA,Blood arterial,ACTIVE,y,1,http://purl.obolibrary.org/obo/UBERON_0013755
-LP7073-2,SYSTEM,BldV,Blood venous,ACTIVE,y,1,http://purl.obolibrary.org/obo/UBERON_0013756
-LP7238-1,SYSTEM,Body fld,Body fluid,ACTIVE,y,1,http://purl.obolibrary.org/obo/UBERON_0006314
-LP7156-5,SYSTEM,CSF,Cerebral spinal fluid,ACTIVE,y,1,http://purl.obolibrary.org/obo/UBERON_0001359
-LP7507-9,SYSTEM,Periton fld,Peritoneal fluid,ACTIVE,y,1,http://purl.obolibrary.org/obo/UBERON_0001268
-LP7486-6,SYSTEM,Plr fld,Pleural fluid,ACTIVE,y,1,http://purl.obolibrary.org/obo/UBERON_0001087
-LP7536-8,SYSTEM,RBC,Red Blood Cells,ACTIVE,y,1,http://purl.obolibrary.org/obo/CL_0000232
-LP7565-7,SYSTEM,Saliva,Saliva,ACTIVE,y,1,http://purl.obolibrary.org/obo/UBERON_0001836
-LP7592-1,SYSTEM,Synv fld,Synovial fluid,ACTIVE,y,1,http://purl.obolibrary.org/obo/UBERON_0001090
-LP7681-2,SYSTEM,Urine,Urine,ACTIVE,y,1,http://purl.obolibrary.org/obo/UBERON_0001088
-LP7720-8,SYSTEM,WBC,White blood cells,ACTIVE,y,1,http://purl.obolibrary.org/obo/CL_0000738
-LP7068-2,SYSTEM,BldC,Blood capillary,ACTIVE,y,1,http://purl.obolibrary.org/obo/UBERON_0013757
-LP7069-0,SYSTEM,BldCo,Blood cord,ACTIVE,y,1,http://purl.obolibrary.org/obo/UBERON_0012168
-LP7479-1,SYSTEM,Plas,Plasma,ACTIVE,y,1,http://purl.obolibrary.org/obo/UBERON_0001969
-LP7589-7,SYSTEM,Semen,Semen,ACTIVE,y,1,http://purl.obolibrary.org/obo/UBERON_0001968
-LP7567-3,SYSTEM,Ser,Serum,ACTIVE,y,1,http://purl.obolibrary.org/obo/UBERON_0001977
-LP7576-4,SYSTEM,Ser/Plas,Serum or Plasma,ACTIVE,y,2,http://purl.obolibrary.org/obo/UBERON_0001977|http://purl.obolibrary.org/obo/UBERON_0001969
-LP7579-8,SYSTEM,Ser/Plas/Bld,"Serum, Plasma or Blood",ACTIVE,y,3,http://purl.obolibrary.org/obo/UBERON_0001977|http://purl.obolibrary.org/obo/UBERON_0001969|http://purl.obolibrary.org/obo/UBERON_0000178
-LP32887-9,SYSTEM,{Setting},{Setting},ACTIVE,,,
-LP76034-5,SYSTEM,{system},{system},ACTIVE,,,
-LP281728-8,SYSTEM,^BPU,^BPU,ACTIVE,,,
-LP281750-2,SYSTEM,^Family member,^Family member,ACTIVE,,,
-LP310004-9,SYSTEM,^Fetus,^Fetus,ACTIVE,,,
-LP281760-1,SYSTEM,^Mother,^Mother,ACTIVE,,,
-LP310005-6,SYSTEM,^Patient,^Patient,ACTIVE,,,
-LP7034-4,SYSTEM,Arterial system,Arterial system,ACTIVE,,,
-LP28582-2,SYSTEM,BldCoA,Blood cord arterial,ACTIVE,,,
-LP28583-0,SYSTEM,BldCoV,Blood cord venous,ACTIVE,,,
-LP7060-9,SYSTEM,Bld/Bone mar,Blood or Marrow,ACTIVE,,,
-LP7061-7,SYSTEM,Bld/Tiss,Blood or Tissue,ACTIVE,,,
-LP7410-6,SYSTEM,Bone mar,Bone marrow,ACTIVE,,,
-LP7096-3,SYSTEM,Calculus,Calculus (stone),ACTIVE,,,
-LP7161-5,SYSTEM,Cvm,Cervical mucus,ACTIVE,,,
-LP7162-3,SYSTEM,Cvx,Cervix,ACTIVE,,,
-LP7163-1,SYSTEM,Cvx/Vag,Cervix or Vagina,ACTIVE,,,
-LP97574-5,SYSTEM,Current sample,Current sample,ACTIVE,,,
-LP21304-8,SYSTEM,Bld.dot,DBS,ACTIVE,,,
-LP7180-5,SYSTEM,Dose,Dose,ACTIVE,,,
-LP7214-2,SYSTEM,Exhl gas,Exhaled gas,ACTIVE,,,
-LP7218-3,SYSTEM,Eye,Eye,ACTIVE,,,
-LP36892-5,SYSTEM,Facility,Facility,ACTIVE,,,
-LP7252-2,SYSTEM,Tiss fixed,Fixed tissue,ACTIVE,,,
-LP30522-4,SYSTEM,Hereditary,Hereditary,ACTIVE,,,
-LP7354-6,SYSTEM,Inhl gas,Inhaled gas,ACTIVE,,,
-LP7370-2,SYSTEM,Isolate,Isolate,ACTIVE,,,
-LP266970-5,SYSTEM,Isolate/Specimen,Isolate or Specimen,ACTIVE,,,
-LP7400-7,SYSTEM,Liver,Liver,ACTIVE,,,
-LP7413-0,SYSTEM,Meconium,Meconium,ACTIVE,,,
-LP7415-5,SYSTEM,Medication.current,Medication current,ACTIVE,,,
-LP97572-9,SYSTEM,NBS card,NBS card,ACTIVE,,,
-LP30139-7,SYSTEM,Nuchal fold^fetus,Nuchal fold^fetus,ACTIVE,,,
-LP7459-3,SYSTEM,Oxygen delivery system,Oxygen delivery system,ACTIVE,,,
-LP7466-8,SYSTEM,Pericard fld,Pericardial fluid,ACTIVE,,,
-LP185795-4,SYSTEM,Plas.cfDNA,Plasma cell-free DNA,ACTIVE,,,
-LP7494-0,SYSTEM,PPP,Platelet poor plasma,ACTIVE,,,
-LP7506-1,SYSTEM,PRP,Platelet rich plasma,ACTIVE,,,
-LP7504-6,SYSTEM,Provider,Provider,ACTIVE,,,
-LP6989-0,SYSTEM,Reference lab test,Reference lab test,ACTIVE,,,
-LP7554-1,SYSTEM,Report,Report,ACTIVE,,,
-LP7556-6,SYSTEM,Respiratory system,Respiratory system,ACTIVE,,,
-LP7558-2,SYSTEM,Respiratory system.airway,Respiratory system airway,ACTIVE,,,
-LP36286-0,SYSTEM,Retic,Reticulocytes,ACTIVE,,,
-LP7569-9,SYSTEM,Ser+CSF,Serum and CSF,ACTIVE,,,
-LP157285-0,SYSTEM,Ser/Plas+CSF,Serum or Plasma and CSF,ACTIVE,,,
-LP7593-9,SYSTEM,Specimen,Specimen,ACTIVE,,,
-LP7604-4,SYSTEM,Stool,Stool,ACTIVE,,,
-LP7641-6,SYSTEM,Tiss,Tissue and Smears,ACTIVE,,,
-LP30364-1,SYSTEM,Urethra,Urethra,ACTIVE,,,
-LP32517-2,SYSTEM,Urine+Ser/Plas,Urine and Serum or Plasma,ACTIVE,,,
-LP7690-3,SYSTEM,Urine sed,Urine sediment,ACTIVE,,,
-LP7271-2,SYSTEM,Vag,Vaginal,ACTIVE,,,
-LP7706-7,SYSTEM,Ventilator,Ventilator,ACTIVE,,,
-LP7709-1,SYSTEM,Ventilator.alarm,Ventilator alarm,ACTIVE,,,
-LP7735-6,SYSTEM,XXX,XXX,ACTIVE,,,
+PartTypeVal,PartTypeName,PartName,PartDisplayName,Status,use,termcount,oldiri,iri
+LP7000-5,SYSTEM,Amnio fld,Amniotic fluid,ACTIVE,y,1,http://purl.obolibrary.org/obo/UBERON_0000173,http://purl.obolibrary.org/obo/OBI_0002500
+LP7057-5,SYSTEM,Bld,Blood,ACTIVE,y,1,http://purl.obolibrary.org/obo/UBERON_0000178,http://purl.obolibrary.org/obo/OBI_0000655
+LP7067-4,SYSTEM,BldA,Blood arterial,ACTIVE,y,1,http://purl.obolibrary.org/obo/UBERON_0013755,http://transformunify.org/ontologies/TURBO_0000751
+LP7068-2,SYSTEM,BldC,Blood capillary,ACTIVE,y,1,http://purl.obolibrary.org/obo/UBERON_0013757,http://transformunify.org/ontologies/TURBO_0000753
+LP7069-0,SYSTEM,BldCo,Blood cord,ACTIVE,y,1,http://purl.obolibrary.org/obo/UBERON_0012168,http://transformunify.org/ontologies/TURBO_0000754
+LP7073-2,SYSTEM,BldV,Blood venous,ACTIVE,y,1,http://purl.obolibrary.org/obo/UBERON_0013756,http://transformunify.org/ontologies/TURBO_0000755
+LP7238-1,SYSTEM,Body fld,Body fluid,ACTIVE,y,1,http://purl.obolibrary.org/obo/UBERON_0006314,http://transformunify.org/ontologies/TURBO_0000752
+LP7156-5,SYSTEM,CSF,Cerebral spinal fluid,ACTIVE,y,1,http://purl.obolibrary.org/obo/UBERON_0001359,http://purl.obolibrary.org/obo/OBI_0002502
+LP7507-9,SYSTEM,Periton fld,Peritoneal fluid,ACTIVE,y,1,http://purl.obolibrary.org/obo/UBERON_0001268,http://purl.obolibrary.org/obo/OBI_0002514
+LP7479-1,SYSTEM,Plas,Plasma,ACTIVE,y,1,http://purl.obolibrary.org/obo/UBERON_0001969,http://purl.obolibrary.org/obo/OBI_0100016
+LP7486-6,SYSTEM,Plr fld,Pleural fluid,ACTIVE,y,1,http://purl.obolibrary.org/obo/UBERON_0001087,http://purl.obolibrary.org/obo/OBI_0002515
+LP7536-8,SYSTEM,RBC,Red Blood Cells,ACTIVE,y,1,http://purl.obolibrary.org/obo/CL_0000232,http://transformunify.org/ontologies/TURBO_0000756
+LP7565-7,SYSTEM,Saliva,Saliva,ACTIVE,y,1,http://purl.obolibrary.org/obo/UBERON_0001836,http://purl.obolibrary.org/obo/OBI_0002507
+LP7589-7,SYSTEM,Semen,Semen,ACTIVE,y,1,http://purl.obolibrary.org/obo/UBERON_0001968,http://transformunify.org/ontologies/TURBO_0000758
+LP7567-3,SYSTEM,Ser,Serum,ACTIVE,y,1,http://purl.obolibrary.org/obo/UBERON_0001977,http://purl.obolibrary.org/obo/OBI_0100017
+LP7592-1,SYSTEM,Synv fld,Synovial fluid,ACTIVE,y,1,http://purl.obolibrary.org/obo/UBERON_0001090,http://purl.obolibrary.org/obo/OBI_0002510
+LP7681-2,SYSTEM,Urine,Urine,ACTIVE,y,1,http://purl.obolibrary.org/obo/UBERON_0001088,http://purl.obolibrary.org/obo/OBI_0000651
+LP7720-8,SYSTEM,WBC,White blood cells,ACTIVE,y,1,http://purl.obolibrary.org/obo/CL_0000738,http://transformunify.org/ontologies/TURBO_0000757
+LP7576-4,SYSTEM,Ser/Plas,Serum or Plasma,ACTIVE,y,2,http://purl.obolibrary.org/obo/UBERON_0001977|http://purl.obolibrary.org/obo/UBERON_0001969,http://purl.obolibrary.org/obo/OBI_0100017|http://purl.obolibrary.org/obo/OBI_0100016
+LP7579-8,SYSTEM,Ser/Plas/Bld,"Serum, Plasma or Blood",ACTIVE,y,3,http://purl.obolibrary.org/obo/UBERON_0001977|http://purl.obolibrary.org/obo/UBERON_0001969|http://purl.obolibrary.org/obo/UBERON_0000178,http://purl.obolibrary.org/obo/OBI_0100017|http://purl.obolibrary.org/obo/OBI_0100016|http://purl.obolibrary.org/obo/OBI_0000655
+LP32887-9,SYSTEM,{Setting},{Setting},ACTIVE,,,,
+LP76034-5,SYSTEM,{system},{system},ACTIVE,,,,
+LP281728-8,SYSTEM,^BPU,^BPU,ACTIVE,,,,
+LP281750-2,SYSTEM,^Family member,^Family member,ACTIVE,,,,
+LP310004-9,SYSTEM,^Fetus,^Fetus,ACTIVE,,,,
+LP281760-1,SYSTEM,^Mother,^Mother,ACTIVE,,,,
+LP310005-6,SYSTEM,^Patient,^Patient,ACTIVE,,,,
+LP7034-4,SYSTEM,Arterial system,Arterial system,ACTIVE,,,,
+LP28582-2,SYSTEM,BldCoA,Blood cord arterial,ACTIVE,,,,
+LP28583-0,SYSTEM,BldCoV,Blood cord venous,ACTIVE,,,,
+LP7060-9,SYSTEM,Bld/Bone mar,Blood or Marrow,ACTIVE,,,,
+LP7061-7,SYSTEM,Bld/Tiss,Blood or Tissue,ACTIVE,,,,
+LP7410-6,SYSTEM,Bone mar,Bone marrow,ACTIVE,,,,
+LP7096-3,SYSTEM,Calculus,Calculus (stone),ACTIVE,,,,
+LP7161-5,SYSTEM,Cvm,Cervical mucus,ACTIVE,,,,
+LP7162-3,SYSTEM,Cvx,Cervix,ACTIVE,,,,
+LP7163-1,SYSTEM,Cvx/Vag,Cervix or Vagina,ACTIVE,,,,
+LP97574-5,SYSTEM,Current sample,Current sample,ACTIVE,,,,
+LP21304-8,SYSTEM,Bld.dot,DBS,ACTIVE,,,,
+LP7180-5,SYSTEM,Dose,Dose,ACTIVE,,,,
+LP7214-2,SYSTEM,Exhl gas,Exhaled gas,ACTIVE,,,,
+LP7218-3,SYSTEM,Eye,Eye,ACTIVE,,,,
+LP36892-5,SYSTEM,Facility,Facility,ACTIVE,,,,
+LP7252-2,SYSTEM,Tiss fixed,Fixed tissue,ACTIVE,,,,
+LP30522-4,SYSTEM,Hereditary,Hereditary,ACTIVE,,,,
+LP7354-6,SYSTEM,Inhl gas,Inhaled gas,ACTIVE,,,,
+LP7370-2,SYSTEM,Isolate,Isolate,ACTIVE,,,,
+LP266970-5,SYSTEM,Isolate/Specimen,Isolate or Specimen,ACTIVE,,,,
+LP7400-7,SYSTEM,Liver,Liver,ACTIVE,,,,
+LP7413-0,SYSTEM,Meconium,Meconium,ACTIVE,,,,
+LP7415-5,SYSTEM,Medication.current,Medication current,ACTIVE,,,,
+LP97572-9,SYSTEM,NBS card,NBS card,ACTIVE,,,,
+LP30139-7,SYSTEM,Nuchal fold^fetus,Nuchal fold^fetus,ACTIVE,,,,
+LP7459-3,SYSTEM,Oxygen delivery system,Oxygen delivery system,ACTIVE,,,,
+LP7466-8,SYSTEM,Pericard fld,Pericardial fluid,ACTIVE,,,,
+LP185795-4,SYSTEM,Plas.cfDNA,Plasma cell-free DNA,ACTIVE,,,,
+LP7494-0,SYSTEM,PPP,Platelet poor plasma,ACTIVE,,,,
+LP7506-1,SYSTEM,PRP,Platelet rich plasma,ACTIVE,,,,
+LP7504-6,SYSTEM,Provider,Provider,ACTIVE,,,,
+LP6989-0,SYSTEM,Reference lab test,Reference lab test,ACTIVE,,,,
+LP7554-1,SYSTEM,Report,Report,ACTIVE,,,,
+LP7556-6,SYSTEM,Respiratory system,Respiratory system,ACTIVE,,,,
+LP7558-2,SYSTEM,Respiratory system.airway,Respiratory system airway,ACTIVE,,,,
+LP36286-0,SYSTEM,Retic,Reticulocytes,ACTIVE,,,,
+LP7569-9,SYSTEM,Ser+CSF,Serum and CSF,ACTIVE,,,,
+LP157285-0,SYSTEM,Ser/Plas+CSF,Serum or Plasma and CSF,ACTIVE,,,,
+LP7593-9,SYSTEM,Specimen,Specimen,ACTIVE,,,,
+LP7604-4,SYSTEM,Stool,Stool,ACTIVE,,,,
+LP7641-6,SYSTEM,Tiss,Tissue and Smears,ACTIVE,,,,
+LP30364-1,SYSTEM,Urethra,Urethra,ACTIVE,,,,
+LP32517-2,SYSTEM,Urine+Ser/Plas,Urine and Serum or Plasma,ACTIVE,,,,
+LP7690-3,SYSTEM,Urine sed,Urine sediment,ACTIVE,,,,
+LP7271-2,SYSTEM,Vag,Vaginal,ACTIVE,,,,
+LP7706-7,SYSTEM,Ventilator,Ventilator,ACTIVE,,,,
+LP7709-1,SYSTEM,Ventilator.alarm,Ventilator alarm,ACTIVE,,,,
+LP7735-6,SYSTEM,XXX,XXX,ACTIVE,,,,
