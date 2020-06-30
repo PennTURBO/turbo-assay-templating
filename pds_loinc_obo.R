@@ -1,12 +1,65 @@
 library(devtools)
 
-# this script queries a private database and may require a VPN, a ssh tunnel, or other similar measures
+# this script may query a private database
+# so may require a VPN, a ssh tunnel, or other similar measures
 
 # requires a properly formatted "turbo_R_setup.yaml" in the home directory of the user who started this script
 # see https://gist.github.com/turbomam/a3915d00ee55d07510493a9944f96696 for template
 devtools::source_gist(id = "https://gist.github.com/turbomam/f082295aafb95e71d109d15ca4535e46",
-                      sha1 = "f55e91979bdc0c121834f907b9da94fec3a257f5",
+                      sha1 = "d89dddde29ed59771dbd40e162aa7f9c0d439aa4",
                       filename = "turbo_R_setup.R")
+
+# updates current.component.mapping.frame
+update.accounting <- function(data,
+                              loinc.part.code,
+                              loinc.part.name ,
+                              obo.uri,
+                              obo.label,
+                              rank,
+                              justification) {
+  print("before update")
+  print(length(current.component.mapping.complete))
+  print(length(current.needs.component.mapping))
+  print(nrow(current.component.mapping.frame))
+  
+  print("update row count")
+  print(nrow(data))
+  
+  bare.lpc <- unlist(data[, loinc.part.code])
+  
+  current.component.mapping.complete <<-
+    union(current.component.mapping.complete, bare.lpc)
+  
+  current.needs.component.mapping <<-
+    setdiff(current.needs.component.mapping, bare.lpc)
+  
+  matches.external.cols <-
+    data[, c(loinc.part.code, loinc.part.name, obo.uri, obo.label, rank)]
+  matches.external.cols$justification <- justification
+  
+  colnames(matches.external.cols) <-
+    c(
+      'loinc.part.code',
+      'loinc.part.name',
+      'obo.uri',
+      'obo.label',
+      'rank',
+      'justification'
+    )
+  
+  current.component.mapping.frame <<-
+    rbind.data.frame(current.component.mapping.frame, matches.external.cols)
+  
+  print("after update")
+  print(length(current.component.mapping.complete))
+  print(length(current.needs.component.mapping))
+  print(nrow(current.component.mapping.frame))
+  
+  print(sort(table(
+    current.component.mapping.frame$justification
+  )))
+}
+
 
 ## this means that it wasn't possible to connect to the "RxNav in a box" Container
 ##   which is required by TURBO's medication mapping steps
@@ -19,7 +72,40 @@ devtools::source_gist(id = "https://gist.github.com/turbomam/f082295aafb95e71d10
 
 ## switch all RxNav setup and queries to the try/catch style used in the FL MDM ODS comparison
 
-# source('pds_loinc_obo_setup.R')
+# from EHR
+
+# | PK_LAB_RESULT_ITEM_ID | LAB_RESULT_ITEM_CODE | LAB_RESULT_ITEM_DESCRIPTION | LOINC   | PDS mentions |
+# | --------------------- | -------------------- | --------------------------- | ------- | -----------: |
+# | 20669003              | SARS-COV-2 IGG       | SARS-COV-2 IGG              | 94563-4 |          621 |
+
+# from LoincPartLink
+
+# +----------------+---------------+------------------------------+---------------------+-----------------+----------------------+-------------------------------------------+
+# | LoincNumber    | PartNumber    | PartName                     | PartCodeSystem      | PartTypeName    | LinkTypeName         | Property                                  |
+# +----------------+---------------+------------------------------+---------------------+-----------------+----------------------+-------------------------------------------+
+# | 94563-4        | LP417915-8    | SARS coronavirus 2 Ab.IgG    | http://loinc.org    | COMPONENT       | Primary              | http://loinc.org/property/COMPONENT       |
+# +----------------+---------------+------------------------------+---------------------+-----------------+----------------------+-------------------------------------------+
+# | 94563-4        | LP417915-8    | SARS coronavirus 2 Ab.IgG    | http://loinc.org    | COMPONENT       | DetailedModel        | http://loinc.org/property/analyte         |
+# +----------------+---------------+------------------------------+---------------------+-----------------+----------------------+-------------------------------------------+
+# | 94563-4        | LP417540-4    | SARS coronavirus 2           | http://loinc.org    | COMPONENT       | *SyntaxEnhancement*  | http://loinc.org/property/analyte-core    |
+# +----------------+---------------+------------------------------+---------------------+-----------------+----------------------+-------------------------------------------+
+# | 94563-4        | LP14672-7     | IgG                          | http://loinc.org    | COMPONENT       | Search               | http://loinc.org/property/search          |
+# +----------------+---------------+------------------------------+---------------------+-----------------+----------------------+-------------------------------------------+
+# | 94563-4        | LP16680-8     | Coronavirus                  | http://loinc.org    | COMPONENT       | Search               | http://loinc.org/property/search          |
+# +----------------+---------------+------------------------------+---------------------+-----------------+----------------------+-------------------------------------------+
+# | 94563-4        | LP35807-4     | SARS coronavirus             | http://loinc.org    | COMPONENT       | Search               | http://loinc.org/property/search          |
+# +----------------+---------------+------------------------------+---------------------+-----------------+----------------------+-------------------------------------------+
+# | 94563-4        | LP417914-1    | SARS coronavirus 2 Ab        | http://loinc.org    | COMPONENT       | Search               | http://loinc.org/property/search          |
+# +----------------+---------------+------------------------------+---------------------+-----------------+----------------------+-------------------------------------------+
+
+# sars.cov2.fhir <-
+#   GET(
+#     "https://fhir.loinc.org/CodeSystem/$lookup?code=LP417540-4&system=http%3A%2F%2Floinc.org&_format=json",
+#     authenticate("markampa", "ref1ned&Marked", type = "basic")
+#   )
+#
+# sars.cov2.fhir <-
+#   fromJSON(rawToChar(sars.cov2.fhir$content))$parameter
 
 make.table.frame <- function(my.vector) {
   temp <- table(my.vector)
@@ -41,7 +127,6 @@ true.challenges <- c(
   '3H post 50 g lactose PO',
   '8H post 1 mg dexamethasone PO overnight'
 )
-
 
 pk.in.challenge.slot <- c('peak', 'trough')
 divisors <- c('100 leukocytes', 'Creatinine')
@@ -71,8 +156,17 @@ harmonized_ontology_rankings <-
 #   "PartNumber"     "PartName" "PartTypeName"
 # with parts mentioned multiple times with different contexts
 #   "LinkTypeName"   "Property"
+# LoincPartLink <-
+#   read_csv(paste0(config$loinc.root, config$LoincPartLink.file))
+
+LoincPartLink_Primary <-
+  read_csv(paste0(config$loinc.root, config$LoincPartLink_Primary.file))
+
+LoincPartLink_Supplementary <-
+  read_csv(paste0(config$loinc.root, config$LoincPartLink_Supplementary.file))
+
 LoincPartLink <-
-  read_csv(paste0(config$loinc.root, config$LoincPartLink.file))
+  rbind.data.frame(LoincPartLink_Primary, LoincPartLink_Supplementary)
 
 # additional part details
 Part <-
@@ -153,10 +247,12 @@ common.loincs <-
 # ~ 3440 r_lab_orders ordered for >= (2) unique EMPIs
 print(length(common.loincs))
 
+###   ###   ###
+
 # get part values for the "common", LOINC-annotated ehr lab results
 relevant.primary.part.cast <-
   LoincPartLink[LoincPartLink$LoincNumber %in% common.loincs &
-                  LoincPartLink$LinkTypeName == "Primary", ]
+                  LoincPartLink$LinkTypeName == "Primary",]
 
 relevant.primary.part.cast <-
   relevant.primary.part.cast[, c("LoincNumber", "PartNumber", "PartTypeName")]
@@ -188,7 +284,6 @@ print(nrow(relevant.primary.part.cast))
 
 # first EHR relevance/LOINC content merge!
 
-
 ehr.with.loinc.parts <-
   left_join(x = ehr_loinc_counts,
             y = relevant.primary.part.cast,
@@ -204,9 +299,10 @@ print(nrow(ehr.with.loinc.parts))
 # would we loose anything easy to implement?
 # actually, even relevant.primary.part.cast has been stripped of uncommon loinc codes at this point
 ehr.rare <-
-  ehr.with.loinc.parts[!(ehr.with.loinc.parts$LOINC %in% common.loincs) ,]
+  ehr.with.loinc.parts[!(ehr.with.loinc.parts$LOINC %in% common.loincs) , ]
+
 ehr.with.loinc.parts <-
-  ehr.with.loinc.parts[ehr.with.loinc.parts$LOINC %in% common.loincs ,]
+  ehr.with.loinc.parts[ehr.with.loinc.parts$LOINC %in% common.loincs , ]
 # back TO 3440
 print(nrow(ehr.with.loinc.parts))
 
@@ -240,6 +336,13 @@ print(nrow(ehr.with.loinc.parts))
 # Qn
 # Quantitative
 
+# for 94563-4SARS-CoV-2 (COVID-19) IgG Ab [Presence] in Serum or Plasma by Immunoassay
+# LP7751-3
+# SCALE
+# Ord
+# Ord
+# ACTIVE
+
 ###   ###   ###
 
 # start merging in reviewed time, system, scale and property choices
@@ -251,10 +354,10 @@ print(nrow(ehr.with.loinc.parts))
 lost.due.to.time.scale <- ehr.with.loinc.parts$LOINC
 ehr.with.loinc.parts <-
   ehr.with.loinc.parts[ehr.with.loinc.parts$PROPERTY %in% turbo_loinc_properties_reviewed$PartTypeVal &
-                         ehr.with.loinc.parts$SCALE == "LP7753-9" &
+                         ehr.with.loinc.parts$SCALE %in% c("LP7753-9", "LP7751-3") &
                          ehr.with.loinc.parts$SYSTEM %in% turbo_loinc_systems_reviewed$PartTypeVal &
                          (ehr.with.loinc.parts$TIME == "LP6960-1" |
-                            ehr.with.loinc.parts$TIME == "LP6924-7") ,]
+                            ehr.with.loinc.parts$TIME == "LP6924-7") , ]
 
 lost.due.to.time.scale <-
   setdiff(lost.due.to.time.scale, ehr.with.loinc.parts$LOINC)
@@ -272,7 +375,7 @@ has.adjustment <-
 
 # exclude assays with numerators or adjustments
 ehr.with.loinc.parts <-
-  ehr.with.loinc.parts[!ehr.with.loinc.parts$LOINC %in% intersect(has.numerator, has.adjustment), ]
+  ehr.with.loinc.parts[!ehr.with.loinc.parts$LOINC %in% intersect(has.numerator, has.adjustment),]
 print(nrow(ehr.with.loinc.parts))
 
 challenge.split <-
@@ -398,67 +501,198 @@ original.needs.component.mapping <-
 
 current.needs.component.mapping <- original.needs.component.mapping
 current.component.mapping.complete <- c()
-current.component.mapping.frame <- matrix(ncol = 4)
+current.component.mapping.frame <- matrix(ncol = 6)
 colnames(current.component.mapping.frame) <-
-  c('source.id', 'source.term', 'target.term', 'authority')
+  c(
+    'loinc.part.code',
+    'loinc.part.name',
+    'obo.uri',
+    'obo.label',
+    'rank',
+    'justification'
+  )
 
 ###   ###   ###
 
-# LOINC asserts some mappings of their own
+# LOINC provides some mappings itself
 
-loinc.provided.component.mappings <-
-  PartRelatedCodeMapping[PartRelatedCodeMapping$PartNumber %in% current.needs.component.mapping ,]
+relevant.lpl <- as.data.frame(LoincPartLink)
 
-table(
-  loinc.provided.component.mappings$ExtCodeSystem,
-  loinc.provided.component.mappings$Equivalence
-)
+relevant.component.frame <-
+  relevant.lpl[relevant.lpl$LoincNumber %in% common.loincs &
+                 relevant.lpl$PartTypeName == "COMPONENT", ]
 
-loinc.provided.component.mappings <-
-  loinc.provided.component.mappings[loinc.provided.component.mappings$ExtCodeSystem %in%
-                                      c("https://www.ebi.ac.uk/chebi",
-                                        "http://www.nlm.nih.gov/research/umls/rxnorm") &
-                                      loinc.provided.component.mappings$Equivalence == "equivalent" ,]
+selected.components <- relevant.component.frame$PartNumber
 
-table(loinc.provided.component.mappings$ExtCodeSystem)
+relevant.lpl <- as.data.frame(PartRelatedCodeMapping)
 
-loinc.provided.rxnorm <-
-  loinc.provided.component.mappings[loinc.provided.component.mappings$ExtCodeSystem ==
-                                      "http://www.nlm.nih.gov/research/umls/rxnorm" ,]
+relevant.links <-
+  relevant.lpl[relevant.lpl$PartNumber %in% selected.components , ]
 
-loinc.provided.chebi <-
-  loinc.provided.component.mappings[loinc.provided.component.mappings$ExtCodeSystem == "https://www.ebi.ac.uk/chebi" ,]
+obo.friendly.sources <-
+  c("https://www.ebi.ac.uk/chebi",
+    "https://www.ncbi.nlm.nih.gov/taxonomy")
 
-loinc.provided.rxnorm.only <-
-  setdiff(loinc.provided.rxnorm$PartNumber,
-          loinc.provided.chebi$PartNumber)
-loinc.provided.rxnorm.only <-
-  loinc.provided.component.mappings[loinc.provided.component.mappings$PartNumber %in% loinc.provided.rxnorm.only, ]
+obo.friendly.links <-
+  relevant.links[relevant.links$ExtCodeSystem %in% obo.friendly.sources , ]
 
-print(loinc.provided.rxnorm.only)
+###   ###   ###
 
-# adalimumab (HUMIRA) http://purl.obolibrary.org/obo/DRON_00018971
-# opiates [confirmed not present verbatim in DrOn or ChEBI]
+friend.of.a.friend <-
+  c(
+    "http://pubchem.ncbi.nlm.nih.gov",
+    "http://www.nlm.nih.gov/research/umls/rxnorm"
+  )
 
-# SO JUST USE ChEBI
-loinc.provided.component.mappings <-
-  loinc.provided.component.mappings[loinc.provided.component.mappings$ExtCodeSystem  == "https://www.ebi.ac.uk/chebi" &
-                                      loinc.provided.component.mappings$Equivalence == "equivalent" ,]
+friend.of.a.friend <-
+  relevant.links[relevant.links$ExtCodeSystem %in% friend.of.a.friend , ]
 
-loinc.provided.component.mappings$ext.iri <-
-  loinc.provided.component.mappings$ExtCodeId
-# assume we're just using ChEBI for now
-loinc.provided.component.mappings$ext.iri <-
+friend.of.a.friend <-
+  friend.of.a.friend[!(friend.of.a.friend$PartNumber %in% obo.friendly.links$PartNumber) ,]
+
+pubchem.cids <-
+  friend.of.a.friend$ExtCodeId[friend.of.a.friend$ExtCodeSystem == "http://pubchem.ncbi.nlm.nih.gov"]
+
+pubchem.xrefs <-
+  lapply(
+    X = pubchem.cids,
+    FUN = function(current.cid) {
+      # current.cid <- 769
+      print(current.cid)
+      current.url <-
+        paste0(
+          "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/",
+          current.cid ,
+          "/xrefs/SBURL/JSON"
+        )
+      # print(current.url)
+      current.xrefs <- GET(current.url)
+      current.xrefs <- rawToChar(current.xrefs$content)
+      current.xrefs <- fromJSON(current.xrefs)
+      current.xrefs <-
+        current.xrefs$InformationList$Information$SBURL
+      current.xrefs <- unlist(current.xrefs)
+      current.xrefs <-
+        cbind.data.frame(rep(x = current.cid, n = length(current.xrefs)), current.xrefs)
+      # print(current.xrefs)
+      return(current.xrefs)
+    }
+  )
+
+pubchem.xrefs <- do.call(rbind.data.frame, pubchem.xrefs)
+
+colnames(pubchem.xrefs) <- c("ExtCodeId", "xref.url")
+
+pubmed.to.chebi <-
+  pubchem.xrefs[grepl(pattern = "chebi", x = pubchem.xrefs$xref.url) , ]
+
+pubmed.to.chebi$next.step <-
+  sub(
+    pattern = "http://www.ebi.ac.uk/chebi/searchId.do?chebiId=",
+    replacement = "",
+    x = pubmed.to.chebi$xref.url,
+    fixed = TRUE
+  )
+
+pubmed.to.chebi$ExtCodeSystem <- "http://pubchem.ncbi.nlm.nih.gov"
+
+pubmed.to.chebi <-
+  pubmed.to.chebi[c("ExtCodeSystem", "ExtCodeId", "next.step")]
+
+reunited <- base::merge(x = friend.of.a.friend, y = pubmed.to.chebi)
+
+reunited$ExtCodeSystem <- "https://www.ebi.ac.uk/chebi"
+reunited$ExtCodeId <- reunited$next.step
+
+reunited <- reunited[, setdiff(colnames(reunited), "next.step")]
+
+reunited$ExtCodeDisplayName <- ""
+reunited$Equivalence <- ""
+
+reunited <- rbind.data.frame(obo.friendly.links, reunited)
+
+reunited$ext.iri <- reunited$ExtCodeId
+
+reunited$ext.iri[reunited$ExtCodeSystem == "https://www.ebi.ac.uk/chebi"] <-
   sub(pattern = '^CHEBI:',
       replacement = 'http://purl.obolibrary.org/obo/CHEBI_',
-      x = loinc.provided.component.mappings$ext.iri)
+      x = reunited$ext.iri[reunited$ExtCodeSystem == "https://www.ebi.ac.uk/chebi"])
+
+reunited$ext.iri[reunited$ExtCodeSystem == "https://www.ncbi.nlm.nih.gov/taxonomy"] <-
+  paste0("http://purl.obolibrary.org/obo/NCBITaxon_",
+         reunited$ext.iri[reunited$ExtCodeSystem == "https://www.ncbi.nlm.nih.gov/taxonomy"])
+
+reunited$rank <- NA
 
 update.accounting(
-  loinc.provided.component.mappings,
-  "PartNumber",
-  "ext.iri",
-  "LOINC provided ChEBI mappings"
+  data = reunited,
+  loinc.part.code = "PartNumber",
+  loinc.part.name = "PartName",
+  obo.uri = "ext.iri",
+  obo.label = "ExtCodeDisplayName",
+  rank = "rank",
+  justification = "LOINC provided mappings"
 )
+
+###   ###   ###
+
+# # LOINC asserts some mappings of their own
+#
+# loinc.provided.component.mappings <-
+#   PartRelatedCodeMapping[PartRelatedCodeMapping$PartNumber %in% current.needs.component.mapping , ]
+#
+# table(
+#   loinc.provided.component.mappings$ExtCodeSystem,
+#   loinc.provided.component.mappings$Equivalence
+# )
+#
+# loinc.provided.component.mappings <-
+#   loinc.provided.component.mappings[loinc.provided.component.mappings$ExtCodeSystem %in%
+#                                       c("https://www.ebi.ac.uk/chebi",
+#                                         "http://www.nlm.nih.gov/research/umls/rxnorm") &
+#                                       loinc.provided.component.mappings$Equivalence == "equivalent" , ]
+#
+# table(loinc.provided.component.mappings$ExtCodeSystem)
+#
+# loinc.provided.rxnorm <-
+#   loinc.provided.component.mappings[loinc.provided.component.mappings$ExtCodeSystem ==
+#                                       "http://www.nlm.nih.gov/research/umls/rxnorm" , ]
+#
+# loinc.provided.chebi <-
+#   loinc.provided.component.mappings[loinc.provided.component.mappings$ExtCodeSystem == "https://www.ebi.ac.uk/chebi" , ]
+#
+# loinc.provided.rxnorm.only <-
+#   setdiff(loinc.provided.rxnorm$PartNumber,
+#           loinc.provided.chebi$PartNumber)
+# loinc.provided.rxnorm.only <-
+#   loinc.provided.component.mappings[loinc.provided.component.mappings$PartNumber %in% loinc.provided.rxnorm.only,]
+#
+# print(loinc.provided.rxnorm.only)
+#
+# # adalimumab (HUMIRA) http://purl.obolibrary.org/obo/DRON_00018971
+# # opiates [confirmed not present verbatim in DrOn or ChEBI]
+#
+# # SO JUST USE ChEBI
+# loinc.provided.component.mappings <-
+#   loinc.provided.component.mappings[loinc.provided.component.mappings$ExtCodeSystem  == "https://www.ebi.ac.uk/chebi" &
+#                                       loinc.provided.component.mappings$Equivalence == "equivalent" , ]
+#
+# loinc.provided.component.mappings$ext.iri <-
+#   loinc.provided.component.mappings$ExtCodeId
+# # assume we're just using ChEBI for now
+# loinc.provided.component.mappings$ext.iri <-
+#   sub(pattern = '^CHEBI:',
+#       replacement = 'http://purl.obolibrary.org/obo/CHEBI_',
+#       x = loinc.provided.component.mappings$ext.iri)
+#
+# update.accounting(
+#   loinc.provided.component.mappings,
+#   "PartNumber",
+#   "ext.iri",
+#   "LOINC provided ChEBI mappings"
+# )
+
+# no, use reunited
 
 ###   ###   ###
 
@@ -470,6 +704,7 @@ bp.retreived.and.parsed <-
 
 bp.retreived.and.parsed <-
   do.call(rbind.data.frame, bp.retreived.and.parsed)
+
 bp.retreived.and.parsed[] <-
   lapply(bp.retreived.and.parsed[], as.character)
 
@@ -511,256 +746,41 @@ acceptable.bp.retreived.and.parsed$source.id <-
 acceptable.bp.retreived.and.parsed$source.term <-
   as.character(acceptable.bp.retreived.and.parsed$source.term)
 
+acceptable.bp.retreived.and.parsed$target.label <- ""
+
+temp <- Part[, c("PartNumber", "PartName")]
+
+acceptable.bp.retreived.and.parsed <-
+  left_join(x = acceptable.bp.retreived.and.parsed,
+            y = temp,
+            by = c("source.id" = "PartNumber"))
+
+acceptable.bp.retreived.and.parsed$rank <- 0
+
 update.accounting(
-  acceptable.bp.retreived.and.parsed,
-  "source.id",
-  "target.term",
-  "BioPortal IRI mappings"
+  data = acceptable.bp.retreived.and.parsed,
+  loinc.part.code = "source.id",
+  loinc.part.name = "PartName",
+  obo.uri = "target.term",
+  obo.label = "target.label",
+  rank = "rank",
+  justification = "BioPortal mapping"
 )
 
 ###   ###   ###
 
-ptv.to.iri <-
-  unique(turbo_loinc_systems_reviewed[, c('PartTypeVal', 'iri')])
-colnames(ptv.to.iri) <- c('PartTypeVal', 'system.iri')
-
-ehr.with.loinc.parts <-
-  base::merge(
-    x = ehr.with.loinc.parts,
-    y = ptv.to.iri,
-    by.x  = "SYSTEM",
-    by.y = "PartTypeVal",
-    all.x  = TRUE
-  )
-
-# > table(ehr.with.loinc.parts$TIME)
-#
-# LP6924-7 LP6960-1
-# 53     1392
-
-#### 20200505 SKIP THIS? just the LOINC timing part number and work out with rules in ready for robot section?
-
-# ehr.with.loinc.parts$time.iri <- NA
-# ehr.with.loinc.parts$time.iri[ehr.with.loinc.parts$TIME == 'LP6924-7'] <-
-#   'obo:TURBO_0010724'
-
-###   ###   ###
-
-# starting string searches now
-# use core analytes and searchable components (separately)
-# with and without trailing s
-
-# strip match labels of 'atom$' ?
-# turns out not to be necessary when comparing query to synonym
-
-# ols?
-# BioPortal?
-
-# ~ 300 rows in loinc.still.unmapped.components matching 'Ab.Ig'
-# ~ 50 "Ab$" antibodies
-# ~ 20 'Ag'
-# ~ 20 "/100 leukocytes"
-# ~ 30 "Cells."
-# "^^" adjustment
-
-# see also IgX, Ag
-
-# # ~ 100 '/Creatinine' see above
-# # ~ 10 "+" cases using drug or chemical names, not cell types
-# # "^" could indicate a challenge, but see also 4x "^peak" and 4x "^trough"
-# # use ChEBI mappings except for... ?
-
-# V frame of "CORE" unmapped component terms
-# this should be added to the components that don't have CORE analytes
-# and should be considered in the context of DIVISOR terms
-
-current.needs.component.mapping.details <-
-  LoincPartLink[LoincPartLink$PartTypeName == 'COMPONENT' &
-                  LoincPartLink$LoincNumber %in% ehr.with.loinc.parts$LOINC , ]
-
-# > table( current.needs.component.mapping.details$Property , current.needs.component.mapping.details$LinkTypeName)
-#
-# DetailedModel Primary Search SyntaxEnhancement
-# http://loinc.org/property/analyte                656       0      0                 0
-# http://loinc.org/property/analyte-core             0       0      0               289
-# http://loinc.org/property/COMPONENT                0     675      0                 0
-# http://loinc.org/property/search                   0       0    116                 0
-
-component.component.counts <-
-  reshape2::dcast(
-    data = current.needs.component.mapping.details,
-    formula = LoincNumber ~ Property,
-    fun.aggregate = length,
-    value.var = 'Property'
-  )
-
-colnames(component.component.counts) <-
-  sub(
-    pattern = 'http://loinc.org/property/',
-    replacement = '',
-    x = colnames(component.component.counts)
-  )
-
-LoincNumber <- component.component.counts$LoincNumber
-
-component.component.counts <-
-  component.component.counts[, c("analyte", "analyte-core", "search")]
-
-colnames(component.component.counts) <-
-  paste0(colnames(component.component.counts), ".counts")
-
-component.component.vals <-
-  reshape2::dcast(
-    data = current.needs.component.mapping.details,
-    formula = LoincNumber ~ Property,
-    value.var = 'PartName',
-    fun.aggregate = function(current.chunks) {
-      temp <- sort(unique(current.chunks))
-      temp <- paste0(temp, collapse = '|')
-      return(temp)
-    }
-  )
-
-colnames(component.component.vals) <-
-  sub(
-    pattern = 'http://loinc.org/property/',
-    replacement = '',
-    x = colnames(component.component.vals)
-  )
-
-component.component.vals <-
-  component.component.vals[, c("analyte", "analyte-core", "COMPONENT", "search"), ]
-
-colnames(component.component.vals) <-
-  paste0(colnames(component.component.vals), ".vals")
-
-part.details <-
-  cbind.data.frame(LoincNumber,
-                   component.component.counts,
-                   component.component.vals)
-
-colnames(part.details) <- make.names(colnames(part.details))
-
-part.details$analyte.vals[part.details$analyte.counts == 0] <- NA
-
-part.details$analyte.core.vals[part.details$analyte.core.counts == 0] <-
-  NA
-
-part.details$search.vals[part.details$search.counts == 0] <-
-  NA
-
-part.details <-
-  part.details[, setdiff(colnames(part.details),
-                         c('analyte.counts', 'analyte.core.counts')),]
-
-###   ###   ###
-
-ehr.with.loinc.parts <-
-  base::merge(
-    x = ehr.with.loinc.parts ,
-    y = part.details,
-    by.x = 'LOINC',
-    by.y = 'LoincNumber',
-    all.x = TRUE
-  )
-
-current.component.mapping.frame <-
-  current.component.mapping.frame[complete.cases(current.component.mapping.frame),]
-
-num.to.name <- unique(Part[, c('PartNumber', 'PartName')])
-
-current.component.mapping.frame <-
-  base::merge(
-    x = current.component.mapping.frame,
-    y = num.to.name,
-    by.x = 'source.id',
-    by.y = 'PartNumber',
-    all.x = TRUE
-  )
-
-num.to.name <- table(current.component.mapping.frame$source.id)
-num.to.name <-
-  cbind.data.frame(names(num.to.name), as.numeric(num.to.name))
-names(num.to.name) <- c('PartNumber', 'map.count')
-num.to.name$PartNumber <- as.character(num.to.name$PartNumber)
-
-singles <- num.to.name$PartNumber[num.to.name$map.count == 1]
-singles <-
-  current.component.mapping.frame[current.component.mapping.frame$source.id %in% singles ,]
-
-# # could theoretically require followup, prioritizaston, etc.
-# multi.mappers <- num.to.name$PartNumber[num.to.name$map.count > 1]
-#
-#
-# current.component.mapping.frame <-
-#   rbind.data.frame(singles, multi.mappers)
-
-current.component.mapping.frame <- singles
-
-ccmf.name.term <-
-  unique(current.component.mapping.frame[, c("PartName", "target.term")])
-
-ehr.with.loinc.parts <-
-  base::merge(
-    x = ehr.with.loinc.parts,
-    y = ccmf.name.term,
-    by.x = 'analyte.core.vals',
-    by.y = 'PartName' ,
-    all.x = TRUE
-  )
-
 text.search.input <-
-  unique(ehr.with.loinc.parts[is.na(ehr.with.loinc.parts$target.term), c('COMPONENT', 'analyte.core.vals')])
+  LoincPartLink[LoincPartLink$LoincNumber %in% common.loincs &
+                  LoincPartLink$PartNumber %in% current.needs.component.mapping &
+                  LoincPartLink$Property == "http://loinc.org/property/analyte-core" , c("PartNumber", "PartName")]
 
-colnames(text.search.input) <- c('PartNumber', 'original.name')
-
-source.relevant.links <-
-  LoincPartLink[LoincPartLink$LoincNumber %in% ehr_loinc_counts$LOINC , ]
-
-source.relevant.links <-
-  source.relevant.links[source.relevant.links$PartNumber %in% original.needs.component.mapping ,]
-
-current.needs.component.mapping.details <-
-  source.relevant.links[source.relevant.links$Property == 'http://loinc.org/property/analyte-core' ,]
-
-#### had been including these... might want to go back to that pattern
-# system names and display names
-# non-core names, display names, search terms
-# divisor names
-
-# also loook for searchable components
-
-# # COMPONENT
-# # Search
-# # http://loinc.org/property/search
-
-###   ###   ###
-
-all.part.types.in.source <- ehr.with.loinc.parts$LOINC
-all.part.types.in.source <-
-  unique(LoincPartLink$PartNumber[LoincPartLink$LoincNumber %in% all.part.types.in.source])
-all.part.types.in.source <-
-  Part$PartTypeName[Part$PartNumber %in% all.part.types.in.source]
-
-# # not necessary in our current task
-# all.part.types.in.source <- all.part.types.in.source[!grepl(pattern = '^Rad\\.', x = all.part.types.in.source)]
-# all.part.types.in.source <- all.part.types.in.source[!grepl(pattern = '^Document\\.', x = all.part.types.in.source)]
-
-all.part.types.in.source <- table(all.part.types.in.source)
-all.part.types.in.source <-
-  cbind.data.frame(names(all.part.types.in.source),
-                   as.numeric(all.part.types.in.source))
-names(all.part.types.in.source) <- c('part.type', 'source.count')
-
-
-# below: not explicitly filtering out caret, plus, period etc
-# not including searchable compoent tokens
+text.search.input <- unique(text.search.input)
 
 text.search.input$singularized <- sub(pattern = 's$',
                                       replacement = '',
-                                      x = text.search.input$original.name)
+                                      x = text.search.input$PartName)
 
-original <- text.search.input[, c('PartNumber', 'original.name')]
+original <- text.search.input[, c('PartNumber', 'PartName')]
 singularized <- text.search.input[, c('PartNumber', 'singularized')]
 colnames(singularized) <- colnames(original)
 text.search.input <-
@@ -768,7 +788,312 @@ text.search.input <-
 colnames(text.search.input) <- c('PartNumber', 'any.name')
 
 text.search.input <-
-  text.search.input[order(text.search.input$any.name),]
+  text.search.input[order(text.search.input$any.name), ]
+
+
+# ###   ###   ###
+#
+# # temp <-
+# #   LoincPartLink[LoincPartLink$PartNumber %in% current.needs.component.mapping , ]
+# #
+# # temp <- unique(temp$LoincNumber)
+# #
+# # acceptable.types <-
+# #   c("http://loinc.org/property/analyte-core",
+# #     "http://loinc.org/property/search")
+# #
+# # acceptable.types <-
+# #   c("http://loinc.org/property/analyte-core")
+# #
+# # temp <-
+# #   LoincPartLink[LoincPartLink$LoincNumber %in% temp  &
+# #                   LoincPartLink$PartTypeName == "COMPONENT" &
+# #                   LoincPartLink$Property %in% acceptable.types ,]
+# #
+# # table(temp$Property)
+# #
+# # temp <- unique(temp[, c("PartNumber", "PartName")])
+# #
+# # # x <- make.table.frame(temp$PartNumber)
+# # #
+# # #
+# # # y <- make.table.frame(temp$PartName)
+#
+# # terms get submitted to ols at
+# # pre.ols.attempts <-
+# #   apply(
+# #     X = text.search.input,
+#
+# ###   ###   ###
+#
+# ptv.to.iri <-
+#   unique(turbo_loinc_systems_reviewed[, c('PartTypeVal', 'iri')])
+# colnames(ptv.to.iri) <- c('PartTypeVal', 'system.iri')
+#
+# ehr.with.loinc.parts <-
+#   base::merge(
+#     x = ehr.with.loinc.parts,
+#     y = ptv.to.iri,
+#     by.x  = "SYSTEM",
+#     by.y = "PartTypeVal",
+#     all.x  = TRUE
+#   )
+#
+# # > table(ehr.with.loinc.parts$TIME)
+# #
+# # LP6924-7 LP6960-1
+# # 53     1392
+#
+# #### 20200505 SKIP THIS? just the LOINC timing part number and work out with rules in ready for robot section?
+#
+# # ehr.with.loinc.parts$time.iri <- NA
+# # ehr.with.loinc.parts$time.iri[ehr.with.loinc.parts$TIME == 'LP6924-7'] <-
+# #   'obo:TURBO_0010724'
+#
+# ###   ###   ###
+#
+# # starting string searches now
+# # use core analytes and searchable components (separately)
+# # with and without trailing s
+#
+# # strip match labels of 'atom$' ?
+# # turns out not to be necessary when comparing query to synonym
+#
+# # ols?
+# # BioPortal?
+#
+# # ~ 300 rows in loinc.still.unmapped.components matching 'Ab.Ig'
+# # ~ 50 "Ab$" antibodies
+# # ~ 20 'Ag'
+# # ~ 20 "/100 leukocytes"
+# # ~ 30 "Cells."
+# # "^^" adjustment
+#
+# # see also IgX, Ag
+#
+# # # ~ 100 '/Creatinine' see above
+# # # ~ 10 "+" cases using drug or chemical names, not cell types
+# # # "^" could indicate a challenge, but see also 4x "^peak" and 4x "^trough"
+# # # use ChEBI mappings except for... ?
+#
+# # V frame of "CORE" unmapped component terms
+# # this should be added to the components that don't have CORE analytes
+# # and should be considered in the context of DIVISOR terms
+#
+# # first modification to current.needs.component.mapping.details since
+# # update.accounting(
+# #   acceptable.bp.retreived.and.parsed,
+# #   "source.id",
+# #   "target.term",
+# #   "BioPortal IRI mappings"
+# # )
+#
+# # must already have with/without plural formulations
+#
+# # PartNumber                                                    any.name
+# # 1   LP147632-6 (Chicken feather+Duck feather+Goose feather+Parrot feather)
+# # 4    LP36005-4                                             1,3 beta glucan
+# # 8    LP14412-8                                                      14-3-3
+# # 9   LP186139-4                                                  14-3-3 eta
+# # 116 LP284677-4                                    17-Hydroxycorticosteroid
+# # 11  LP284677-4                                   17-Hydroxycorticosteroids
+#
+#
+# current.needs.component.mapping.details <-
+#   LoincPartLink[LoincPartLink$PartTypeName == 'COMPONENT' &
+#                   LoincPartLink$LoincNumber %in% ehr.with.loinc.parts$LOINC ,]
+#
+# # > table( current.needs.component.mapping.details$Property , current.needs.component.mapping.details$LinkTypeName)
+# #
+# # DetailedModel Primary Search SyntaxEnhancement
+# # http://loinc.org/property/analyte                656       0      0                 0
+# # http://loinc.org/property/analyte-core             0       0      0               289
+# # http://loinc.org/property/COMPONENT                0     675      0                 0
+# # http://loinc.org/property/search                   0       0    116                 0
+#
+# component.component.counts <-
+#   reshape2::dcast(
+#     data = current.needs.component.mapping.details,
+#     formula = LoincNumber ~ Property,
+#     fun.aggregate = length,
+#     value.var = 'Property'
+#   )
+#
+# colnames(component.component.counts) <-
+#   sub(
+#     pattern = 'http://loinc.org/property/',
+#     replacement = '',
+#     x = colnames(component.component.counts)
+#   )
+#
+# LoincNumber <- component.component.counts$LoincNumber
+#
+# component.component.counts <-
+#   component.component.counts[, c("analyte", "analyte-core", "search")]
+#
+# colnames(component.component.counts) <-
+#   paste0(colnames(component.component.counts), ".counts")
+#
+# component.component.vals <-
+#   reshape2::dcast(
+#     data = current.needs.component.mapping.details,
+#     formula = LoincNumber ~ Property,
+#     value.var = 'PartName',
+#     fun.aggregate = function(current.chunks) {
+#       temp <- sort(unique(current.chunks))
+#       temp <- paste0(temp, collapse = '|')
+#       return(temp)
+#     }
+#   )
+#
+# colnames(component.component.vals) <-
+#   sub(
+#     pattern = 'http://loinc.org/property/',
+#     replacement = '',
+#     x = colnames(component.component.vals)
+#   )
+#
+# component.component.vals <-
+#   component.component.vals[, c("analyte", "analyte-core", "COMPONENT", "search"),]
+#
+# colnames(component.component.vals) <-
+#   paste0(colnames(component.component.vals), ".vals")
+#
+# part.details <-
+#   cbind.data.frame(LoincNumber,
+#                    component.component.counts,
+#                    component.component.vals)
+#
+# colnames(part.details) <- make.names(colnames(part.details))
+#
+# part.details$analyte.vals[part.details$analyte.counts == 0] <- NA
+#
+# part.details$analyte.core.vals[part.details$analyte.core.counts == 0] <-
+#   NA
+#
+# part.details$search.vals[part.details$search.counts == 0] <-
+#   NA
+#
+# part.details <-
+#   part.details[, setdiff(colnames(part.details),
+#                          c('analyte.counts', 'analyte.core.counts')), ]
+#
+# ###   ###   ###
+#
+# ehr.with.loinc.parts <-
+#   base::merge(
+#     x = ehr.with.loinc.parts ,
+#     y = part.details,
+#     by.x = 'LOINC',
+#     by.y = 'LoincNumber',
+#     all.x = TRUE
+#   )
+#
+# current.component.mapping.frame <-
+#   current.component.mapping.frame[complete.cases(current.component.mapping.frame), ]
+#
+# num.to.name <- unique(Part[, c('PartNumber', 'PartName')])
+#
+# current.component.mapping.frame <-
+#   base::merge(
+#     x = current.component.mapping.frame,
+#     y = num.to.name,
+#     by.x = 'source.id',
+#     by.y = 'PartNumber',
+#     all.x = TRUE
+#   )
+#
+# num.to.name <- table(current.component.mapping.frame$source.id)
+# num.to.name <-
+#   cbind.data.frame(names(num.to.name), as.numeric(num.to.name))
+# names(num.to.name) <- c('PartNumber', 'map.count')
+# num.to.name$PartNumber <- as.character(num.to.name$PartNumber)
+#
+# singles <- num.to.name$PartNumber[num.to.name$map.count == 1]
+# singles <-
+#   current.component.mapping.frame[current.component.mapping.frame$source.id %in% singles , ]
+#
+# # # could theoretically require followup, prioritizaston, etc.
+# # multi.mappers <- num.to.name$PartNumber[num.to.name$map.count > 1]
+# #
+# #
+# # current.component.mapping.frame <-
+# #   rbind.data.frame(singles, multi.mappers)
+#
+# current.component.mapping.frame <- singles
+#
+# ccmf.name.term <-
+#   unique(current.component.mapping.frame[, c("PartName", "target.term")])
+#
+# ehr.with.loinc.parts <-
+#   base::merge(
+#     x = ehr.with.loinc.parts,
+#     y = ccmf.name.term,
+#     by.x = 'analyte.core.vals',
+#     by.y = 'PartName' ,
+#     all.x = TRUE
+#   )
+#
+# text.search.input <-
+#   unique(ehr.with.loinc.parts[is.na(ehr.with.loinc.parts$target.term), c('COMPONENT', 'analyte.core.vals')])
+#
+# colnames(text.search.input) <- c('PartNumber', 'original.name')
+#
+# source.relevant.links <-
+#   LoincPartLink[LoincPartLink$LoincNumber %in% ehr_loinc_counts$LOINC ,]
+#
+# source.relevant.links <-
+#   source.relevant.links[source.relevant.links$PartNumber %in% original.needs.component.mapping , ]
+#
+# current.needs.component.mapping.details <-
+#   source.relevant.links[source.relevant.links$Property == 'http://loinc.org/property/analyte-core' , ]
+#
+# #### had been including these... might want to go back to that pattern
+# # system names and display names
+# # non-core names, display names, search terms
+# # divisor names
+#
+# # also loook for searchable components
+#
+# # # COMPONENT
+# # # Search
+# # # http://loinc.org/property/search
+#
+# ###   ###   ###
+#
+# all.part.types.in.source <- ehr.with.loinc.parts$LOINC
+# all.part.types.in.source <-
+#   unique(LoincPartLink$PartNumber[LoincPartLink$LoincNumber %in% all.part.types.in.source])
+# all.part.types.in.source <-
+#   Part$PartTypeName[Part$PartNumber %in% all.part.types.in.source]
+#
+# # # not necessary in our current task
+# # all.part.types.in.source <- all.part.types.in.source[!grepl(pattern = '^Rad\\.', x = all.part.types.in.source)]
+# # all.part.types.in.source <- all.part.types.in.source[!grepl(pattern = '^Document\\.', x = all.part.types.in.source)]
+#
+# all.part.types.in.source <- table(all.part.types.in.source)
+# all.part.types.in.source <-
+#   cbind.data.frame(names(all.part.types.in.source),
+#                    as.numeric(all.part.types.in.source))
+# names(all.part.types.in.source) <- c('part.type', 'source.count')
+#
+#
+# # below: not explicitly filtering out caret, plus, period etc
+# # not including searchable compoent tokens
+#
+# text.search.input$singularized <- sub(pattern = 's$',
+#                                       replacement = '',
+#                                       x = text.search.input$original.name)
+#
+# original <- text.search.input[, c('PartNumber', 'original.name')]
+# singularized <- text.search.input[, c('PartNumber', 'singularized')]
+# colnames(singularized) <- colnames(original)
+# text.search.input <-
+#   unique(rbind.data.frame(original, singularized))
+# colnames(text.search.input) <- c('PartNumber', 'any.name')
+#
+# text.search.input <-
+#   text.search.input[order(text.search.input$any.name), ]
 
 ###  DRY
 table(text.search.input$PartNumber %in% current.component.mapping.complete)
@@ -793,7 +1118,8 @@ pre.ols.attempts <-
           ontology.filter = paste0("&ontology=", onto.list.for.ols),
           # matching bicarbonate aginst ChEBI hydrogencarbonate has required going 500 to 550 deep
           #   because it's "just" an annotations_trimmed
-          kept.row.count = 600,
+          # kept.row.count = 600,
+          kept.row.count = 200,
           req.exact = 'false'
         )
       if (is.data.frame(temp)) {
@@ -960,6 +1286,29 @@ kept.best <- base::merge(
   by.y = c('loinc.part', 'rank')
 )
 
+update.accounting(
+  data = kept.best,
+  loinc.part.code = "loinc.part",
+  loinc.part.name = "query",
+  obo.uri = "iri",
+  obo.label = "label",
+  rank = "rank",
+  justification = "core analyte ols-searched, requiring exact match against any field"
+)
+
+####    ####    ####    ####
+
+# temp <-
+#   inner_join(x = current.component.mapping.frame,
+#              y = LoincPartLink,
+#              by = c("source.id" = "PartNumber"))
+# 
+# temp <- temp[temp$LoincNumber %in% common.loincs ,]
+# 
+# table(temp$Property)
+
+####    ####    ####    ####
+
 # kept.best <-
 #   kept.best[kept.best$count == 1 | kept.best$label.match , ]
 
@@ -978,37 +1327,48 @@ kept.best <- base::merge(
 
 # hist(overall.best$cosine, breaks = 99)
 
-backmerge <-
-  unique(kept.best[, c('loinc.part', 'short_form'),])
-# assumes that the short forms ahve all been drawn from OBO ontologies
-# that's not necessarily the case woth OLS or BioPortal
-# but we have ensured that with our harmonized ontology rankings
-backmerge$iri.from.search <-
-  paste0('obo:', backmerge$short_form)
-backmerge <- backmerge[, c('loinc.part', 'iri.from.search')]
+# backmerge <-
+#   unique(kept.best[, c('loinc.part', 'short_form'),])
+# # assumes that the short forms ahve all been drawn from OBO ontologies
+# # that's not necessarily the case woth OLS or BioPortal
+# # but we have ensured that with our harmonized ontology rankings
+# backmerge$iri.from.search <-
+#   paste0('obo:', backmerge$short_form)
+# backmerge <- backmerge[, c('loinc.part', 'iri.from.search')]
 
 ehr.with.loinc.parts <-
   base::merge(
     x = ehr.with.loinc.parts,
-    y = backmerge,
+    y = current.component.mapping.frame,
     by.x = 'COMPONENT',
-    by.y = 'loinc.part',
+    by.y = 'loinc.part.code',
     all.x = TRUE
   )
 
 ####
 
-ehr.with.loinc.parts$final.comp <- ehr.with.loinc.parts$target.term
-ehr.with.loinc.parts$final.comp[is.na(ehr.with.loinc.parts$final.comp)] <-
-  ehr.with.loinc.parts$iri.from.search[is.na(ehr.with.loinc.parts$final.comp)]
+# ehr.with.loinc.parts$final.comp <- ehr.with.loinc.parts$target.term
+# ehr.with.loinc.parts$final.comp[is.na(ehr.with.loinc.parts$final.comp)] <-
+#   ehr.with.loinc.parts$iri.from.search[is.na(ehr.with.loinc.parts$final.comp)]
 
 ehr.with.loinc.parts$final.comp <-
   sub(
     pattern = "http://purl.obolibrary.org/obo/",
     replacement = "obo:",
-    x = ehr.with.loinc.parts$final.comp,
+    x = ehr.with.loinc.parts$obo.uri,
     fixed = TRUE
   )
+
+ehr.with.loinc.parts$oboflag <-
+  grepl(pattern = "^obo:", x = ehr.with.loinc.parts$final.comp)
+
+### todo add systems back in
+
+temp <-
+  match(x = ehr.with.loinc.parts$SYSTEM, table = turbo_loinc_systems_reviewed$PartTypeVal)
+temp <- turbo_loinc_systems_reviewed$iri[temp]
+
+ehr.with.loinc.parts$system.iri <- temp
 
 ehr.with.loinc.parts$system.iri <-
   gsub(
@@ -1018,59 +1378,65 @@ ehr.with.loinc.parts$system.iri <-
     fixed = TRUE
   )
 
-at.frame <-
-  unique(LoincPartLink[, c('LoincNumber', 'LongCommonName')])
-
-oboflag <-
-  grepl(pattern = "^obo:", x = ehr.with.loinc.parts$final.comp)
+###
 
 # excluded because NO automatically-accepted mapping for component
 drawing.board <-
   ehr.with.loinc.parts[is.na(ehr.with.loinc.parts$final.comp) |
                          (!oboflag),]
 
+# drawing.board.components <-
+#   unique(drawing.board[, c("COMPONENT", "analyte.core.vals")])
+
+###
+
+at.frame <-
+  unique(LoincPartLink[, c('LoincNumber', 'LongCommonName')])
+
+###
+
 #### no "missing value column" error yet!
 #### maybe they have something to do with the new way of obtaining the labels?
 
 # ####    ####    ####    ####
-# 
+#
 # # get labels from ontology
-# 
+#
 # # turbo.ontolgy.path <-
 # #   "/Users/markampa/Turbo-Ontology/ontologies/animals_robot_transition/turbo_merged.ttl"
-# 
+#
 # turbo.ontolgy.url <-
 #   "https://raw.githubusercontent.com/PennTURBO/Turbo-Ontology/master/ontologies/robot_implementation/turbo_merged.ttl"
-# 
+#
 # turbo.ontolgy.model <-
 #   rdflib::rdf_parse(turbo.ontolgy.url)
-# 
+#
 # # turbo.ontolgy.model <-
 # #   load.rdf(turbo.ontolgy.path, format = "TURTLE")
-# 
+#
 # turbo.label.query <-
-#   "select 
-# distinct 
-# * 
-# where 
-# { 
-# ?s <http://www.w3.org/2000/01/rdf-schema#label> ?prel . 
+#   "select
+# distinct
+# *
+# where
+# {
+# ?s <http://www.w3.org/2000/01/rdf-schema#label> ?prel .
 # bind(lcase(str(?prel)) as ?o)
 # filter(isiri(?s))
 # }"
-# 
+#
 # # turbo.labels <- sparql.rdf(
 # #   turbo.ontolgy.model,
 # #   "select * where { ?s <http://www.w3.org/2000/01/rdf-schema#label> ?o }"
 # # )
-# 
+#
 # turbo.labels <-
 #   rdf_query(rdf = turbo.ontolgy.model, query = turbo.label.query)
 # #
 # # rdflib::rdf_query(rdf = turbo.ontolgy.model, query = "select * where { ?s <http://www.w3.org/2000/01/rdf-schema#label> ?o } limit 3")
 # #
-# 
-# 
+#
+#
 
 ####    ####    ####    ####
 
@@ -1084,406 +1450,438 @@ anat.spec.ont <-
   rrdf::load.rdf(filename = ont.tf, format = "TURTLE")
 
 turbo.label.query <-
-  "select 
-distinct 
+  "select
+distinct
 ?s ?o
-where 
-{ 
-?s <http://www.w3.org/2000/01/rdf-schema#label> ?prel . 
+where
+{
+?s <http://www.w3.org/2000/01/rdf-schema#label> ?prel .
 bind(lcase(str(?prel)) as ?o)
 filter(isiri(?s))
 }"
-
-Sys.time()
-system.time(
-  turbo.labels <-
-    rrdf::sparql.rdf(model = anat.spec.ont, sparql = turbo.label.query)
-)
-
-turbo.labels <- as.data.frame(turbo.labels)
-
-# see 
-# # properties/units part of labels
-# and
-# term.label
-# pastable
-
-# make new TURBO term IDs
-
-####    ####    ####    ####
-
-ready.for.robot <-
-  unique(ehr.with.loinc.parts[(!is.na(ehr.with.loinc.parts$final.comp)) &
-                                oboflag , c(
-                                  "LOINC",
-                                  "COMPONENT",
-                                  "analyte.core.vals",
-                                  "final.comp",
-                                  "COMPONENT.vals",
-                                  "analyte.vals",
-                                  "search.counts",
-                                  "search.vals",
-                                  true.challenges,
-                                  pk.in.challenge.slot,
-                                  divisors,
-                                  serology.suffixes,
-                                  "METHOD",
-                                  loinc.methods,
-                                  "PROPERTY",
-                                  "SCALE",
-                                  "SYSTEM",
-                                  "system.iri",
-                                  "TIME"
-                                )])
-
-ready.for.robot <- ready.for.robot[order(ready.for.robot$LOINC), ]
-
-robot.row.count <- nrow(ready.for.robot)
-all.blanks <- rep(x = '', robot.row.count)
-
-id.prefix <- "turbo:TURBO_"
-id.start <- 3000001
-id.end <- id.start + (robot.row.count - 1)
-term.suffixes <- id.start:id.end
-term.id <- paste0(id.prefix , term.suffixes)
-
-# term.id <- paste0('lobo:LOBO_', 1:robot.row.count)
-
-has.curation.status <- all.blanks
-
-# alternative term ... LOINC assay label
-at.index <- match(ready.for.robot$LOINC, at.frame$LoincNumber)
-alternative.term <- at.frame$LongCommonName[at.index]
-
-#### system display name
-sys.disp.name <- match(ready.for.robot$SYSTEM , Part$PartNumber)
-sys.disp.name <- Part$PartDisplayName[sys.disp.name]
-
-table(sys.disp.name)
-
-# PK
-# ANY MODERNIZASTION REQUIRED FOR AXIOMS?
-
-pk.pastable <- tl.augmenter(pk.in.challenge.slot, 'COMPONENT')
-pk.pastable[is.na(pk.pastable)] <- ''
-pk.pastable[nchar(pk.pastable) > 0] <-
-  paste0(pk.pastable[nchar(pk.pastable) > 0], ' ')
-table(pk.pastable)
-
-# todo REAL CHALLENGES (labels and axioms)
-abtype <- tl.augmenter(serology.suffixes, 'COMPONENT')
-abtype[is.na(abtype)] <- ''
-abtype[nchar(abtype) > 0] <-
-  paste0(abtype[nchar(abtype) > 0], ' against ')
-table(abtype)
-
-# todo (serology) SUFFIXES  (labels and axioms)
-challengetype <- tl.augmenter(true.challenges, 'COMPONENT')
-challengetype[is.na(challengetype)] <- ''
-challengetype[nchar(challengetype) > 0] <-
-  paste0(', ', challengetype[nchar(challengetype) > 0], ' challenge ')
-table(challengetype)
-
-label.table <- function() {
-  temp <- table(term.label)
-  temp <-
-    cbind.data.frame(names(temp), as.numeric(temp))
-  colnames(temp) <- c("label", "count")
-  table(temp$count)
-}
-
-#### TERM LABEL
-# TODO NEW METHODS FOR PK SPECIFICTY
-term.label <-
-  paste0(
-    'Quantitative assay for ',
-    abtype,
-    pk.pastable,
-    ready.for.robot$analyte.core.vals,
-    ' in ',
-    sys.disp.name,
-    challengetype
+  
+  Sys.time()
+  system.time(turbo.labels <-
+                rrdf::sparql.rdf(model = anat.spec.ont, sparql = turbo.label.query))
+  
+  turbo.labels <- as.data.frame(turbo.labels)
+  
+  # see
+  # # properties/units part of labels
+  # and
+  # term.label
+  # pastable
+  
+  # make new TURBO term IDs
+  
+  ####    ####    ####    ####
+  
+  expected.cols <- c(
+    "LOINC",
+    "COMPONENT",
+    "analyte.core.vals",
+    "final.comp",
+    # "COMPONENT.vals",
+    # "analyte.vals",
+    # "search.counts",
+    # "search.vals",
+    true.challenges,
+    pk.in.challenge.slot,
+    divisors,
+    serology.suffixes,
+    "METHOD",
+    loinc.methods,
+    "PROPERTY",
+    "SCALE",
+    "SYSTEM",
+    "system.iri",
+    "TIME"
   )
-
-label.table()
-
-term.label[ready.for.robot$TIME == "LP6924-7"] <-
-  paste0(term.label[ready.for.robot$TIME == "LP6924-7"], " with 24-hour sample collection")
-
-label.table()
-
-#### DEAL.. switch to tl.augmenter approach for labels
-
-# divisors
-div.pastable <- tl.augmenter(divisors, 'COMPONENT')
-div.pastable[is.na(div.pastable)] <- ''
-div.pastable[nchar(div.pastable) > 0] <-
-  paste0(", normalized by ", div.pastable[nchar(div.pastable) > 0], ' ')
-table(div.pastable)
-
-term.label <-
-  paste0(term.label, div.pastable)
-
-label.table()
-
-#### DEAL with methods part of labels... then axiomatic approach
-
-# assume for now that only a single method is asserted for a given test
-# but start thinking about mutiple SPECIFIC method cases
-# can collapse less specific methods like glucose into 20 mg glucose
-# should this be folded into teh split function above?
-
-meth.pastable <- tl.augmenter(loinc.methods, 'METHOD')
-meth.pastable[is.na(meth.pastable)] <- ''
-meth.pastable[nchar(meth.pastable) > 0] <-
-  paste0(' (',  meth.pastable[nchar(meth.pastable) > 0], ')')
-table(meth.pastable)
-
-term.label <- paste0(term.label, meth.pastable)
-
-label.table()
-
-####
-
-# properties/units part of labels
-
-prop.unit.temp <-
-  match(ready.for.robot$PROPERTY,
-        turbo_loinc_properties_reviewed$PartTypeVal)
-
-prop.unit.temp <-
-  turbo_loinc_properties_reviewed$obo.iri[prop.unit.temp]
-
-# what was the concern?
-setdiff(prop.unit.temp, turbo.labels[, 1])
-
-prop.unit.temp <- match(prop.unit.temp, turbo.labels[, 1])
-
-table(prop.unit.temp, useNA = 'always')
-
-prop.unit.temp <- turbo.labels[prop.unit.temp, 2]
-
-table(prop.unit.temp, useNA = 'always')
-
-term.label <- paste0(term.label, ' [', prop.unit.temp, ']')
-
-label.table()
-
-
-####
-
-definition <- all.blanks
-
-# definition.source <-
-#   rep(x = 'Mark Andrew Miller, ORCID:0000-0001-9076-6066|Chris Stoeckert', robot.row.count)
-
-# maybe a link to the script that populated the template?
-definition.source <- all.blanks
-
-example.of.usage <- all.blanks
-editor.note <- all.blanks
-term.editor <-
-  rep(x = 'Mark Andrew Miller, ORCID:0000-0001-9076-6066|Chris Stoeckert', robot.row.count)
-ontology.term.requester <- all.blanks
-term.tracker.item <-
-  rep(x = 'ghi:1153', robot.row.count)
-
-# subclass or equivalent
-logical.type <-
-  rep(x = 'subclass', robot.row.count)
-
-logical.note <- all.blanks
-
-#	clinical assay from TURBO. analyte could be inferred. annotate this with ...
-#   see recent notes from CJS.
-#   Also quantitative by default and PT by default
-parent.class <-
-  rep(x = "'assay of specimen from organism'", robot.row.count)
-
-# 24 collection axiom as above if neccessary (LP6924-7 TURBO_0010724)
-# switch and create 24 specimen collection objective specification
-material.processing.technique <- all.blanks
-material.processing.technique[!is.na(ready.for.robot$TIME) &
-                                ready.for.robot$TIME == 'LP6924-7'] <-
-  "'specimen collection process' and ( achieves_planned_objective some '24 hour sample collection objective' )"
-
-# skip for now. would be based on method
-detection.technique <- all.blanks
-
-# specimens with | split. union or intersection? subclass or eq class?
-evaluant <- ready.for.robot$system.iri
-
-# put all components in here and wait for errors from things that aren't molecular entities? V
-analyte <- ready.for.robot$final.comp
-
-device <- all.blanks
-reagent <- all.blanks
-molecular.label <- all.blanks
-# skip in favor of analyte/target entity for now	some specific kind of datum based on LOINC property.
-input <- all.blanks
-
-# datums may need to be created and defined in terms of potentiatlly new units.	TODO
-output <- rep(x = 'obo:IAO_0000032', robot.row.count)
-
-# move non-molecular entity analytes into here V
-target.entity <- all.blanks
-
-# will probably be using this soon
-objective <- all.blanks
-
-# or LOINC  https://loinc.org/2339-0/ style ?
-database.cross.reference.IRI <-
-  paste0('loinc:',
-         ready.for.robot$LOINC)
-
-associated.axioms <- all.blanks
-associated.axioms[!is.na(ready.for.robot$PartName.divisor) &
-                    ready.for.robot$PartName.divisor == 'Creatinine'] <-
-  "'has part' some 'division by creatinine concentration normalization'"
-associated.axioms[!is.na(ready.for.robot$PartName.divisor) &
-                    ready.for.robot$PartName.divisor == '100 leukocytes'] <-
-  "'has part' some 'division by 100 leukocytes normalization'"
-
-temp <- cbind.data.frame(term.label, term.label)
-
-####
-
-ready.for.robot <- cbind.data.frame(
-  term.id,
-  term.label,
-  # as.character(1:length(term.id)),
-  has.curation.status,
-  alternative.term,
-  definition,
-  definition.source,
-  example.of.usage,
-  editor.note,
-  term.editor,
-  ontology.term.requester,
-  term.tracker.item,
-  logical.type,
-  logical.note,
-  parent.class,
-  material.processing.technique,
-  detection.technique,
-  evaluant,
-  analyte,
-  device,
-  reagent,
-  molecular.label,
-  input,
-  output,
-  target.entity,
-  objective,
-  associated.axioms,
-  database.cross.reference.IRI
-)
-
-# make.table.frame <- function(some.vector) {
-#   # some.vector <- ready.for.robot$term.label
-#   temp <- table(some.vector)
-#   temp <- cbind.data.frame(names(temp), as.numeric(temp))
-#   names(temp) <- c("name", "count")
-#   return(temp)
-# }
-
-temp <- make.table.frame(ready.for.robot$term.label)
-temp <- temp$value[temp$count > 1]
-ready.for.robot <-
-  ready.for.robot[!ready.for.robot$term.label %in% temp, ]
-
-write.table(
-  ready.for.robot,
-  file = 'lobo_template_headerless.csv',
-  row.names = FALSE,
-  col.names = FALSE,
-  sep = ','
-)
-
-# label.table[] <- lapply(label.table[], as.character)
-# ready.for.robot <-
-#   base::merge(x = ready.for.robot,
-#               y = label.table,
-#               by.x = 'term.label',
-#               by.y = 'label')
-
-###   ###   ###
-
-# # reworked string inputs... no longer contains anything but unmapped core analyte components
-#
-# bulk.systems <-
-#   kept.best[kept.best$ont.name %in% c('cl', 'uberon') &
-#               kept.best$part.number %in% Part$PartNumber[Part$PartTypeName == 'SYSTEM'] &
-#               kept.best$cosine == 0 , ]
-#
-# # see turbo_loinc_systems_reviewed above
-
-###   ###   ###
-
-# some challenges
-
-# PR considers LP15333-5 "Alanine aminotransferase" underspecified...
-# should contain a species and numerical subtype like "human Alanine aminotransferase 1"
-# try to find other LOINC protein components
-# subclass of "Enzymes" http://purl.bioontology.org/ontology/LNC/LP31392-1 <- CHAL
-#  <- Chemistry and Chemistry challenge <- Lab <- LOINCPARTS
-
-# LP6118-6 Albumin subclass of Protein http://purl.bioontology.org/ontology/LNC/LP15838-3
-#  <- UA <- Lab ...
-
-# LP17698-9 Erythrocyte distribution width
-#   variability of erythrocyte sizes... a quality of the distribution/population
-
-# LP30809-5 Anion gap... difference between concentration of common cations and common anions
-
-# LP14492-0 Urea nitrogen: over specified as far as ChEBI is concerned
-# LP15441-6 bicarbonate: underspecified/synonymy (hydrogencarbonate anion ChEBI 17544)
-
-# LP286653-3 Neutrophils/100 leukocytes
-
-## some X+Y terms
-# vitamin d2
-# ChEBI
-# CHEBI
-# class
-# TRUE
-# A vitamin D supplement and has been isolated from alfalfa.
-# calciferol
-#
-# isovaleryl-l-carnitine
-# ChEBI
-# CHEBI
-# class
-# TRUE
-# An O-isovalerylcarnitine that is the 3-methylbutanoyl (isovaleryl) derivative of L-carnitine.
-# isovalerylcarnitine
-#
-# desmethyldoxepin
-# ChEBI
-# CHEBI
-# class
-# TRUE
-# A dibenzooxepine resulting from the demethylation of the antidepressant doxepin. It is the active metabolite of doxepin.
-# nordoxepin
-#
-# 2-methylbutyrylcarnitine
-# ChEBI
-# CHEBI
-# class
-# TRUE
-# A C5-acylcarnitine having 2-methylbutyryl as the acyl substituent.
-# methylbutyrylcarnitine (c5)
-#
-# --- doesn't look promising below ---
-#
-# norclomipramine
-#
-# methsuximide
-# normethsuximide
-
-# now run execute_template.sh
-
-#
-# temp <- make.table.frame(ehr.with.loinc.parts$PROPERTY)
-# temp <- base::merge(x = temp, y = Part, by.x = 'value', by.y = 'PartNumber')
-# write.csv(temp, "ehr_loinc_properties.csv")
+  
+  available.cols <- colnames(ehr.with.loinc.parts)
+  
+  setdiff(expected.cols, available.cols)
+  setdiff(available.cols, expected.cols)
+  
+  # >   setdiff(expected.cols, available.cols)
+  # "analyte.core.vals"
+  # >   setdiff(available.cols, expected.cols)
+  # [1] "LOINC_COUNT"     "loinc.part.name" "obo.uri"         "obo.label"       "rank"            "justification"   "oboflag" 
+  
+  ready.for.robot <-
+    unique(ehr.with.loinc.parts[(!is.na(ehr.with.loinc.parts$final.comp)) &
+                                  oboflag , c(
+                                    "LOINC",
+                                    "COMPONENT",
+                                    "analyte.core.vals",
+                                    "final.comp",
+                                    # "COMPONENT.vals",
+                                    # "analyte.vals",
+                                    # "search.counts",
+                                    # "search.vals",
+                                    true.challenges,
+                                    pk.in.challenge.slot,
+                                    divisors,
+                                    serology.suffixes,
+                                    "METHOD",
+                                    loinc.methods,
+                                    "PROPERTY",
+                                    "SCALE",
+                                    "SYSTEM",
+                                    "system.iri",
+                                    "TIME"
+                                  )])
+  
+  ready.for.robot <- ready.for.robot[order(ready.for.robot$LOINC), ]
+  
+  robot.row.count <- nrow(ready.for.robot)
+  all.blanks <- rep(x = '', robot.row.count)
+  
+  id.prefix <- "turbo:TURBO_"
+  id.start <- 3000001
+  id.end <- id.start + (robot.row.count - 1)
+  term.suffixes <- id.start:id.end
+  term.id <- paste0(id.prefix , term.suffixes)
+  
+  # term.id <- paste0('lobo:LOBO_', 1:robot.row.count)
+  
+  has.curation.status <- all.blanks
+  
+  # alternative term ... LOINC assay label
+  at.index <- match(ready.for.robot$LOINC, at.frame$LoincNumber)
+  alternative.term <- at.frame$LongCommonName[at.index]
+  
+  #### system display name
+  sys.disp.name <- match(ready.for.robot$SYSTEM , Part$PartNumber)
+  sys.disp.name <- Part$PartDisplayName[sys.disp.name]
+  
+  table(sys.disp.name)
+  
+  # PK
+  # ANY MODERNIZASTION REQUIRED FOR AXIOMS?
+  
+  pk.pastable <- tl.augmenter(pk.in.challenge.slot, 'COMPONENT')
+  pk.pastable[is.na(pk.pastable)] <- ''
+  pk.pastable[nchar(pk.pastable) > 0] <-
+    paste0(pk.pastable[nchar(pk.pastable) > 0], ' ')
+  table(pk.pastable)
+  
+  # todo REAL CHALLENGES (labels and axioms)
+  abtype <- tl.augmenter(serology.suffixes, 'COMPONENT')
+  abtype[is.na(abtype)] <- ''
+  abtype[nchar(abtype) > 0] <-
+    paste0(abtype[nchar(abtype) > 0], ' against ')
+  table(abtype)
+  
+  # todo (serology) SUFFIXES  (labels and axioms)
+  challengetype <- tl.augmenter(true.challenges, 'COMPONENT')
+  challengetype[is.na(challengetype)] <- ''
+  challengetype[nchar(challengetype) > 0] <-
+    paste0(', ', challengetype[nchar(challengetype) > 0], ' challenge ')
+  table(challengetype)
+  
+  label.table <- function() {
+    temp <- table(term.label)
+    temp <-
+      cbind.data.frame(names(temp), as.numeric(temp))
+    colnames(temp) <- c("label", "count")
+    table(temp$count)
+  }
+  
+  #### TERM LABEL
+  # TODO NEW METHODS FOR PK SPECIFICTY
+  term.label <-
+    paste0(
+      'Quantitative assay for ',
+      abtype,
+      pk.pastable,
+      ready.for.robot$analyte.core.vals,
+      ' in ',
+      sys.disp.name,
+      " specimen ",
+      challengetype
+    )
+  
+  label.table()
+  
+  term.label[ready.for.robot$TIME == "LP6924-7"] <-
+    paste0(term.label[ready.for.robot$TIME == "LP6924-7"], " with 24-hour sample collection")
+  
+  label.table()
+  
+  #### DEAL.. switch to tl.augmenter approach for labels
+  
+  # divisors
+  div.pastable <- tl.augmenter(divisors, 'COMPONENT')
+  div.pastable[is.na(div.pastable)] <- ''
+  div.pastable[nchar(div.pastable) > 0] <-
+    paste0(", normalized by ", div.pastable[nchar(div.pastable) > 0], ' ')
+  table(div.pastable)
+  
+  term.label <-
+    paste0(term.label, div.pastable)
+  
+  label.table()
+  
+  #### DEAL with methods part of labels... then axiomatic approach
+  
+  # assume for now that only a single method is asserted for a given test
+  # but start thinking about mutiple SPECIFIC method cases
+  # can collapse less specific methods like glucose into 20 mg glucose
+  # should this be folded into teh split function above?
+  
+  meth.pastable <- tl.augmenter(loinc.methods, 'METHOD')
+  meth.pastable[is.na(meth.pastable)] <- ''
+  meth.pastable[nchar(meth.pastable) > 0] <-
+    paste0(' (',  meth.pastable[nchar(meth.pastable) > 0], ')')
+  table(meth.pastable)
+  
+  term.label <- paste0(term.label, meth.pastable)
+  
+  label.table()
+  
+  ####
+  
+  # properties/units part of labels
+  
+  prop.unit.temp <-
+    match(ready.for.robot$PROPERTY,
+          turbo_loinc_properties_reviewed$PartTypeVal)
+  
+  prop.unit.temp <-
+    turbo_loinc_properties_reviewed$obo.iri[prop.unit.temp]
+  
+  # what was the concern?
+  setdiff(prop.unit.temp, turbo.labels[, 1])
+  
+  prop.unit.temp <- match(prop.unit.temp, turbo.labels[, 1])
+  
+  table(prop.unit.temp, useNA = 'always')
+  
+  prop.unit.temp <- turbo.labels[prop.unit.temp, 2]
+  
+  table(prop.unit.temp, useNA = 'always')
+  
+  term.label <- paste0(term.label, ' [', prop.unit.temp, ']')
+  
+  label.table()
+  
+  
+  ####
+  
+  definition <- all.blanks
+  
+  # definition.source <-
+  #   rep(x = 'Mark Andrew Miller, ORCID:0000-0001-9076-6066|Chris Stoeckert', robot.row.count)
+  
+  # maybe a link to the script that populated the template?
+  definition.source <- all.blanks
+  
+  example.of.usage <- all.blanks
+  editor.note <- all.blanks
+  term.editor <-
+    rep(x = 'Mark Andrew Miller, ORCID:0000-0001-9076-6066|Chris Stoeckert', robot.row.count)
+  ontology.term.requester <- all.blanks
+  term.tracker.item <-
+    rep(x = 'ghi:1153', robot.row.count)
+  
+  # subclass or equivalent
+  logical.type <-
+    rep(x = 'subclass', robot.row.count)
+  
+  logical.note <- all.blanks
+  
+  #	clinical assay from TURBO. analyte could be inferred. annotate this with ...
+  #   see recent notes from CJS.
+  #   Also quantitative by default and PT by default
+  parent.class <-
+    rep(x = "'assay of specimen from organism'", robot.row.count)
+  
+  # 24 collection axiom as above if neccessary (LP6924-7 TURBO_0010724)
+  # switch and create 24 specimen collection objective specification
+  material.processing.technique <- all.blanks
+  material.processing.technique[!is.na(ready.for.robot$TIME) &
+                                  ready.for.robot$TIME == 'LP6924-7'] <-
+    "'specimen collection process' and ( achieves_planned_objective some '24 hour sample collection objective' )"
+  
+  # skip for now. would be based on method
+  detection.technique <- all.blanks
+  
+  # specimens with | split. union or intersection? subclass or eq class?
+  evaluant <- ready.for.robot$system.iri
+  
+  # put all components in here and wait for errors from things that aren't molecular entities? V
+  analyte <- ready.for.robot$final.comp
+  
+  device <- all.blanks
+  reagent <- all.blanks
+  molecular.label <- all.blanks
+  # skip in favor of analyte/target entity for now	some specific kind of datum based on LOINC property.
+  input <- all.blanks
+  
+  # datums may need to be created and defined in terms of potentiatlly new units.	TODO
+  output <- rep(x = 'obo:IAO_0000032', robot.row.count)
+  
+  # move non-molecular entity analytes into here V
+  target.entity <- all.blanks
+  
+  # will probably be using this soon
+  objective <- all.blanks
+  
+  # or LOINC  https://loinc.org/2339-0/ style ?
+  database.cross.reference.IRI <-
+    paste0('loinc:',
+           ready.for.robot$LOINC)
+  
+  associated.axioms <- all.blanks
+  associated.axioms[!is.na(ready.for.robot$PartName.divisor) &
+                      ready.for.robot$PartName.divisor == 'Creatinine'] <-
+    "'has part' some 'division by creatinine concentration normalization'"
+  associated.axioms[!is.na(ready.for.robot$PartName.divisor) &
+                      ready.for.robot$PartName.divisor == '100 leukocytes'] <-
+    "'has part' some 'division by 100 leukocytes normalization'"
+  
+  temp <- cbind.data.frame(term.label, term.label)
+  
+  ####
+  
+  ready.for.robot <- cbind.data.frame(
+    term.id,
+    term.label,
+    # as.character(1:length(term.id)),
+    has.curation.status,
+    alternative.term,
+    definition,
+    definition.source,
+    example.of.usage,
+    editor.note,
+    term.editor,
+    ontology.term.requester,
+    term.tracker.item,
+    logical.type,
+    logical.note,
+    parent.class,
+    material.processing.technique,
+    detection.technique,
+    evaluant,
+    analyte,
+    device,
+    reagent,
+    molecular.label,
+    input,
+    output,
+    target.entity,
+    objective,
+    associated.axioms,
+    database.cross.reference.IRI
+  )
+  
+  # make.table.frame <- function(some.vector) {
+  #   # some.vector <- ready.for.robot$term.label
+  #   temp <- table(some.vector)
+  #   temp <- cbind.data.frame(names(temp), as.numeric(temp))
+  #   names(temp) <- c("name", "count")
+  #   return(temp)
+  # }
+  
+  temp <- make.table.frame(ready.for.robot$term.label)
+  temp <- temp$value[temp$count > 1]
+  ready.for.robot <-
+    ready.for.robot[!ready.for.robot$term.label %in% temp, ]
+  
+  write.table(
+    ready.for.robot,
+    file = 'lobo_template_headerless.csv',
+    row.names = FALSE,
+    col.names = FALSE,
+    sep = ','
+  )
+  
+  # label.table[] <- lapply(label.table[], as.character)
+  # ready.for.robot <-
+  #   base::merge(x = ready.for.robot,
+  #               y = label.table,
+  #               by.x = 'term.label',
+  #               by.y = 'label')
+  
+  ###   ###   ###
+  
+  # # reworked string inputs... no longer contains anything but unmapped core analyte components
+  #
+  # bulk.systems <-
+  #   kept.best[kept.best$ont.name %in% c('cl', 'uberon') &
+  #               kept.best$part.number %in% Part$PartNumber[Part$PartTypeName == 'SYSTEM'] &
+  #               kept.best$cosine == 0 , ]
+  #
+  # # see turbo_loinc_systems_reviewed above
+  
+  ###   ###   ###
+  
+  # some challenges
+  
+  # PR considers LP15333-5 "Alanine aminotransferase" underspecified...
+  # should contain a species and numerical subtype like "human Alanine aminotransferase 1"
+  # try to find other LOINC protein components
+  # subclass of "Enzymes" http://purl.bioontology.org/ontology/LNC/LP31392-1 <- CHAL
+  #  <- Chemistry and Chemistry challenge <- Lab <- LOINCPARTS
+  
+  # LP6118-6 Albumin subclass of Protein http://purl.bioontology.org/ontology/LNC/LP15838-3
+  #  <- UA <- Lab ...
+  
+  # LP17698-9 Erythrocyte distribution width
+  #   variability of erythrocyte sizes... a quality of the distribution/population
+  
+  # LP30809-5 Anion gap... difference between concentration of common cations and common anions
+  
+  # LP14492-0 Urea nitrogen: over specified as far as ChEBI is concerned
+  # LP15441-6 bicarbonate: underspecified/synonymy (hydrogencarbonate anion ChEBI 17544)
+  
+  # LP286653-3 Neutrophils/100 leukocytes
+  
+  ## some X+Y terms
+  # vitamin d2
+  # ChEBI
+  # CHEBI
+  # class
+  # TRUE
+  # A vitamin D supplement and has been isolated from alfalfa.
+  # calciferol
+  #
+  # isovaleryl-l-carnitine
+  # ChEBI
+  # CHEBI
+  # class
+  # TRUE
+  # An O-isovalerylcarnitine that is the 3-methylbutanoyl (isovaleryl) derivative of L-carnitine.
+  # isovalerylcarnitine
+  #
+  # desmethyldoxepin
+  # ChEBI
+  # CHEBI
+  # class
+  # TRUE
+  # A dibenzooxepine resulting from the demethylation of the antidepressant doxepin. It is the active metabolite of doxepin.
+  # nordoxepin
+  #
+  # 2-methylbutyrylcarnitine
+  # ChEBI
+  # CHEBI
+  # class
+  # TRUE
+  # A C5-acylcarnitine having 2-methylbutyryl as the acyl substituent.
+  # methylbutyrylcarnitine (c5)
+  #
+  # --- doesn't look promising below ---
+  #
+  # norclomipramine
+  #
+  # methsuximide
+  # normethsuximide
+  
+  # now run execute_template.sh
+  
+  #
+  # temp <- make.table.frame(ehr.with.loinc.parts$PROPERTY)
+  # temp <- base::merge(x = temp, y = Part, by.x = 'value', by.y = 'PartNumber')
+  # write.csv(temp, "ehr_loinc_properties.csv")
+  
