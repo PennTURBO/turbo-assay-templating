@@ -1,5 +1,7 @@
 cat lobo_template_headers_only.csv lobo_template_headerless.csv > lobo_template.csv
 
+rm -rf turbo_merged.ttl*
+
 wget https://raw.githubusercontent.com/PennTURBO/Turbo-Ontology/master/ontologies/robot_implementation/turbo_merged.ttl
 
 # files only, no ontology URLs?
