@@ -1607,6 +1607,18 @@ temp$cell <-
   grepl(pattern = "cell",
         x = temp$PartDisplayName,
         fixed = TRUE)
+temp$free <-
+  grepl(pattern = "free",
+        x = temp$PartDisplayName,
+        fixed = TRUE)
+temp$total <-
+  grepl(pattern = "total",
+        x = temp$PartDisplayName,
+        fixed = TRUE)
+temp$bound <-
+  grepl(pattern = "bound",
+        x = temp$PartDisplayName,
+        fixed = TRUE)
 temp <-
   unique(temp[, c(
     "LOINC_PartNumber",
@@ -1615,6 +1627,9 @@ temp <-
     "gene",
     "period",
     "plus",
+    "free",
+    "total",
+    "bound",
     "target.term",
     "target.label",
     "onto.abbrev",
@@ -1628,6 +1643,7 @@ temp <-
     "priority",
     "target.domain"
   )])
+
 write_excel_csv(temp, "core_analyte_mapping_needs_review.csv")
 
 ####
