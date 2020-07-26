@@ -1,54 +1,54 @@
-"","challenge","UNIQUE_EMPI_COUNT.sum","PartTypeName","PartName","PartDisplayName","Status"
-"1","LP129061-0",330,"CHALLENGE","30M post maximum clot amplitude","30 minutes post maximum clot amplitude","ACTIVE"
-"2","LP140231-4",2,"CHALLENGE","premenopausal","premenopausal","ACTIVE"
-"3","LP140232-2",2,"CHALLENGE","postmenopausal","postmenopausal","ACTIVE"
-"4","LP156504-5",22,"CHALLENGE","PM trough specimen","PM trough specimen","ACTIVE"
-"5","LP156505-2",1379,"CHALLENGE","AM peak specimen","AM peak specimen","ACTIVE"
-"6","LP186081-8",20295,"CHALLENGE","4th tube","4th tube","ACTIVE"
-"7","LP192129-7",18,"CHALLENGE","dibucaine/Cholinesterase","dibucaine/Cholinesterase","ACTIVE"
-"8","LP20165-4",17,"CHALLENGE","2nd specimen","2nd specimen","ACTIVE"
-"9","LP20175-3",7330,"CHALLENGE","peak","TDM Peak","ACTIVE"
-"10","LP20176-1",51734,"CHALLENGE","trough","TDM Trough","ACTIVE"
-"11","LP20193-6",5981,"CHALLENGE","baseline","baseline","ACTIVE"
-"12","LP20194-4",113,"CHALLENGE","1st specimen post XXX challenge","1st specimen post XXX challenge","ACTIVE"
-"13","LP20198-5",329,"CHALLENGE","post 12H CFst","12 hours post CFst","ACTIVE"
-"14","LP20218-1",11,"CHALLENGE","post dialysis","post dialysis","ACTIVE"
-"15","LP20238-9",4,"CHALLENGE","post dose PO","post dose PO","ACTIVE"
-"16","LP20284-3",17,"CHALLENGE","8H post 1 mg dexamethasone PO overnight","8 hours post 1 mg dexamethasone PO overnight","ACTIVE"
-"17","LP20328-8",10658,"CHALLENGE","1H post 50 g glucose PO","1 hour post 50 g glucose PO","ACTIVE"
-"18","LP20329-6",3,"CHALLENGE","1H post 50 g lactose PO","1 hour post 50 g lactose PO","ACTIVE"
-"19","LP20334-6",3,"CHALLENGE","2H post 50 g lactose PO","2 hours post 50 g lactose PO","ACTIVE"
-"20","LP20335-3",880,"CHALLENGE","2H post 75 g glucose PO","2 hours post 75 g glucose PO","ACTIVE"
-"21","LP20336-1",38,"CHALLENGE","2H post meal","2 hours post meal","ACTIVE"
-"22","LP20339-5",3,"CHALLENGE","30M post 50 g lactose PO","30 minutes post 50 g lactose PO","ACTIVE"
-"23","LP20341-1",2580,"CHALLENGE","3H post 100 g glucose PO","3 hours post 100 g glucose PO","ACTIVE"
-"24","LP20355-1",12752,"CHALLENGE","post CFst","post CFst","ACTIVE"
-"25","LP20420-3",77,"CHALLENGE","immediately after addition of normal plasma","immediately after addition of normal plasma","ACTIVE"
-"26","LP20442-7",52,"CHALLENGE","post vasectomy","post vasectomy","ACTIVE"
-"27","LP20443-5",2639,"CHALLENGE","1H post XXX challenge","1 hour post XXX challenge","ACTIVE"
-"28","LP20444-3",2651,"CHALLENGE","2H post XXX challenge","2 hours post XXX challenge","ACTIVE"
-"29","LP20446-8",112,"CHALLENGE","2nd specimen post XXX challenge","2nd specimen post XXX challenge","ACTIVE"
-"30","LP20447-6",101,"CHALLENGE","3rd specimen post XXX challenge","3rd specimen post XXX challenge","ACTIVE"
-"31","LP20448-4",7,"CHALLENGE","4th specimen post XXX challenge","4th specimen post XXX challenge","ACTIVE"
-"32","LP20458-3",56,"CHALLENGE","30M post XXX challenge","30 minutes post XXX challenge","ACTIVE"
-"33","LP20507-7",10,"CHALLENGE","1.5H post XXX challenge","1.5 hours post XXX challenge","ACTIVE"
-"34","LP20520-0",3,"CHALLENGE","3H post 50 g lactose PO","3 hours post 50 g lactose PO","ACTIVE"
-"35","LP20609-1",4710,"CHALLENGE","2H post dose glucose","2 hours post dose glucose","ACTIVE"
-"36","LP20610-9",4549,"CHALLENGE","3H post dose glucose","3 hours post dose glucose","ACTIVE"
-"37","LP20611-7",20563,"CHALLENGE","1H post dose glucose","1 hour post dose glucose","ACTIVE"
-"38","LP20615-8",684,"CHALLENGE","1H post dose corticotropin","1 hour post dose corticotropin","ACTIVE"
-"39","LP20923-6",671,"CHALLENGE","30M post dose corticotropin","30 minutes post dose corticotropin","ACTIVE"
-"40","LP20931-9",29,"CHALLENGE","4H post dose glucose","4 hours post dose glucose","ACTIVE"
-"41","LP20932-7",40,"CHALLENGE","5H post dose glucose","5 hours post dose glucose","ACTIVE"
-"42","LP29307-3",2,"CHALLENGE","1H post incubation after addition of normal plasma","1 hour post incubation after addition of normal plasma","ACTIVE"
-"43","LP29556-5",105,"CHALLENGE","post dose urea","post dose urea","ACTIVE"
-"44","LP30879-8",58,"CHALLENGE","1500 ug/mL","1500 ug/mL","ACTIVE"
-"45","LP31581-9",4,"CHALLENGE","2H post dose","2 hours post dose","ACTIVE"
-"46","LP411053-4",1020,"CHALLENGE","post heparin neutralization","post heparin neutralization","ACTIVE"
-"47","LP70547-2",58,"CHALLENGE","20 umol/mL","20 umol/mL","ACTIVE"
-"48","LP70552-2",57,"CHALLENGE","500 ug/mL","500 ug/mL","ACTIVE"
-"49","LP71910-1",31,"CHALLENGE","at peak inspiratory flow max setting","at peak inspiratory flow max setting","ACTIVE"
-"50","LP71919-2",9840,"CHALLENGE","on ventilator","on ventilator","ACTIVE"
-"51","LP71920-0",118,"CHALLENGE","on ventilator.pressure targeted control","on ventilator.pressure targeted control","ACTIVE"
-"52","LP94462-6",3,"CHALLENGE","ante partum","ante partum","ACTIVE"
-"53","LP95058-1",58,"CHALLENGE","5 umol/L","5 umol/L","ACTIVE"
+,challenge,UNIQUE_EMPI_COUNT.sum,PartTypeName,PartName,PartDisplayName,Status
+10,LP20176-1,51734,CHALLENGE,trough,TDM Trough,ACTIVE
+37,LP20611-7,20563,CHALLENGE,1H post dose glucose,1 hour post dose glucose,ACTIVE
+6,LP186081-8,20295,CHALLENGE,4th tube,4th tube,ACTIVE
+24,LP20355-1,12752,CHALLENGE,post CFst,post CFst,ACTIVE
+17,LP20328-8,10658,CHALLENGE,1H post 50 g glucose PO,1 hour post 50 g glucose PO,ACTIVE
+50,LP71919-2,9840,CHALLENGE,on ventilator,on ventilator,ACTIVE
+9,LP20175-3,7330,CHALLENGE,peak,TDM Peak,ACTIVE
+11,LP20193-6,5981,CHALLENGE,baseline,baseline,ACTIVE
+35,LP20609-1,4710,CHALLENGE,2H post dose glucose,2 hours post dose glucose,ACTIVE
+36,LP20610-9,4549,CHALLENGE,3H post dose glucose,3 hours post dose glucose,ACTIVE
+28,LP20444-3,2651,CHALLENGE,2H post XXX challenge,2 hours post XXX challenge,ACTIVE
+27,LP20443-5,2639,CHALLENGE,1H post XXX challenge,1 hour post XXX challenge,ACTIVE
+23,LP20341-1,2580,CHALLENGE,3H post 100 g glucose PO,3 hours post 100 g glucose PO,ACTIVE
+5,LP156505-2,1379,CHALLENGE,AM peak specimen,AM peak specimen,ACTIVE
+46,LP411053-4,1020,CHALLENGE,post heparin neutralization,post heparin neutralization,ACTIVE
+20,LP20335-3,880,CHALLENGE,2H post 75 g glucose PO,2 hours post 75 g glucose PO,ACTIVE
+38,LP20615-8,684,CHALLENGE,1H post dose corticotropin,1 hour post dose corticotropin,ACTIVE
+39,LP20923-6,671,CHALLENGE,30M post dose corticotropin,30 minutes post dose corticotropin,ACTIVE
+1,LP129061-0,330,CHALLENGE,30M post maximum clot amplitude,30 minutes post maximum clot amplitude,ACTIVE
+13,LP20198-5,329,CHALLENGE,post 12H CFst,12 hours post CFst,ACTIVE
+51,LP71920-0,118,CHALLENGE,on ventilator.pressure targeted control,on ventilator.pressure targeted control,ACTIVE
+12,LP20194-4,113,CHALLENGE,1st specimen post XXX challenge,1st specimen post XXX challenge,ACTIVE
+29,LP20446-8,112,CHALLENGE,2nd specimen post XXX challenge,2nd specimen post XXX challenge,ACTIVE
+43,LP29556-5,105,CHALLENGE,post dose urea,post dose urea,ACTIVE
+30,LP20447-6,101,CHALLENGE,3rd specimen post XXX challenge,3rd specimen post XXX challenge,ACTIVE
+25,LP20420-3,77,CHALLENGE,immediately after addition of normal plasma,immediately after addition of normal plasma,ACTIVE
+44,LP30879-8,58,CHALLENGE,1500 ug/mL,1500 ug/mL,ACTIVE
+47,LP70547-2,58,CHALLENGE,20 umol/mL,20 umol/mL,ACTIVE
+53,LP95058-1,58,CHALLENGE,5 umol/L,5 umol/L,ACTIVE
+48,LP70552-2,57,CHALLENGE,500 ug/mL,500 ug/mL,ACTIVE
+32,LP20458-3,56,CHALLENGE,30M post XXX challenge,30 minutes post XXX challenge,ACTIVE
+26,LP20442-7,52,CHALLENGE,post vasectomy,post vasectomy,ACTIVE
+41,LP20932-7,40,CHALLENGE,5H post dose glucose,5 hours post dose glucose,ACTIVE
+21,LP20336-1,38,CHALLENGE,2H post meal,2 hours post meal,ACTIVE
+49,LP71910-1,31,CHALLENGE,at peak inspiratory flow max setting,at peak inspiratory flow max setting,ACTIVE
+40,LP20931-9,29,CHALLENGE,4H post dose glucose,4 hours post dose glucose,ACTIVE
+4,LP156504-5,22,CHALLENGE,PM trough specimen,PM trough specimen,ACTIVE
+7,LP192129-7,18,CHALLENGE,dibucaine/Cholinesterase,dibucaine/Cholinesterase,ACTIVE
+8,LP20165-4,17,CHALLENGE,2nd specimen,2nd specimen,ACTIVE
+16,LP20284-3,17,CHALLENGE,8H post 1 mg dexamethasone PO overnight,8 hours post 1 mg dexamethasone PO overnight,ACTIVE
+14,LP20218-1,11,CHALLENGE,post dialysis,post dialysis,ACTIVE
+33,LP20507-7,10,CHALLENGE,1.5H post XXX challenge,1.5 hours post XXX challenge,ACTIVE
+31,LP20448-4,7,CHALLENGE,4th specimen post XXX challenge,4th specimen post XXX challenge,ACTIVE
+15,LP20238-9,4,CHALLENGE,post dose PO,post dose PO,ACTIVE
+45,LP31581-9,4,CHALLENGE,2H post dose,2 hours post dose,ACTIVE
+18,LP20329-6,3,CHALLENGE,1H post 50 g lactose PO,1 hour post 50 g lactose PO,ACTIVE
+19,LP20334-6,3,CHALLENGE,2H post 50 g lactose PO,2 hours post 50 g lactose PO,ACTIVE
+22,LP20339-5,3,CHALLENGE,30M post 50 g lactose PO,30 minutes post 50 g lactose PO,ACTIVE
+34,LP20520-0,3,CHALLENGE,3H post 50 g lactose PO,3 hours post 50 g lactose PO,ACTIVE
+52,LP94462-6,3,CHALLENGE,ante partum,ante partum,ACTIVE
+2,LP140231-4,2,CHALLENGE,premenopausal,premenopausal,ACTIVE
+3,LP140232-2,2,CHALLENGE,postmenopausal,postmenopausal,ACTIVE
+42,LP29307-3,2,CHALLENGE,1H post incubation after addition of normal plasma,1 hour post incubation after addition of normal plasma,ACTIVE
