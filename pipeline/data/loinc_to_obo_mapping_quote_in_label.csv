@@ -1,0 +1,4 @@
+PartNumber,PartDisplayName,label.axiom,pure.obo,single.term,iris,PartTypeName,Status,note,o
+LP15327-7,Adenosine monophosphate.cyclic,"'3',5'-cyclic AMP'",TRUE,TRUE,http://purl.obolibrary.org/obo/CHEBI_17489,COMPONENT,ACTIVE,NA,"3',5'-cyclic AMP"
+LP15305-3,5'-Nucleotidase,'5'-nucleotidase',TRUE,TRUE,http://purl.obolibrary.org/obo/PR_000001800,COMPONENT,ACTIVE,NA,5'-nucleotidase
+LP15922-5,Triiodothyronine,"'3,3',5-triiodo-L-thyronine'",TRUE,TRUE,http://purl.obolibrary.org/obo/CHEBI_18258,COMPONENT,ACTIVE,NA,"3,3',5-triiodo-L-thyronine"
