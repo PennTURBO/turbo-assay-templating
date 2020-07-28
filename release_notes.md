@@ -1,6 +1,7 @@
 ## 2020-07-28, unversioned
 
 - Only ~ 400 rows, due to removal of all TURBO terms for any part
+    - TURBO terms that would need to be imported into an OBO ontology like OBI can be found by viewing pipeline/data/loinc_to_obo_mapping_reviewed.csv, filtering on `pure.obo == FALSE`
 - Free from mentions of non-OBO authorities 
 
 # TODO
