@@ -10,25 +10,26 @@ library(tidyverse)
 
 source("turbo_assay_template_generation_functions.R")
 
-# clarify requirement for LOINC folder in location XXX
+# clarify requirement for Loinc_2 folder in location pipeline/data
 
-# # monitor
+# keep monitoring these for "lost assays"
 # ehr.bad.loincs
 # ehr.na.loincs
 
 # deal with multi-gene assays
-# gene.check
+# see gene.check
 
 # assays that are dropped because they include a numerator or a normalization
 
-# ehr results or loincs with too few unique EMPIs
+# LOINC codes whose usage in the EHR is less than teh threshold
 # we're not currently counting unique EMPIS per LOINC
 
-# parts that are silently (?) dropped or less-annotated because they have multiple paths to root
+# parts that are silently (?) dropped or less-annotated because they have multiple paths to root?
 
 ####
 
 # looks like some of the mapping work isn't going in a usefully sorted order
+
 # could do cosine or jaccard between query and ols label, synonyms and truncatees all concatenated together
 
 # expect 'reviewed part frame' from staged.loinc.mapping to be empty unless passed as an argument
@@ -67,7 +68,7 @@ source("turbo_assay_template_generation_functions.R")
 # set that up outside of this script
 
 repeat.ehr.loinc.query <- FALSE
-min.empis <- 2
+# min.empis <- 2
 min.results <- 20
 
 id.prefix <- "turbo:TURBO_"
@@ -104,10 +105,7 @@ where
 bind(str(?prel) as ?o)
 filter(isiri(?s))
 }"
-  
-  # Class: molecular entity
-  # Term IRI: http://purl.obolibrary.org/obo/CHEBI_23367
-  
+
   turbo.molent.query <- "
   select
   *
@@ -240,9 +238,11 @@ GROUP BY
     # dbDisconnect(ehr.connection)
     save(ehr.reference.labs.result, file = ehr_reference_labs_result_fn)
   } else {
+    # # deprecated?
     load(ehr_reference_labs_result_fn)
+    
     # save filename in a config file
-    # there's no SQL statements to regenrrate this in the script yet
+    # there's no SQL statements to regenerate this in the script yet
     ehr_loinc_utilizastion <-
       read_csv("data/ehr_loinc_utilizastion.csv")
   }
@@ -316,16 +316,13 @@ GROUP BY
   # some PartTypeNames are associated with more than one Property
   
   # skip category... almost guaranteed many to many
-  # some columns may be redundant... check jaccards
-  # do names and codes???
+  # some columns may be redundant... check jaccards?
   
   gene.check <-
     unique(LoincPartLink[LoincPartLink$Property == "http://loinc.org/property/analyte-gene" , c("LoincNumber", "PartName")])
   gene.check <- make.table.frame(gene.check$LoincNumber)
   gene.check <- gene.check$value[gene.check$count > 1]
-  
-  # (!(LoincPartLink %in% gene.check)) &
-  
+
   accepted.assays <- setdiff(LoincPartLink$LoincNumber, gene.check)
   accepted.properties <-
     setdiff(lpl.wide$Property, excluded.Properties)
@@ -339,6 +336,9 @@ GROUP BY
                      values.from = 'PartNumber',
                      to.strip = "http://loinc.org/property/")
   
+  # not really using this any more
+  # had been concerned that some columns were very similar but not identical, so not suitabel for deleting
+  # like TIME and time.core
   codes.jaccard.calcs <- do.jaccard.calcs(max.one.gene.wide, 2)
   
   # ehr.reference.labs.result.min.empi.count <-
@@ -461,11 +461,15 @@ GROUP BY
     colnames(max.one.gene.wide)[(!(dot.base.cols))]
   max.one.gene.wide <- max.one.gene.wide[, not.dot.base.cols]
   
+  # may not really need this any more... similar constrains are applied by the merges below
   common.constrained.assays <-
     get.common.constrained.assays()
   
   ####
   
+  # TURBO labels aren't really being used for anything any more
+  # they had been handy for checking whether the OBO terms necessary for the assays had been imported into the TURBO ontology
+  # but many of the OBO targets of LOINC term mappings are complex class expression now
   
   ont.tf <- tempfile()
   download.file(turbo.url, ont.tf)
@@ -499,8 +503,6 @@ GROUP BY
   
   turbo.labels <-
     turbo.labels[turbo.labels$s %in% check.turbo.labels ,]
-  
-  
   
   ####
   
@@ -595,10 +597,9 @@ GROUP BY
   
   next.merge$robot.03.curation.status <- all.blanks
   
-  # skip alternative term except for private user, or with apporval by loinc (in which case, use their display label)
+  # skip alternative term except for use by a private user, or with approval by loinc (in which case, use their display label)
   
   next.merge$robot.04.alt.term <- all.blanks
-  
   
   next.merge$robot.06.def.source <- all.blanks
   
@@ -617,7 +618,7 @@ GROUP BY
   
   next.merge$robot.13.local.note <- all.blanks
   
-  # 'assay of specimen from organism' is still a TRUBO term
+  # 'assay of specimen from organism' is still a TURBO term
   next.merge$robot.14.parent.class <- 'assay'
   
   next.merge$robot.15.mat.proc <- all.blanks
@@ -641,7 +642,6 @@ GROUP BY
   
   next.merge$robot.23.output <- next.merge$label.axiom.PROPERTY
   
-  # add suffix handling ie IgM with disposition to bind
   next.merge$robot.24.target.ent <-
     next.merge$label.axiom.analyte.core
   
@@ -652,14 +652,14 @@ GROUP BY
   # with approval, or for private use, LOINC codes will go here
   next.merge$robot.27.dbxr <- all.blanks
   
+  # there will different patterns for other suffixes, like RNA, DNA and Ag
   next.merge$robot.24.target.ent[!is.na(next.merge$analyte.suffix)] <-
     paste0(
       next.merge$label.axiom[!is.na(next.merge$analyte.suffix)],
       " and 'has disposition to bind' some ",
-      robot.with.suffix.frame$robot.24.target.ent[!is.na(next.merge$analyte.suffix)]
+      next.merge$robot.24.target.ent[!is.na(next.merge$analyte.suffix)]
     )
   
-  # still need to compose LABEL
   next.merge$robot.02.label <-
     paste0(
       "Quantitiative assay for ",
@@ -674,7 +674,6 @@ GROUP BY
   label.redundancy <- make.table.frame(next.merge$robot.02.label)
   next.merge$label.redundancy <- label.redundancy$count
   
-  # still need to compose DEFINITON)
   next.merge$robot.05.definition <-
     paste0(
       "An assay for ",
@@ -694,7 +693,7 @@ GROUP BY
   
   write.table(
     robot.frame,
-    file = 'turbo_assay_template_headerless.csv',
+    file = 'build/turbo_assay_template_headerless.csv',
     row.names = FALSE,
     col.names = FALSE,
     sep = ','
