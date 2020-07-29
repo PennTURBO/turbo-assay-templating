@@ -1,4 +1,4 @@
-## 2020-07-28, unversioned
+## v2020-07-28 pre-release
 
 - Only ~ 400 rows, due to removal of all TURBO terms for any part
     - using the very generic parent class 'assay', as 'assay of specimen from organism' is still just a TURBO term
