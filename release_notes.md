@@ -57,7 +57,9 @@ The following classes were also found to be unsatisfiable and were removed
 [assay of specimen from organism](http://transformunify.org/ontologies/TURBO_0022089)
 
 
-LOINC 94563-4, 'SARS-CoV-2 (COVID-19) IgG Ab [Presence] in Serum or Plasma by Immunoassay' was not modelled. All assays with methods or challenges had been excluded.
+# LOINC 94563-4, 'SARS-CoV-2 (COVID-19) IgG Ab [Presence] in Serum or Plasma by Immunoassay' was not modelled. 
+
+All assays with *methods* or challenges had been excluded and the PrThr property has not been modelled yet, even **in** TURBO.
 
 
 
