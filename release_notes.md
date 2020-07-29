@@ -1,6 +1,7 @@
 ## 2020-07-28, unversioned
 
 - Only ~ 400 rows, due to removal of all TURBO terms for any part
+    - using the very generic parent class 'assay', as 'assay of specimen from organism' is still just a TURBO term
     - TURBO terms that would need to be imported into an OBO ontology like OBI can be found by viewing pipeline/data/loinc_to_obo_mapping_reviewed.csv, filtering on `pure.obo == FALSE`
 - Free from mentions of non-OBO authorities 
 
@@ -11,6 +12,8 @@
   - assay template generating code including execute_robot.sh (repo tag)
   - turbo assay turtle file... version IRI from annotations file?
 - improve readability of labels and definitions
+- the LOINC component part has been monolithically instantiated as a target entity. Checking if it is a molecular entity or atom after the fact will allow moving the OBO version of the component into the analyte column in the template
+- still using TURBO IRIs... look for an acceptable range in the OBI namespace
 
 # Additional Challenges
 
@@ -25,7 +28,6 @@
 # The TURBO ontology with OBO imports was found inconsistent by Hermit
 
 Solved by removing several terms about birth
-
 
 
 - [DOB about day of birth](http://transformunify.org/ontologies/TURBO_0010198)
@@ -48,15 +50,12 @@ Solved by removing several terms about birth
 - http://transformunify.org/ontologies/TURBO_0010213)
 
 
-
 The following classes were also found to be unsatisfiable and were removed
-
 
 
 [conclusionation frequency threshold value specification](http://transformunify.org/ontologies/TURBO_0001541)
 
 [assay of specimen from organism](http://transformunify.org/ontologies/TURBO_0022089)
-
 
 
 LOINC 94563-4, 'SARS-CoV-2 (COVID-19) IgG Ab [Presence] in Serum or Plasma by Immunoassay' was not modelled. All assays with methods or challenges had been excluded.
@@ -72,3 +71,4 @@ LOINC 94563-4, 'SARS-CoV-2 (COVID-19) IgG Ab [Presence] in Serum or Plasma by Im
 | LP7751-3       | Ord                       | SCALE            | http://loinc.org/property/SCALE_TYP    |
 | LP7576-4       | Ser/Plas                  | SYSTEM           | http://loinc.org/property/SYSTEM       |
 | LP6960-1       | Pt                        | TIME             | http://loinc.org/property/TIME_ASPCT   |
+
