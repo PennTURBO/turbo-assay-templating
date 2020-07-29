@@ -9,7 +9,6 @@
 
 - add versioning to 
   - **upstream** TURBO ontology artifact (version IRI) and python script (repo tag)
-  - assay template generating code including execute_robot.sh (repo tag)
   - turbo assay turtle file... version IRI from annotations file?
 - improve readability of labels and definitions
 - the LOINC component part has been monolithically instantiated as a target entity. Checking if it is a molecular entity or atom after the fact will allow moving the OBO version of the component into the analyte column in the template
