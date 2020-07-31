@@ -1,4 +1,4 @@
-## 2020-07-28, unversioned
+## v2020-07-28 pre-release
 
 - Only ~ 400 rows, due to removal of all TURBO terms for any part
     - using the very generic parent class 'assay', as 'assay of specimen from organism' is still just a TURBO term
@@ -9,7 +9,6 @@
 
 - add versioning to 
   - **upstream** TURBO ontology artifact (version IRI) and python script (repo tag)
-  - assay template generating code including execute_robot.sh (repo tag)
   - turbo assay turtle file... version IRI from annotations file?
 - improve readability of labels and definitions
 - the LOINC component part has been monolithically instantiated as a target entity. Checking if it is a molecular entity or atom after the fact will allow moving the OBO version of the component into the analyte column in the template
@@ -58,7 +57,9 @@ The following classes were also found to be unsatisfiable and were removed
 [assay of specimen from organism](http://transformunify.org/ontologies/TURBO_0022089)
 
 
-LOINC 94563-4, 'SARS-CoV-2 (COVID-19) IgG Ab [Presence] in Serum or Plasma by Immunoassay' was not modelled. All assays with methods or challenges had been excluded.
+# LOINC 94563-4, 'SARS-CoV-2 (COVID-19) IgG Ab [Presence] in Serum or Plasma by Immunoassay' was not modelled. 
+
+All assays with *methods* or challenges had been excluded and the PrThr property has not been modelled yet, even **in** TURBO.
 
 
 
