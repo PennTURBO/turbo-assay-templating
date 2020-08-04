@@ -2,3 +2,4 @@ loinc_in_obo.yaml
 **/*yaml
 **/*Rdata
 **/Loinc_2
+.DS_Store
