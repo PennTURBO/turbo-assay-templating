@@ -1,36 +1,43 @@
 library(devtools)
 
+# todo: move this gist into the PennTURBO organization
+
 # requires a properly formatted "turbo_R_setup.yaml" in the home directory of the user who started this script
 # see https://gist.github.com/turbomam/a3915d00ee55d07510493a9944f96696 for template
 source_gist(id = "https://gist.github.com/turbomam/f082295aafb95e71d109d15ca4535e46",
             sha1 = "dbc656aaf63b23dfdd35d875f6772e7c468170a4",
             filename = "turbo_R_setup.R")
 
-library(tidyverse)
+# library(tidyverse)
+library(tidyr)
+library(tibble)
 
 source("turbo_assay_template_generation_functions.R")
 
 # clarify requirement for Loinc_2 folder in location pipeline/data
 
+####
+
 # keep monitoring these for "lost assays"
-# ehr.bad.loincs
-# ehr.na.loincs
+#   ehr.bad.loincs
+#   ehr.na.loincs
 
-# deal with multi-gene assays
-# see gene.check
+#   deal with multi-gene assays
+#   see gene.check
 
-# assays that are dropped because they include a numerator or a normalization
+#   assays that are dropped because they include a numerator or a normalization
 
-# LOINC codes whose usage in the EHR is less than teh threshold
-# we're not currently counting unique EMPIS per LOINC
+#   LOINC codes whose usage in the EHR is less than the threshold
+#     we're not currently counting unique EMPIS per LOINC
 
-# parts that are silently (?) dropped or less-annotated because they have multiple paths to root?
+#   parts that are silently (?) dropped or less-annotated because they have multiple paths to root?
 
 ####
 
-# looks like some of the mapping work isn't going in a usefully sorted order
+# make sure remote mapping requests are being submitted in a usefully sorted order
 
-# could do cosine or jaccard between query and ols label, synonyms and truncatees all concatenated together
+# for picking best OLS search result: 
+#   could calculate  cosine or jaccard between query and ols label, synonyms and truncatees, all concatenated together
 
 # expect 'reviewed part frame' from staged.loinc.mapping to be empty unless passed as an argument
 # but start collecting mappings for all parts into one file
@@ -68,7 +75,7 @@ source("turbo_assay_template_generation_functions.R")
 # set that up outside of this script
 
 repeat.ehr.loinc.query <- FALSE
-# min.empis <- 2
+
 min.results <- 20
 
 id.prefix <- "turbo:TURBO_"
@@ -105,7 +112,7 @@ where
 bind(str(?prel) as ?o)
 filter(isiri(?s))
 }"
-
+  
   turbo.molent.query <- "
   select
   *
@@ -239,7 +246,7 @@ GROUP BY
     save(ehr.reference.labs.result, file = ehr_reference_labs_result_fn)
   } else {
     # # deprecated?
-    load(ehr_reference_labs_result_fn)
+    # load(ehr_reference_labs_result_fn)
     
     # save filename in a config file
     # there's no SQL statements to regenerate this in the script yet
@@ -247,21 +254,24 @@ GROUP BY
       read_csv("data/ehr_loinc_utilizastion.csv")
   }
   
-  temp <- make.table.frame(ehr_loinc_utilizastion$RESULT_COUNT)
-  temp$value <- as.numeric(temp$value)
-  temp$count <- as.numeric(temp$count)
+  loinc.utilization <-
+    make.table.frame(ehr_loinc_utilizastion$RESULT_COUNT)
+  names(loinc.utilization) <-
+    c("loinc.utilization", "number.of.loincs")
+  loinc.utilization$loinc.utilization <-
+    as.numeric(loinc.utilization$loinc.utilization)
+  loinc.utilization$number.of.loincs <-
+    as.numeric(loinc.utilization$number.of.loincs)
   
   ####
   
+  # ehr.na.loincs <-
+  #   ehr.reference.labs.result[is.na(ehr.reference.labs.result$LOINC) ,]
+  
   # some of these may have new/replacement codes
   ehr.bad.loincs <-
-    ehr.reference.labs.result[(!(is.na(ehr.reference.labs.result$LOINC))) &
-                                (!(
-                                  ehr.reference.labs.result$LOINC %in% LoincPartLink$LoincNumber
-                                )) , ]
-  
-  ehr.na.loincs <-
-    ehr.reference.labs.result[is.na(ehr.reference.labs.result$LOINC) , ]
+    ehr_loinc_utilizastion[(!(is.na(ehr_loinc_utilizastion$LOINC))) &
+                             (!(ehr_loinc_utilizastion$LOINC %in% LoincPartLink$LoincNumber)) ,]
   
   # ####
   
@@ -322,7 +332,7 @@ GROUP BY
     unique(LoincPartLink[LoincPartLink$Property == "http://loinc.org/property/analyte-gene" , c("LoincNumber", "PartName")])
   gene.check <- make.table.frame(gene.check$LoincNumber)
   gene.check <- gene.check$value[gene.check$count > 1]
-
+  
   accepted.assays <- setdiff(LoincPartLink$LoincNumber, gene.check)
   accepted.properties <-
     setdiff(lpl.wide$Property, excluded.Properties)
@@ -340,21 +350,6 @@ GROUP BY
   # had been concerned that some columns were very similar but not identical, so not suitabel for deleting
   # like TIME and time.core
   codes.jaccard.calcs <- do.jaccard.calcs(max.one.gene.wide, 2)
-  
-  # ehr.reference.labs.result.min.empi.count <-
-  #   ehr.reference.labs.result[(!(is.na(ehr.reference.labs.result$LOINC))), c("LOINC", "UNIQUE_EMPI_COUNT")]
-  # ehr.reference.labs.result.min.empi.count <-
-  #   aggregate(
-  #     ehr.reference.labs.result.min.empi.count$UNIQUE_EMPI_COUNT,
-  #     by = list(ehr.reference.labs.result.min.empi.count$LOINC),
-  #     FUN = max
-  #   )
-  #
-  # colnames(ehr.reference.labs.result.min.empi.count) <-
-  #   c("LOINC", "UNIQUE_EMPI_COUNT")
-  #
-  # ehr.reference.labs.result.min.empi.count <-
-  #   ehr.reference.labs.result.min.empi.count[ehr.reference.labs.result.min.empi.count$UNIQUE_EMPI_COUNT >= min.empis ,]
   
   Loinc.min <-
     Loinc[Loinc$LOINC_NUM %in% max.one.gene.wide$LoincNumber, c(
@@ -433,21 +428,8 @@ GROUP BY
   
   ####    ####    ####    ####
   
-  # max.one.gene.wide <-
-  #   inner_join(x = max.one.gene.wide,
-  #              y = ehr.reference.labs.result.min.empi.count,
-  #              by = c("LoincNumber" = "LOINC"))
-  
   commonly.ordered.loinc.codes <-
     ehr_loinc_utilizastion[ehr_loinc_utilizastion$RESULT_COUNT > min.results ,]
-  
-  # max.one.gene.wide <-
-  #   inner_join(x = max.one.gene.wide,
-  #              y = ehr.reference.labs.result.min.empi.count,
-  #              by = c("LoincNumber" = "LOINC"))
-  
-  # max.one.gene.wide <-
-  #   max.one.gene.wide[max.one.gene.wide$LoincNumber %in% commonly.ordered.loinc.codes ,]
   
   max.one.gene.wide <-
     inner_join(x = max.one.gene.wide,
@@ -470,6 +452,9 @@ GROUP BY
   # TURBO labels aren't really being used for anything any more
   # they had been handy for checking whether the OBO terms necessary for the assays had been imported into the TURBO ontology
   # but many of the OBO targets of LOINC term mappings are complex class expression now
+  
+  # now leaning towards checking for eligible analytes externally to this R script
+  #  SAPRQL query via ROBOT?
   
   ont.tf <- tempfile()
   download.file(turbo.url, ont.tf)
@@ -511,7 +496,7 @@ GROUP BY
   
   mergable <-
     loinc_to_obo_mapping_reviewed[loinc_to_obo_mapping_reviewed$pure.obo, c("PartNumber",
-                                                                            "label.axiom")]
+                                                                            "label.axiom", "text.for.label")]
   
   ####
   
@@ -526,11 +511,9 @@ GROUP BY
   
   # throwaway ensuring that next merges get helpful suffixes
   next.merge <-
-    inner_join(
-      x = next.merge,
-      y = mergable,
-      by = c("analyte.core" = "PartNumber")
-    )
+    inner_join(x = next.merge,
+               y = mergable,
+               by = c("analyte.core" = "PartNumber"))
   
   # for component
   next.merge <-
@@ -612,7 +595,7 @@ GROUP BY
   
   next.merge$robot.10.requestor <- all.blanks
   
-  next.merge$robot.11.issue.tracker.id <- "ghi:1153"
+  next.merge$robot.11.issue.tracker.id <- "https://github.com/obi-ontology/obi/issues/1153"
   
   next.merge$robot.12.logical.type <- "subclass"
   
@@ -660,16 +643,26 @@ GROUP BY
       next.merge$robot.24.target.ent[!is.na(next.merge$analyte.suffix)]
     )
   
+  tidy.targent <- next.merge$text.for.label.analyte.core
+  
+  tidy.targent[!is.na(next.merge$analyte.suffix)] <-
+    paste0(next.merge$text.for.label[!is.na(next.merge$analyte.suffix)],
+           " against ",
+           tidy.targent[!is.na(next.merge$analyte.suffix)])
+  
+  
+  tidy.evaluant <- next.merge$text.for.label.SYSTEM
+  
+  tidy.units <- next.merge$text.for.label.PROPERTY
+  
   next.merge$robot.02.label <-
-    paste0(
-      "Quantitiative assay for ",
-      next.merge$robot.24.target.ent,
-      " in ",
-      next.merge$robot.17.evaluant,
-      " [",
-      next.merge$robot.23.output,
-      "]"
-    )
+    paste0("Assay for ",
+           tidy.targent,
+           " in ",
+           tidy.evaluant,
+           " [",
+           tidy.units,
+           "]")
   
   label.redundancy <- make.table.frame(next.merge$robot.02.label)
   next.merge$label.redundancy <- label.redundancy$count
@@ -677,12 +670,12 @@ GROUP BY
   next.merge$robot.05.definition <-
     paste0(
       "An assay for ",
-      next.merge$robot.24.target.ent,
+      tidy.targent,
       " in ",
-      next.merge$robot.17.evaluant,
-      " that generates a ",
-      next.merge$robot.23.output,
-      " on a quantitative scale"
+      tidy.evaluant,
+      " that generates a scalar datum with ",
+      tidy.units,
+      " units"
     )
   
   robot.cols <- grepl(pattern = "robot", x = colnames(next.merge))
@@ -691,6 +684,9 @@ GROUP BY
   robot.frame <-
     next.merge[next.merge$label.redundancy == 1 , robot.cols]
   
+  unofficial.dbxr <-
+    next.merge[, c("LoincNumber", "robot.01.term.id")]
+  
   write.table(
     robot.frame,
     file = 'build/turbo_assay_template_headerless.csv',
@@ -698,4 +694,16 @@ GROUP BY
     col.names = FALSE,
     sep = ','
   )
+  
+  write.table(
+    unofficial.dbxr,
+    file = 'build/unofficial_dbxr.csv',
+    row.names = FALSE,
+    col.names = FALSE,
+    sep = ','
+  )
+  
+  save.image('build/turbo_assays_latest_image.Rdata')
+  
+  head(next.merge[,c("LoincNumber","robot.01.term.id")])
   
