@@ -977,8 +977,8 @@ LP6464-4,Nucleic acid amplification with probe detection,NA,,NA,NA,NA,METHOD,ACT
 LP64671-8,Natalizumab,'natalizumab',natalizumab,TRUE,TRUE,http://purl.obolibrary.org/obo/DRON_00018759,COMPONENT,ACTIVE,NA,natalizumab
 LP6503-9,Toxicology screen,NA,,NA,NA,NA,METHOD,ACTIVE,NA,NA
 LP65523-0,Everolimus,'everolimus',everolimus,TRUE,TRUE,http://purl.obolibrary.org/obo/CHEBI_68478,COMPONENT,ACTIVE,NA,everolimus
-LP6789-4,Catalytic Concentration,scalar measurement datum' and ('has measurement unit label' some 'catalytic (activity) concentration unit'),catalytic (activity) concentration,TRUE,FALSE,http://purl.obolibrary.org/obo/UO_0000202,PROPERTY,ACTIVE,NA,catalytic (activity) concentration unit
-LP6827-2,Mass Concentration,scalar measurement datum' and ('has measurement unit label' some 'mass per unit volume'),mass per unit volume concentration,TRUE,FALSE,http://purl.obolibrary.org/obo/UO_0000180,PROPERTY,ACTIVE,NA,NA
+LP6789-4,Catalytic Concentration,'scalar measurement datum' and ('has measurement unit label' some 'catalytic (activity) concentration unit'),catalytic (activity) concentration,TRUE,FALSE,http://purl.obolibrary.org/obo/UO_0000202,PROPERTY,ACTIVE,NA,catalytic (activity) concentration unit
+LP6827-2,Mass Concentration,'scalar measurement datum' and ('has measurement unit label' some 'mass per unit volume'),mass per unit volume concentration,TRUE,FALSE,http://purl.obolibrary.org/obo/UO_0000180,PROPERTY,ACTIVE,NA,NA
 LP6828-0,Mass Content,'mass measurement datum',mass,TRUE,TRUE,http://purl.obolibrary.org/obo/IAO_0000414,PROPERTY,ACTIVE,NA,mass measurement datum
 LP6838-9,Number Fraction,'scalar measurement datum' and ('has measurement unit label' some 'percent'),percent,TRUE,FALSE,http://purl.obolibrary.org/obo/UO_0000187,PROPERTY,ACTIVE,NA,percent
 LP6843-9,Osmolality,'scalar measurement datum' and ('is about' some 'osmolality'),osmolarity,TRUE,FALSE,http://purl.obolibrary.org/obo/PATO_0002027,PROPERTY,ACTIVE,NA,osmolality
