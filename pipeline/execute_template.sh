@@ -26,3 +26,16 @@ annotate \
 --annotation-file config/turbo_assay_annotations.ttl \
 --output build/turbo_assays.ttl 
 
+# modify this query so that it generates a single class expression about anaytes and inputs
+robot \
+query \
+  --format ttl \
+  --input build/turbo_assays.ttl \
+  --query config/assert_analyte_roles.rq build/turbo_assay_analyte_assertions.ttl
+
+robot \
+merge \
+  --input build/turbo_assays.ttl \
+  --input config/turbo_assay_post_execution_additions.ttl \
+  --input build/turbo_assay_analyte_assertions.ttl \
+  --output build/turbo_assays.ttl
