@@ -1,0 +1,10 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://purl.obolibrary.org/obo/UO_0000180> rdfs:label 'mass per unit volume' ;
+    rdfs:subClassOf <http://purl.obolibrary.org/obo/UO_0000051> .
+
+<http://purl.obolibrary.org/obo/OBI_0000275> rdfs:label "analyte role" ;
+    rdfs:subClassOf <http://purl.obolibrary.org/obo/OBI_0002444> .
+
+<http://purl.obolibrary.org/obo/OBI_0002444> rdfs:label "measurand role" ;
+    rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000023> .
