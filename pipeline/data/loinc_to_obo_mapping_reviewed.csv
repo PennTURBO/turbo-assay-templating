@@ -47,7 +47,7 @@ LP16018-1,Acetazolamide,'acetazolamide',acetazolamide,TRUE,TRUE,http://purl.obol
 LP15312-9,Acetoacetate,'acetoacetate',acetoacetate,TRUE,TRUE,http://purl.obolibrary.org/obo/CHEBI_13705,COMPONENT,ACTIVE,NA,acetoacetate
 LP17249-1,Acetohexamide,'acetohexamide',acetohexamide,TRUE,TRUE,http://purl.obolibrary.org/obo/CHEBI_28052,COMPONENT,ACTIVE,NA,acetohexamide
 LP16798-8,Acetone,'acetone',acetone,TRUE,TRUE,http://purl.obolibrary.org/obo/CHEBI_15347,COMPONENT,ACTIVE,NA,acetone
-LP15019-0,Acetylcholine receptor binding,'acetylcholine receptor binding',acetylcholine receptor binding,TRUE,TRUE,http://purl.obolibrary.org/obo/GO_0033130,COMPONENT,ACTIVE,NA,acetylcholine receptor binding
+LP15019-0,Acetylcholine receptor binding,,,,,,COMPONENT,ACTIVE,NA,acetylcholine receptor binding
 LP15315-2,Acetylcholinesterase,'acetylcholinesterase',acetylcholinesterase,TRUE,TRUE,http://purl.obolibrary.org/obo/PR_000003626,COMPONENT,ACTIVE,NA,acetylcholinesterase
 LP14522-4,Acyclovir,'acyclovir',acyclovir,TRUE,TRUE,http://purl.obolibrary.org/obo/CHEBI_2453,COMPONENT,ACTIVE,NA,acyclovir
 LP173592-9,Adalimumab,'adalimumab',adalimumab,TRUE,TRUE,http://purl.obolibrary.org/obo/DRON_00018971,COMPONENT,ACTIVE,NA,adalimumab
@@ -324,8 +324,8 @@ LP33078-4,Docosahexaenoate (C22:6w3),'docosahexaenoate',docosahexaenoate,TRUE,TR
 LP33086-7,Docosatetraenoate (C22:4w6),'docosatetraenoate',docosatetraenoate,TRUE,TRUE,http://purl.obolibrary.org/obo/CHEBI_78069,COMPONENT,ACTIVE,NA,docosatetraenoate
 LP33068-5,Docosenoate (C22:1),'docosenoate',docosenoate,TRUE,TRUE,http://purl.obolibrary.org/obo/CHEBI_78076,COMPONENT,ACTIVE,NA,docosenoate
 LP33058-6,Laurate (C12:0),'dodecanoate',dodecanoate,TRUE,TRUE,http://purl.obolibrary.org/obo/CHEBI_18262,COMPONENT,ACTIVE,NA,dodecanoate
-LP17100-6,Yellow Hornet (Dolichovespula arenaria),'Dolichovespula arenaria',Dolichovespula arenaria,TRUE,TRUE,http://purl.obolibrary.org/obo/NCBITaxon_7442,COMPONENT,ACTIVE,NA,Dolichovespula arenaria
-LP17094-1,Whitefaced Hornet (Dolichovespula maculata),'Dolichovespula maculata',Dolichovespula maculata,TRUE,TRUE,http://purl.obolibrary.org/obo/NCBITaxon_7441,COMPONENT,ACTIVE,NA,Dolichovespula maculata
+LP17100-6,Yellow Hornet (Dolichovespula arenaria),'molecular entity' and ('derives from' some ('part of' some 'Dolichovespula arenaria')),molecular entity from Dolichovespula arenaria,TRUE,TRUE,http://purl.obolibrary.org/obo/NCBITaxon_7442,COMPONENT,ACTIVE,NA,Dolichovespula arenaria
+LP17094-1,Whitefaced Hornet (Dolichovespula maculata),'molecular entity' and ('derives from' some ('part of' some 'Dolichovespula maculata')),molecular entity from Dolichovespula maculata,TRUE,TRUE,http://purl.obolibrary.org/obo/NCBITaxon_7441,COMPONENT,ACTIVE,NA,Dolichovespula maculata
 LP15543-9,DOPamine,'dopamine',dopamine,TRUE,TRUE,http://purl.obolibrary.org/obo/CHEBI_18243,COMPONENT,ACTIVE,NA,dopamine
 LP14717-0,Doxepin,'doxepin',doxepin,TRUE,TRUE,http://purl.obolibrary.org/obo/CHEBI_4710,COMPONENT,ACTIVE,NA,doxepin
 LP14992-9,Doxycycline,'doxycycline',doxycycline,TRUE,TRUE,http://purl.obolibrary.org/obo/CHEBI_50845,COMPONENT,ACTIVE,NA,doxycycline
@@ -745,7 +745,7 @@ LP19757-1,PMP22 gene,'PMP22',PMP22,TRUE,TRUE,http://purl.obolibrary.org/obo/OGG_
 LP17137-8,Pneumocystis jiroveci,'Pneumocystis jirovecii',Pneumocystis jirovecii,TRUE,TRUE,http://purl.obolibrary.org/obo/NCBITaxon_42068,COMPONENT,ACTIVE,NA,Pneumocystis jirovecii
 LP17431-5,Kentucky blue grass (Poa pratensis),'Poa pratensis',Poa pratensis,TRUE,TRUE,http://purl.obolibrary.org/obo/NCBITaxon_4545,COMPONENT,ACTIVE,NA,Poa pratensis
 LP30906-9,Poikilocytosis,'Poikilocytosis',Poikilocytosis,TRUE,TRUE,http://purl.obolibrary.org/obo/HP_0004447,COMPONENT,ACTIVE,NA,Poikilocytosis
-LP17039-6,Paper Wasp (Polistes spp),'Polistes',Polistes,TRUE,TRUE,http://purl.obolibrary.org/obo/NCBITaxon_7456,COMPONENT,ACTIVE,NA,Polistes
+LP17039-6,Paper Wasp (Polistes spp),'molecular entity' and ('derives from' some ('part of' some 'Polistes')),molecular entity from Polistes,TRUE,TRUE,http://purl.obolibrary.org/obo/NCBITaxon_7456,COMPONENT,ACTIVE,NA,Polistes
 LP33083-4,Polyunsaturated fatty acids,'polyunsaturated fatty acid',polyunsaturated fatty acid,TRUE,TRUE,http://purl.obolibrary.org/obo/CHEBI_26208,COMPONENT,ACTIVE,NA,polyunsaturated fatty acid
 LP13967-2,Cottonwood (Populus deltoides),'Populus deltoides',Populus deltoides,TRUE,TRUE,http://purl.obolibrary.org/obo/NCBITaxon_3696,COMPONENT,ACTIVE,NA,Populus deltoides
 LP15810-2,Porphobilinogen deaminase,'porphobilinogen deaminase',porphobilinogen deaminase,TRUE,TRUE,http://purl.obolibrary.org/obo/PR_000008623,COMPONENT,ACTIVE,NA,porphobilinogen deaminase
