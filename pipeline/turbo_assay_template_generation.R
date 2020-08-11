@@ -36,7 +36,7 @@ source("turbo_assay_template_generation_functions.R")
 
 # make sure remote mapping requests are being submitted in a usefully sorted order
 
-# for picking best OLS search result: 
+# for picking best OLS search result:
 #   could calculate  cosine or jaccard between query and ols label, synonyms and truncatees, all concatenated together
 
 # expect 'reviewed part frame' from staged.loinc.mapping to be empty unless passed as an argument
@@ -78,7 +78,7 @@ repeat.ehr.loinc.query <- FALSE
 
 min.results <- 20
 
-id.prefix <- "turbo:TURBO_"
+id.prefix <- "http://purl.obolibrary.org/obo/OBI_"
 id.start <- 3000001
 
 Part.min.cols <-
@@ -271,7 +271,9 @@ GROUP BY
   # some of these may have new/replacement codes
   ehr.bad.loincs <-
     ehr_loinc_utilizastion[(!(is.na(ehr_loinc_utilizastion$LOINC))) &
-                             (!(ehr_loinc_utilizastion$LOINC %in% LoincPartLink$LoincNumber)) ,]
+                             (!(
+                               ehr_loinc_utilizastion$LOINC %in% LoincPartLink$LoincNumber
+                             )) , ]
   
   # ####
   
@@ -285,7 +287,7 @@ GROUP BY
   
   lpl.long <-
     lpl.wide %>% pivot_longer(-Property, names_to = "PartTypeName", values_to = "count")
-  lpl.long <- lpl.long[complete.cases(lpl.long),]
+  lpl.long <- lpl.long[complete.cases(lpl.long), ]
   
   lpl.long$search.flag <-
     lpl.long$Property == "http://loinc.org/property/search"
@@ -303,7 +305,7 @@ GROUP BY
   flag.flag[] <- lapply(flag.flag[], as.numeric)
   flag.flag$rowSums <- rowSums(flag.flag)
   flag.flag <- flag.flag$rowSums == 0
-  lpl.long <- lpl.long[flag.flag, ]
+  lpl.long <- lpl.long[flag.flag,]
   
   flag.flag <- grepl(pattern = "flag", x = colnames(lpl.long))
   flag.flag <- colnames(lpl.long)[flag.flag]
@@ -429,7 +431,7 @@ GROUP BY
   ####    ####    ####    ####
   
   commonly.ordered.loinc.codes <-
-    ehr_loinc_utilizastion[ehr_loinc_utilizastion$RESULT_COUNT > min.results ,]
+    ehr_loinc_utilizastion[ehr_loinc_utilizastion$RESULT_COUNT > min.results , ]
   
   max.one.gene.wide <-
     inner_join(x = max.one.gene.wide,
@@ -487,7 +489,7 @@ GROUP BY
     check.turbo.labels$value[check.turbo.labels$count == 1]
   
   turbo.labels <-
-    turbo.labels[turbo.labels$s %in% check.turbo.labels ,]
+    turbo.labels[turbo.labels$s %in% check.turbo.labels , ]
   
   ####
   
@@ -511,9 +513,11 @@ GROUP BY
   
   # throwaway ensuring that next merges get helpful suffixes
   next.merge <-
-    inner_join(x = next.merge,
-               y = mergable,
-               by = c("analyte.core" = "PartNumber"))
+    inner_join(
+      x = next.merge,
+      y = mergable,
+      by = c("analyte.core" = "PartNumber")
+    )
   
   # for component
   next.merge <-
@@ -532,7 +536,7 @@ GROUP BY
       suffix = c(".analyte.core", ".PROPERTY")
     )
   
-  next.merge <- next.merge[next.merge$TIME_ASPCT == "LP6960-1", ]
+  next.merge <- next.merge[next.merge$TIME_ASPCT == "LP6960-1",]
   
   next.merge <-
     inner_join(
@@ -542,21 +546,21 @@ GROUP BY
       suffix = c(".PROPERTY", ".SYSTEM")
     )
   
-  next.merge <- next.merge[next.merge$SCALE_TYP == "LP7753-9", ]
+  next.merge <- next.merge[next.merge$SCALE_TYP == "LP7753-9",]
   
   # leave as is
-  next.merge <- next.merge[is.na(next.merge$METHOD_TYP), ]
-  next.merge <- next.merge[is.na(next.merge$analyte.divisor), ]
-  next.merge <- next.merge[is.na(next.merge$challenge), ]
-  next.merge <- next.merge[is.na(next.merge$analyte.gene), ]
+  next.merge <- next.merge[is.na(next.merge$METHOD_TYP),]
+  next.merge <- next.merge[is.na(next.merge$analyte.divisor),]
+  next.merge <- next.merge[is.na(next.merge$challenge),]
+  next.merge <- next.merge[is.na(next.merge$analyte.gene),]
   
   # get these back in there by adding to OBI
-  next.merge <- next.merge[is.na(next.merge$analyte.numerator), ]
-  next.merge <- next.merge[is.na(next.merge$adjustment), ]
-  next.merge <- next.merge[is.na(next.merge$count), ]
+  next.merge <- next.merge[is.na(next.merge$analyte.numerator),]
+  next.merge <- next.merge[is.na(next.merge$adjustment),]
+  next.merge <- next.merge[is.na(next.merge$count),]
   
   next.merge.nosuff <-
-    next.merge[is.na(next.merge$analyte.suffix),]
+    next.merge[is.na(next.merge$analyte.suffix), ]
   
   next.merge.suffixes <-
     inner_join(
@@ -591,11 +595,12 @@ GROUP BY
   next.merge$robot.08.ed.note <- all.blanks
   
   next.merge$robot.09.term.ed <-
-    "Mark Andrew Miller, ORCID:0000-0001-9076-6066|Chris Stoeckert"
+    "Mark Andrew Miller|ORCID:0000-0001-9076-6066|Chris Stoeckert|ORCID:0000-0002-5714-991X"
   
   next.merge$robot.10.requestor <- all.blanks
   
-  next.merge$robot.11.issue.tracker.id <- "https://github.com/obi-ontology/obi/issues/1153"
+  next.merge$robot.11.issue.tracker.id <-
+    "https://github.com/obi-ontology/obi/issues/1153"
   
   next.merge$robot.12.logical.type <- "subclass"
   
@@ -705,5 +710,5 @@ GROUP BY
   
   save.image('build/turbo_assays_latest_image.Rdata')
   
-  head(next.merge[,c("LoincNumber","robot.01.term.id")])
+  head(next.merge[, c("LoincNumber", "robot.01.term.id")])
   

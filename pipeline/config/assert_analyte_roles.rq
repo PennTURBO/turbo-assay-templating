@@ -46,5 +46,7 @@ construct {
     values ?eligible {
         <http://purl.obolibrary.org/obo/CHEBI_23367> <http://purl.obolibrary.org/obo/CHEBI_33250>
     }
-    ?targent rdfs:subClassOf* <http://purl.obolibrary.org/obo/CHEBI_23367> .
+#    ?targent rdfs:subClassOf* <http://purl.obolibrary.org/obo/CHEBI_23367> .
+    ?targent rdfs:subClassOf* ?eligible .
+
 }

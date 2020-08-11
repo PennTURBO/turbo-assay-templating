@@ -1,0 +1,29 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix obo: <http://purl.obolibrary.org/obo/>
+
+select * where {
+    ?assay rdfs:subClassOf+ <http://purl.obolibrary.org/obo/OBI_0000070> ;
+                          rdfs:label ?l .
+    minus {
+        ?assay rdfs:subClassOf [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                        owl:onProperty obo:BFO_0000055 ;
+                                                        owl:someValuesFrom [ owl:intersectionOf ( obo:OBI_0000275
+                [ rdf:type owl:Restriction ;
+                  owl:onProperty obo:RO_0000052 ;
+                  owl:someValuesFrom obo:CHEBI_17234
+                ]
+            ) ;
+                  rdf:type owl:Class
+            ]
+            ]
+            [ rdf:type owl:Restriction ;
+              owl:onProperty obo:OBI_0000293 ;
+              owl:someValuesFrom ?targent
+            ]
+        ) ;
+              rdf:type owl:Class
+        ] .
+    }
+}
