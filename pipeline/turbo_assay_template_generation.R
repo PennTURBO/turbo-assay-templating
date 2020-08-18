@@ -638,7 +638,13 @@ GROUP BY
   next.merge$robot.26.assoc.ax <- all.blanks
   
   # with approval, or for private use, LOINC codes will go here
-  next.merge$robot.27.dbxr <- all.blanks
+  # next.merge$robot.27.dbxr <- all.blanks
+  # http://purl.bioontology.org/ontology/LNC/4100-4
+  # https://loinc.org/4100-4/
+  # next.merge$LoincNumber
+  next.merge$robot.27.dbxr <-
+    paste0("http://purl.bioontology.org/ontology/LNC/",
+           next.merge$LoincNumber)
   
   # there will different patterns for other suffixes, like RNA, DNA and Ag
   next.merge$robot.24.target.ent[!is.na(next.merge$analyte.suffix)] <-

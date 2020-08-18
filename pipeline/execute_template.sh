@@ -39,3 +39,9 @@ merge \
   --input config/turbo_assay_post_execution_additions.ttl \
   --input build/turbo_assay_analyte_assertions.ttl \
   --output build/turbo_assays.ttl
+
+robot \
+query \
+  --input build/turbo_assays.ttl \
+  --query config/no_analyte_asserted.rq build/no_analyte_asserted.csv
+
