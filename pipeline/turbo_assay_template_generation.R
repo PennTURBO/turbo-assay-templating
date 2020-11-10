@@ -273,7 +273,7 @@ GROUP BY
     ehr_loinc_utilizastion[(!(is.na(ehr_loinc_utilizastion$LOINC))) &
                              (!(
                                ehr_loinc_utilizastion$LOINC %in% LoincPartLink$LoincNumber
-                             )) , ]
+                             )) ,]
   
   # ####
   
@@ -287,7 +287,7 @@ GROUP BY
   
   lpl.long <-
     lpl.wide %>% pivot_longer(-Property, names_to = "PartTypeName", values_to = "count")
-  lpl.long <- lpl.long[complete.cases(lpl.long), ]
+  lpl.long <- lpl.long[complete.cases(lpl.long),]
   
   lpl.long$search.flag <-
     lpl.long$Property == "http://loinc.org/property/search"
@@ -305,7 +305,7 @@ GROUP BY
   flag.flag[] <- lapply(flag.flag[], as.numeric)
   flag.flag$rowSums <- rowSums(flag.flag)
   flag.flag <- flag.flag$rowSums == 0
-  lpl.long <- lpl.long[flag.flag,]
+  lpl.long <- lpl.long[flag.flag, ]
   
   flag.flag <- grepl(pattern = "flag", x = colnames(lpl.long))
   flag.flag <- colnames(lpl.long)[flag.flag]
@@ -431,7 +431,7 @@ GROUP BY
   ####    ####    ####    ####
   
   commonly.ordered.loinc.codes <-
-    ehr_loinc_utilizastion[ehr_loinc_utilizastion$RESULT_COUNT > min.results , ]
+    ehr_loinc_utilizastion[ehr_loinc_utilizastion$RESULT_COUNT > min.results ,]
   
   max.one.gene.wide <-
     inner_join(x = max.one.gene.wide,
@@ -489,7 +489,7 @@ GROUP BY
     check.turbo.labels$value[check.turbo.labels$count == 1]
   
   turbo.labels <-
-    turbo.labels[turbo.labels$s %in% check.turbo.labels , ]
+    turbo.labels[turbo.labels$s %in% check.turbo.labels ,]
   
   ####
   
@@ -497,8 +497,9 @@ GROUP BY
     get.common.constrained.assays(component.code.list = loinc_to_obo_mapping_reviewed$PartNumber)
   
   mergable <-
-    loinc_to_obo_mapping_reviewed[loinc_to_obo_mapping_reviewed$pure.obo, c("PartNumber",
-                                                                            "label.axiom", "text.for.label")]
+    loinc_to_obo_mapping_reviewed[loinc_to_obo_mapping_reviewed$pure.obo &
+                                    is.na(loinc_to_obo_mapping_reviewed$problematic), c("PartNumber",
+                                                                                        "label.axiom", "text.for.label")]
   
   ####
   
@@ -536,7 +537,7 @@ GROUP BY
       suffix = c(".analyte.core", ".PROPERTY")
     )
   
-  next.merge <- next.merge[next.merge$TIME_ASPCT == "LP6960-1",]
+  next.merge <- next.merge[next.merge$TIME_ASPCT == "LP6960-1", ]
   
   next.merge <-
     inner_join(
@@ -546,21 +547,21 @@ GROUP BY
       suffix = c(".PROPERTY", ".SYSTEM")
     )
   
-  next.merge <- next.merge[next.merge$SCALE_TYP == "LP7753-9",]
+  next.merge <- next.merge[next.merge$SCALE_TYP == "LP7753-9", ]
   
   # leave as is
-  next.merge <- next.merge[is.na(next.merge$METHOD_TYP),]
-  next.merge <- next.merge[is.na(next.merge$analyte.divisor),]
-  next.merge <- next.merge[is.na(next.merge$challenge),]
-  next.merge <- next.merge[is.na(next.merge$analyte.gene),]
+  next.merge <- next.merge[is.na(next.merge$METHOD_TYP), ]
+  next.merge <- next.merge[is.na(next.merge$analyte.divisor), ]
+  next.merge <- next.merge[is.na(next.merge$challenge), ]
+  next.merge <- next.merge[is.na(next.merge$analyte.gene), ]
   
   # get these back in there by adding to OBI
-  next.merge <- next.merge[is.na(next.merge$analyte.numerator),]
-  next.merge <- next.merge[is.na(next.merge$adjustment),]
-  next.merge <- next.merge[is.na(next.merge$count),]
+  next.merge <- next.merge[is.na(next.merge$analyte.numerator), ]
+  next.merge <- next.merge[is.na(next.merge$adjustment), ]
+  next.merge <- next.merge[is.na(next.merge$count), ]
   
   next.merge.nosuff <-
-    next.merge[is.na(next.merge$analyte.suffix), ]
+    next.merge[is.na(next.merge$analyte.suffix),]
   
   next.merge.suffixes <-
     inner_join(
@@ -588,7 +589,11 @@ GROUP BY
   
   next.merge$robot.04.alt.term <- all.blanks
   
-  next.merge$robot.06.def.source <- all.blanks
+  next.merge$robot.06.def.source <-
+    rep(
+      "Inspired by LOINC. Templated by https://github.com/PennTURBO/turbo-assay-templating",
+      next.merge.row.count
+    )
   
   next.merge$robot.07.usage.example <- all.blanks
   

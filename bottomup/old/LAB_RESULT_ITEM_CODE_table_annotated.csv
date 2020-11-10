@@ -1,0 +1,175 @@
+lric.tidy,LAB_RESULT_ITEM_CODE,count,obo,status,molent,ion,specimen_obo,POC,total,indirect,direct,random,method,notes,bili
+vitamin a,Vitamin A,1,CHEBI:12777,mapped,,,,,,,,,,,#VALUE!
+chol,Chol,84,CHEBI:16113,mapped,,,,,,,,,,,#VALUE!
+cholesterol,CHOLESTEROL,151,CHEBI:16113,mapped,,,,,,,,,,,#VALUE!
+ethanol,ETHANOL,1,CHEBI:16236,mapped,,,,,,,,,,,#VALUE!
+ethanol lvl,Ethanol Lvl,1,CHEBI:16236,mapped,,,,,,,,,,,#VALUE!
+etoh-r,ETOH-R,2,CHEBI:16236,mapped,,,,,,,,,,,#VALUE!
+co2 total,CO2 TOTAL,10,CHEBI:16526,mapped,,,,,TRUE,,,,,,#VALUE!
+tco2,TCO2,29,CHEBI:16526,mapped,,,,,,,,,,total?,#VALUE!
+carbon dioxide,CARBON DIOXIDE,689,CHEBI:16526,mapped,,,,,,,,,,,#VALUE!
+co2,CO2,2375,CHEBI:16526,mapped,,,,,,,,,,,#VALUE!
+"creatinine, u umol/ml","Creatinine, U umol/mL",1,CHEBI:16737,mapped,,,UBERON:0001088,,,,,,,units = umol/mL ?,#VALUE!
+creatinine urine,CREATININE URINE,11,CHEBI:16737,mapped,,,UBERON:0001088,,,,,,,,#VALUE!
+creatinine,CREATININE,840,CHEBI:16737,mapped,,,,,,,,,,,#VALUE!
+creatinine,Creatinine,2527,CHEBI:16737,mapped,,,,,,,,,,,#VALUE!
+mycophenolic acid,MYCOPHENOLIC ACID,1,CHEBI:168396,mapped,,,,,,,,,,,#VALUE!
+mpa,MPA,4,CHEBI:168396,proposed,,,,,,,,,,,#VALUE!
+bilirubin direct,BILIRUBIN DIRECT,30,CHEBI:16990,proposed,,,,,,,TRUE,,,see 'Bili Total',1
+bilirubin indirect,BILIRUBIN INDIRECT,85,CHEBI:16990,proposed,,,,,,TRUE,,,,see 'Bili Total',1
+bili indirect,Bili Indirect,398,CHEBI:16990,proposed,,,,,,TRUE,,,,see 'Bili Total',1
+bilirubin total,BILIRUBIN TOTAL,475,CHEBI:16990,proposed,,,,,TRUE,,,,,see 'Bili Total',1
+bili total,Bili Total,1032,CHEBI:16990,proposed,,,,,TRUE,,,,,There are multiple forms. I ahven't been able to find a parent.CHEBI:16990 is 'bilirubin Ix_',1
+homocyst tot,Homocyst Tot,3,CHEBI:17230,mapped,,,,,,,,,,,#VALUE!
+total plasma homocys,TOTAL PLASMA HOMOCYS,3,CHEBI:17230,mapped,,,UBERON:0001969,,TRUE,,,,,,#VALUE!
+glucose csf,Glucose CSF,4,CHEBI:17234,mapped,,,UBERON:0001359,,,,,,,,#VALUE!
+glucose point of care,GLUCOSE POINT OF CARE,117,CHEBI:17234,mapped,,,,TRUE,,,,,,,#VALUE!
+glucose,GLUCOSE,700,CHEBI:17234,mapped,,,,,,,,,,,#VALUE!
+whole bd glu,Whole Bd Glu,746,CHEBI:17234,mapped,,,UBERON:0000178,,,,,,,,#VALUE!
+glucose lvl,Glucose Lvl,2235,CHEBI:17234,mapped,,,,,,,,,,,#VALUE!
+poc glucose,POC Glucose,3434,CHEBI:17234,mapped,,,,TRUE,,,,,,,#VALUE!
+testoster total,Testoster Total,1,CHEBI:17347,mapped,,,,,TRUE,,,,,,#VALUE!
+testosterone,TESTOSTERONE,6,CHEBI:17347,mapped,,,,,,,,,,,#VALUE!
+cortisol,Cortisol,7,CHEBI:17650,,,,,,,,,,,,#VALUE!
+triglycerides,Triglycerides,112,CHEBI:17855,mapped,,,,,,,,,,,#VALUE!
+triglycerides,TRIGLYCERIDES,152,CHEBI:17855,mapped,,,,,,,,,,,#VALUE!
+25 hydroxy vitamin d3,25 HYDROXY VITAMIN D3,21,CHEBI:17933,proposed,,,,,,,,,,,#VALUE!
+25oh vit d3,25OH Vit D3,47,CHEBI:17933,proposed,,,,,,,,,,,#VALUE!
+chloride,CHLORIDE,795,CHEBI:17996,mapped,,TRUE,,,,,,,,,#VALUE!
+chloride,Chloride,2995,CHEBI:17996,mapped,,TRUE,,,,,,,,,#VALUE!
+phosphate,PHOSPHATE,110,CHEBI:18367,mapped,,,,,,,,,,CHEBI:18367 = 'phosphate(3_)',#VALUE!
+vitamin c,Vitamin C,1,CHEBI:21241,mapped,,,,,,,,,,,#VALUE!
+tocopherol a,Tocopherol A,2,CHEBI:22470,mapped,,,,,,,,,,_-tocopherol,#VALUE!
+calcium,CALCIUM,700,CHEBI:22985,mapped,,,,,,,,,,,#VALUE!
+calcium lvl,Calcium Lvl,2246,CHEBI:22985,mapped,TRUE,,,,,,,,,,#VALUE!
+copper lvl,Copper Lvl,3,CHEBI:23377,mapped,TRUE,,,,,,,,,,#VALUE!
+fructosamine,Fructosamine,8,CHEBI:24103,mapped,,,,,,,,,,,#VALUE!
+iron,IRON,24,CHEBI:24873,mapped,TRUE,,,,,,,,,,#VALUE!
+iron,Iron,64,CHEBI:24873,mapped,TRUE,,,,,,,,,,#VALUE!
+lactat poc,LACTAT POC,1,CHEBI:24996,mapped,,,,TRUE,,,,,,,#VALUE!
+lactate,Lactate,1,CHEBI:24996,mapped,,,,,,,,,,,#VALUE!
+lactate,LACTATE,191,CHEBI:24996,mapped,,,,,,,,,,,#VALUE!
+magnesium,MAGNESIUM,226,CHEBI:25108,mapped,TRUE,,,,,,,,,,#VALUE!
+magnesium,Magnesium,1331,CHEBI:25108,mapped,TRUE,,,,,,,,,,#VALUE!
+phosphorus,Phosphorus,1035,CHEBI:26082,mapped,TRUE,,,,,,,,,,#VALUE!
+potassium urine,POTASSIUM URINE,2,CHEBI:26217,mapped,TRUE,,UBERON:0001088,,,,,,,,#VALUE!
+u potassium,U Potassium,18,CHEBI:26217,mapped,TRUE,,UBERON:0001088,,,,,,,urine?,#VALUE!
+potassium,POTASSIUM,723,CHEBI:26217,mapped,TRUE,,,,,,,,,,#VALUE!
+potassium lvl,Potassium Lvl,3046,CHEBI:26217,mapped,TRUE,,,,,,,,,,#VALUE!
+rdm anl,RDM ANL,5,CHEBI:2637,,,,,,,,,TRUE,,,#VALUE!
+selenium lvl,Selenium Lvl,1,CHEBI:26628,mapped,,,,,,,,,,,#VALUE!
+sodium,SODIUM,813,CHEBI:26712,mapped,TRUE,,,,,,,,,,#VALUE!
+sodium lvl,Sodium Lvl,3175,CHEBI:26712,mapped,TRUE,,,,,,,,,"specifically, 'sodium molecular entity'. Do we want to try to distinguish the atom form the ion(s)? Do we knoen the charge state for ion with É ?",#VALUE!
+vitamin b1,Vitamin B1,4,CHEBI:26948,mapped,,,,,,,,,,,#VALUE!
+uric acid,URIC ACID,54,CHEBI:27226,mapped,,,,,,,,,,,#VALUE!
+uric acid,Uric Acid,55,CHEBI:27226,mapped,,,,,,,,,,,#VALUE!
+zinc,ZINC,1,CHEBI:27364,mapped,TRUE,,,,,,,,,,#VALUE!
+zinc lvl,Zinc Lvl,2,CHEBI:27364,mapped,TRUE,,,,,,,,,,#VALUE!
+aldosterone,Aldosterone,1,CHEBI:27584,mapped,,,,,,,,,,,#VALUE!
+aldosterone,ALDOSTERONE,1,CHEBI:27584,mapped,,,,,,,,,,,#VALUE!
+random vancomycin le,RANDOM VANCOMYCIN LE,2,CHEBI:28001,mapped,,,,,,,,,,,#VALUE!
+rdm vnl,RDM VNL,41,CHEBI:28001,,,,,,,,,TRUE,,,#VALUE!
+rdm tob,RDM TOB,7,CHEBI:28864,,,,,,,,,TRUE,,,#VALUE!
+ca ionized,Ca Ionized,1,CHEBI:29108,mapped,,,,,,,,,,assuming 'calcium(2+)',#VALUE!
+calcium ionized,CALCIUM IONIZED,8,CHEBI:29108,mapped,,,,,,,,,,assuming 'calcium(2+)',#VALUE!
+calcium ionized,Calcium Ionized,774,CHEBI:29108,mapped,,,,,,,,,,assuming 'calcium(2+)',#VALUE!
+thyroxine,THYROXINE,1,CHEBI:30660,mapped,,,,,,,,,,,#VALUE!
+t4 total,T4 TOTAL,20,CHEBI:30660,mapped,,,,,TRUE,,,,,thyroxine,#VALUE!
+t4,T4,29,CHEBI:30660,mapped,,,,,,,,,,,#VALUE!
+lithium,LITHIUM,5,CHEBI:33298,mapped,,,,,,,,,,,#VALUE!
+total protein,TOTAL PROTEIN,3,CHEBI:36080,mapped,,,,,TRUE,,,,,,#VALUE!
+protein csf,Protein CSF,4,CHEBI:36080,mapped,,,UBERON:0001359,,,,,,,,#VALUE!
+protein total ur,PROTEIN TOTAL UR,9,CHEBI:36080,mapped,,,UBERON:0001088,,TRUE,,,,,urine?,#VALUE!
+protein total,PROTEIN TOTAL,469,CHEBI:36080,mapped,,,,,TRUE,,,,,,#VALUE!
+total protein,Total Protein,853,CHEBI:36080,mapped,,,,,TRUE,,,,,,#VALUE!
+valpro acid lvl,Valpro Acid Lvl,2,CHEBI:39867,mapped,,,,,,,,,,,#VALUE!
+valproic acid,VALPROIC ACID,2,CHEBI:39867,mapped,,,,,,,,,,,#VALUE!
+lactic acid lvl,Lactic Acid Lvl,753,CHEBI:422,mapped,,,,,,,,,,"Lactic acid is chiral, consisting of two enantiomers. One is known as L-(+)-lactic acid or (S)-lactic acid and the other, its mirror image, is D-(_)-lactic acid or (R)-lactic acid. A mixture of the two in equal amounts is called DL-lactic acid, or racemic lactic acid. On the other hand, lactic acid produced by anaerobic respiration in animal muscles has the (S) configuration and is sometimes called ""sarcolactic"" acid, from the Greek ""sarx"" for flesh. In animals, L-lactate is constantly produced from pyruvate via the enzyme lactate dehydrogenase (LDH). CHEBI:422 = '(S)-lactic acid'",#VALUE!
+digoxin,DIGOXIN,4,CHEBI:4551,mapped,,,,,,,,,,,#VALUE!
+digoxin lvl,Digoxin Lvl,17,CHEBI:4551,mapped,,,,,,,,,,,#VALUE!
+thc-r,THC-R,2,CHEBI:4716,mapped,,,,,,,,,,,#VALUE!
+cholesterol very low density lipoprotein,CHOLESTEROL VERY LOW DENSITY LIPOPROTEIN,5,CHEBI:47773,mapped,,,,,,,,,,,#VALUE!
+cholesterol direct ldl,CHOLESTEROL DIRECT LDL,5,CHEBI:47774,mapped,,,,,,,TRUE,,,,#VALUE!
+hdl chol,HDL Chol,79,CHEBI:47775,mapped,,,,,,,,,,,#VALUE!
+cholesterol high density lipoprotein,CHOLESTEROL HIGH DENSITY LIPOPROTEIN,124,CHEBI:47775,mapped,,,,,,,,,,,#VALUE!
+tacrolimus lvl,Tacrolimus Lvl,581,CHEBI:61049,mapped,,,,,,,,,,CHEBI:61049 = 'tacrolimus (anhydrous)' as opposed to CHEBI:61057 'tacrolimus hydrate',#VALUE!
+keppra lvl,Keppra Lvl,1,CHEBI:6437,mapped,,,,,,,,,,,#VALUE!
+folate serum,FOLATE SERUM,7,CHEBI:67011,mapped,,,UBERON:0001977,,,,,,,,#VALUE!
+folate lvl,Folate Lvl,10,CHEBI:67011,mapped,,,,,,,,,,folates,#VALUE!
+"phenytoin, total","Phenytoin, Total",1,CHEBI:8107,mapped,,,,,TRUE,,,,,,#VALUE!
+25oh vit d2,25OH Vit D2,38,CHEBI:86319,mapped,,,,,,,,,,,#VALUE!
+vitamin b12,VITAMIN B12,21,FOODON:03413761,proposed,,,,,,,,,,see 'Vitamin B12 Lvl',#VALUE!
+vitamin b12 lvl,Vitamin B12 Lvl,34,FOODON:03413761,proposed,,,,,,,,,,"CHEBI:33913 'corrinoid'?
+CHEBI:30411 'cobalamin'?
+FOODON:03413761 'vitamin b12'?",#VALUE!
+osmolality serum,OSMOLALITY SERUM,2,PATO:0001655,mapped,,,UBERON:0001977,,,,,,,,#VALUE!
+osmolality,Osmolality,4,PATO:0001655,mapped,,,,,,,,,,,#VALUE!
+u osmolality,U Osmolality,6,PATO:0001655,mapped,,,UBERON:0001088,,,,,,,urine?,#VALUE!
+apolipoprotein a1,APOLIPOPROTEIN A1,7,PR:000004140,mapped,,,,,,,,,,,#VALUE!
+haptoglobin,HAPTOGLOBIN,1,PR:000008725,mapped,,,,,,,,,,,#VALUE!
+haptoglobin,Haptoglobin,15,PR:000008725,mapped,,,,,,,,,,,#VALUE!
+prolactin,PROLACTIN,2,PR:000013246,mapped,,,,,,,,,,,#VALUE!
+renin,RENIN,1,PR:000013883,mapped,,,,,,,,,,,#VALUE!
+prealbumin,PREALBUMIN,3,PR:000016801,mapped,,,,,,,,,,,#VALUE!
+prealbumin,Prealbumin,47,PR:000016801,mapped,,,,,,,,,,,#VALUE!
+ck,CK,16,PR:000029971,proposed,,,,,,,,,,see 'Total CK',#VALUE!
+total ck,Total CK,61,PR:000029971,proposed,,,,,TRUE,,,,,"PR:000029971 = 'creatine kinase'
+GO:0004111 = 'creatine kinase activity'
+GO:0002185 = 'creatine kinase complex'
+EC 2.7.3.2",#VALUE!
+ferritin lvl,Ferritin Lvl,68,PR:000050342,proposed,,,,,,,,,,"CHEBI:82594 = 'Ferritin '
+GO_0070288 = 'ferritin complex'",#VALUE!
+ferritin,FERRITIN,21,"PR:000050342	",proposed,,,,,,,,,,see 'Ferritin Lvl',#VALUE!
+alk phos tot,Alk Phos Tot,1,PR:000050343,proposed,,,,,,,,,,see 'Alk Phos',#VALUE!
+alkaline phosphatase,ALKALINE PHOSPHATASE,485,PR:000050343,proposed,,,,,,,,,,see 'Alk Phos',#VALUE!
+alk phos,Alk Phos,1031,PR:000050343,proposed,,,,,,,,,,"No inclusive parent term in PRO?
+EC 3.1.3.1
+GO:0004035",#VALUE!
+aspartate aminotransferase,Aspartate Aminotransferase,2,PR:000050353,proposed,,,,,,,,,,see 'AST',#VALUE!
+ast,AST,1499,PR:000050353,proposed,,,,,,,,,,"Aspartate Aminotransferase (AST)
+Also Known As AST Serum Glutamic-Oxaloacetic Transaminase SGOT Aspartate Transaminase
+According to PRO, multiple variants of cytoplasmic and mitochondrial (at least)
+Go by EC 2.6.1.1?
+GO:0004069?
+Assume human? PR:000050353, 'aspartate aminotransferase (human)'",#VALUE!
+ceruloplasmin,CERULOPLASMIN,1,PR:P00450,,,,,,,,,,,,#VALUE!
+ceruloplasmin lvl,Ceruloplasmin Lvl,2,PR:P00450,,,,,,,,,,,,#VALUE!
+17 hydroxyprog,17 Hydroxyprog,1,,proposed,,,,,,,,,,CHEBI:17252 = '17_-hydroxyprogesterone',#VALUE!
+abg k,ABG K,1,,,,,,,,,,,,arterial draw?,#VALUE!
+abg na,ABG Na,1,,,,,,,,,,,,arterial draw?,#VALUE!
+acth,ACTH,1,,,,,,,,,,,,,#VALUE!
+alpha1 antitr,ALPHA1 ANTITR,1,,,,,,,,,,,,,#VALUE!
+amiod lvl,Amiod Lvl,1,,,,,,,,,,,,,#VALUE!
+c reactive protein,C REACTIVE PROTEIN,1,,,,,,,,,,,,,#VALUE!
+ca ionized ph,Ca Ionized pH,1,,,,,,,,,,,,,#VALUE!
+complement c3 fracti,COMPLEMENT C3 FRACTI,1,,,,,,,,,,,,,#VALUE!
+crp non-cardiac,CRP NON-CARDIAC,1,,,,,,,,,,,,,#VALUE!
+dehydroepiandrostero,DEHYDROEPIANDROSTERO,1,,,,,,,,,,,,,#VALUE!
+dexamethasone,Dexamethasone,1,,,,,,,,,,,,,#VALUE!
+dhea,DHEA,1,,,,,,,,,,,,,#VALUE!
+direct renin,Direct Renin,1,,,,,,,,,TRUE,,,,#VALUE!
+fibros. bilirubin,FibroS. Bilirubin,1,,,,,,,,,,,,see 'Bili Total' FibroS?,9
+fibros. haptogl,FibroS. Haptogl,1,,,,,,,,,,,,,#VALUE!
+fibros.a2m qnt,FibroS.A2M qnt,1,,,,,,,,,,,,,#VALUE!
+fibros.apol a-1,FibroS.Apol A-1,1,,,,,,,,,,,,,#VALUE!
+a-1-at,A-1-AT,2,,,,,,,,,,,,,#VALUE!
+amph-r,AMPH-R,2,,,,,,,,,,,,,#VALUE!
+bar-r,BAR-R,2,,,,,,,,,,,,,#VALUE!
+benzo-r,BENZO-R,2,,,,,,,,,,,,,#VALUE!
+coc-r,COC-R,2,,,,,,,,,,,,,#VALUE!
+meth-r,METH-R,2,,,,,,,,,,,,,#VALUE!
+pcp-r,PCP-R,2,,,,,,,,,,,,,#VALUE!
+testofc,TestoFC,2,,,,,,,,,,,,,#VALUE!
+25 hydroxy vitamin d total,25 HYDROXY VITAMIN D TOTAL,3,,,,,,,TRUE,,,,,,#VALUE!
+beta2 microglob,Beta2 Microglob,3,,,,,,,,,,,,,#VALUE!
+1 25 dihydroxy vitamin d3,1 25 DIHYDROXY VITAMIN D3,4,,proposed,,,,,,,,,,"see 'Vitamin D 1,25'",#VALUE!
+upep u protein,UPEP U Protein,4,,,,,,,,,,,,,#VALUE!
+"vitamin d 1,25","Vitamin D 1,25",4,,proposed,,,,,,,,,,"1,25-Dihydroxy-24-oxo-16-ene-vitamin D3 (CHEBI:156186) is a vitamin D (CHEBI:27300)
+1,25-Dihydroxyvitamin D3-26,23-lactone (CHEBI:156153) is a vitamin D (CHEBI:27300)",#VALUE!
+c3 complement,C3 Complement,6,,,,,,,,,,,,,#VALUE!
+crp non-cardiac,CRP Non-Cardiac,6,,,,,,,,,,,,,#VALUE!
+spife tp,SPIFE TP,6,,,,,,,,,,,,https://www.helena.com/Procedures/Pro128Rev2.pdf ?,#VALUE!
+apolipoprotein b,APOLIPOPROTEIN B,7,,,,,,,,,,,,https://www.uniprot.org/uniprot/P04114 ?,#VALUE!
+dhea-s,DHEA-S,7,,,,,,,,,,,,sulfated?,#VALUE!
+elptp,ELPTP,10,,,,,,,,,,,,Serum Protein Electrophoresis https://www.uofmhealth.org/health-library/hw43650 usually reported as g/dL calculation in PDS,#VALUE!
+bilirubin delta,BILIRUBIN DELTA,30,,,,,,,,,,,,see 'Bili Total'. Delta?,1

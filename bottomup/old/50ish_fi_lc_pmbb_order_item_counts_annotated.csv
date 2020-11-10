@@ -1,0 +1,735 @@
+PK_ORDER_ITEM_ID,count,assembled,cbc.bool,platelet.bool,diff.bool,electronic.diff.bool,automated.bool,manual.bool,blood.gas.bool,abl90.bool,gem.bool,arterial.bool,venous.bool,vented.bool,whole.blood.bool,hematocrit.bool,electrolyes.bool,ekg.bool,electrophoresis.bool,reticulocyte.bool,count.bool,bmp.bool,cmp.bool,hemaglobin.bool,hemoglobin.bool,coox.bool,a1c.bool,vitamin.bool,urine.bool,protime.bool,ptt.bool,protein.bool,crp.bool,cardiac.bool,neonatal.bool,liver.bool,fibrinogen.bool,glucose.bool,gtt.bool,csf.bool,fasting.bool,antibody.bool,bodily.fluid.bool,plasma.bool,serum.bool,poc.bool,phosphorous.bool,ph.bool,osmolarity.bool,creatinine.bool,ck.bool,twentyfour.bool,bilirubin.bool,total.bool,free.bool,direct.bool,indirect.bool,abo.bool,gfr.bool,level.bool,confirm.bool,screen.bool,reflex.bool,estimated.bool,lipid.bool,peak.bool,trough.bool,random.bool,cholesterol.bool,any.dl.bool,pulm.test.bool,spiro.bool,ORDER_ITEM_CODE,ORDER_ITEM_DESCRIPTION,ORDER_ITEM_TYPE,ORDER_ITEM_PRIMARY_TYPE,ORDER_ITEM_PRIMARY_TYPE_NONSTD
+608200,20,CBC w platelets and differential,1,1,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CBC/Diff/Platelets,CBC/Diff/Platelets PAH,Lab PAH TIMED Times,DIAGNOSTIC,Diagnostic
+977398,6750,CBC w platelets,1,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CBC PLT,CBC w/ Platelets,General Lab,LABORATORY,Laboratory
+979407,456,CBC w platelets,1,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CBC PLT,PROF,General Lab,LABORATORY,Laboratory
+616180,20,CBC w platelets,1,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CBC/Platelets,CBC/Platelets PAH,Lab PAH Times,DIAGNOSTIC,Diagnostic
+977303,11,CBC w platelets,1,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CBC PLT,OHEMI,General Lab,LABORATORY,Laboratory
+977282,18308,CBC with automated diff.,1,,0,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CBCAUTO,CBC w/ Auto Diff,General Lab,LABORATORY,Laboratory
+611772,27,CBC with heme eval/profile,1,,0,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CBC- w/out Diff (Heme Profile ),LEAN CBC- w/out Diff (Heme Profile ),Lab LEAN Collect RN,LABORATORY,Diagnostic
+609043,198,CBC,1,,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,.CBC (w/o Diff),CBC without Diff Expired,Lab Times w Discharge,DIAGNOSTIC,Diagnostic
+612150,228,CBC with electronic diff. ( = automated?) and heme eval/profile,1,,1,1,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CBC W/Diff  (Heme Profile+Elect Diff),LEANCBCW/Diff (Heme Profile+Elect Diff),Lab LEAN Collect RN,LABORATORY,Diagnostic
+594289,196,CBC with electronic diff. ( = automated?) and heme eval/profile,1,,1,1,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C2001910,CBC W DIFF-HEME PROF+ELEC DIFF,LAB AUTOCOMPLETE,LABORATORY,Lab
+593358,138,CBC with electronic diff. ( = automated?) and heme eval/profile,1,,1,1,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C2001518,CBC W DIFF-HEME PROF+ELEC DIFF,LABORATORY,LABORATORY,Lab
+606712,436,CBC with differential,1,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,.-CBC with Diff,CBC with Diff Expired,Lab Times,DIAGNOSTIC,Diagnostic
+1205801,63,CBC with differential,1,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,L977709,CBC/DIFF AMBIGUOUS DEFAULT,QUEST/LABCORP LAB,LABORATORY,Lab
+975471,356,CBC with automated diff.,1,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CBCAUTO,CBC,General Lab,LABORATORY,Laboratory
+602158,747,CBC with heme eval/profile,1,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C2001509,HEME PROFILE CBC,LAB BLOOD ORDERABLES,LABORATORY,Lab
+597945,108,CBC with heme eval/profile,1,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C2001907,CBC(HEME EVALUATION I),LABORATORY,LABORATORY,Lab
+593607,18,CBC with heme eval/profile,1,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C2001905,CBC(HEME EVALUATION I) INACTIVE,LABORATORY,LABORATORY,Lab
+980293,1,"diff., electronic (for CBC?)",,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,RPLT,Reptilase Test,General Lab,LABORATORY,NA
+602193,5242,"diff., electronic (for CBC?) with heme eval/profile",,,1,1,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C2001490,HEME PROFILE + ELECT DIFF,LAB BLOOD ORDERABLES,LABORATORY,Lab
+593602,136,"diff., electronic (for CBC?) with heme eval/profile",,,1,1,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C2001485,HEME PROFILE + ELECTRONIC DIFF,LABORATORY,LABORATORY,Lab
+977549,14260,"diff., automated (for CBC?)",,,1,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,AUTODIF,_Automated Differential,General Lab,LABORATORY,Laboratory
+602567,4676,"diff., automated (for CBC?)",,,1,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CM200002,AUTOMATED DIFF,LAB BLOOD ORDERABLES,LABORATORY,Lab
+975168,2723,"diff., manual (for CBC?)",,,1,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,M-DIFF,Manual Diff,General Lab,LABORATORY,Laboratory
+594361,619,"diff., manual (for CBC?)",,,1,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C2002512,MANUAL LEUKOCYTE DIFFERENTIAL,LABORATORY,LABORATORY,Lab
+621213,52,"diff., manual (for CBC?)",,,1,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,.Manual Leukocyte Differential,LEAN Manual Leukocyte Differential,Lab LEAN Collect RN,LABORATORY,Diagnostic
+1087769,14,"diff., manual (for CBC?)",,,1,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Q%415,"DIFFERENTIAL, MANUAL",QUEST/LABCORP LAB,LABORATORY,Lab
+625890,10,diff. (for CBC?),,,1,,,,,,,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,5 Part Diff.,5 Part Diff PAH,Lab PAH Times,DIAGNOSTIC,Diagnostic
+975058,274,"diff. (for CBC?), bodily fluid",,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,BF DIFF,Leukocyte Differential Body Fluid,General Lab,LABORATORY,Laboratory
+977397,17,"diff. (for CBC?), bodily fluid",,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,BF DIFF,BF DIFF,General Lab,LABORATORY,Laboratory
+594351,54,diff. (for CBC?),,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C2002520,OUTPATIENT DIFF,LABORATORY,LABORATORY,Lab
+977687,43,diff. (for CBC?),,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,M-DIFF,DIFF,General Lab,LABORATORY,Laboratory
+598897,18,diff. (for CBC?),,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C2001522,FL DIFF,LABORATORY,LABORATORY,Lab
+979549,22,"diff., automated (for CBC?) with reticulocytes",,,,,1,,,,,,,,,,,,,1,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,RETIC,Reticulocyte Count Automated,General Lab,LABORATORY,NA
+973197,6,,,,,,,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ASPERAG,Aspergillus Glactomannan Ag by EIA,General Lab,LABORATORY,Laboratory
+974377,37,"Glucose, whole blood",,,,,,,0,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,WBGL,Glucose -Whole Blood,General Lab,LABORATORY,Laboratory
+978454,3,Hematocrit and Hemoglobin,,,,,,,0,,,,,,,1,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,HCT&HBG,Hemoglobin and Hematocrit,General Lab,LABORATORY,NA
+981183,1,Glucose,,,,,,,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,WBGL,WBGL,General Lab,LABORATORY,Laboratory
+974340,14,"blood gas, venous",,,,,,,1,,1,,?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,GEMVEN,GEM Premier Venous BG,General Lab,LABORATORY,Laboratory
+600409,66,"blood gas, arterial, unvented, with pH",,,,,,,1,,,1,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,C0400405,"BLOOD GAS ARTERIAL NON VENTED (PH, PCO2, PO2, HCO3, BASE EXCESS, O2SAT MEAS)",LAB BLOOD ORDERABLES,LABORATORY,Lab
+975296,426,"blood gas, arterial, unvented",,,,,,,1,,,1,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,NVABG,Blood Gas Arterial Non Vented,General Lab,LABORATORY,Laboratory
+979262,54,"blood gas, arterial, unvented",,,,,,,1,,,1,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,NVABG,Blood Gas Arterial Non Vented,General Lab,LABORATORY,Laboratory
+600452,35,"blood gas, arterial, unvented, with pH",,,,,,,1,,,1,0,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,C0400402,"BLOOD GAS ARTERIAL VENTED (PH, PCO2, PO2, HCO3,  O2SAT MEAS, BASE EXCESS)",LAB BLOOD ORDERABLES,LABORATORY,Lab
+977162,598,"blood gas, arterial, vented",,,,,,,1,,,1,0,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,VABG,Blood Gas Arterial Vented,General Lab,LABORATORY,Laboratory
+978355,21,"blood gas, arterial, vented",,,,,,,1,,,1,0,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,VABG,Blood Gas Arterial Vented,General Lab,LABORATORY,Laboratory
+594136,108,"blood gas, venous",,,,,,,1,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,C0400410,"BLOOD GAS VENOUS (PH, PCO2, PO2, HCO3, BASE EXCESS, O2SAT)",LAB BLOOD ORDERABLES,LABORATORY,Lab
+977448,486,"blood gas, venous",,,,,,,1,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,VBG,Blood Gas Venous,General Lab,LABORATORY,Laboratory
+981050,66,"blood gas, venous",,,,,,,1,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,VBG,Blood Gas Venous,General Lab,LABORATORY,Laboratory
+608934,18,"blood gas, venous",,,,,,,1,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Venous Blood Gas,LEAN Venous Blood Gas.,Lab LEAN Collect RN,LABORATORY,Diagnostic
+981955,16,Electrolytes,,,,,,,?,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,_ABG/Lytes Rals PAH,_ABG/Lytes Rals,General Lab,LABORATORY,Laboratory
+1053114,16,Electrolytes,,,,,,,?,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C7012001,ABG/LYTES RALS PAH,LABORATORY,LABORATORY,Lab
+600726,4,,,,,,,,?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C0400470,HBO (BLOOD GAS - LIO ONLY),LABORATORY,LABORATORY,Lab
+1096599,3559,"blood gas, arterial",,,,,,,,1,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ABL90 ART,ABL90 Arterial Panel,General Lab,LABORATORY,Laboratory
+1096585,1455,"blood gas, arterial",,,,,,,,1,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ABL90ART,ABL90 ARTERIAL PANEL,LABORATORY,LABORATORY,Lab
+1096760,12362,"blood gas, venous",,,,,,,,1,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ABL90 VEN,ABL90 Venous Panel,General Lab,LABORATORY,Laboratory
+1096596,1569,"blood gas, venous",,,,,,,,1,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ABL90VEN,ABL90 VENOUS PANEL,LABORATORY,LABORATORY,Lab
+1115246,296,"blood gas, arterial",,,,,,,,,1,?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,GEM4ART,GEM4ART,General Lab,LABORATORY,Laboratory
+1116776,36,"blood gas, arterial",,,,,,,,,1,?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,GEM4ART,GEM4ART,LABORATORY,LABORATORY,Lab
+1115239,108,"blood gas, venous",,,,,,,,,1,,?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,GEM4VEN,GEM4VEN,General Lab,LABORATORY,Laboratory
+1116854,90,"blood gas, venous",,,,,,,,,1,,?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,GEM4VEN,GEM4VEN,LABORATORY,LABORATORY,Lab
+1115241,102,blood gas by co-oximetry,,,,,,,,,1,,,,,,,,,,,,,,,?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,GEM4000 ANLCOOX,GEM4000 ANLCOOX,General Lab,LABORATORY,Laboratory
+1116759,51,blood gas by co-oximetry,,,,,,,,,1,,,,,,,,,,,,,,,?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,GEM4ANLACOOX,GEM4ANLACOOX,LABORATORY,LABORATORY,Lab
+603697,335,"Echo heart xthoracic, complete",,,,,,,,,,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,93306,"ECHO HEART XTHORACIC,COMPLETE W DOPPLER",CARDIOLOGY,CARDIOLOGY PROCEDURES,Cardiology Procedures
+1141809,21,,,,,,,,,,,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,IMGPT0011,PT HEART PERFUSION PHARMACOLOGIC STRESS PET MULTIPLE,IMG PET ORDERABLES,IMAGING,Imaging
+1223794,14,"Echo heart xthoracic, limited",,,,,,,,,,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,PROC4681,"ECHO HEART XTHORACIC,LIMITED",CARDIOLOGY,CARDIOLOGY PROCEDURES,Cardiology Procedures
+593558,4,Aspartate aminotransferase,,,,,,,,,,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C1000140,ASPARTATE AMINOTRANSFERASE,LAB BLOOD ORDERABLES,LABORATORY,Lab
+586053,1,,,,,,,,,,,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,93925,DUPLEX LO EXTREM ART BILAT,RADIOLOGY CPT CODES,IMAGING,Imaging
+978195,2,,,,,,,,,,,,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,DRVV,Dilute Russells Viper Venom,General Lab,LABORATORY,Laboratory
+603661,6,"Glucose, whole blood",,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C0500305,GLUCOSE - WHOLE BLOOD,LAB BLOOD ORDERABLES,LABORATORY,Lab
+615289,1,"Glucose, whole blood",,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Glucose (Whole Blood),LEAN Glucose (Whole Blood),Lab LEAN Collect RN,LABORATORY,Diagnostic
+977707,2,"Creatinine, whole blood",,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,"Creatinine, Whole Blood","Creatinine, Whole Blood",General Lab,LABORATORY,Laboratory
+979678,1,"Creatinine, whole blood",,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,"Creatinine, Whole Blood",NCRE,General Lab,LABORATORY,Laboratory
+1061481,15,"Lactic acid, whole blood",,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C0500296,"LACTIC ACID, WHOLE BLOOD",LAB BLOOD ORDERABLES,LABORATORY,Lab
+978338,28,Hematocrit,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,NHT,Hematocrit  (CC Lab),General Lab,LABORATORY,Laboratory
+600781,3,Hematocrit,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C0500255,HEMATOCRIT CRITICAL CARE,LABORATORY,LABORATORY,Lab
+620104,1,Hematocrit,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Hematocrit (CC Lab),MCODES_Hematocrit (CC Lab),Lab HUP/PPMC/PAH,LABORATORY,Diagnostic
+979508,24,"Electrolytes, urine, random",,,,,,,,,,,,,,,1,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,URLYTES,Random Urine Electrolytes,General Lab,LABORATORY,Laboratory
+594061,4,Electrolytes,,,,,,,,,,,,,,,1,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,C1000445,"ELECTROLYTES (SODIUM & POTASSIUM), RANDOM URINE",LAB URINE ORDERABLES,LABORATORY,Lab
+978589,2,"Electrolytes, bodily fluid",,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,BFLYTES,FLLYTES,General Lab,LABORATORY,Laboratory
+618384,16,Electrolytes,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Electrolyte Panel 7,Electrolyte Panel 7 PAH,Lab PAH Times,DIAGNOSTIC,Diagnostic
+980014,12,Electrolytes,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,URLYTES,RULYTES,General Lab,LABORATORY,Laboratory
+586071,3,EKG,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,?,,,,,,,,,,,,,,,,,,,,,93224,XTRNL ECG & 24/48 HR RECORD SCAN STOR W/R&I,CARDIOLOGY,CARDIOLOGY PROCEDURES,Cardiology Procedures
+585923,961,EKG,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,93000,"ELECTROCARDIOGRAM, COMPLETE",CARDIOLOGY,CARDIOLOGY PROCEDURES,Cardiology Procedures
+1225425,769,EKG,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,PROC4699,"ELECTROCARDIOGRAM, COMPLETE",CARDIOLOGY,CARDIOLOGY PROCEDURES,Cardiology Procedures
+604149,76,EKG,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,93000W,"ELECTROCARDIOGRAM, OFFICE",CARDIOLOGY,CARDIOLOGY PROCEDURES,Cardiology Procedures
+595319,3,"Electrophoresis, protein, urine",,,,,,,,,,,,,,,,,1,,,,,,,,,,1,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C1001114,URINE PROTEIN ELECTROPHORESIS,LAB URINE ORDERABLES,LABORATORY,Lab
+598962,23,"Electrophoresis, protein, serum",,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,1,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,C1001200,SERUM PROTEIN ELECTROPHORESIS,LAB BLOOD ORDERABLES,LABORATORY,Lab
+981642,81,"Electrophoresis, protein",,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,_SPEP,_Protein Electrophoresis,General Lab,LABORATORY,Laboratory
+979951,5,Reticulocytes,,,,,,,,,,,,,,,,,,1,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,zzRETIC,zzReticulocyte Count,General Lab,LABORATORY,Laboratory
+593565,3,Reticulocytes,,,,,,,,,,,,,,,,,,1,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C2000460,RETICULOCYTE COUNT,LAB BLOOD ORDERABLES,LABORATORY,Lab
+1122963,2,Reticulocytes,,,,,,,,,,,,,,,,,,1,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,RETIC,Reticulocyte Count,General Lab,LABORATORY,NA
+1122961,5,Reticulocytes,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,RETIC,Retic,General Lab,LABORATORY,NA
+1122939,2,Reticulocytes,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,RETIC,RET,General Lab,LABORATORY,NA
+1054854,6,"Cell count, CSF",,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CFCELL4,Cell Count CSF Tube #4,General Lab,LABORATORY,Laboratory
+1028139,3,"Cell count, CSF",,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CFCELL1,Cell Count CSF1,General Lab,LABORATORY,Laboratory
+977737,51,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,BFCELL#,Cell Count Body Fluid,General Lab,LABORATORY,NA
+613083,17,"Cell coubnt, bodily fluid",,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Fluid Cell Count,LEAN Fluid Cell Count,Lab LEAN Collect RN,LABORATORY,Diagnostic
+598907,6,"Cell coubnt, bodily fluid",,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C2001521,FLUID COUNTS,LAB BODY FLUIDS AND STOOLS,LABORATORY,Lab
+594188,250,Immune deficiency evaluation,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C5353200,"IMMUNE DEFICIENCY EVALUATION (CD3, CD4 AND CD8 %, ABSOLUTE COUNT, AND CD4:CD8 RATIO)",LAB BLOOD ORDERABLES,LABORATORY,Lab
+977521,13174,"metabolic panel, basic",,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,BMP,Basic Metabolic Panel,General Lab,LABORATORY,Laboratory
+594826,2344,"metabolic panel, basic",,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C1010335,BASIC METABOLIC PANEL,LAB BLOOD ORDERABLES,LABORATORY,Lab
+973291,478,"metabolic panel, basic",,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,BMP,BAS,General Lab,LABORATORY,Laboratory
+975309,161,"metabolic panel, basic",,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,BMP,BMP,General Lab,LABORATORY,Laboratory
+626577,118,"metabolic panel, basic",,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,.Basic Metabolic Panel (P7),LEAN Basic Metabolic Panel (P7),Lab LEAN Collect RN,LABORATORY,Diagnostic
+607179,16,"metabolic panel, basic",,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Basic Metabolic Panel (P7),LEAN Basic Metabolic Panel (P7),Lab LEAN Collect RN,LABORATORY,Diagnostic
+979138,9,"metabolic panel, basic",,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,BMP,OBAS,General Lab,LABORATORY,Laboratory
+975676,9339,"metabolic panel, comprehensive",,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CMP,Comprehensive Metabolic Panel,General Lab,LABORATORY,Laboratory
+595078,6063,"metabolic panel, comprehensive",,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C1010297,COMPREHENSIVE METABOLIC PANEL,LAB BLOOD ORDERABLES,LABORATORY,Lab
+621299,14,"metabolic panel, comprehensive",,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Comprehensive Metabolic Panel - Outpats,LEAN ComprehensiveMetabolicPanelOutpats.,Lab LEAN Collect RN,LABORATORY,Diagnostic
+593156,3,heme eval/profile,,,,,,,,,,,,,,,,,,,,,,1,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C3500007,VITAMIN B12 AND FOLATE (AKA HEME EVAL-MEGAANEMIA),LAB BLOOD ORDERABLES,LABORATORY,Lab
+598159,9,heme eval/profile,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C2001503,HEME PROFILE (LIO ONLY),LABORATORY,LABORATORY,Lab
+982014,33,Hemoglobin,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,_Hgb,_Hgb,General Lab,LABORATORY,Laboratory
+653696,3,Hemoglobin,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C0400450,C _HGB (CRITICAL CARE LAB),LABORATORY,LABORATORY,Lab
+977480,40,blood gas by co-oximetry,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,COOX,"Coox Profile(Hgb,O2Hgb,CbxyHgb,MetHgb)",General Lab,LABORATORY,Laboratory
+977637,15,blood gas by co-oximetry,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,COOX,COOX,General Lab,LABORATORY,Laboratory
+602148,5,blood gas by co-oximetry,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C0400475,"COOXIMETRY PROFILE(HGB, O2 HGB, CARBOXYHGB, METHGB QN)",LAB BLOOD ORDERABLES,LABORATORY,Lab
+978345,95,Hemoglobin A1c,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,HBA1C,HbA1C  Hemoglobin A1C,General Lab,LABORATORY,Laboratory
+598985,71,Hemoglobin A1c,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C3530090,HEMOGLOBIN A1C,LAB BLOOD ORDERABLES,LABORATORY,Lab
+978392,4,Hemoglobin A1c,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,HBA1C,HBA1C,General Lab,LABORATORY,Laboratory
+597213,3,Hemoglobin A1c,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C1000850,HEMOGLOBIN A1C,LABORATORY,LABORATORY,Lab
+978201,2,Hemoglobin A1c,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,HBA1C,HBA1C,General Lab,LABORATORY,Laboratory
+978537,1,Hemoglobin A1c,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,HBA1C,Hgb A1c,General Lab,LABORATORY,Laboratory
+602617,12,C-reactive protein (high sensitivity: cardiac or neonatal),,,,,,,,,,,,,,,,,,,,,,,,,,0,,,,,,1,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CM200029,"C-REACTIVE PROTEIN, HIGH SENSITIVITY (CARDIAC/NEONATAL)",LAB BLOOD ORDERABLES,LABORATORY,Lab
+593540,1,,,,,,,,,,,,,,,,,,,,,,,,,,,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C9010071,RENIN ACTIVITY,LAB BLOOD ORDERABLES,LABORATORY,Lab
+921517,1,"Vitamin D subtypes, serum",,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,D2D3SERUM,"25-HYDROXYVITAMIN D2 AND D3, SERUM",LAB BLOOD ORDERABLES,LABORATORY,Lab
+976803,25,Vitamin B12,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,B12,Vitamin B12 Level,General Lab,LABORATORY,Laboratory
+593365,19,Vitamin B12,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,C3501790,VITAMIN B12 LEVEL,LAB BLOOD ORDERABLES,LABORATORY,Lab
+975837,4,Vitamin D subtypes,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,VitD125,"Dihydroxyvitamin D 1,25 Level",General Lab,LABORATORY,Laboratory
+980329,4,Vitamin E,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,VIT E,Vitamin E Level,General Lab,LABORATORY,Laboratory
+980235,1,Vitamin A,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,VitA,Vitamin A Level,General Lab,LABORATORY,Laboratory
+980879,1,Vitamin C,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,VIT C,Vitamin C Level,General Lab,LABORATORY,Laboratory
+980867,132,Vitamin D subtypes,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Vit D 25OH,Vit D 25OH,General Lab,LABORATORY,Laboratory
+599080,33,Vitamin D subtypes,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,VITAMIND,"VITAMIN D 25-OH (25 HYDROXY):SCREENING FOR VITAMIN D INSUFFICIENCY,MONITORNING RESPONSE TO THERAPY",LAB BLOOD ORDERABLES,LABORATORY,Lab
+593337,18,Vitamin D subtypes,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C9010102,VITAMIN D 25-OH,LABORATORY,LABORATORY,Lab
+980670,6,Vitamin B12 + folate,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,B12/FOL,Vitamin B12 and Folate,General Lab,LABORATORY,Laboratory
+980317,4,Vitamin B1,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,VIT B1,Vitamin B1,General Lab,LABORATORY,NA
+593379,4,Vitamin D subtypes,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,C9010103,"VITAMIN D 1,25-DIHYDROXY:NOT USED FOR SCREENING",LAB BLOOD ORDERABLES,LABORATORY,Lab
+593306,2,Vitamin B1,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C9011240,VITAMIN B1(THIAMINE),LAB BLOOD ORDERABLES,LABORATORY,Lab
+601533,1,"Protein, total, urine, 24 hour",,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,1,,,,,,,,,,,,,,,,,,1,,1,,1,,,,,,,,,,,,,,,,,,,Q11320,"QUEST PROTEIN, TOTAL, 24 HOUR URINE (W/O CREATININE)",QUEST/LABCORP LAB,LABORATORY,Lab
+980980,72,NA,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,1,,,,,,,,,,,,,,,,,,?,,,,,,,,,,,,,,,,,,,,,,,UPRO/CR,Urine Protein/urine Creatinine,General Lab,LABORATORY,Laboratory
+979419,12,"Protein, total (?), urine, 24 hour",,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,1,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,U24PROT,Protein 24 Hour Urine,General Lab,LABORATORY,Laboratory
+594026,2,"Protein, total, urine, 24 hour",,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,1,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,C1000465,"URINE PROTEIN, 24 HOUR",LAB URINE ORDERABLES,LABORATORY,Lab
+621324,2,"Protein, total (?), urine, random",,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,Random Urine Protein,LEAN Random Urine Protein,Lab LEAN Collect RN,LABORATORY,Diagnostic
+594837,30,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C1000466,URINE PROTEIN/ URINE CRE RATIO,LAB URINE ORDERABLES,LABORATORY,Lab
+980009,14,"Protein, urine",,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,UPROT,Protein Urine,General Lab,LABORATORY,Laboratory
+975634,6,"Osmolality, urine",,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,UOSM,Osmolality Urine,General Lab,LABORATORY,Laboratory
+978162,12,"Creatine, 24 hour",,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,1,,1,,,,,,,,,,,,,,,,,,,,,U24CREA,Creatinine 24 Hour Urine,General Lab,LABORATORY,Laboratory
+593373,2,"Creatine, 24 hour",,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,1,,1,,,,,,,,,,,,,,,,,,,,,C1000410,URINE CREATININE 24 HOUR,LAB URINE ORDERABLES,LABORATORY,Lab
+601462,27,"Protein, total, urine, random",,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,1,,,,1,,,,,,,,,,,,,,1,,,,,Q1715,QUEST TOTAL PROTEIN RANDOM URINE W CREATININE,QUEST/LABCORP LAB,LABORATORY,Lab
+593806,6,"Creatinine, urine, random",,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,1,,,,,C1000412,RANDOM URINE CREATININE,LAB URINE ORDERABLES,LABORATORY,Lab
+609023,2,"Creatinine, urine, random",,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,1,,,,,Random Urine Creatinine,LEAN Random Urine Creatinine,Lab LEAN Collect RN,LABORATORY,Diagnostic
+977683,2,"Creatinine, urine, random",,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,1,,,,,RanUrCr,Random Urine Creatine,General Lab,LABORATORY,NA
+977620,16,"Creatinine, urine",,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,UCREA,Creatinine Urine,General Lab,LABORATORY,Laboratory
+655367,12,"Creatineine clearance, 24 hour",,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,?,,1,,,,,,,,,,,,,,,,,,,,,Q7943,QUEST 24-HOUR URINE CREATININE CLEARANCE,QUEST/LABCORP LAB,LABORATORY,Lab
+594070,44,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,?,,,,,,,,,,,,,,,,,,,,,,,C1002688,URINE ALBUMIN/CREATININE RATIO,LAB URINE ORDERABLES,LABORATORY,Lab
+980950,4,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,U24 UN,Urea Nitrogen 24 Hour Urine,General Lab,LABORATORY,Laboratory
+593272,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,C1000270,URINE TOTAL VOLUME,LAB URINE ORDERABLES,LABORATORY,Lab
+978894,19,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,UMICALB,Microalbumin Level Urine,General Lab,LABORATORY,Laboratory
+980783,8,"Sodium, urine",,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,Ur Sod,Urine Sodium Level PAH,General Lab,LABORATORY,Laboratory
+979931,1,"Sodium, urine",,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,Ur Sod,Sodium Level Urine,General Lab,LABORATORY,Laboratory
+973538,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,UCA,Calcium Level Urine,General Lab,LABORATORY,Laboratory
+978234,20,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,1,1,,,,,,,,,,Z9UR DRUG,"Z9Drug Screen,Urine with Reflex to Confirm",General Lab,LABORATORY,Laboratory
+594063,16,"Protein, total (?), urine, random",,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,C1000477,RANDOM URINE PROTEIN,LAB URINE ORDERABLES,LABORATORY,Lab
+594839,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,C1000463,URINE UREA NITROGEN RUUN (RANDOM),LAB URINE ORDERABLES,LABORATORY,Lab
+935747,1,"Sodium, urine, random",,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,C1001720,"SODIUM URINE, RANDOM",LAB URINE ORDERABLES,LABORATORY,Lab
+980431,450,Urinalysis dipstick,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,UA DIP,Urinalysis Dipstick,General Lab,LABORATORY,Laboratory
+600696,154,Urinalysis dipstick,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C2001532,URINALYSIS DIPSTICK,LAB URINE ORDERABLES,LABORATORY,Lab
+980878,20,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,UA MICR,Urinalysis Microscopic,General Lab,LABORATORY,Laboratory
+610613,15,Urinalysis dipstick,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Urine Dipstick,LEAN Urine Dipstick-HUP/PMC,Lab LEAN Collect RN,LABORATORY,Diagnostic
+594975,14,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C2001535,URINALYSIS MICROSCOPICS,LABORATORY,LABORATORY,Lab
+980640,11,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,RUUN,Urea Nitrogen Urine,General Lab,LABORATORY,Laboratory
+610328,8,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Urinalysis panel,LEAN Urinalysis panel,Lab LEAN Collect RN,LABORATORY,Diagnostic
+1226023,7,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,NI0203,OFFICE URINALYSIS W/OUT *,LABORATORY,LABORATORY,Lab
+600365,7,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C2001537,URINALYSIS MICROSCOPIC,LAB URINE ORDERABLES,LABORATORY,Lab
+594182,5,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,81002,OFFICE URINALYSIS W/OUT *,LABORATORY,LABORATORY,Lab
+624675,3,Urinalysis dipstick,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,.Urinalysis Dipstick,zzUrinalysis Dipstick,Lab Times,DIAGNOSTIC,Diagnostic
+626469,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Urinalysis.,CAUTI_Urinalysis PAH,Lab PAH MD/RN Collect,DIAGNOSTIC,Diagnostic
+623192,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,.Urinalysis,zzUrinalysis Macroscopic/Microscopic,Lab Times,DIAGNOSTIC,Diagnostic
+977638,1542,prothrombin time with partial thromboplastin time (activated),,,,,,,,,,,,,,,,,,,,,,,,,,,,1,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,PTPTT,PT/APTT,General Lab,LABORATORY,Laboratory
+594417,167,prothrombin time with partial thromboplastin time (activated),,,,,,,,,,,,,,,,,,,,,,,,,,,,1,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C3000060,PROTIME/ APTT,LAB BLOOD ORDERABLES,LABORATORY,Lab
+627208,42,prothrombin time with partial thromboplastin time (activated),,,,,,,,,,,,,,,,,,,,,,,,,,,,1,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Pro Time/APTT,MCODES_Pro Time/APTT,Lab HUP/PPMC/PAH,LABORATORY,Diagnostic
+608277,3,prothrombin time with partial thromboplastin time,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,PT/ PTT,MCODES_PT/PTT PAH,Lab HUP/PPMC/PAH,LABORATORY,Diagnostic
+608922,18,prothrombin time,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Protime,LEAN Protime,Lab LEAN Collect RN,LABORATORY,Diagnostic
+979832,1432,prothrombin time,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,PT,PT,General Lab,LABORATORY,Laboratory
+593669,220,prothrombin time,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C3050065,"PT - COUMADIN Y/N, HEPARIN Y/N",LAB BLOOD ORDERABLES,LABORATORY,Lab
+1226070,6,prothrombin time,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,NI0208,PROTHROMBIN TIME,LABORATORY,LABORATORY,Lab
+593615,261,prothrombin time,,,,,,,,,,,,,,,,,,,,,,,,,,,,?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C0300092,PROTHROMBIN,LAB BLOOD ORDERABLES,LABORATORY,Lab
+979853,715,partial thromboplastin time,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,PTT,PTT,General Lab,LABORATORY,Laboratory
+979409,120,partial thromboplastin time,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,PTPTT,PTPTT,General Lab,LABORATORY,Laboratory
+593632,12,partial thromboplastin time (activated),,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C3050075,"APTT-COUMADIN Y/N, HEPARIN Y/N",LABORATORY,LABORATORY,Lab
+623119,6,partial thromboplastin time (activated),,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,APTT,MCODES_APTT,Lab LEAN Collect RN,LABORATORY,Diagnostic
+595023,3,partial thromboplastin time,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C3050060,LIO CPTPTT,LABORATORY,LABORATORY,Lab
+593441,87,partial thromboplastin time (activated),,,,,,,,,,,,,,,,,,,,,,,,,,,,,?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C3000120,APTT,LAB BLOOD ORDERABLES,LABORATORY,Lab
+977727,15,partial thromboplastin time,,,,,,,,,,,,,,,,,,,,,,,,,,,,,?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,z9CCPT/PTT,z9CCPT/PTT,General Lab,LABORATORY,Laboratory
+1116501,3,partial thromboplastin time,,,,,,,,,,,,,,,,,,,,,,,,,,,,,?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,_SPCPTT,_SPCPTT,General Lab,LABORATORY,Laboratory
+977267,6,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CSFPROT,CFP,General Lab,LABORATORY,Laboratory
+612167,2,"Protein, CSF",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Protein, CSF","LEAN Protein, CSF",Lab LEAN Collect RN,LABORATORY,Diagnostic
+979580,2,"Protein, CSF",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CSFPROT,Protein CSF,General Lab,LABORATORY,Laboratory
+979570,7,"Protein, bodily fluid",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,BF TP,Protein Body Fluid,General Lab,LABORATORY,Laboratory
+612337,6,"Protein, serum",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,Serum Protein,LEAN Serum Protein,Lab LEAN Collect RN,LABORATORY,Diagnostic
+980400,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,U24PROT,UPRO,General Lab,LABORATORY,Laboratory
+975885,8,"Protein, total",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,TP,Protein Total,General Lab,LABORATORY,Laboratory
+593530,4,"Protein, total",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,C1000095,TOTAL PROTEIN,LAB BLOOD ORDERABLES,LABORATORY,Lab
+612235,1,"Protein, total",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,Total Protein,MCODES_Total Protein HUP/PPMC,Lab HUP/PPMC/PAH,LABORATORY,Diagnostic
+979812,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,UPROT,RUPRO,General Lab,LABORATORY,Laboratory
+979505,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Prot C Function,PRCF,General Lab,LABORATORY,NA
+977555,7,C-reactive protein (high sensitivity: cardiac or neonatal),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,1,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"C-Reactive Protein, HS (cardiac/ neonatal)",CRP,General Lab,LABORATORY,Laboratory
+978696,1,C-reactive protein (high sensitivity: cardiac or neonatal),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,1,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"C-Reactive Protein, HS (cardiac/ neonatal)",HSCRP,General Lab,LABORATORY,Laboratory
+1055674,6,C-reactive protein (non-cardiac),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CRPN,CRP Non-Cardiac,General Lab,LABORATORY,Laboratory
+621272,4,C-reactive protein,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C Reactive Protein,LEAN C Reactive Protein,Lab LEAN Collect RN,LABORATORY,Diagnostic
+593697,1,C-reactive protein,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,86140,C REACTIVE PROTEIN,LABORATORY,LABORATORY,Lab
+1059970,1,C-reactive protein (non-cardiac),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CRPNC,CRP NON-CARDIAC,LAB BLOOD ORDERABLES,LABORATORY,Lab
+978448,22,C-reactive protein (high sensitivity: cardiac or neonatal),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"C-Reactive Protein, HS (cardiac/ neonatal)","C-Reactive Protein, HS (cardiac/ neonatal)",General Lab,LABORATORY,Laboratory
+979350,1497,Liver panel,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Liver Evaluation Profile (A/G Ratio, ALB, ALP, ALT","Liver Evaluation Profile (A/G Ratio, ALB, ALP, ALT, AST, DBIL, Globulin, INDBIL, TBIL, TP)",General Lab,LABORATORY,Laboratory
+978778,964,Liver panel,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Liver Injury Profile (ALP, ALT, AST, DBIL, INDBIL, TBIL)","Liver Injury Profile (ALP, ALT, AST, DBIL, INDBIL, TBIL)",General Lab,LABORATORY,Laboratory
+978276,418,Liver panel,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,HEPPNL,Hepatic Function Panel,General Lab,LABORATORY,Laboratory
+602956,261,Liver panel,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CM200018,HEPATIC FUNCTION PANEL,LAB BLOOD ORDERABLES,LABORATORY,Lab
+595076,260,Liver panel,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C1050350,HEPATIC FUNCTION PANEL,LABORATORY,LABORATORY,Lab
+602618,109,Liver panel,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CM200019,"LIVER EVALUATION PROFILE (A/G RATIO, ALB, ALP, ALT, AST, DBIL, GLOBULIN, INDBIL, TBIL, TP)",LAB BLOOD ORDERABLES,LABORATORY,Lab
+624639,79,Liver panel,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Liver Injury Panel,LEAN Liver Injury Panel,Lab LEAN Collect RN,LABORATORY,Diagnostic
+976969,63,Liver panel,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Liver Injury Profile (ALP, ALT, AST, DBIL, INDBIL, TBIL)",LIVERIN,General Lab,LABORATORY,Laboratory
+978855,62,Liver panel,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,HEPPNL,Liver Function Test,General Lab,LABORATORY,Laboratory
+603667,42,Liver panel,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,LIVERIN,"LIVER INJURY PROFILE (ALP, ALT, AST, DBIL, INDBIL, TBIL)",LAB BLOOD ORDERABLES,LABORATORY,Lab
+978513,18,Liver panel,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Z9LIVEREV,z9Liver Evaluation,General Lab,LABORATORY,Laboratory
+977272,16,Liver panel,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,zzLIVERIN,zzLiver Injury Panel,General Lab,LABORATORY,Laboratory
+593201,13,Liver panel,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,80058C,LIVER EVALUATION (LIO ONLY),LABORATORY,LABORATORY,Lab
+979008,8,Liver panel,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,zzLIVERIN,LIVINJ,General Lab,LABORATORY,Laboratory
+1297156,12,Liver fibrosis,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,FIBRO NAFL,"Liver Fibrosis, Non-Alcoholic Fatty Liver Disease",General Lab,LABORATORY,Laboratory
+1129117,11,Liver fibrosis,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,LVRFIB,"Liver Fibrosis, Chronic Viral Hepatitis",General Lab,LABORATORY,Laboratory
+614370,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,Fibrinogen Level,LEAN Fibrinogen,Lab LEAN Collect RN,LABORATORY,Diagnostic
+978568,45,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,FIB,Fibrinogen,General Lab,LABORATORY,Laboratory
+593400,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C3000160,FIBRINOGEN,LAB BLOOD ORDERABLES,LABORATORY,Lab
+978420,13,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,FIB,FIB,General Lab,LABORATORY,Laboratory
+978072,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,FIB,FIB,General Lab,LABORATORY,Laboratory
+978128,1,"Glucose, CSF",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CSFGLUC,Glucose CSF,General Lab,LABORATORY,Laboratory
+614679,1,"Glucose, CSF",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Glucose, CSF","LEAN Glucose, CSF",Lab LEAN Collect RN,LABORATORY,Diagnostic
+978325,3,"Glucose, fasting",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,FGLUC,Glucose Fasting,General Lab,LABORATORY,Laboratory
+978216,7,"Glucose, bodily fluid",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,BF GLUC,Glucose Body Fluid,General Lab,LABORATORY,Laboratory
+601483,306,"Glucose, plasma, POC",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,1,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,C0200022,GLUCOSE (PLASMA POC),LABORATORY,LABORATORY,Lab
+620515,39,"Glucose, plasma, POC",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,1,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,POC Plasma Glucose,LEAN POC Plasma Glucose,Lab LEAN Collect RN,LABORATORY,Diagnostic
+976235,3433,"Glucose, plasma",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Glucose (Rals),Glucose (Plasma Rals Group),General Lab,LABORATORY,Laboratory
+1092580,144,"Glucose, POC",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,C1901902,GLUCOSE POC,LABORATORY,LABORATORY,Lab
+978121,60,Glucose,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,GLUC,Glucose,General Lab,LABORATORY,Laboratory
+608914,31,Glucose,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Glucose,MCODES_Glucose HUP-O PAH-Result,Lab HUP/PPMC/PAH,LABORATORY,Diagnostic
+593389,8,Glucose,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C1010060,GLUCOSE (OGLU),LAB BLOOD ORDERABLES,LABORATORY,Lab
+1226027,3,Glucose,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,NI0193,"GLUCOSE, BLOOD, GLUCOSE *",LABORATORY,LABORATORY,Lab
+1085502,2,Glucose,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,82962B,"PERIOP GLUCOSE, BLOOD, GLUCOSE *",LAB-POC MANUAL ENTRY,LABORATORY,Lab
+981996,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,_Glu Tol 0 Hr,_Glucose Tolerance 0 Hr,General Lab,LABORATORY,Laboratory
+977921,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CSFGLUC,CFG,General Lab,LABORATORY,Laboratory
+1129114,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,VZMCSF,"Varicella-Zoster Virus Ab, IgM CSF",General Lab,LABORATORY,Laboratory
+978374,4,Hepatitis B core antigen ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,ABHBC,"Hepatitis B core antibody, (HBcAb); total",General Lab,LABORATORY,Laboratory
+973086,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,0,,,,,,,,,,,,,,GBM Ab,Anti Glomerular Basement Membrane Antibody,General Lab,LABORATORY,Laboratory
+977502,7,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CMV IgG,CMV Antibody IgG,General Lab,LABORATORY,Laboratory
+977202,4,Cardiolipin antibody screen,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,ACL,Cardiolipin Antibody Screen,General Lab,LABORATORY,Laboratory
+601532,4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C5504201,"EPSTEIN BARR VIRUS ANTIBODY PROFILE (EBV VCA, IGG: EBV VCA, IGM: EBNA, EA)",LAB BLOOD ORDERABLES,LABORATORY,Lab
+978788,4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,HEP C,Hepatitis C Antibody,General Lab,LABORATORY,Laboratory
+979668,4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Sjogren's Ab,Sjogren's Antibody,General Lab,LABORATORY,Laboratory
+974560,3,Hepatitis B surface antigen ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ABHBS,Hepatitis B Surface Antibody,General Lab,LABORATORY,Laboratory
+593802,2,Hepatitis B surface antigen ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C3510010,HEPATITIS B SURFACE ANTIBODY,LAB BLOOD ORDERABLES,LABORATORY,Lab
+593865,2,Hepatitis C antibodies (IgG + IgM),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C3510117,HEPATITIS C ANTIBODY IGM + IGG WITH REFLEX TO HCV PCR,LAB BLOOD ORDERABLES,LABORATORY,Lab
+977339,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ANCASC,Anti Neutrophil Cytoplasmic Antibody,General Lab,LABORATORY,Laboratory
+603761,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,HLAPOST,HLA POST TRANSPLANT ANTIBODY,LAB BLOOD ORDERABLES,LABORATORY,Lab
+978802,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Lyme Ab,Lyme Antibody,General Lab,LABORATORY,NA
+979352,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Parvo,Parvovirus B19 Antibodies IgG and IgM,General Lab,LABORATORY,NA
+979543,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,MycoIgM,Mycoplasma Antibody IgM,General Lab,LABORATORY,NA
+980834,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Varic IgG,Varicella Zoster Antibody IgG,General Lab,LABORATORY,NA
+976369,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,z9H pylori IgG,z9Helicobacter pylori Antibody IgG,General Lab,LABORATORY,Laboratory
+979387,4,"pH, bodily fluid",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,BF pH,pH Body Fluid,General Lab,LABORATORY,Laboratory
+976958,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,BF Alb,Albumin Level Body Fluid,General Lab,LABORATORY,Laboratory
+976805,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,BF AMY,Amylase Level Body Fluid,General Lab,LABORATORY,Laboratory
+977501,4,"Cholesterol, bodily fluid",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,BF CHOL,Cholesterol Body Fluid,General Lab,LABORATORY,Laboratory
+978689,8,"Lactate dehydrogenase, bodily fluid",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,BF LDH,Lactate Dehydrogenase Body Fluid,General Lab,LABORATORY,Laboratory
+974195,6,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,BFCELL#,FC,General Lab,LABORATORY,NA
+978065,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,BF TRIG,Triglyceride Body Fluid,General Lab,LABORATORY,Laboratory
+977010,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,BF GLUC,BF GLUC,General Lab,LABORATORY,Laboratory
+977018,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,BF TP,BF TP,General Lab,LABORATORY,Laboratory
+978437,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,BF Alb,FLALB,General Lab,LABORATORY,Laboratory
+977988,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,BF CREA,FLCRE,General Lab,LABORATORY,Laboratory
+976110,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,BF LDH,FLLDH,General Lab,LABORATORY,Laboratory
+593300,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,C7000410,TOTAL PLASMA HOMOCYSTEINE,LAB BLOOD ORDERABLES,LABORATORY,Lab
+627119,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Cortisol, Plasma","LEAN Cortisol, Plasma.",Lab LEAN Collect RN,LABORATORY,Diagnostic
+1272106,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,BPAM2,DISPENSE PLASMA,BLOOD BANK PRODUCT ORDERABLES,LABORATORY,Blood Bank
+593792,3,"Osmolality, serum",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,1,,,,,,,,,,,,,,,,,,,,,,,,C1000210,SERUM OSMOLALITY,LAB BLOOD ORDERABLES,LABORATORY,Lab
+607099,2,"Creatine, serum",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,1,,,,,,,,,,1,,,,,,,,,,,,,"Creatinine, Serum",MCODES_Creatinine Level,Lab HUP/PPMC/PAH,LABORATORY,Diagnostic
+593369,7,"Creatine, serum",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,1,,,,,,,,,,,,,,,,,,,,,,,C1000030,"CREATININE,SERUM",LAB BLOOD ORDERABLES,LABORATORY,Lab
+1215967,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,1,1,,,,,,L717322,"TOBRAMYCIN, SERUM, PEAK/TROUGH",QUEST/LABCORP LAB,LABORATORY,Lab
+616981,36,"Chloride, serum",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,Chloride Serum,LEAN Chloride,Lab LEAN Collect RN,LABORATORY,Diagnostic
+595321,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,C9020092,"METHYLMALONIC ACID, SERUM",LAB BLOOD ORDERABLES,LABORATORY,Lab
+978025,6,"Creatinine, POC",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,1,,,,,,,,,,,,,,,,,,,,,,,CREA POC,Creatinine Point of Care,General Lab,LABORATORY,Laboratory
+652315,1,"Creatinine, POC",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,1,,,,,,,,,,,,,,,,,,,,,,,CREAPOC,CREATININE POINT OF CARE,LAB BLOOD ORDERABLES,LABORATORY,Lab
+1145222,57,"Urinalysis dipstick, POC",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,POC UA DIP,POC UA DIP,General Lab,LABORATORY,Laboratory
+1048904,37,"Tropopnin, I, POC",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,_POC Trop-I,_Troponin-I POC,General Lab,LABORATORY,Laboratory
+1144733,31,"Urinalysis dipstick, POC",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,POCUADIP,POC UA DIPSTICK,LABORATORY,LABORATORY,Lab
+975508,11,"Chem8 (= metablic panel, basic?), POC",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,CHEM8 POC,Chem 8 Point of Care,General Lab,LABORATORY,Laboratory
+1052315,10,"Troponin T, POC",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,TROPIPOC,TROPONIN-I POC,LABORATORY,LABORATORY,Lab
+974809,10,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,ACT,Activated Clotting Time POC,General Lab,LABORATORY,Laboratory
+1151455,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,POC PT,POC PT,General Lab,LABORATORY,Laboratory
+979408,954,Phosphorus,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,1,,,,,,,,,,,,,PHOS,Phosphorus Level,General Lab,LABORATORY,Laboratory
+593786,111,Phosphorus,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,C1000065,PHOSPHORUS,LAB BLOOD ORDERABLES,LABORATORY,Lab
+975729,52,Phosphorus,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,PHOS,PHO,General Lab,LABORATORY,Laboratory
+979828,17,Phosphorus,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,PHOS,PHOS,General Lab,LABORATORY,Laboratory
+977217,15,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,"Bone Profile (Alb, ALP,Ca,Phos, Tot Prot)","Bone Profile (Alb, ALP,Ca,Phos, Tot Prot)",General Lab,LABORATORY,Laboratory
+620549,15,Phosphate,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,?,,,,,,,,,,,,,1,,,,,,,,,,,,,Phosphate,MCODES_Phosphorus Level HUP/PPMC,Lab HUP/PPMC/PAH,LABORATORY,Diagnostic
+975627,2,Osmolality,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,OSM,OSM,General Lab,LABORATORY,Laboratory
+979720,2,Osmolality,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,OSM,Osmolality,General Lab,LABORATORY,Laboratory
+594007,14,Creatine Kinase,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,1,,,,,,,,,,,,,,,,,,,,,,C1000120,CREATINE KINASE,LAB BLOOD ORDERABLES,LABORATORY,Lab
+602882,139,Creatinine,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,C0250350,CREATININE (HEMONC),LAB BLOOD ORDERABLES,LABORATORY,Lab
+973826,134,NA,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,CREAD60,Creatinine (DT60 in Hmnc),General Lab,LABORATORY,Laboratory
+976730,32,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,"Inpatient Profile (CO2, Creat, Na, K)","Inpatient Profile (CO2, Creat, Na, K)",General Lab,LABORATORY,Laboratory
+975730,9,Creatinine,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,CREA,Creatinine,General Lab,LABORATORY,Laboratory
+595089,6,Creatineine clearance,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,C1000273,CREATININE CLEARANCE,LAB URINE ORDERABLES,LABORATORY,Lab
+979742,4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,"Inpatient Profile (CO2, Creat, Na, K)",P4,General Lab,LABORATORY,Laboratory
+943272,1,Creatinine,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,NCRE,CREATININE (CRITICAL CARE LAB),LAB BLOOD ORDERABLES,LABORATORY,Lab
+977602,18,Creatine Kinase,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,CK,Creatine Kinase,General Lab,LABORATORY,Laboratory
+977393,10,Creatine Kinase,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,CK,CK,General Lab,LABORATORY,Laboratory
+975602,2,Creatine Kinase,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,CK,CK,General Lab,LABORATORY,Laboratory
+626969,1,Creatine Kinase,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,Creatine Kinase,LEAN Creatine Kinase,Lab LEAN Collect RN,LABORATORY,Diagnostic
+977708,11,Urine total volume,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,1,,,,,,,,,,,,,,,,,,,_UTV,_U24 Total Volume,General Lab,LABORATORY,Laboratory
+981120,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,U24 UN,UUN,General Lab,LABORATORY,Laboratory
+602883,9,"Bilirubin, direct",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,1,,,1,,,,,,,,,,,,,,,,1000190,"DIRECT BILIRUBIN GROUP (INCLUDES TOTAL, DIRECT, AND INDIRECT)",LAB BLOOD ORDERABLES,LABORATORY,Lab
+614289,1,"Bilirubin, total",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,1,,,,,,,,,,,,,,,,,,,Total Bilirubin,MCODES_Total Bilirubin HUP/PPMC,Lab HUP/PPMC/PAH,LABORATORY,Diagnostic
+977909,6,"Bilirubin, direct",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,1,,,,,,,,,,,,,,,,,DBIL Group,Direct Bilirubin Group,General Lab,LABORATORY,Laboratory
+627040,4,"Bilirubin, direct",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,1,,,,,,,,,,,,,,,,,Direct Bilirubin (D BILI),LEAN Direct Bilirubin (D BILI),Lab LEAN Collect RN,LABORATORY,Diagnostic
+1093860,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,1,,,,,,,,,,,,,,,,,,Free/Total PSA,Free/Total PSA,General Lab,LABORATORY,Laboratory
+975431,68,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,1,,,,,,,,,,,,,CA,Calcium Level Total,General Lab,LABORATORY,Laboratory
+977399,5,"Cholesterol, total",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,1,,,,CHOL,Cholesterol Total,General Lab,LABORATORY,Laboratory
+979723,23,T3 total,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,T3,T3 Total,General Lab,LABORATORY,Laboratory
+979978,14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,PSA Total,Prostate Specific Antigen Total,General Lab,LABORATORY,Laboratory
+593546,7,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,C3501830,"TESTOSTERONE, TOTAL",LAB BLOOD ORDERABLES,LABORATORY,Lab
+594998,6,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,C3530064,PSA TOTAL,LAB BLOOD ORDERABLES,LABORATORY,Lab
+593232,4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,1,,,,,,,,,,,80162,CHG DRUG SCREEN QUANTITATIVE DIGOXIN TOTAL,LABORATORY,LABORATORY,Lab
+600712,3,Total iron binding capacity,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,Q7573,QUEST TOTAL IRON BINDING CAPACITY,QUEST/LABCORP LAB,LABORATORY,Lab
+978526,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,PHCYS,Homocysteine Total,General Lab,LABORATORY,Laboratory
+983209,2,CD19+ (total B cells),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,Total B Cells (CD19+),.Total B Cells (CD19+),Helix,LABORATORY,NA
+1060468,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,IgE Total,"Immunoglobulin E (IgE), Total",General Lab,LABORATORY,Laboratory
+980056,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,TESTO,"Testosterone, Total",General Lab,LABORATORY,Laboratory
+979266,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,1,,,,,,,,,,,,,FREEDIL,Phenytoin Level Free,General Lab,LABORATORY,Laboratory
+977959,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,1,,,,,,,,,,,,,FrTesto,Testosterone Level Free,General Lab,LABORATORY,Laboratory
+937200,12,Thyroid stimulating hormone with reflex free T4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,1,,,,,,,,,,TSHFT4,TSH W REFLEX FREE T4,LAB BLOOD ORDERABLES,LABORATORY,Lab
+976447,10,Thyroid stimulating hormone with reflex free T4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,1,,,,,,,,,,TSHrFT4,TSH reflex Free T4,General Lab,LABORATORY,NA
+976152,26,"T4, free",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,F T4,Free T4,General Lab,LABORATORY,Laboratory
+593550,13,"T4, free",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,C3501710,FREE THYROXINE,LAB BLOOD ORDERABLES,LABORATORY,Lab
+980024,9,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,z9FPSA,z9PSA Free,General Lab,LABORATORY,NA
+976256,4,T3 free,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,T3 Free,T3 Free,General Lab,LABORATORY,Laboratory
+595297,4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,C9041387,"TESTOSTERONE, FREE",LAB BLOOD ORDERABLES,LABORATORY,Lab
+595026,3,T3 free,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,C9041360,FREE T3,LAB BLOOD ORDERABLES,LABORATORY,Lab
+600376,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,C9041386,TESTOSTERONE FREE FEMALE/CHILD,LAB BLOOD ORDERABLES,LABORATORY,Lab
+980704,1,Thyroid stimulating hormone with reflex free T4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,TSHrFT4,TSHrFree T4,General Lab,LABORATORY,NA
+975040,1,"Cholesterol, LDL direct",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,1,1,,,dirLDL,"LDL Direct, Cholesterol",General Lab,LABORATORY,Laboratory
+594409,5,"Cholesterol, LDL direct",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,1,,,LDLDRCT,DIRECT LDL,LABORATORY,LABORATORY,Lab
+988383,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,ALSRENDIR,Aldosterone/Renin Direct,General Lab,LABORATORY,NA
+983010,125,ABO blood group,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,1,,,,,,,,,,,,ABO Confirm HUP,AT-HUP,Blood Bank,LABORATORY,Laboratory
+981021,43,ABO blood group with Rh,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,1,,,,,,,,,,,,ABORh Confirm PPMC,AT-PPMC,Blood Bank,LABORATORY,Laboratory
+982689,5,ABO blood group,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,1,,,,,,,,,,,,zzABO Confirm PPMC,zzAT-PPMC,Blood Bank,LABORATORY,Laboratory
+980941,850,ABO blood group with Rh,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,ABORh HUP,ABORh Type HUP,Blood Bank,LABORATORY,Laboratory
+980840,122,ABO blood group with Rh,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,ABORh PPMC,ABORh PPMC,Blood Bank,LABORATORY,Laboratory
+983513,10,ABO blood group with Rh,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,zzABORh PPMC,zzABORh Type PPMC,Blood Bank,LABORATORY,Laboratory
+981145,6,ABO blood group with Rh,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,_Post ABORh HUP,_Post ABORh HUP,Blood Bank,LABORATORY,Laboratory
+983273,3,ABO blood group with Rh,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,ABORh PAH,ABORh Type PAH,Blood Bank,LABORATORY,Laboratory
+978099,511,"Glomerular filtration rate, estimated",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,1,,,,,,,,,GFR-EST,GFR-EST,General Lab,LABORATORY,Laboratory
+602837,302,"Glomerular filtration rate, estimated",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,1,,,,,,,,,CM200004,GLOMERULAR FILTRATION RATE-ESTIMATED,LAB BLOOD ORDERABLES,LABORATORY,Lab
+978112,10,"Glomerular filtration rate, estimated",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,1,,,,,,,,,GFR-EST,Glomerular Filtration Rate - Estimated,General Lab,LABORATORY,Laboratory
+980679,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,1,,,,,,,TOBP,Tobramycin Level Peak,General Lab,LABORATORY,Laboratory
+980198,22,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,1,,,,,,VNLT,Vancomycin Level Trough,General Lab,LABORATORY,Laboratory
+980570,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,1,,,,,,TOBT,Tobramycin Level Trough,General Lab,LABORATORY,Laboratory
+593252,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,1,,,,,80299F,RANDOM VANCOMYCIN LEVEL,LAB BLOOD ORDERABLES,LABORATORY,Lab
+979389,1244,Magnesium,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,MAG,Magnesium Level,General Lab,LABORATORY,Laboratory
+980454,573,Tacrolimus level,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,TAC,Tacrolimus Level,General Lab,LABORATORY,NA
+978842,61,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,LIP,Lipase Level,General Lab,LABORATORY,Laboratory
+619260,36,Tacrolimus level,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,Tacrolimus Level,LEAN Tacrolimus Level,Lab LEAN Collect RN,LABORATORY,Diagnostic
+977814,30,Chloride,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,NCL,Chloride Level CC Lab,General Lab,LABORATORY,Laboratory
+977147,25,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,Alb,Albumin Level,General Lab,LABORATORY,Laboratory
+608803,17,Magnesium,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,Magnesium Level,MCODES_Magnesium Level HUP/PPMC,Lab HUP/PPMC/PAH,LABORATORY,Diagnostic
+976743,17,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,AMY,Amylase Level,General Lab,LABORATORY,Laboratory
+977802,17,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,DIG,Digoxin Level,General Lab,LABORATORY,Laboratory
+614401,15,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,Calcium,MCODES_Calcium Level HUP/PPMC,Lab HUP/PPMC/PAH,LABORATORY,Diagnostic
+978612,8,Iron,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,FE,Iron Level,General Lab,LABORATORY,Laboratory
+974266,5,Folate,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,FOL,Folate Level,General Lab,LABORATORY,Laboratory
+977258,5,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,AMMONIA,Ammonia Level,General Lab,LABORATORY,Laboratory
+979918,4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,K,Potassium Level,General Lab,LABORATORY,Laboratory
+973789,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,Cu,Copper Level,General Lab,LABORATORY,NA
+977167,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,IONCA,Calcium Level Ionized,General Lab,LABORATORY,Laboratory
+980191,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,VAL,Valproic Acid Level,General Lab,LABORATORY,Laboratory
+980993,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,Zn,Zinc Level,General Lab,LABORATORY,NA
+621050,1,Sodium,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,Sodium Level,MCODES_Sodium Level HUP/PPMC,Lab HUP/PPMC/PAH,LABORATORY,Diagnostic
+604025,1,T4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,T4ONLY,T4 LEVEL ONLY,LAB BLOOD ORDERABLES,LABORATORY,Lab
+977246,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,AMOID,Amiodarone Level,General Lab,LABORATORY,NA
+975956,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,ETOH,Ethanol Level,General Lab,LABORATORY,Laboratory
+979210,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,Kepp,Keppra Level,General Lab,LABORATORY,Laboratory
+612165,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,Potassium Level,MCODES_Potassium Level HHUP/PPMC,Lab HUP/PPMC/PAH,LABORATORY,Diagnostic
+980282,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,Selenm,Selenium Level,General Lab,LABORATORY,Laboratory
+978604,4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,1,1,,,,,,,,,,HIV,HIV Ag/Ab combination screen with reflex to confirmation,General Lab,LABORATORY,Laboratory
+990175,4,"Lipid panel, reflex LDL, total",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,1,,,,,1,,,LIPrDLDL,Lipid Panel reflex DirLDL,General Lab,LABORATORY,NA
+594733,494,Lipid screen,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,1,,,,,,,,C1010347,LIPID SCREEN,LAB BLOOD ORDERABLES,LABORATORY,Lab
+976947,336,Lipid panel,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,LIPID,Lipid Panel,General Lab,LABORATORY,Laboratory
+978766,10,Lipid panel,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,LIPID,LIPID,General Lab,LABORATORY,Laboratory
+978771,9,Lipid panel,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,LIPID,LIPP,General Lab,LABORATORY,Laboratory
+979696,8,Lipid panel,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,LIPID,OLIPP,General Lab,LABORATORY,Laboratory
+601437,32,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,?,,,,,,,,C9050050,ULTRA CENTRIFUGATION FOR LIPID,LAB BLOOD ORDERABLES,LABORATORY,Lab
+594278,7,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,?,,,,,,,,C9050005,ULTRA CENTRIFUGATION FOR LIPID,LABORATORY,LABORATORY,Lab
+593254,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,C7001150,TOBRAMYCIN TROUGH,LAB BLOOD ORDERABLES,LABORATORY,Lab
+593257,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,C7001110,VANCOMYCIN TROUGH,LAB BLOOD ORDERABLES,LABORATORY,Lab
+980348,39,Vitamin E,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,RDM VNL,VNL Random,General Lab,LABORATORY,Laboratory
+979874,7,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,RDM TOB,TOB Random,General Lab,LABORATORY,Laboratory
+976758,5,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,RDM ANL,Amikacin Random,General Lab,LABORATORY,Laboratory
+980621,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,RDM VNL,Vanco Random PAH,General Lab,LABORATORY,Laboratory
+594342,10,"Cholesterol, HDL",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,1,,,C1000227,HIGH DENSITY CHOLESTEROL,LAB BLOOD ORDERABLES,LABORATORY,Lab
+593127,25,Cholesterol,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,C1000090,CHOLESTEROL,LAB BLOOD ORDERABLES,LABORATORY,Lab
+1226261,7,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,,PROC6904,PULMONARY REHAB & CONDITIONING,PROCEDURES,PROCEDURES,Procedures
+601989,6,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,,PULM04,PULMONARY REHAB & CONDITIONING,PROCEDURES,PROCEDURES,Procedures
+601986,368,Pulmonary function testing,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,PFT,PULMONARY FUNCTION TESTING,PROCEDURES,PROCEDURES,Procedures
+1226045,22,Pulmonary function testing,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,PROC6903,PULMONARY FUNCTION TESTING,PROCEDURES,PROCEDURES,Procedures
+586185,13,Spirometry,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,94010,SPIROMETRY (OFFICE),PROCEDURES,PROCEDURES,Procedures
+603851,1264,NA,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,VSM,VARIAN SESSION MESSAGE,PROCEDURES,PROCEDURES,Procedures
+979212,940,Panel 5,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,z9P5,z9Panel 5 (Na K CO2 Cre Un),General Lab,LABORATORY,Laboratory
+603295,747,Vascular ultrasound: bilateral carotid,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,VASC01,VASC US CAROTID BILATERAL (93880),VASCULAR ULTRASOUND ORDERABLES,IMAGING,Imaging
+1344499,371,"Transthoracic echocardiography, complete",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CVECH01,TRANSTHORACIC ECHO (TTE) COMPLETE,CV ECHO ORDERABLES,ECHOCARDIOGRAPHY,Echocardiography
+983126,280,CD4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CD4,.CD4 Monitor,Helix,LABORATORY,NA
+977481,244,Chloride,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CL,Chloride,General Lab,LABORATORY,Laboratory
+593474,241,Magnesium,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C1000075,MAGNESIUM,LAB BLOOD ORDERABLES,LABORATORY,Lab
+627058,215,Panel 5,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Panel 5,LEAN Panel 5,Lab LEAN Collect RN,LABORATORY,Diagnostic
+979302,175,Sodium and potassium,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,NAK,Na & K (CC Lab),General Lab,LABORATORY,Laboratory
+979177,140,Iron/transferrin/transferrin satuartion,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,FETRSAT,Iron/transferrin/trnsat,General Lab,LABORATORY,Laboratory
+979781,120,Thyroid stimulating hormone,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,TSH,Thyroid Stimulating Hormone,General Lab,LABORATORY,Laboratory
+603783,108,NA,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,VCM,VARIAN COURSE MESSAGE,PROCEDURES,PROCEDURES,Procedures
+983384,103,Antibody screen,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Ab Scrn,Ab Scrn,Blood Bank,LABORATORY,Laboratory
+593520,99,Thyroid stimulating hormone,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C3501740,THYROID STIMULATING HORMONE,LAB BLOOD ORDERABLES,LABORATORY,Lab
+980021,85,"T4, T3 uptake and free T4 index",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,T4,T4/Tuptake/FTI,General Lab,LABORATORY,Laboratory
+973634,84,Chem11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Chem11,Chem11,General Lab,LABORATORY,Laboratory
+978837,83,NA,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,HBO,Hgb/O2 SATURATION (SCM),General Lab,LABORATORY,Laboratory
+592935,80,Tacrolimus level,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,TACROLI,TACROLIMUS (FK506),LAB BLOOD ORDERABLES,LABORATORY,Lab
+978969,78,Lactate dehydrogenase,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,LDH,Lactate Dehydrogenase,General Lab,LABORATORY,Laboratory
+980786,72,Troponin T,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,TROPT,Troponin-T,General Lab,LABORATORY,Laboratory
+978825,68,Magnesium,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,MAG,MAG,General Lab,LABORATORY,Laboratory
+1344544,63,"Transthoracic echocardiography, limited",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CVECH02,TRANSTHORACIC ECHO (TTE) LIMITED,CV ECHO ORDERABLES,ECHOCARDIOGRAPHY,Echocardiography
+980381,63,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,WBCCORR,WBC Corrected (Group),General Lab,LABORATORY,Laboratory
+978068,60,"metabolic panel, comprehensive",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CMP,CMP,General Lab,LABORATORY,Laboratory
+593183,60,Thyroid stimulating hormone with reflex free T4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C3501745,T4 T3U FTI,LAB BLOOD ORDERABLES,LABORATORY,Lab
+595086,58,Iron/transferrin/transferrin satuartion,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C1000817,IRON/ TRANSFERRIN/ TRNSAT,LAB BLOOD ORDERABLES,LABORATORY,Lab
+978407,56,Ferritin,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,FERR,Ferritin,General Lab,LABORATORY,Laboratory
+979255,54,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICA,Ionized Calcium (CC Lab),General Lab,LABORATORY,Laboratory
+593531,54,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C1000080,URIC ACID,LAB BLOOD ORDERABLES,LABORATORY,Lab
+975515,51,Chem16,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CHEM16,Chem16 Component Of Nstpn,General Lab,LABORATORY,Laboratory
+976604,50,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,URIC,Uric Acid,General Lab,LABORATORY,Laboratory
+593457,49,Lactate dehydrogenase,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C1000145,LACTATE DEHYDROGENASE,LAB BLOOD ORDERABLES,LABORATORY,Lab
+979126,42,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,PROBNP,NT-proBNP,General Lab,LABORATORY,Laboratory
+979748,42,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,PALB,Prealbumin,General Lab,LABORATORY,NA
+979469,40,"Parathyroid hormone, intact",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,PTHN,Intact Parathyroid hormone (PTHN),General Lab,LABORATORY,Laboratory
+652057,40,Troponin T,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,TROPT,TROPONIN T,LAB BLOOD ORDERABLES,LABORATORY,Lab
+978769,39,Lactic acid,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,NLAC,Lactic Acid (CC Lab),General Lab,LABORATORY,Laboratory
+617064,37,Cardiac panel,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,.Cardiac Panel-HUP,LEAN Cardiac Panel-HUP.,Lab LEAN Collect RN,LABORATORY,Diagnostic
+982625,36,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,EXM,EXM,Blood Bank,LABORATORY,Laboratory
+978827,36,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Immunoglob Qn,Immunoglobulins Quantitative,General Lab,LABORATORY,Laboratory
+983524,30,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,HIVQNT,.HIV Quantitative,Helix,LABORATORY,NA
+594127,27,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C0500270,NA/K (LIO),LAB BLOOD ORDERABLES,LABORATORY,Lab
+976414,27,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,TRIG,Triglycerides,General Lab,LABORATORY,Laboratory
+593560,26,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C1000100,TRIGLYCERIDES,LAB BLOOD ORDERABLES,LABORATORY,Lab
+977557,24,"Creatine Kinase, MB",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,_CKMB,_CKMB,General Lab,LABORATORY,Laboratory
+1344651,23,Vascular ultrasound: bilateral carotid,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CVVASC01,VASC BILATERAL CAROTID US (93880) (VASCULAR LAB),CV VASCULAR ORDERABLES,VASCULAR ULTRASOUND,Vascular Ultrasound
+983351,23,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,DAT,DAT,Blood Bank,LABORATORY,Laboratory
+593393,21,Ferritin,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C3500400,FERRITIN,LAB BLOOD ORDERABLES,LABORATORY,Lab
+593095,21,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C1000625,APOLIPOPROTEIN A1 AND B,LAB BLOOD ORDERABLES,LABORATORY,Lab
+652056,21,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,PROBNP,NT PROBNP,LAB BLOOD ORDERABLES,LABORATORY,Lab
+601472,20,"Exercise stress test, echo",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CAR14,EXERCISE ECHO STRESS TEST,CARDIOLOGY,CARDIOLOGY PROCEDURES,Cardiology Procedures
+977943,20,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"EBV AB Profile (EBV VCA, IgG: EBV VCA, IgM: EBNA, EA)","EBV AB Profile (EBV VCA, IgG: EBV VCA, IgM: EBNA, EA)",General Lab,LABORATORY,Laboratory
+979855,20,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SEDRATE,Sedimentation Rate,General Lab,LABORATORY,Laboratory
+595310,19,"Echocardiogram, routine",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CAR07,"ECHOCARDIOGRAM, ROUTINE",CARDIOLOGY,CARDIOLOGY PROCEDURES,Cardiology Procedures
+978266,19,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,DDI,D-Dimer,General Lab,LABORATORY,Laboratory
+978109,19,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,FETRSAT,FE/TRNS,General Lab,LABORATORY,Laboratory
+1103359,18,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,EBVQuant,.EBV Quantitative,Helix,LABORATORY,NA
+595071,18,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C2000023,WBC CORRECTED (LIO),LAB BLOOD ORDERABLES,LABORATORY,Lab
+614889,16,"Creatine Kinase, MB",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CK-MB,LEAN CK-MB,Lab LEAN Collect RN,LABORATORY,Diagnostic
+593121,16,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C3500425,CARCINOEMBRYONIC ANTIGEN,LAB BLOOD ORDERABLES,LABORATORY,Lab
+977416,16,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CEA,CEA,General Lab,LABORATORY,Laboratory
+978741,16,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,KLQNT,Kappa Lambda Quantitation,General Lab,LABORATORY,Laboratory
+978923,16,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,LDH,LDH,General Lab,LABORATORY,Laboratory
+595254,16,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,C3530063,PSA SCREENING,LAB BLOOD ORDERABLES,LABORATORY,Lab
+979147,15,"metabolic panel, comprehensive",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CMP,OCOMP,General Lab,LABORATORY,Laboratory
+982582,15,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Bill CMV Neg Product (not Pheresis),Bill CMVP,Blood Bank,LABORATORY,Laboratory
+597439,14,"Parathyroid hormone, intact",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C3501896,INTACT PARATHYROID HORMONE,LAB BLOOD ORDERABLES,LABORATORY,Lab
+977578,13,"Creatine Kinase, MB",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CKMB,CKMB,General Lab,LABORATORY,Laboratory
+980695,13,Thyroid stimulating hormone,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,TSH,TSH,General Lab,LABORATORY,Laboratory
+980190,13,Transferrin,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,TRANS,Transferrin,General Lab,LABORATORY,Laboratory
+980672,13,Troponin T,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,TROPT,TROPT,General Lab,LABORATORY,Laboratory
+593439,13,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C1000070,LIPASE,LAB BLOOD ORDERABLES,LABORATORY,Lab
+974215,12,Ferritin,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,FERR,FERR,General Lab,LABORATORY,Laboratory
+625294,12,Panel 4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Panel 4,LEAN Panel 4,Lab LEAN Collect RN,LABORATORY,Diagnostic
+594104,12,Urinalysis dipstick,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C2001530,SEND OUT UA DIP ONLY,LABORATORY,LABORATORY,Lab
+982521,12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ABSC,ABSC,Blood Bank,LABORATORY,Laboratory
+976672,12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Alb,ALB,General Lab,LABORATORY,Laboratory
+979958,12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,PROBNP,PROBNP,General Lab,LABORATORY,Laboratory
+593430,12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C2000590,SEDIMENTATION RATE,LAB BLOOD ORDERABLES,LABORATORY,Lab
+973449,11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,BUN,BUN,General Lab,LABORATORY,Laboratory
+979106,11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,NLAC,NLAC,General Lab,LABORATORY,Laboratory
+980340,10,Cardiac enzymes (panel?),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,zzz9CARD,z9CARD,General Lab,LABORATORY,NA
+983166,10,Hepatitis C viral load,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,HCVQNT,.HCV Viral Load,Helix,LABORATORY,NA
+595021,10,Hepatitis C viral load,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C3510159,HEPATITIS C VIRUS (HCV) QUANTITATION,LAB-MOLECULAR PATHOLOGY,LABORATORY,Lab
+597446,10,Panel 5,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C1010014,PANEL 5,LAB BLOOD ORDERABLES,LABORATORY,Lab
+1271917,10,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,BPAM1,DISPENSE RBC,BLOOD BANK PRODUCT ORDERABLES,LABORATORY,Blood Bank
+988717,10,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Faxback,Faxback,General Lab,LABORATORY,NA
+975082,10,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,LIP,LIP,General Lab,LABORATORY,Laboratory
+593526,10,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C3501730,TRIIODOTHYRONINE,LAB BLOOD ORDERABLES,LABORATORY,Lab
+594039,10,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C1000025,UREA NITROGEN,LAB BLOOD ORDERABLES,LABORATORY,Lab
+978938,10,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,z8HLA Post,z8HLA Post,General Lab,LABORATORY,Laboratory
+979200,10,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,z9P5,z9P5,General Lab,LABORATORY,Laboratory
+977889,9,"Creatine Kinase, MB",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CKMB,CK-MB Isoenzyme,General Lab,LABORATORY,Laboratory
+978887,9,Magnesium,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,MAG,Mg,General Lab,LABORATORY,Laboratory
+594041,9,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C1000060,CALCIUM,LAB BLOOD ORDERABLES,LABORATORY,Lab
+1030532,9,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CFCELL1,CFCELL1,General Lab,LABORATORY,Laboratory
+624598,9,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Amylase,LEAN Amylase,Lab LEAN Collect RN,LABORATORY,Diagnostic
+980032,9,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,PSASCR,PSASCR,General Lab,LABORATORY,Laboratory
+979076,8,Cardiac panel,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,_BCARD,"_Cardiac Panel, Biosite",General Lab,LABORATORY,Laboratory
+983680,8,CD3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CD3 Monitor,.CD3 Monitor,Helix,LABORATORY,NA
+610336,8,Lactic acid,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Lactic Acid (Critical Care),LEAN Lactic Acid (Critical Care),Lab LEAN Collect RN,LABORATORY,Diagnostic
+978319,8,Liver fibrosis (HCV),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,HCVFIBR,HCV FibroSURE,General Lab,LABORATORY,Laboratory
+978488,8,Liver panel,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,HEPPNL,HEP PNL,General Lab,LABORATORY,Laboratory
+976268,8,Tacrolimus level,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,TAC,TAC,General Lab,LABORATORY,NA
+1104316,8,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,EBVCASE,EPSTEIN-BARR VIRUS (EBV) - QUANTITATION PCR,LAB-MOLECULAR PATHOLOGY,LABORATORY,Lab
+978498,8,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Fruct,Fructosamine,General Lab,LABORATORY,Laboratory
+978390,8,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,HAPT,Haptoglobin,General Lab,LABORATORY,Laboratory
+624530,8,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Lipase,LEAN Lipase,Lab LEAN Collect RN,LABORATORY,Diagnostic
+598262,8,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C9044300,PSA ULTRA SENSITIVE,LAB BLOOD ORDERABLES,LABORATORY,Lab
+979234,7,Lactic acid,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,LACT,Lactic Acid,General Lab,LABORATORY,Laboratory
+980552,7,T4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,T4,T4,General Lab,LABORATORY,Laboratory
+593289,7,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C1000085,ALBUMIN,LAB BLOOD ORDERABLES,LABORATORY,Lab
+977499,7,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CORT,Cortisol,General Lab,LABORATORY,Laboratory
+977679,7,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,DHEA-S,DHEA-S Dehydroepiandrosterone Sulfate,General Lab,LABORATORY,NA
+980053,7,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SEDRATE,SED,General Lab,LABORATORY,Laboratory
+981624,6,Cardiac enzymes (panel?),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,zzz9CARD,zzz9Cardiac Enzymes,General Lab,LABORATORY,NA
+981496,6,"Creatine Kinase, MB",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,_CKMB,_CKMB,General Lab,LABORATORY,Laboratory
+593164,6,Folate,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C3501800,FOLATE,LAB BLOOD ORDERABLES,LABORATORY,Lab
+978780,6,Hepatitis B surface antigen ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,HBSAG,Hepatitis B Surface Antigen (HBsAG),General Lab,LABORATORY,Laboratory
+593451,6,Iron,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C1000810,IRON,LAB BLOOD ORDERABLES,LABORATORY,Lab
+655384,6,"Tacrolimus level, high sensitivity LC/MS",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Q70007,"QUEST TACROLIMUS, HIGHLY SENSITIVE, LC/MS/MS",QUEST/LABCORP LAB,LABORATORY,Lab
+1116484,6,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,_SPCPT,_SPCPT,General Lab,LABORATORY,Laboratory
+983762,6,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CMVQNT,.Cytomegalovirus,Helix,LABORATORY,NA
+973059,6,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,AMY,Amy,General Lab,LABORATORY,Laboratory
+593433,6,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,85651C,SEDIMENTATION RATE,LABORATORY,LABORATORY,Lab
+611607,6,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,10012001,UNKNOWN item template,Lab Times,DIAGNOSTIC,Diagnostic
+980592,6,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,UPEP,UPEP,General Lab,LABORATORY,Laboratory
+593353,5,Chloride,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,82435A,CHLORIDE,LAB BLOOD ORDERABLES,LABORATORY,Lab
+983521,5,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,_Post DAT,_Post DAT,Blood Bank,LABORATORY,Laboratory
+973218,5,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,B ALBI,B ALBI,General Lab,LABORATORY,Laboratory
+1087042,5,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,BDGLUCAN,Beta-D-Glucan,General Lab,LABORATORY,Laboratory
+977573,5,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C3,C3 Complement,General Lab,LABORATORY,Laboratory
+594201,5,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C3510180,HIV 1 QUANTITATION,LAB-MOLECULAR PATHOLOGY,LABORATORY,Lab
+593242,5,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C7000680,LITHIUM,LAB BLOOD ORDERABLES,LABORATORY,Lab
+979335,5,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,PALB,PALB,General Lab,LABORATORY,NA
+979872,5,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,PLXCH,PLXCH,General Lab,LABORATORY,Laboratory
+979554,5,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,UCREA,RUCR,General Lab,LABORATORY,Laboratory
+593317,4,Alanine aminotransferase,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C1000135,ALANINE AMINOTRANSFERASE,LAB BLOOD ORDERABLES,LABORATORY,Lab
+976538,4,Alkaline phosphatase isoenzymes,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,AlkFR,Alkaline Phosphatase Isoenzymes,General Lab,LABORATORY,NA
+975319,4,Chloride,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,NCL,NCL,General Lab,LABORATORY,Laboratory
+979915,4,"Folate, RBC",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,RBCFol,RBC Folate,General Lab,LABORATORY,Laboratory
+608907,4,Iron/transferrin,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Iron/Transferrin,LEAN Iron/Transferrin,Lab LEAN Collect RN,LABORATORY,Diagnostic
+594013,4,Lactic acid,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C1000232,LACTIC ACID,LAB BLOOD ORDERABLES,LABORATORY,Lab
+603571,4,"Parathyroid hormone, intact, with calcium",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,61941,"PTH,INTACT AND CALCIUM",QUEST/LABCORP LAB,LABORATORY,Lab
+981214,4,Rh antigen typing,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,_Rh Antigen Typing,_Rh Antigen Typing,Blood Bank,LABORATORY,Laboratory
+979309,4,Sodium and potassium,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,NAK,NAK,General Lab,LABORATORY,Laboratory
+976945,4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,B2GP1,B2GP1,General Lab,LABORATORY,Laboratory
+932240,4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,BOH,BETA HYDROXYBUTYRIC ACID,LAB BLOOD ORDERABLES,LABORATORY,Lab
+976213,4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,GGT,GGT,General Lab,LABORATORY,Laboratory
+978384,4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,HAPT,HAP,General Lab,LABORATORY,Laboratory
+974481,4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,HBO,HBO,General Lab,LABORATORY,Laboratory
+978790,4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,IgG Subs,IgG Subclasses,General Lab,LABORATORY,NA
+975028,4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,LDH,LDH,General Lab,LABORATORY,Laboratory
+979606,4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,MPA,MPA,General Lab,LABORATORY,Laboratory
+979428,4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,QFTG,Quantiferon TB Gold,General Lab,LABORATORY,Laboratory
+980610,4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,TP,TP,General Lab,LABORATORY,Laboratory
+980422,4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,URIC,URIC,General Lab,LABORATORY,Laboratory
+597070,3,Chloride,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C0500280,CHLORIDE CRITICAL CARE,LAB BODY FLUIDS AND STOOLS,LABORATORY,Lab
+979756,3,Rheumatoid factor,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Rheumatoid Fact,Rheumatoid Factor Assay,General Lab,LABORATORY,Laboratory
+979782,3,T4 (with T3 uptake?),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,T4,T3 Uptake,General Lab,LABORATORY,Laboratory
+976421,3,Transferrin,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,TRANS,TRNSFRN,General Lab,LABORATORY,Laboratory
+976866,3,Vitamin B12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,B12,B12,General Lab,LABORATORY,Laboratory
+976872,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,B FESUC,B FESUC,General Lab,LABORATORY,Laboratory
+975190,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,BMG,Beta 2 Microglobulin,General Lab,LABORATORY,NA
+977065,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,BHB,Beta Hydroxybutyric Acid,General Lab,LABORATORY,Laboratory
+975398,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C4,C4 Complement,General Lab,LABORATORY,Laboratory
+1131220,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CAR24,CATH LAB PROCEDURE,CARDIOLOGY,CARDIOLOGY PROCEDURES,Cardiology Procedures
+1061340,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CFCELL4,CFCELL#4,General Lab,LABORATORY,Laboratory
+977596,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CREACLR,CRCL,General Lab,LABORATORY,Laboratory
+597298,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C3000250,D-DIMER,LAB BLOOD ORDERABLES,LABORATORY,Lab
+975818,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,DBIL Group,DBIL Group,General Lab,LABORATORY,Laboratory
+977768,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,DDI,DDI,General Lab,LABORATORY,Laboratory
+978035,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,FE,FE,General Lab,LABORATORY,Laboratory
+593182,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C1000115,GAMMA GT,LAB BLOOD ORDERABLES,LABORATORY,Lab
+976320,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,HAPT,HAPT,General Lab,LABORATORY,Laboratory
+978850,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,IVI 1,IVI 1,General Lab,LABORATORY,Laboratory
+974937,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,IVI X,IVI X,General Lab,LABORATORY,Laboratory
+624466,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Sedimentation Rate (ESR),LEAN Sedimentation Rate (ESR),Lab LEAN Collect RN,LABORATORY,Diagnostic
+612368,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,BUN,MCODES_BUN HUP/PPMC,Lab HUP/PPMC/PAH,LABORATORY,Diagnostic
+977097,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,MMA,Methylmalonic Acid Quantitative,General Lab,LABORATORY,NA
+979652,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICA PMC,PICA,General Lab,LABORATORY,Laboratory
+979886,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICA PMC,PMC Ionized Calcium,General Lab,LABORATORY,Laboratory
+593784,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C1000040,POTASSIUM,LAB BLOOD ORDERABLES,LABORATORY,Lab
+593483,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C1000630,PRE-ALBUMIN,LAB BLOOD ORDERABLES,LABORATORY,Lab
+900694,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Q16603,"QUANTIFERON (R) TB GOLD, (INCUBATED)",QUEST/LABCORP LAB,LABORATORY,Lab
+980425,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,TRIG,TRIG,General Lab,LABORATORY,Laboratory
+976828,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,VNLT,VNLT,General Lab,LABORATORY,Laboratory
+981279,3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,WBCCORR,WBCCOR,General Lab,LABORATORY,Laboratory
+976619,2,Cardiolipin antibody screen,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ACL,ACL,General Lab,LABORATORY,Laboratory
+977897,2,Chloride,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CL,CL,General Lab,LABORATORY,Laboratory
+594043,2,"Creatine Kinase, MB",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C1000136,CKMB,LAB BLOOD ORDERABLES,LABORATORY,Lab
+1344529,2,"Echocardiogram, transesophogeal",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CVTEE07,TRANSESOPHAGEAL ECHO (TEE),CV ECHO ORDERABLES,ECHOCARDIOGRAPHY,Echocardiography
+614823,2,Ferritin,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Ferritin,LEAN Ferritin,Lab LEAN Collect RN,LABORATORY,Diagnostic
+976132,2,Folate,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,FOL,FOL,General Lab,LABORATORY,Laboratory
+606994,2,Hepatitis C viral load,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Hepatitis C Virus Quantitation,MCODES_Hepatitis C Virus Quantitation,Lab HUP/PPMC/PAH,LABORATORY,Diagnostic
+611903,2,Iron,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Iron,LEAN Iron,Lab LEAN Collect RN,LABORATORY,Diagnostic
+978890,2,Lactic acid,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,LACT,LAC,General Lab,LABORATORY,Laboratory
+1152662,2,"Parathyroid hormone, intact, intra-operative",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,PTHIOPER,PTH(INTRA-OPERATIVE),LAB BLOOD ORDERABLES,LABORATORY,Lab
+622168,2,Sodium + potassium,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Sodium/Potassium,LEAN Sodium/Potassium,Lab LEAN Collect RN,LABORATORY,Diagnostic
+980478,2,Tacrolimus level,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,TestoFC,Testosterone Females or Children,General Lab,LABORATORY,Laboratory
+980464,2,Thyroid stimulating hormone,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,TSH,TSH,General Lab,LABORATORY,Laboratory
+973275,2,Vitamin B12 + folate,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,B12/FOL,B12/FOL,General Lab,LABORATORY,Laboratory
+1060716,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,TROPT,TROPT PAH,General Lab,LABORATORY,Laboratory
+593276,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C3501565,PROLACTIN,LAB BLOOD ORDERABLES,LABORATORY,Lab
+598896,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C0400160,IONIZED CALCIUM (CRITICAL CARE LAB),LAB BLOOD ORDERABLES,LABORATORY,Lab
+977044,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,B2GP1,Beta 2 Glycoprotein 1,General Lab,LABORATORY,Laboratory
+593287,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C3501865,ALPHA FETOPROTEIN TUMOR MARKER (AFPNP),LAB BLOOD ORDERABLES,LABORATORY,Lab
+983112,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ALK 2p23,.ALK split,Helix,LABORATORY,NA
+977194,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,A-1-AT,ALPHA,General Lab,LABORATORY,NA
+595053,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C5000080,ANCA TITER AND COMMENT,LAB BLOOD ORDERABLES,LABORATORY,Lab
+593517,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,86225B,ANTI DNA,LAB BLOOD ORDERABLES,LABORATORY,Lab
+976756,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ASPERAG,ASPERAG,General Lab,LABORATORY,Laboratory
+977121,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,BHB,BHB,General Lab,LABORATORY,Laboratory
+975499,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CERU,Ceruloplasmin,General Lab,LABORATORY,Laboratory
+978183,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,z9CRUN,CRUN,General Lab,LABORATORY,Laboratory
+602018,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C3510502,CYTOMEGALOVIRUS - QUANTITATIVE PCR,LAB-MOLECULAR PATHOLOGY,LABORATORY,Lab
+978010,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,VCAIgG,Epstein Barr Viral Capsid Antigen,General Lab,LABORATORY,NA
+974113,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ERYTHRO,Erythropoietin (EPO),General Lab,LABORATORY,Laboratory
+978659,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,K,K,General Lab,LABORATORY,Laboratory
+618315,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,.BUN/CRE,LEAN BUN/CRE PMC LIO,Lab LEAN Collect RN,LABORATORY,Diagnostic
+622702,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Hgb/O2 Saturation,",LEAN Hgb/O2 Saturation,Lab LEAN Collect RN,LABORATORY,Diagnostic
+608706,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Mycophenolic Acid,MCODES_Mycophenolic Acid,Lab HUP/PPMC/PAH,LABORATORY,Diagnostic
+594088,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C2000620,SMEAR FOR PHYSICIAN (NOT REVIEWED BY PATHOLOGY),LABORATORY,LABORATORY,Lab
+980130,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,TOBP,TOBP,General Lab,LABORATORY,Laboratory
+593022,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C7000320,VALPROIC ACID,LAB BLOOD ORDERABLES,LABORATORY,Lab
+603643,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,VASC18,VASC US LOWER EXTREMITY VEINS UNILATERAL (93971),CV VASCULAR ORDERABLES,VASCULAR ULTRASOUND,Vascular Ultrasound
+974594,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,z9HSV I IgG,z9Herpes Simplex Type I IgG,General Lab,LABORATORY,NA
+978822,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,z9HSV II IgG,z9Herpes Simplex Type II IgG,General Lab,LABORATORY,NA
+979386,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,zzM25,zzM25,General Lab,LABORATORY,Laboratory
+976608,1,"Alkaline phosphatase, bone specific",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,AlkPhoBone,Alk Phos Bone Specific,General Lab,LABORATORY,NA
+613181,1,"Chloride, serum",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Chloride, Critical Care","MCODES_Chloride, Critical Care.",Lab HUP/PPMC/PAH,LABORATORY,Diagnostic
+977700,1,Creatinine,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CREA,CREA,General Lab,LABORATORY,Laboratory
+595067,1,"Echocardiogram, transesophogeal",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CAR08,TRANSESOPHAGEAL ECHOCARDIOGRAM,CARDIOLOGY,CARDIOLOGY PROCEDURES,Cardiology Procedures
+601477,1,"Exercise stress test, nuclear",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CAR17,EXERCISE NUCLEAR STRESS TEST,CARDIOLOGY,CARDIOLOGY PROCEDURES,Cardiology Procedures
+1075484,1,"Exercise stress test, nuclear",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CAR29,LEXISCAN NUCLEAR STRESS TEST,CARDIOLOGY,CARDIOLOGY PROCEDURES,Cardiology Procedures
+595075,1,"Exercise stress test, nuclear with persantine",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CAR02,PERSANTINE NUCLEAR STRESS TEST,CARDIOLOGY,CARDIOLOGY PROCEDURES,Cardiology Procedures
+978762,1,Lactic acid,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,LACT,LACT,General Lab,LABORATORY,Laboratory
+619113,1,Lactic acid,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Lactic Acid,MCODES_Lactic Acid.,Lab HUP/PPMC/PAH,LABORATORY,Diagnostic
+1117658,1,"Parathyroid hormone, intact, intra-operative",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,IOPTH,Intra-Operative Parathyroid Hormone (IOPTH),General Lab,LABORATORY,Laboratory
+1117659,1,"Parathyroid hormone, intact, intra-operative",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,IOPTH,IOPTH,General Lab,LABORATORY,Laboratory
+614724,1,Rheumatoid factor,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Rheumatoid Factor,LEAN Rheumatoid Factor,Lab LEAN Collect RN,LABORATORY,Diagnostic
+594847,1,Rheumatoid factor,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C5001062,RHEUMATOID FACT QUANT 2 (LIO),LABORATORY,LABORATORY,Lab
+977924,1,T3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,T3,T3,General Lab,LABORATORY,Laboratory
+990185,1,T4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,T4Lvl,T4Lvl,General Lab,LABORATORY,NA
+979859,1,Thyroid stimulating immunoglobulins,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,TSI,Thyroid Stimulating Immunoglobulins,General Lab,LABORATORY,Laboratory
+593524,1,Transferrin,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C1000805,TRANSFERRIN,LAB BLOOD ORDERABLES,LABORATORY,Lab
+1329718,1,"Troponin, 5th generation",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,5TROP,5th Generation Troponin,General Lab,LABORATORY,Laboratory
+976988,1,Vitamin B12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,B12,B12,General Lab,LABORATORY,Laboratory
+1332350,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Mycoplasma pneumoniae Ab IgG,Mycoplasma pneumoniae Ab IgG,General Lab,LABORATORY,Laboratory
+979551,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Panel Charge,Panel,General Lab,LABORATORY,Laboratory
+979438,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,PRSI,Protein S Immunologic,General Lab,LABORATORY,Laboratory
+976626,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,APC,Activated Protein C,General Lab,LABORATORY,Laboratory
+976554,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,AFPNP,Alpha Feto Protein Tumor Marker (AFPNP),General Lab,LABORATORY,Laboratory
+983529,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,_Trxn Rxn,_Trxn Rxn,Blood Bank,LABORATORY,Laboratory
+983516,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,FACV,.Factor V Leiden,Helix,LABORATORY,NA
+983773,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,PTGEN,.Prothrombin Gene Mutation,Helix,LABORATORY,NA
+976727,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,17OHPrg,17-d Hydroxyprogesterone,General Lab,LABORATORY,NA
+1098411,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ACTH,ACTH,General Lab,LABORATORY,Laboratory
+976950,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,GBM Ab,AGBM,General Lab,LABORATORY,Laboratory
+593283,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C9010005,ALDOSTERONE,LAB BLOOD ORDERABLES,LABORATORY,Lab
+593075,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,82103A,ALPHA 1 ANTITRYPSIN WITH PHENOTYPE,LAB BLOOD ORDERABLES,LABORATORY,Lab
+1145803,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Alpha 1 Antitrypsin, St ELISA","Alpha 1 Antitrypsin, St ELISA",General Lab,LABORATORY,Laboratory
+593301,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C1000055,AMYLASE,LAB BLOOD ORDERABLES,LABORATORY,Lab
+976764,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,FATIII,Anti Thrombin III Assay,General Lab,LABORATORY,Laboratory
+982527,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Antigen Type,Antigen Type,Blood Bank,LABORATORY,Laboratory
+976944,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Bill AGU,B AGU,General Lab,LABORATORY,Laboratory
+593545,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C3501100,BETA-HCG/QUANT/PREGNANCY,LAB BLOOD ORDERABLES,LABORATORY,Lab
+1098429,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CTx,C Telopeptide,General Lab,LABORATORY,Laboratory
+977770,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C3,C3,General Lab,LABORATORY,Laboratory
+977126,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C4,C4,General Lab,LABORATORY,Laboratory
+977298,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CA,Ca,General Lab,LABORATORY,Laboratory
+977139,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CA125,CA125 Cancer Antigen 125,General Lab,LABORATORY,Laboratory
+593338,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CERU,CERULOPLASMIN,LAB BLOOD ORDERABLES,LABORATORY,Lab
+977617,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CO2,CO2,General Lab,LABORATORY,Laboratory
+593667,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,86160O,COMPLEMENT C3 FRACTION,LAB BLOOD ORDERABLES,LABORATORY,Lab
+593720,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,86160P,COMPLEMENT C4 FRACTION,LAB BLOOD ORDERABLES,LABORATORY,Lab
+1142086,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,IMGCT0021,CT CHEST WO IV CONTRAST,IMG CT ORDERABLES,IMAGING,Imaging
+598960,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C9012000,"CYCLIC CITRUL PEPTIDE AB, IGG",LAB BLOOD ORDERABLES,LABORATORY,Lab
+593368,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C3501840,DEHYDROEPIANDROSTERONE SULFATE,LAB BLOOD ORDERABLES,LABORATORY,Lab
+985969,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,DEXA TMS,"Dexamethasone, LC-MS/MS",General Lab,LABORATORY,Laboratory
+975830,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,DHEA,DHEA,General Lab,LABORATORY,NA
+975888,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,DRVV,DRVV,General Lab,LABORATORY,Laboratory
+975943,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ERYTHRO,ERYTHRO,General Lab,LABORATORY,Laboratory
+593290,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,82055A,ETHANOL,LAB BLOOD ORDERABLES,LABORATORY,Lab
+977910,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,FVIII,Factor VIII Assay,General Lab,LABORATORY,NA
+978164,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Flucon,Fluconazole Lvl,General Lab,LABORATORY,NA
+1110362,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,GPQNT,Glucose-6-PD Quantitative,General Lab,LABORATORY,Laboratory
+601185,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C1000605,HAPTOGLOBIN,LAB BLOOD ORDERABLES,LABORATORY,Lab
+598799,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C3510166,"HEPATITIS C VIRUS, GENOTYPE (INCL QUANT)",MICRO/LABORATORY,LABORATORY,Lab
+978404,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,HEPRN,HEPRN,General Lab,LABORATORY,Laboratory
+978846,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,HHEPRN,HHEPRN,General Lab,LABORATORY,Laboratory
+978458,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,HITELIS,HITELISA,General Lab,LABORATORY,Laboratory
+974794,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICA,ICA,General Lab,LABORATORY,Laboratory
+1204911,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,L115399,IMMATURE CELLS,QUEST/LABCORP LAB,LABORATORY,Lab
+597449,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C9010088,IMMUNUGLOBULIN E,LAB BLOOD ORDERABLES,LABORATORY,Lab
+612036,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,D-Dimer - HUP,LEAN D-Dimer - HUP,Lab LEAN Collect RN,LABORATORY,Diagnostic
+620596,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,LDH,LEAN LDH,Lab LEAN Collect RN,LABORATORY,Diagnostic
+1137607,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,IMGMAM0035,MAMMO SCREENING BILATERAL,IMG MAMMOGRAPHY ORDERABLES,IMAGING,Imaging
+623291,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Albumin,MCODES_Albumin HUP/PPMC,Lab HUP/PPMC/PAH,LABORATORY,Diagnostic
+608838,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CO2 Content,MCODES_CO2 Content HUP/PPMC,Lab HUP/PPMC/PAH,LABORATORY,Diagnostic
+619256,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Ionized Calcium (CC Lab),MCODES_Ionized Calcium (CC Lab),Lab HUP/PPMC/PAH,LABORATORY,Diagnostic
+593592,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C9010260,MISCELLANEOUS SEND OUT,LAB BLOOD ORDERABLES,LABORATORY,Lab
+1257158,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,MiscSO,Miscellaneous Send Out,General Lab,LABORATORY,NA
+594730,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C7007270,MYCOPHENOLIC ACID,LAB BLOOD ORDERABLES,LABORATORY,Lab
+979044,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,NA,NA,General Lab,LABORATORY,Laboratory
+979218,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,NHT,NHT,General Lab,LABORATORY,Laboratory
+988603,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,PLAC,PLAC,LAB BLOOD ORDERABLES,LABORATORY,Lab
+1102507,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,PCT,Procalcitonin,General Lab,LABORATORY,Laboratory
+1105735,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,PCT,PROCALCITONIN,LAB BLOOD ORDERABLES,LABORATORY,Lab
+976012,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,RDM VNL,RDM VNL,General Lab,LABORATORY,Laboratory
+976142,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SEDRATE,SEDRATE,General Lab,LABORATORY,Laboratory
+976318,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,TT,Thrombin Time,General Lab,LABORATORY,Laboratory
+979867,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,TTI,Tissue Thromboplastin Inhib,General Lab,LABORATORY,Laboratory
+978018,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,TOBT,TOBT,General Lab,LABORATORY,Laboratory
+978102,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,TT,TT,General Lab,LABORATORY,Laboratory
+978224,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,URIC,URA,General Lab,LABORATORY,Laboratory
+603310,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,VASC16,VASC US LOWER EXTREMITY VEINS BILATERAL (93970),CV VASCULAR ORDERABLES,VASCULAR ULTRASOUND,Vascular Ultrasound
+980772,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,zzBNP PAH,z9BNP,General Lab,LABORATORY,Laboratory
+974805,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,z9IgE,z9IgE,General Lab,LABORATORY,NA
+593542,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C7000700,ZINC,LAB BLOOD ORDERABLES,LABORATORY,Lab
+976936,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,zzBNP PAH,zzB-Type Natriuretic Peptide PAH,General Lab,LABORATORY,Laboratory
+979478,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,zzM25,zzMiscellaneous Sendout Test (25),General Lab,LABORATORY,Laboratory

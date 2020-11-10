@@ -1,0 +1,29 @@
+spec.tidy,coll.meth.tidy,LAB_RESULTS.SPECIMEN,LAB_RESULTS.SPECIMEN_COLLECTION_METHOD,count,obo,notes,confidence
+_,NA,_,NA,20,,,
+blood,arterial draw,BLOOD,ARTERIAL DRAW,9125,UBERON:0013755,,high
+blood,NA,BLOOD ,NA,7234,UBERON:0000178,,high
+blood,NA,BLOOD,NA,2572,UBERON:0000178,,high
+blood,venous draw,BLOOD,VENOUS DRAW,95593,UBERON:0013756,,high
+body fluid,no charge,BODY FLUID,NO CHARGE,35,UBERON:0006314,,high
+cerebrospinal fluid,no charge,CEREBROSPINAL FLUID,NO CHARGE,51,UBERON:0001359,,high
+chorionic villi sample,NA,CHORIONIC VILLI SAMPLE,NA,5804,UBERON:0007106,,high
+chorionic villi sample - blood,NA,CHORIONIC VILLI SAMPLE - BLOOD,NA,3074,,blood content of chorinic villi sample? blood collected during a chorionic villi collection encounter?,
+fibroblasts,NA,FIBROBLASTS,NA,2346,CL:0000057,,high
+fibroblasts - blood,NA,FIBROBLASTS - BLOOD,NA,21,,blood collected during a fibroblast collection encounter?,
+fluid,NA,FLUID ,NA,24,UBERON:0006314,,medium
+fluid,no charge,FLUID,NO CHARGE,339,UBERON:0006314,,medium
+NA,NA,NA,NA,14886,,,
+other,NA,OTHER,NA,60,,,
+other,other,OTHER,OTHER,45,,,
+serum - blood,NA,SERUM - BLOOD ,NA,3,UBERON:0001977,,medium
+stool,other,STOOL,OTHER,1,UBERON:0001988,,high
+tissue,other,TISSUE,OTHER,2,UBERON:0013755,,high
+urine,24 hour urine,URINE,24 HOUR URINE,2,UBERON:0001088,,high
+urine,NA,URINE,NA,52,UBERON:0001088,24 hour collection objective,high
+urine,urine,URINE,URINE,790,UBERON:0001088,,high
+urine upper and lower case,NA,URINE UPPER AND LOWER CASE,NA,46,UBERON:0001088,?,medium
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
