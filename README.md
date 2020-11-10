@@ -5,13 +5,19 @@ Specifically, where we say "assays", healthcare providers might say "lab tests".
 
 ## To regenerate the template and then the RDF model
 
+<<<<<<< HEAD
 Create a LOINC account and download https://loinc.org/download/loinc-and-relma-complete-download-file/ . The PennTURBO team is currently using version 2.68
 
 Unpack into `pipeline/data/`. The unpacked download folder is currently called `LOINC_2`
 
+=======
+>>>>>>> 8ec5e99c1b2407cb25087eaf8e4474030e7ed6c5
 ```Bash
 cd pipeline
 Rscript turbo_assay_template_generation.R
 ./execute_template.sh
 ```
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8ec5e99c1b2407cb25087eaf8e4474030e7ed6c5

@@ -4,6 +4,22 @@ prefix owl:  <http://www.w3.org/2002/07/owl#>
 prefix obo:  <http://purl.obolibrary.org/obo/>
 
 construct {
+<<<<<<< HEAD
+=======
+#        ?assay rdfs:subClassOf  [ owl:intersectionOf [  rdf:first  [ a owl:Restriction ;
+#                                                                     owl:onProperty <http://purl.obolibrary.org/obo/BFO_0000055> ;
+#                                                                     owl:someValuesFrom [ owl:intersectionOf  [ rdf:first  <http://purl.obolibrary.org/obo/OBI_0000275> ]] ] ;
+#                                                                                                                rdf:rest  [ rdf:first [ a owl:Restriction ;
+#                                                                                                                                        owl:onProperty <http://purl.obolibrary.org/obo/RO_0000081> ;
+#                                                                                                                                        owl:someValuesFrom  [ owl:intersectionOf  [ rdf:first ?targent ] ] ] ]  ]  ] .
+#        ?assay rdfs:subClassOf  [ owl:intersectionOf [  rdf:first  [ a owl:Restriction ;
+#                                                                     owl:onProperty <http://purl.obolibrary.org/obo/OBI_0000293> ;
+#                                                                     owl:someValuesFrom [ owl:intersectionOf  [ rdf:first  ?targent ]] ] ;
+#                                                                                                                rdf:rest  [ rdf:first [ a owl:Restriction ;
+#                                                                                                                                        owl:onProperty <http://purl.obolibrary.org/obo/RO_0000087> ;
+#                                                                                                                                        owl:someValuesFrom  [ owl:intersectionOf  [ rdf:first <http://purl.obolibrary.org/obo/OBI_0000275> ] ] ] ]  ]  ] .
+
+>>>>>>> 8ec5e99c1b2407cb25087eaf8e4474030e7ed6c5
         ?assay rdfs:subClassOf [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
                                                          owl:onProperty obo:BFO_0000055 ;
                                                          owl:someValuesFrom [ owl:intersectionOf ( obo:OBI_0000275
@@ -33,6 +49,10 @@ construct {
     values ?eligible {
         <http://purl.obolibrary.org/obo/CHEBI_23367> <http://purl.obolibrary.org/obo/CHEBI_33250>
     }
+<<<<<<< HEAD
+=======
+#    ?targent rdfs:subClassOf* <http://purl.obolibrary.org/obo/CHEBI_23367> .
+>>>>>>> 8ec5e99c1b2407cb25087eaf8e4474030e7ed6c5
     ?targent rdfs:subClassOf* ?eligible .
 
 }
