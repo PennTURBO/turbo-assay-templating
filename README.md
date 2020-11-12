@@ -1,23 +1,25 @@
 # turbo-assay-templating
-Here's a first step in modelling assays* with terms from [OBO foundry ontologies](http://www.obofoundry.org/). It generates a template that can be executed by the [ROBOT](http://robot.obolibrary.org/) application, leading to an RDF data model. Assays currently in scope have a specimen collected from an organism as the evaluant and can be used in EHR 2ry research or in vivo basic research. We are currently bootstrapping the models from LOINC, but they are not intended for patient care.
 
-Specifically, where we say "assays", healthcare providers might say "lab tests". However, we do not mean to imply that these tests are only relevant in the course of diagnosing disease or planning and monitoring therapy. They would be equally applicable to modelling in vivo research.
+Here's a first step in modelling assays by using terms from [OBO foundry ontologies](http://www.obofoundry.org/). It generates a template that can be executed by the [ROBOT](http://robot.obolibrary.org/) application, leading to an RDF data model. Assays currently in scope have a specimen collected from an organism as the evaluant and can be used in EHR secondary research or in vivo basic research. 
 
-## To regenerate the template and then the RDF model
+Where we say "assays", healthcare providers might say "lab tests". However, we do not mean to imply that these tests are only relevant in the course of diagnosing disease or planning and monitoring therapy. They would be equally applicable to modelling in vivo research.
 
-<<<<<<< HEAD
-Create a LOINC account and download https://loinc.org/download/loinc-and-relma-complete-download-file/ . The PennTURBO team is currently using version 2.68
+When this repo was created, we had been bootstrapping the assay models from LOINC. Specifically, the project required that 
+- The user has a LOINC account
+- https://loinc.org/download/loinc-and-relma-complete-download-file/ had been downloaded. Our experience was mostly with version 2.68.
+- The downloaded archive was unpacked (as a folder called `LOINC_2`) into `pipeline/data/`
 
-Unpack into `pipeline/data/`. The unpacked download folder is currently called `LOINC_2`
+Then the template could the be created and executed like this:
 
-=======
->>>>>>> 8ec5e99c1b2407cb25087eaf8e4474030e7ed6c5
 ```Bash
 cd pipeline
 Rscript turbo_assay_template_generation.R
 ./execute_template.sh
 ```
-<<<<<<< HEAD
 
-=======
->>>>>>> 8ec5e99c1b2407cb25087eaf8e4474030e7ed6c5
+There are several dependencies which are not discussed here yet.
+
+----
+
+After closer review of the LOINC terms and conditions, we have decided to put the previous approach on hold and switch to an NLP + manual review approach for matching lab results from the EHR to terms from OBO foundry ontologies. See file XXX.
+
