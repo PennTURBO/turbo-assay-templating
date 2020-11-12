@@ -5,7 +5,6 @@ Here's a first step in modelling assays by using terms from [OBO foundry ontolog
 Where we say "assays", healthcare providers might say "lab tests". However, we do not mean to imply that these tests are only relevant in the course of diagnosing disease or planning and monitoring therapy. They would be equally applicable to modelling in vivo research.
 
 When this repo was created, we had been bootstrapping the assay models from LOINC. See details below.  
-----
 
 **After closer review of the LOINC terms and conditions, we have decided to put the previous approach on hold** and switch to an NLP + manual review approach for matching lab results from the EHR to terms from OBO foundry ontologies. See file XXX.
 
