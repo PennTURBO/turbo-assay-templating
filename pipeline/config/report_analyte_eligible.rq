@@ -1,0 +1,18 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix owl:  <http://www.w3.org/2002/07/owl#>
+prefix obo:  <http://purl.obolibrary.org/obo/>
+
+select distinct ?assay where {
+    ?assay rdfs:subClassOf  [ a owl:Restriction ;
+                              owl:onProperty <http://purl.obolibrary.org/obo/OBI_0000299> ;
+                              owl:someValuesFrom [ a owl:Restriction ;
+                                                   owl:onProperty <http://purl.obolibrary.org/obo/IAO_0000136> ;
+                                                   owl:someValuesFrom ?targent ;
+                                                   ]  ] .
+    values ?eligible {
+        <http://purl.obolibrary.org/obo/CHEBI_23367> <http://purl.obolibrary.org/obo/CHEBI_33250>
+    }
+    ?targent rdfs:subClassOf* ?eligible .
+}
+order by (str(?assay))

@@ -46,7 +46,6 @@ query \
   --input build/turbo_assays.ttl \
   --query config/no_analyte_asserted.rq build/no_analyte_asserted.csv
 
-<<<<<<< HEAD
 robot \
 query \
 	--format csv \
