@@ -1,14 +1,7 @@
-library(devtools)
+source(
+  "https://raw.githubusercontent.com/PennTURBO/turbo-globals/master/turbo_R_setup.R"
+)
 
-# todo: move this gist into the PennTURBO organization
-
-# requires a properly formatted "turbo_R_setup.yaml" in the home directory of the user who started this script
-# see https://gist.github.com/turbomam/a3915d00ee55d07510493a9944f96696 for template
-source_gist(id = "https://gist.github.com/turbomam/f082295aafb95e71d109d15ca4535e46",
-            sha1 = "dbc656aaf63b23dfdd35d875f6772e7c468170a4",
-            filename = "turbo_R_setup.R")
-
-# library(tidyverse)
 library(tidyr)
 library(tibble)
 
