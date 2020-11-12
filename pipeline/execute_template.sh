@@ -3,12 +3,8 @@ cat config/turbo_assay_template_headers_only.csv build/turbo_assay_template_head
 rm -rf turbo_merged.ttl*
 rm -rf build/turbo_merged.ttl*
 
-<<<<<<< HEAD
 wget https://raw.githubusercontent.com/PennTURBO/turbo-ontology/dev/ontologies/robot_implementation/turbo_merged.ttl
-##     https://raw.githubusercontent.com/PennTURBO/turbo-ontology/master/ontologies/robot_implementation/turbo_merged.ttl
-=======
-wget https://raw.githubusercontent.com/PennTURBO/turbo-ontology/master/ontologies/robot_implementation/turbo_merged.ttl
->>>>>>> 8ec5e99c1b2407cb25087eaf8e4474030e7ed6c5
+##  wget https://raw.githubusercontent.com/PennTURBO/turbo-ontology/master/ontologies/robot_implementation/turbo_merged.ttl
 
 mv turbo_merged.ttl build/turbo_merged.ttl 
 
@@ -76,7 +72,3 @@ annotate \
 --remove-annotations \
 --annotation-file config/turbo_assay_annotations.ttl \
 --output build/turbo_assays.ttl 
-
-
-=======
->>>>>>> 8ec5e99c1b2407cb25087eaf8e4474030e7ed6c5
