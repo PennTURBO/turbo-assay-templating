@@ -10,7 +10,7 @@ When this repo was created, we had been bootstrapping the assay models from LOIN
 
 - cd or setwd() to the `bottomup` directory
 - run `get_empis_get_labres_nextsteps.R`
-- run two robot commands... see issue tracker for now
+- run two robot commands... see https://github.com/PennTURBO/turbo-assay-templating/issues/7 for now
 
 
 ----
