@@ -6,8 +6,11 @@ Where we say "assays", healthcare providers might say "lab tests". However, we d
 
 When this repo was created, we had been bootstrapping the assay models from LOINC. See details below.  
 
-**After closer review of the LOINC terms and conditions, we have decided to put the previous approach on hold** and switch to an NLP + manual review approach for matching lab results from the EHR to terms from OBO foundry ontologies. See file XXX.
+**After closer review of the LOINC terms and conditions, we have decided to put the previous approach on hold** and switch to an NLP + manual review approach for matching lab results from the EHR to terms from OBO foundry ontologies. 
 
+- cd or setwd() to the `bottomup` directory
+- run `get_empis_get_labres_nextsteps.R`
+- run two robot commands... see issue tracker for now
 
 
 ----
