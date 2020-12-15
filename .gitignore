@@ -8,5 +8,7 @@ attic
 incubator
 bottomup/local
 bottomup/old
+bottomup/build
+bottomup/data
 bottomup/purl.obolibrary.org
 

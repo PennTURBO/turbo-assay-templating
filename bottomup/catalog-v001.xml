@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+
+  <!-- generated mapping -->
+  <uri name="http://purl.obolibrary.org/obo/pr.owl" uri="purl.obolibrary.org/obo/pr.owl"/>
+</catalog>
+
