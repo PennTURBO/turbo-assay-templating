@@ -4,3 +4,9 @@ loinc_in_obo.yaml
 **/Loinc_2
 .DS_Store
 .Rhistory
+attic
+incubator
+bottomup/local
+bottomup/old
+bottomup/purl.obolibrary.org
+
